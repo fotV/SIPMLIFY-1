@@ -61,7 +61,7 @@ public class PresentationForm extends JFrame{
 	
 		
 		this.setVisible(true);
-		this.setTitle("GUI AND DS EXAMPLE");
+		this.setTitle("PresentationForm");
 		this.setSize(600, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 	}

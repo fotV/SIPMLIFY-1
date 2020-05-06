@@ -4,15 +4,28 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public abstract class User {
-	String firstName;
-	String surName;
-	String password;
-	String telephone;
-	String AMA;
-	String id;
-	String company;
-	int type;
-	Orders orders = new Orders();
+	protected String firstName;
+	protected String surName;
+	protected String password;
+	protected String telephone;
+	protected String AMA;
+	protected String id;
+	protected String company;
+	protected int type;
+	protected Orders orders = new Orders();
+	
+
+	public User(String firstName, String surName, String password, String telephone, String aMA, String id) {
+		super();
+		this.firstName = firstName;
+		this.surName = surName;
+		this.password = password;
+		this.telephone = telephone;
+		AMA = aMA;
+		this.id = id;
+	
+		
+	}
 	
 	public abstract void initializeLists();
 	public abstract void refresh();
