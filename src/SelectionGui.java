@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class SelectionGui extends JFrame
+
+public class SelectionGui  extends JFrame
 {
+
 			private String[] options;
 			 //options[0] variable
 			 //options[1] filter
@@ -43,10 +45,8 @@ public class SelectionGui extends JFrame
 				
 				
 			}
-			//public SelectionGui() {
-				
 			
-			
+	
 			public String[] getOptions()
 			{
 				return options;
@@ -59,129 +59,249 @@ public class SelectionGui extends JFrame
 			
 			public void initialize() 
 			{
-				String OMvariables[] = {"","Cost","Purchases"};
-				String OMfilter[] = {"","Date","Supplier","Product"};
-				String charts[] = {"","Pie Chart","Line Chart","Bar Chart","Matrix"};
-				
 				
 				JFrame f = new JFrame();
 				JPanel panel=new JPanel();  
 				
 				f.getContentPane().setBackground(new Color(176, 224, 230));
-				
-				
-				JLabel var = new JLabel("Choose Variable :");
-				var.setBounds(8, 20, 100, 14);
-				f.getContentPane().add(var);
-				
-				JComboBox varCb = new JComboBox(OMvariables);   
-				varCb.setBounds(117, 16, 89, 22);    
-			    f.getContentPane().add(varCb);  
-			    
-			    JLabel filter = new JLabel("Choose Filter :");
-			    filter.setBounds(8, 66, 100, 14);
-				f.getContentPane().add(filter);
-				
-				JComboBox filterCb = new JComboBox(OMfilter);
-				filterCb.setBounds(117, 62, 89, 22);
-				f.getContentPane().add(filterCb);
-				
-				JLabel key = new JLabel("Enter Key :");
-				key.setBounds(8, 113, 100, 14);
-				f.getContentPane().add(key);
-				
-				JTextField Ekey = new JTextField();
-				Ekey.setBounds(117, 110, 89, 20);
-				f.getContentPane().add(Ekey);
-				
-				JLabel message = new JLabel("Enter Key only if chosen filter is product or supplier");
-				message.setBounds(8, 138,300, 14);
-				f.getContentPane().add(message);
-				
-				JLabel chart = new JLabel("Choose Chart : ");
-				chart.setBounds(8, 182, 100, 14);
-				f.getContentPane().add(chart);
-				
-				JComboBox chartCb = new JComboBox(charts);
-				chartCb.setBounds(117, 178, 89, 22);
-				f.getContentPane().add(chartCb);
-				
-			    JLabel from = new JLabel("From :");
-				from.setBounds(8, 226, 46, 14);
-				f.getContentPane().add(from);
-				
-				JComboBox fromMonth = new JComboBox(months);
-				fromMonth.setBounds(117, 229, 89, 22);
-				f.getContentPane().add(fromMonth);
-				
-				JLabel to = new JLabel("To :");
-				to.setBounds(8, 273, 46, 14);
-				f.getContentPane().add(to);
-				
-				JComboBox toMonth = new JComboBox(months);
-				toMonth.setBounds(117, 269, 89, 22);
-				f.getContentPane().add(toMonth);
-				
-				JLabel enterYear = new JLabel("Enter Year :");
-				enterYear.setBounds(228, 214, 75, 14);
-				f.getContentPane().add(enterYear);
-				
-				JTextField yearFrom = new JTextField();
-				yearFrom.setBounds(228, 231, 58, 20);
-				f.getContentPane().add(yearFrom);
-				yearFrom.setColumns(10);
-				
-				JTextField yearTo = new JTextField();
-				yearTo.setColumns(10);
-				yearTo.setBounds(228, 270, 58, 20);
-				f.getContentPane().add(yearTo);
-				
-				JButton b = new JButton("Done");
-				b.setBounds(415, 310, 71, 23); 
-				f.getContentPane().add(b);
-				
-				
-				b.addActionListener(new ActionListener()
+				user = "Supplier";
+				//η συνθήκη if προς το παρών έτσι για ευκολία 
+				//αν θέλετε να το τρέξετε αλλάξτε την τιμή στο user
+				if(user.equals("Order Manager"))
 				{
-					public void actionPerformed(ActionEvent e) 
+					String OMvariables[] = {"","Cost","Orders"};
+					String OMfilter[] = {"","Date","Supplier","Product"};
+					String charts[] = {"","Pie Chart","Line Chart","Bar Chart","Matrix"};
+							
+					JLabel var = new JLabel("Choose Variable :");
+					var.setBounds(8, 20, 100, 14);
+					f.getContentPane().add(var);
+					
+					JComboBox varCb = new JComboBox(OMvariables);   
+					varCb.setBounds(117, 16, 89, 22);    
+				    f.getContentPane().add(varCb);  
+				    
+				    JLabel filter = new JLabel("Choose Filter :");
+				    filter.setBounds(8, 66, 100, 14);
+					f.getContentPane().add(filter);
+					
+					JComboBox filterCb = new JComboBox(OMfilter);
+					filterCb.setBounds(117, 62, 89, 22);
+					f.getContentPane().add(filterCb);
+					
+					JLabel key = new JLabel("Enter Key :");
+					key.setBounds(8, 113, 100, 14);
+					f.getContentPane().add(key);
+					
+					JTextField Ekey = new JTextField();
+					Ekey.setBounds(117, 110, 89, 20);
+					f.getContentPane().add(Ekey);
+					
+					JLabel message = new JLabel("Enter Key only if chosen filter is product or supplier");
+					message.setBounds(8, 138,300, 14);
+					f.getContentPane().add(message);
+					
+					JLabel chart = new JLabel("Choose Chart : ");
+					chart.setBounds(8, 182, 100, 14);
+					f.getContentPane().add(chart);
+					
+					JComboBox chartCb = new JComboBox(charts);
+					chartCb.setBounds(117, 178, 89, 22);
+					f.getContentPane().add(chartCb);
+					
+				    JLabel from = new JLabel("From :");
+					from.setBounds(8, 226, 46, 14);
+					f.getContentPane().add(from);
+					
+					JComboBox fromMonth = new JComboBox(months);
+					fromMonth.setBounds(117, 229, 89, 22);
+					f.getContentPane().add(fromMonth);
+					
+					JLabel to = new JLabel("To :");
+					to.setBounds(8, 273, 46, 14);
+					f.getContentPane().add(to);
+					
+					JComboBox toMonth = new JComboBox(months);
+					toMonth.setBounds(117, 269, 89, 22);
+					f.getContentPane().add(toMonth);
+					
+					JLabel enterYear = new JLabel("Enter Year :");
+					enterYear.setBounds(228, 214, 75, 14);
+					f.getContentPane().add(enterYear);
+					
+					JTextField yearFrom = new JTextField();
+					yearFrom.setBounds(228, 231, 58, 20);
+					f.getContentPane().add(yearFrom);
+					yearFrom.setColumns(10);
+					
+					JTextField yearTo = new JTextField();
+					yearTo.setColumns(10);
+					yearTo.setBounds(228, 270, 58, 20);
+					f.getContentPane().add(yearTo);
+					
+					JButton b = new JButton("Done");
+					b.setBounds(415, 310, 71, 23); 
+					f.getContentPane().add(b);
+					
+					
+					b.addActionListener(new ActionListener()
 					{
-						options[0] = (String) varCb.getSelectedItem();
-						//System.out.println(options[0]);
+						public void actionPerformed(ActionEvent e) 
+						{
+							options[0] = (String) varCb.getSelectedItem();
+							
+							options[1] =(String) filterCb.getSelectedItem();
+							
+							options[2] = Ekey.getText();
+							
+							options[3] = (String) chartCb.getSelectedItem();
+							
+							options[4] = (String) fromMonth.getSelectedItem();
+							
+							options[5] = yearFrom.getText();
+							
+							options[6] = (String) toMonth.getSelectedItem();
+							
+							options[7] = yearTo.getText();
+							
+							errorFlag = checkError(options);
+
+							if(!errorFlag)
+							{
+								Statistics ord = new Statistics(options);
+								ord.OrdererStat();
+								
+								System.exit(0);
+							}
 						
-						options[1] =(String) filterCb.getSelectedItem();
-						//System.out.println(options[1]);
-						
-						options[2] = Ekey.getText();
-						//System.out.println(options[2]);
-						
-						options[3] = (String) chartCb.getSelectedItem();
-						//System.out.println(options[3]);
-						
-						options[4] = (String) fromMonth.getSelectedItem();
-						//System.out.println(options[4]);
-						
-						options[5] = yearFrom.getText();
-						//System.out.println(options[5]);
-						
-						options[6] = (String) toMonth.getSelectedItem();
-						//System.out.println(options[6]);
-						
-						options[7] = yearTo.getText();
-						//System.out.println(options[7]);
-						
-						errorFlag = checkError(options);
-						//System.out.println(errorFlag);
-						
-						
-					}
-				});
+							}
+							
+					});
+					
+					
+					f.setSize(512, 383); 
+					f.setTitle("Order Mnager Statistics");
+					f.setLayout(null); 
+					f.setVisible(true);
 				
+				}
+				else if(user.equals("Supplier"))
+				{
+					String OMvariables[] = {"","Profit","Purchases"};
+					String OMfilter[] = {"","Date","Client","Product"};
+					String charts[] = {"","Pie Chart","Line Chart","Bar Chart","Matrix"};
+							
+					JLabel var = new JLabel("Choose Variable :");
+					var.setBounds(8, 20, 100, 14);
+					f.getContentPane().add(var);
+					
+					JComboBox varCb = new JComboBox(OMvariables);   
+					varCb.setBounds(117, 16, 89, 22);    
+				    f.getContentPane().add(varCb);  
+				    
+				    JLabel filter = new JLabel("Choose Filter :");
+				    filter.setBounds(8, 66, 100, 14);
+					f.getContentPane().add(filter);
+					
+					JComboBox filterCb = new JComboBox(OMfilter);
+					filterCb.setBounds(117, 62, 89, 22);
+					f.getContentPane().add(filterCb);
+					
+					JLabel key = new JLabel("Enter Key :");
+					key.setBounds(8, 113, 100, 14);
+					f.getContentPane().add(key);
+					
+					JTextField Ekey = new JTextField();
+					Ekey.setBounds(117, 110, 89, 20);
+					f.getContentPane().add(Ekey);
+					
+					JLabel message = new JLabel("Enter Key only if chosen filter is Product or Client");
+					message.setBounds(8, 138,300, 14);
+					f.getContentPane().add(message);
+					
+					JLabel chart = new JLabel("Choose Chart : ");
+					chart.setBounds(8, 182, 100, 14);
+					f.getContentPane().add(chart);
+					
+					JComboBox chartCb = new JComboBox(charts);
+					chartCb.setBounds(117, 178, 89, 22);
+					f.getContentPane().add(chartCb);
+					
+				    JLabel from = new JLabel("From :");
+					from.setBounds(8, 226, 46, 14);
+					f.getContentPane().add(from);
+					
+					JComboBox fromMonth = new JComboBox(months);
+					fromMonth.setBounds(117, 229, 89, 22);
+					f.getContentPane().add(fromMonth);
+					
+					JLabel to = new JLabel("To :");
+					to.setBounds(8, 273, 46, 14);
+					f.getContentPane().add(to);
+					
+					JComboBox toMonth = new JComboBox(months);
+					toMonth.setBounds(117, 269, 89, 22);
+					f.getContentPane().add(toMonth);
+					
+					JLabel enterYear = new JLabel("Enter Year :");
+					enterYear.setBounds(228, 214, 75, 14);
+					f.getContentPane().add(enterYear);
+					
+					JTextField yearFrom = new JTextField();
+					yearFrom.setBounds(228, 231, 58, 20);
+					f.getContentPane().add(yearFrom);
+					yearFrom.setColumns(10);
+					
+					JTextField yearTo = new JTextField();
+					yearTo.setColumns(10);
+					yearTo.setBounds(228, 270, 58, 20);
+					f.getContentPane().add(yearTo);
+					
+					JButton b = new JButton("Done");
+					b.setBounds(415, 310, 71, 23); 
+					f.getContentPane().add(b);
+					
+					
+					b.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e) 
+						{
+							options[0] = (String) varCb.getSelectedItem();
+							
+							options[1] =(String) filterCb.getSelectedItem();
+							
+							options[2] = Ekey.getText();
+							
+							options[3] = (String) chartCb.getSelectedItem();
+							
+							options[4] = (String) fromMonth.getSelectedItem();
+							
+							options[5] = yearFrom.getText();
+							
+							options[6] = (String) toMonth.getSelectedItem();
+							
+							options[7] = yearTo.getText();
+							
+							errorFlag = checkError(options);
+							
+							if(!errorFlag)
+							{
+								Statistics sup = new Statistics(options);
+								sup.SupplierStat();
+								
+								System.exit(0);
+							}
+							
+						}
+					});
+					
+					
+					f.setSize(512, 383); 
+					f.setTitle("Supplier Statistics");
+					f.setLayout(null); 
+					f.setVisible(true);
 				
-				f.setSize(512, 383); 
-				f.setTitle("Order Mnager Statistics");
-				f.setLayout(null); 
-				f.setVisible(true);
-				
+				}
 				
 				
 			}
@@ -257,15 +377,11 @@ public class SelectionGui extends JFrame
 						errorFlag = true;
 						JOptionPane.showMessageDialog(popUp,"Wrong Year Input.\"From Month\" Later Than \"To Month\"");
 					}
-					else if(fromMonth == toMonth)
+					else if((fromMonth == toMonth) || ((toMonth - fromMonth) < 2))
 					{
 						errorFlag = true;
-						JOptionPane.showMessageDialog(popUp,"");
+						JOptionPane.showMessageDialog(popUp,"For the same year,month period must be at least two months apart");
 					}
-				}
-				else if(options[5].compareTo(options[7]) < 0)
-				{
-					errorFlag = true;
 				}
 				
 				
