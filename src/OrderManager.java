@@ -31,13 +31,24 @@ public class OrderManager extends User {
 		supplies.extractObjectDB();
 	}
 	
-	//Method searchForProduct():
+	/* Method searchForProduct(): seasrches a product and calls a GUI to 
+	** to show the results */
 	public void searchForProduct(String key, int column) {
 		for ( SupplierProducts prod : products ) {
 			if (prod.equals(column) && prod.equals(key)){
 				//calls GUI : PresentationForm
 			}
 		}
+	}
+	
+	/* Method addProduct() : adds the parameter to the product list */
+	public void addProduct(SupplierProduct product) {
+		products.add(product);
+	}
+	
+	/* Method editProduct() : adds the sp in the index position of list products */
+	public void editProduct(SupplierProduct sp, int index) {
+		products.add(index, sp);
 	}
 
 	//Getters & Setters
