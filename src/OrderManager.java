@@ -71,7 +71,24 @@ public class OrderManager extends User {
 		suppliers.add(index, s);
 	}
 	
+	/* Method addOrder() : adds the parameter to the orders list */
+	public void addOrder(Order order) {
+		orders.add(order);
+	}
 	
+	/* Method chooseBusinessType() : sets if the business is regular or not */
+	public void chooseBusinessType(boolean flag) {
+		if ( flag == true ) {
+			regular = true; //if flag is true the business is regular
+		}
+	}
+	
+	/* Method chooseBusinessSeason() : sets the season of the business*/
+	public void chooseBusinessSeason(String seas) {
+		if (regular == false) {
+			season = seas;
+		}
+	}
 
 	//Getters & Setters
 	public String getSeason() {
