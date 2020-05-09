@@ -6,10 +6,13 @@ public class Seller extends User {
 	
 	//Constructor
 	public Seller(CompanyProducts products, Buyers buyers) {
+		super();
 		this.products = products;
 		this.buyers = buyers;
 	}
 
+	
+	
 	public CompanyProducts getProducts() {
 		return products;
 	}
