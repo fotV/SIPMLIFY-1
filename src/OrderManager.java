@@ -31,7 +31,14 @@ public class OrderManager extends User {
 		supplies.extractObjectDB();
 	}
 	
-	
+	//Method searchForProduct():
+	public void searchForProduct(String key, int column) {
+		for ( SupplierProducts prod : products ) {
+			if (prod.equals(column) && prod.equals(key)){
+				//calls GUI : PresentationForm
+			}
+		}
+	}
 
 	//Getters & Setters
 	public String getSeason() {
