@@ -46,10 +46,32 @@ public class OrderManager extends User {
 		products.add(product);
 	}
 	
-	/* Method editProduct() : adds the sp in the index position of list products */
+	/* Method editProduct() : adds the sp in the specific index position of list products */
 	public void editProduct(SupplierProduct sp, int index) {
 		products.add(index, sp);
 	}
+	
+	/* Method searchForSupplier() : seasrches a supplier and calls a GUI to 
+	** to show the results */
+	public void searchForSupplier(String key, int column) {
+		for ( Suppliers sup : suppliers ) {
+			if ( sup.equals(column) && sup.equals(key)) {
+				//Calls GUI : PresentationForm
+			}
+		}
+	}
+	
+	/* Method addSupplier() : adds the parameter to the supplier list*/
+	public void addSupplier(Supplier s) {
+		suppliers.add(s);
+	}
+	
+	/* Method editSupplier() : adds the s to the specific index position of list suppliers*/
+	public void editSupplier(Supplier s, int index) {
+		suppliers.add(index, s);
+	}
+	
+	
 
 	//Getters & Setters
 	public String getSeason() {
