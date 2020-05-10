@@ -1,4 +1,7 @@
 import java.awt.BorderLayout;
+
+
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -9,11 +12,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+
 import javax.swing.border.EtchedBorder;
 
 public class StockkeeperForm extends JFrame{
-	
+    public static int progress = 0;
+    
 	private JPanel panel;
 	private JButton btnSearchForOrder;
 	private JButton Refreshbutton;
@@ -28,7 +32,6 @@ public class StockkeeperForm extends JFrame{
 	private JLabel resultAFM;
 	private JLabel resultID;
 
-
 	public StockkeeperForm(Stockkeeper stk)
 	{
 		panel = new JPanel();
@@ -42,12 +45,15 @@ public class StockkeeperForm extends JFrame{
 		btnSearchForOrder.setBounds(10, 448, 250, 79);
 		panel.add(btnSearchForOrder);
 		
-		Refreshbutton = new JButton("");
+		
+		Refreshbutton = new JButton();
 		Refreshbutton.setIcon(new ImageIcon("C:\\Users\\Christina\\Desktop\\43339-200.png"));
 		Refreshbutton.setForeground(Color.WHITE);
 		Refreshbutton.setBounds(636, 448, 97, 85);
 		panel.add(Refreshbutton);
 		
+		
+        
 		lblName = new JLabel("First Name :");
 		lblName.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblName.setBounds(30, 36, 116, 32);
@@ -103,8 +109,6 @@ public class StockkeeperForm extends JFrame{
 		panel.add(resultID);
 		
 		
-		
-		
 		btnSearchForOrder.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
 			{
@@ -112,18 +116,18 @@ public class StockkeeperForm extends JFrame{
 			}	
 		});
 
-		btnSearchForOrder.addActionListener( new ActionListener() {
+		Refreshbutton.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
 			{
-					stk.refresh();
-			}	
+				stk.refresh();
+			}
+					
 		});
-		
-		
-		
+
 	
 		this.setVisible(true);
 		this.getContentPane().add(panel, BorderLayout.CENTER);
+		this.setResizable(false);
 		this.setTitle("HomePage");
 		this.setBounds(100, 100, 759, 583);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

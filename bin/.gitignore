@@ -26,6 +26,8 @@
 /ShowProduct.class
 /Statistics.class
 /Stockkeeper.class
+/StockkeeperForm$1.class
+/StockkeeperForm$2.class
 /StockkeeperForm.class
 /Suppl.class
 /Supplier.class
@@ -36,5 +38,5 @@
 /Supplies.class
 /User.class
 /Users.class
-/StockkeeperForm$1.class
-/StockkeeperForm$2.class
+/StockkeeperForm$3.class
+/OrderForm$1.class
