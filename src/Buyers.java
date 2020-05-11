@@ -19,11 +19,11 @@ public class Buyers extends ListFromDB {
 			Buyer b = new Buyer("", "", "", "");
 			while (rs.next()) {
 				
-				b.setName(rs.getString(Name));
-				b.setLastName(rs.getString(LastName));
-				b.setId(rs.getString(Id));
+				b.setName(rs.getString("Name"));
+				b.setLastName(rs.getString("LastName"));
+				b.setId(rs.getString("Id"));
 				//s.setPhoneNumber(rs.getString());
-				b.setAFM(rs.getString(AFM));
+				b.setAFM(rs.getString("AFM"));
 				buyers.add(s);
 				
 			}

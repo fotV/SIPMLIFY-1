@@ -18,13 +18,13 @@ public class Users extends ListFromDB {
 			User us = new User("", "", "", "", "", "", "", null);
 			while (rs.next()) {
 				
-				us.setFirstName(rs.getString(FirstName));
-				us.setSurName(rs.getString(LastName));
-				us.setPassword(rs.getString(Password));
-				us.setTelephone(rs.getString(Phonenumber));
-				us.setAFM(rs.getString(AFM));
-				us.setId(rs.getString(id));
-				us.setCompany(rs.getString(Company));
+				us.setFirstName(rs.getString("FirstName"));
+				us.setSurName(rs.getString("LastName"));
+				us.setPassword(rs.getString("Password"));
+				us.setTelephone(rs.getString("Phonenumber"));
+				us.setAFM(rs.getString("AFM"));
+				us.setId(rs.getString("id"));
+				us.setCompany(rs.getString("Company"));
 				users.add(us);
 				
 			}
