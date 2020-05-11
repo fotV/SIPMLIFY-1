@@ -43,6 +43,7 @@ import java.awt.event.ActionEvent;
     	 */
     	private void initialize() {
     		frame = new JFrame();
+    		frame.setTitle("Login");
     		frame.setBounds(100, 100, 811, 677);
     		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     		
@@ -82,61 +83,85 @@ import java.awt.event.ActionEvent;
     	}
 		class ButtonListener implements ActionListener{
 			
-			public void actionPerformed(ActionEvent e) {
+		
+               public void actionPerformed(ActionEvent e) {
 				
 				String Usersusername = textField.getText();
 				String Userspassword=passwordField.getText();
 				
 				Users selectedUsers = null;
 				
+				
 				for(Users u : userList)
 				{
-					if (u.getUsername().equals(Usersusername))
+					if (Users.getPassword().equals(Usersusername))
 					{
-						selectedUsers = u;
-						break;
-					}
+						selectedUsers = u;}
+					
+					
 				}
+					if(selectedUsers != null)	
+				{
 					
-				if(selectedUsers != null)	{
-					
-				    if(e.getPassword().equals(Userspassword))
+				    if(Users.getPassword().equals(Userspassword))
 				    {
-				    	OrderManagerForm ord= New OrderManagerForm() ;
+				    	OrderManagerForm ord= new OrderManagerForm() ;
 				    	
 					}
-					else if(e.getPassword().equals(Userspassword))
+					else if(Users.getPassword().equals(Userspassword))
 						{
 							
 							SellerForm sel= new SellerForm();
 							
 							
 						}
-						else if (e.getPassword().equals(Userspassword))
+						else if (Users.getPassword().equals(Userspassword))
 						 {
 							
 							StockkeeperForm st= new StockkeeperForm();
 							
 							
 						 }
+			
 				}
 				else
 			    {System.out.println("There is no user with this username"
 			    		+ "Try Again");}
+				}
+		}
+               
+               
+               }
+				
+		
+		
+    
+              
+   
+    
+		
+               
+					
+					
+					
+						
+		
+			
+	
 						
 					
 						
 				
 				
 				
-			}
 			
 			
 			
 			
 			
-		}
-    }
+			
+		
+    
 		
 		
 
