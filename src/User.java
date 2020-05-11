@@ -48,10 +48,68 @@ public class User {
 	
 	public void searchForOrder(String key, int column)
 	{
+		Boolean found=false;
+		ArrayList<Object> ordersKEY = new ArrayList<>();
+		if(column==1) {                                      //1 to orderId
+			for(Order o : orders.orders)
+			{
+				if(o.getOrderId().equals(key))
+					{
+						ordersKEY.add(o);
+						found=true;
+					}
+			}
+		}
+		else if (column==2) {                              //2 to supplierId
+			for(Order o : orders.orders)
+			{
+				if(o.getSupplierId().equals(key)) {
+					ordersKEY.add(o);
+					found=true;
+				}
+			}
+		}
+		else if (column==3) {                              //3 to productId
+			for(Order o : orders.orders)
+			{
+				if(o.getProductId().equals(key)) {
+					ordersKEY.add(o);
+					found=true;
+				}
+			}
+		}
+		else if (column==4) {                              //4 to productName
+			for(Order o : orders.orders)
+			{
+				if(o.getProductName().equals(key)) {
+					ordersKEY.add(o);
+					found=true;
+				}
+			}
+		}
+		else if (column==5) {                              //5 to date
+			for(Order o : orders.orders)
+			{
+				if(o.getDate().equals(key)) {
+					ordersKEY.add(o);
+					found=true;
+				}
+			}
+		}
+		else if (column==6) {                             //6 to status
+			int intkey = Integer.parseInt(key);
+			for(Order o : orders.orders)
+			{
+				if(o.getStatus()==intkey) ordersKEY.add(o);
+			}
+		}
 		
+		Component frame = null;
+		if (found) new PresentationForm(ordersKEY);
+		else JOptionPane.showMessageDialog(frame, "No result", "Inane error", JOptionPane.ERROR_MESSAGE);
 	}
 	
-	public String getName() {
+	public String getFirstName() {
 		return firstName;
 	}
 	public void editOrder(Order o, int index)
@@ -90,5 +148,9 @@ public class User {
 
 	public void setCompany(String company) {
 		this.company = company;
+	}
+
+	public String getLastName() {
+		return surName;
 	}
 }
