@@ -18,9 +18,9 @@ public class Supplies extends ListFromDB {
 			Suppl s = new Suppl("", "", 0.0);
 			while (rs.next()) {
 				
-				b.setProductId(rs.getString(PFP_Id));
-				b.setSellerId(rs.getString(Supplier_Id));
-				b.setPrice(rs.getDouble(Price));
+				b.setProductId(rs.getString("PFP_Id"));
+				b.setSellerId(rs.getString("Supplier_Id"));
+				b.setPrice(rs.getDouble("Price"));
 				supplies.add(s);
 				
 			}
