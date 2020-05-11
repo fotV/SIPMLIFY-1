@@ -1,5 +1,6 @@
 
 public class CompanyProduct {
+<<<<<<< HEAD
 	String id;
 	String name;
 	double price;
@@ -16,6 +17,9 @@ public class CompanyProduct {
 		 this.stockamount=stockamount;
 		 this.maxStockAmount=maxStockAmount;
 
+=======
+	
+>>>>>>> origin/master
 }
 
 	public String getId() {

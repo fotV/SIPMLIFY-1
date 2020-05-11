@@ -13,6 +13,10 @@
 /OrderManager.class
 /OrderManagerForm.class
 /Orders.class
+<<<<<<< HEAD
+=======
+/PresentationForm$1.class
+>>>>>>> origin/master
 /PresentationForm.class
 /ProductForm.class
 /Proposals.class
@@ -25,6 +29,11 @@
 /ShowProduct.class
 /Statistics.class
 /Stockkeeper.class
+<<<<<<< HEAD
+=======
+/StockkeeperForm$1.class
+/StockkeeperForm$2.class
+>>>>>>> origin/master
 /StockkeeperForm.class
 /Suppl.class
 /Supplier.class
@@ -35,4 +44,9 @@
 /Supplies.class
 /User.class
 /Users.class
+<<<<<<< HEAD
 /LogginForm$ButtonListener.class
+=======
+/StockkeeperForm$3.class
+/OrderForm$1.class
+>>>>>>> origin/master

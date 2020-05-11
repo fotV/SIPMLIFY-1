@@ -1,5 +1,6 @@
 
 public class Order {
+<<<<<<< HEAD
 	String orderManagerId;
 	String orderId;
 	double quantity;
@@ -76,4 +77,7 @@ public double getPrice() {
 public double getTotalPrice() {
 	return totalPrice;
 }
+=======
+	
+>>>>>>> origin/master
 }
