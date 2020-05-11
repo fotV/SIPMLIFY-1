@@ -18,11 +18,11 @@ public class CompanyProducts extends ListFromDB {
 			CompanyProduct cp = new CompanyProduct("", "", 0.0, 0.0, 0.0, 0.0);
 			while (rs.next()) {
 				
-				cp.setName(rs.getString(Name));
-				cp.setId(rs.getString(Id));
-				cp.setStockAmount(rs.getDouble(StockAmount));
-				cp.setMaxStockAmount(rs.getDouble(MaxStockAmount));
-				cp.setSafetyStock(rs.getDouble(SafetyStock)));
+				cp.setName(rs.getString("Name"));
+				cp.setId(rs.getString("Id"));
+				cp.setStockAmount(rs.getDouble("StockAmount"));
+				cp.setMaxStockAmount(rs.getDouble("MaxStockAmount"));
+				cp.setSafetyStock(rs.getDouble("SafetyStock"));
 				//cp.setPrice(rs.getDouble());
 				companyp.add(cp);
 				
