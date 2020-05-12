@@ -15,9 +15,10 @@ public class Supplies extends ListFromDB {
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Supplies");
 			
-			Suppl s = new Suppl("", "", 0.0);
+			
 			while (rs.next()) {
 				
+				Suppl s = new Suppl("", "", 0.0);
 				s.setProductId(rs.getString("PFP_Id"));
 				s.setSupplierId(rs.getString("Supplier_Id"));
 				s.setPrice(rs.getDouble("Price"));
@@ -29,6 +30,10 @@ public class Supplies extends ListFromDB {
 		}catch(Exception e){
 			System.out.println(e);
 		}
+	}
+	public ArrayList<Suppl> getSupplies()
+	{
+		return supplies;
 	}
  
 }

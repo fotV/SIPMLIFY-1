@@ -3,12 +3,12 @@ public class CompanyProduct {
 
 	private String id;
 	private String name;
-	//private double price;
+	private double price;
 	private double safetystock;
 	private double stockamount;
 	private double maxStockAmount;
 	
-	public CompanyProduct(String id,String name,double safetystock,double stockamount,double maxStockAmount)
+	public CompanyProduct(String id,String name,double safetystock,double stockamount,double maxStockAmount,double price)
  {
 	     this.id=id;
 		 this.name=name;
@@ -16,6 +16,7 @@ public class CompanyProduct {
 		 this.safetystock=safetystock;
 		 this.stockamount=stockamount;
 		 this.maxStockAmount=maxStockAmount;
+		 this.price = price;
 
 }
 
@@ -37,6 +38,9 @@ public class CompanyProduct {
 
 	public double getMaxStockAmount() {
 		return maxStockAmount;
+	}
+	public double getPrice(){
+		return price;
 	}
 
 	public void setName(String name) {
@@ -61,6 +65,11 @@ public class CompanyProduct {
 
 	public void setSafetyStock(double safetyStock) {
 		this.safetystock = safetyStock;
+		
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 		
 	}
 	

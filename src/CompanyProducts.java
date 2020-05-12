@@ -18,13 +18,13 @@ public class CompanyProducts extends ListFromDB {
 			
 			while (rs.next()) {
 				
-				CompanyProduct cp = new CompanyProduct("","",0.0,0.0,0.0);
+				CompanyProduct cp = new CompanyProduct("","",0.0,0.0,0.0,0.0);
 				cp.setName(rs.getString("Name"));
 				cp.setId(rs.getString("Id"));
 				cp.setStockAmount(rs.getDouble("StockAmount"));
 				cp.setMaxStockAmount(rs.getDouble("MaxStockAmount"));
 				cp.setSafetyStock(rs.getDouble("SafetyStock"));
-				//cp.setPrice(rs.getDouble());
+				cp.setPrice(rs.getDouble("Price"));
 				companyp.add(cp);
 				
 			}

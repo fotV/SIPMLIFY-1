@@ -159,6 +159,11 @@ public class Order {
 	}
 
 
+	public String getProductId() {
+		return productId;
+	}
+
+
 	
 	
 }

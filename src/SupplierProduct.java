@@ -2,6 +2,7 @@
 public class SupplierProduct {
 	 private String name;
 	 private String id;
+	 private String orderManagerId; // the orderManagerId is needed in this class
 	 private double stockAmount;
 	 private double maxStockAmount;
 	 private double safetyStock;
@@ -9,18 +10,20 @@ public class SupplierProduct {
 	 private int leadtime;
 	 private double expectedAmount;
 	 
+	 
 
 	 
-	 public SupplierProduct(String name,String id,int stockAmount,int maxStockAmount,int safetyStock,float averageÌonthlyConsumption,int leadtime,int expectedAmount) 
+	 public SupplierProduct(String name,String id,String orderManagerId,double stockAmount,double maxStockAmount,double safetyStock,double averageMonthlyConsumption,int leadtime,double expectedAmount) 
 	 {
-		 this.name=name;
-		 this.id=id;
-		 this.stockAmount=stockAmount;
-		 this.maxStockAmount=maxStockAmount;
-		 this.safetyStock=safetyStock;
-		 this.averageMonthlyConsumption=averageMonthlyConsumption;
-		 this.leadtime=leadtime;
-		 this.expectedAmount=expectedAmount;
+		 this.name = name;
+		 this.id = id;
+		 this.orderManagerId = orderManagerId;
+		 this.stockAmount = stockAmount;
+		 this.maxStockAmount = maxStockAmount;
+		 this.safetyStock = safetyStock;
+		 this.averageMonthlyConsumption = averageMonthlyConsumption;
+		 this.leadtime = leadtime;
+		 this.expectedAmount = expectedAmount;
 
      }
 
@@ -92,6 +95,14 @@ public class SupplierProduct {
 
 	public void setLeadtime(int lt) {
 		this.leadtime = lt;
+	}
+
+	public String getOrderManagerId() {
+		return orderManagerId;
+	}
+
+	public void setOrderManagerId(String orderManagerId) {
+		this.orderManagerId = orderManagerId;
 	}
 
 		 

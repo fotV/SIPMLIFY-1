@@ -14,12 +14,13 @@ public class Users extends ListFromDB {
 			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM User");
-		
-		
+		    
+
 			while (rs.next()) {
-				
+			
 				User us = new User();
 				us.setFirstName(rs.getString("FirstName"));
+				System.out.println(rs.getString("FirstName"));
 				us.setSurName(rs.getString("LastName"));
 				us.setPassword(rs.getString("Password"));
 				us.setTelephone(rs.getString("Phonenumber"));
@@ -29,7 +30,6 @@ public class Users extends ListFromDB {
 				users.add(us);
 				
 			}
-			
 			c.close();
 		}catch(SQLException | ClassNotFoundException e){
 			System.out.println(e.getMessage());
