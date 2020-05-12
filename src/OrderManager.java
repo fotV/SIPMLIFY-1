@@ -34,7 +34,7 @@ public class OrderManager extends User {
 	/* Method searchForProduct(): seasrches a product and calls a GUI to 
 	** to show the results */
 	public void searchForProduct(String key, int column) {
-		for ( SupplierProducts prod : products ) {
+		for ( SupplierProduct prod : products ) {
 			if (prod.equals(column) && prod.equals(key)){
 				//calls GUI : PresentationForm
 			}
@@ -54,7 +54,7 @@ public class OrderManager extends User {
 	/* Method searchForSupplier() : seasrches a supplier and calls a GUI to 
 	** to show the results */
 	public void searchForSupplier(String key, int column) {
-		for ( Suppliers sup : suppliers ) {
+		for ( Supplier sup : suppliers ) {
 			if ( sup.equals(column) && sup.equals(key)) {
 				//Calls GUI : PresentationForm
 			}

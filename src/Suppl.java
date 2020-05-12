@@ -1,32 +1,42 @@
 
 public class Suppl {
-	String name;
-	String id;
-	String AFM;
-	String phoneNumber;
+	private String productId;
+	private String supplierId;
+	private double price;
 
-	public Suppl(String name,String id,String AFM,String phoneNumber) {
+	public Suppl(String productid,String supplierid,double price) {
 	
-		this.name=name;
-		this.id=id;
-		this.AFM=AFM;
-		this.phoneNumber=phoneNumber;
+		this.productId=productid;
+		this.supplierId=supplierid;
+		this.price = price;
 }
 
-	public String getName() {
-		return name;
+	public String getProductId() {
+		return productId;
 	}
 
-	public String getId() {
-		return id;
+	public String getSupplierId() {
+		return supplierId;
 	}
 
-	public String getAFM() {
-		return AFM;
+	public double getPrice() {
+		return price;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+
+	public void setProductId(String productId) {
+		this.productId = productId;
+		
+	}
+
+	public void setSupplierId(String supplierId) {
+		this.supplierId = supplierId;
+	}
+		
+
+	public void setPrice(double price) {
+		this.price = price;
+		
 	}
 
 	

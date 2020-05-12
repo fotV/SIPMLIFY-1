@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -9,12 +10,12 @@ import javax.swing.border.EtchedBorder;
 public class SearchForm extends JFrame{
 	private JPanel panel = new JPanel();
 	private JButton searchButton = new JButton("Search");
-	private JLabel keyLabel = new JLabel();
+	private JLabel keyLabel = new JLabel("Key");
 	private JLabel chooseLabel = new JLabel("Choose Field");
 	private JList<String> list = new JList<String>();
 	private ArrayList<String> slist = new ArrayList<String>();
 	private DefaultListModel<String> model = new DefaultListModel<String>();
-	private JTextField key = new JTextField(15);
+	private JTextField key = new JTextField("Type the key",15);
 	private User user = new User();
 	
 	public SearchForm(int type)
@@ -47,6 +48,7 @@ public class SearchForm extends JFrame{
 			
 			
 		}
+		
 		list.setModel(model);
 		for(String s: slist) {
 			model.addElement(s);
@@ -71,19 +73,30 @@ public class SearchForm extends JFrame{
 		this.setVisible(true);
 		this.getContentPane().add(panel, BorderLayout.CENTER);
 		this.setTitle("SearchForm");
-		this.setBounds(100, 100, 450, 450);
+		this.setSize(500,500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 	}
 	private void checkForError()
 	{
+		boolean flag = true;
 		if(list.getSelectedIndex()==-1) {
+			
 			JOptionPane.showMessageDialog(panel,"No field choosen");
-		}
-		if(key.getText()=="")
+			
+		}else if(list.getSelectedIndex()==5)
 		{
-			JOptionPane.showMessageDialog(panel,"No key was written");
+			//DateTimeFormatter f =   DateTimeFormatter.parse( "dd/mm/uuuu" );
+			
+		}
+		if(key.getText().equals("Type the key") || key.getText().equals(""))
+		{
+			
+			JOptionPane.showMessageDialog(panel,"Invalid input in key field.");
+			
+		}else {
+			//if
 		}
 	}
 	

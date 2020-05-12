@@ -1,26 +1,31 @@
 
 public class SupplierProduct {
-	private String name;
+	 private String name;
 	 private String id;
-	 private int stockAmount;
-	 private int maxStockAmount;
-	 private int safetyStock;
-	 private float averageÌonthlyConsumption;
+	 private String orderManagerId; // the orderManagerId is needed in this class
+	 private double stockAmount;
+	 private double maxStockAmount;
+	 private double safetyStock;
+	 private double averageMonthlyConsumption;
 	 private int leadtime;
-	 private int expectedAmount;
+	 private double expectedAmount;
 	 
-	 public SupplierProduct(String name,String id,int stockAmount,int maxStockAmount,
-	 int safetyStock,float averageÌonthlyConsumption,int leadtime,int expectedAmount) 
+	 
+
+	 
+	 public SupplierProduct(String name,String id,String orderManagerId,double stockAmount,double maxStockAmount,double safetyStock,double averageMonthlyConsumption,int leadtime,double expectedAmount) 
 	 {
-		 this.name=name;
-		 this.id=id;
-		 this.stockAmount=stockAmount;
-		 this.maxStockAmount=maxStockAmount;
-		 this.safetyStock=safetyStock;
-		 this.averageÌonthlyConsumption=averageÌonthlyConsumption;
-		 this.leadtime=leadtime;
-		 this.expectedAmount=expectedAmount;
-      }
+		 this.name = name;
+		 this.id = id;
+		 this.orderManagerId = orderManagerId;
+		 this.stockAmount = stockAmount;
+		 this.maxStockAmount = maxStockAmount;
+		 this.safetyStock = safetyStock;
+		 this.averageMonthlyConsumption = averageMonthlyConsumption;
+		 this.leadtime = leadtime;
+		 this.expectedAmount = expectedAmount;
+
+     }
 
 	public String getName() {
 		return name;
@@ -30,30 +35,77 @@ public class SupplierProduct {
 		return id;
 	}
 
-	public int getStockAmount() {
+	public double getStockAmount() {
 		return stockAmount;
 	}
 
-	public int getMaxStockAmount() {
+	public double getMaxStockAmount() {
 		return maxStockAmount;
 	}
 
-	public int getSafetyStock() {
+	public double getSafetyStock() {
 		return safetyStock;
 	}
 
-	public float getAverageÌonthlyConsumption() {
-		return averageÌonthlyConsumption;
+	public double getAverageMonthlyConsumption() {
+		return averageMonthlyConsumption;
 	}
 
 	public int getLeadtime() {
 		return leadtime;
 	}
 
-	public int getExpectedAmount() {
+	public double getExpectedAmount() {
 		return expectedAmount;
 	}
 
-	
-	 
-}
+	public void setExpectedAmount(double EA) {
+		this.expectedAmount = EA;
+		
+	}
+
+	public void setName(String name) {
+		this.name = name;
+		
+	}
+
+	public void setId(String id) {
+		this.id = id;
+		
+	}
+
+	public void setStockAmount(double sa) {
+		this.stockAmount = sa;
+	}
+
+	public void setMaxStockAmount(double ma) {
+		this.maxStockAmount = ma;
+		
+	}
+
+	public void setAverageMonthlyConsumption(double amc) {
+		this.averageMonthlyConsumption = amc;
+		
+	}
+
+	public void setSafetyStock(double ss) {
+		this.safetyStock = ss;
+		
+	}
+
+	public void setLeadtime(int lt) {
+		this.leadtime = lt;
+	}
+
+	public String getOrderManagerId() {
+		return orderManagerId;
+	}
+
+	public void setOrderManagerId(String orderManagerId) {
+		this.orderManagerId = orderManagerId;
+	}
+
+		 
+      }
+
+

@@ -13,13 +13,15 @@ public class SupplierProducts extends ListFromDB {
 			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
 			System.out.println("SQLite DB connected");
 			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Product_for_purchase");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM View3");
 			
-			SupplierProduct sp = new SupplierProduct("", "", 0.0, 0.0, 0.0, 0.0, 0, 0.0);
+			
 			while (rs.next()) {
 				
+				SupplierProduct sp = new SupplierProduct("", "","", 0.0, 0.0, 0.0, 0.0, 0, 0.0);
 				sp.setName(rs.getString("Name"));
 				sp.setId(rs.getString("Id"));
+				sp.setOrderManagerId(rs.getString("OrderManagerId"));
 				sp.setStockAmount(rs.getDouble("StockAmount"));
 				sp.setMaxStockAmount(rs.getDouble("MaxStockAmount"));
 				sp.setSafetyStock(rs.getDouble("SafetyStock"));
@@ -34,5 +36,10 @@ public class SupplierProducts extends ListFromDB {
 		}catch(Exception e){
 			System.out.println(e);
 		}
+	}
+
+	public ArrayList<SupplierProduct> getSupplierProducts() {
+		// TODO Auto-generated method stub
+		return supplierp;
 	}
 }
