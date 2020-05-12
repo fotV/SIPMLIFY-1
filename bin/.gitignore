@@ -13,6 +13,7 @@
 /OrderManager.class
 /OrderManagerForm.class
 /Orders.class
+/PresentationForm$1.class
 /PresentationForm.class
 /ProductForm.class
 /Proposals.class
@@ -25,6 +26,8 @@
 /ShowProduct.class
 /Statistics.class
 /Stockkeeper.class
+/StockkeeperForm$1.class
+/StockkeeperForm$2.class
 /StockkeeperForm.class
 /Suppl.class
 /Supplier.class
@@ -36,3 +39,6 @@
 /User.class
 /Users.class
 /LogginForm$ButtonListener.class
+/StockkeeperForm$3.class
+/OrderForm$1.class
+

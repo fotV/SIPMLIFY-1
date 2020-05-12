@@ -1,5 +1,6 @@
 
 public class Order {
+
 	String orderManagerId;
 	String orderId;
 	double quantity;
@@ -76,4 +77,5 @@ public double getPrice() {
 public double getTotalPrice() {
 	return totalPrice;
 }
+
 }

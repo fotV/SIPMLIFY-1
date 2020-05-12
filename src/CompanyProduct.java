@@ -1,5 +1,6 @@
 
 public class CompanyProduct {
+
 	String id;
 	String name;
 	double price;
