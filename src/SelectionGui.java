@@ -20,11 +20,11 @@ public class SelectionGui  extends JFrame
 			 //options[7] to year
 			 
 			private Boolean errorFlag; //false if there is no error else true
-			private String user;
+			private User user;
 			private String[] months;
 			private JPanel panel;
 			
-			public SelectionGui()
+			public SelectionGui(User user)
 			{	
 				this.user = user;
 				errorFlag = false;
@@ -64,10 +64,8 @@ public class SelectionGui  extends JFrame
 				JPanel panel=new JPanel();  
 				
 				f.getContentPane().setBackground(new Color(176, 224, 230));
-				user = "Supplier";
-				//η συνθήκη if προς το παρών έτσι για ευκολία 
-				//αν θέλετε να το τρέξετε αλλάξτε την τιμή στο user
-				if(user.equals("Order Manager"))
+	
+				if(user instanceof OrderManager)
 				{
 					String OMvariables[] = {"","Cost","Orders"};
 					String OMfilter[] = {"","Date","Supplier","Product"};
@@ -185,7 +183,7 @@ public class SelectionGui  extends JFrame
 					f.setVisible(true);
 				
 				}
-				else if(user.equals("Supplier"))
+				else if(user instanceof Seller)
 				{
 					String OMvariables[] = {"","Profit","Purchases"};
 					String OMfilter[] = {"","Date","Client","Product"};
