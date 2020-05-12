@@ -1,16 +1,15 @@
 
 public class Supplier {
-
-	String name;
-	String lastName;
-	String id;
-	String phoneNumber;
-	String AFM;
+	private String name;
+	private String lastName;
+	private String id;
+	private String phoneNumber;
+	private String AFM;
 	
-	public Supplier(String name,String lastname,String id,String phoneNumber,String AFM){
+	public Supplier(String name,String lastName,String id,String phoneNumber,String AFM){
 		
 		 this.name=name;
-		 this.lastName = lastname;
+		 this.lastName = lastName;
 		 this.id=id;
 		 this.phoneNumber=phoneNumber;
 		 this.AFM=AFM;
@@ -31,7 +30,6 @@ public class Supplier {
 	public String getAFM() {
 		return AFM;
 	}
-
 	public void setName(String name) {
 		this.name = name;	
 	}

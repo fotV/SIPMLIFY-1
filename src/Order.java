@@ -1,6 +1,7 @@
 
 public class Order {
 
+
 	private String orderManagerId;
 	private String orderId;
 	private double quantity;
@@ -82,7 +83,10 @@ public class Order {
 		return totalPrice;
 	}
 
-
+	public String getProductName() {
+		return productName;
+	}
+	
 	public void setOrderManagerId(String orderManagerId) {
 		this.orderManagerId = orderManagerId;
 		
@@ -153,6 +157,8 @@ public class Order {
 		this.productId = productid;
 		
 	}
-}
-	
 
+
+	
+	
+}

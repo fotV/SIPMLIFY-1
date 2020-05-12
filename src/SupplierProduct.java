@@ -1,6 +1,6 @@
 
 public class SupplierProduct {
-	private String name;
+	 private String name;
 	 private String id;
 	 private double stockAmount;
 	 private double maxStockAmount;
@@ -9,7 +9,9 @@ public class SupplierProduct {
 	 private int leadtime;
 	 private double expectedAmount;
 	 
-	 public SupplierProduct(String name,String id,double stockAmount,double maxStockAmount,double safetyStock,double averageMonthlyConsumption,int leadtime,double expectedAmount) 
+
+	 
+	 public SupplierProduct(String name,String id,int stockAmount,int maxStockAmount,int safetyStock,float averageÌonthlyConsumption,int leadtime,int expectedAmount) 
 	 {
 		 this.name=name;
 		 this.id=id;
@@ -19,6 +21,7 @@ public class SupplierProduct {
 		 this.averageMonthlyConsumption=averageMonthlyConsumption;
 		 this.leadtime=leadtime;
 		 this.expectedAmount=expectedAmount;
+
      }
 
 	public String getName() {
@@ -91,6 +94,7 @@ public class SupplierProduct {
 		this.leadtime = lt;
 	}
 
-	
+		 
+      }
 
-}
+
