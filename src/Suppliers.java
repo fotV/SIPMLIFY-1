@@ -19,11 +19,11 @@ public class Suppliers extends ListFromDB {
 			Supplier s = new Supplier("", "", "", "", "");
 			while (rs.next()) {
 				
-				s.setName(rs.getString(Name));
-				s.setLastName(rs.getString(LastName))
-				s.setId(rs.getString(id));
-				s.setPhoneNumber(rs.getString(PhoneNumber));
-				s.setAFM(rs.getString(AFM));
+				s.setName(rs.getString("Name"));
+				s.setLastName(rs.getString("LastName"));
+				s.setId(rs.getString("id"));
+				s.setPhoneNumber(rs.getString("PhoneNumber"));
+				s.setAFM(rs.getString("AFM"));
 				suppliers.add(s);
 				
 			}
