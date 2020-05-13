@@ -46,7 +46,7 @@ public class User {
 		
 	}
 	
-	public void searchForOrder(String key, int column)
+	public void searchForOrder(String key,int column)
 	{
 		Boolean found=false;
 		ArrayList<Object> ordersKEY = new ArrayList<>();
@@ -152,5 +152,8 @@ public class User {
 
 	public String getLastName() {
 		return surName;
+	}
+	public String getId(){
+		return id;
 	}
 }

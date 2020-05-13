@@ -10,18 +10,17 @@ public class OrderManager extends User {
 	private Supplies supplies ;
 	
 	//Constructor
-	public OrderManager(boolean regular, String season, SupplierProducts products, Orders orders, Proposals proposals,
-			Suppliers suppliers, Supplies supplies) {
-		super();
+	public OrderManager(String firstName, String surName, String password, String telephone, String aMA, String id,boolean regular, String season) {
+		super(firstName,surName,password,telephone,aMA,id);
 		this.regular = regular;
 		this.season = season;
-		this.products = products;
-		this.orders = orders;
-		this.proposals = proposals;
-		this.suppliers = suppliers;
-		this.supplies = supplies;
+		proposals = new Proposals();
+		suppliers = new Suppliers();
+		supplies = new Supplies();
 	}
 	
+	
+
 	/* Method initializeLists() : extracts the infomations from database 
 	** and adds them into lists */
 	public void initializeLists() {
@@ -137,6 +136,13 @@ public class OrderManager extends User {
 
 	public void setSupplies(Supplies supplies) {
 		this.supplies = supplies;
+	}
+
+
+
+	public void setRegular(boolean b) {
+		this.regular = b;
+		
 	}
 	
 	

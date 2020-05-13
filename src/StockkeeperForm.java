@@ -112,7 +112,7 @@ public class StockkeeperForm extends JFrame{
 		btnSearchForOrder.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
 			{
-					new SearchForm(1);
+					new SearchForm(1,stk);
 			}	
 		});
 

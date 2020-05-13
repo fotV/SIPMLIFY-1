@@ -31,6 +31,10 @@ public class Supplies extends ListFromDB {
 			System.out.println(e);
 		}
 	}
+	public void updateObjectDB()
+	{
+		
+	}
 	public ArrayList<Suppl> getSupplies()
 	{
 		return supplies;

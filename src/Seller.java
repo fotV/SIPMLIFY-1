@@ -20,4 +20,18 @@ public class Seller extends User {
 	public Buyers getBuyers() {
 		return buyers;
 	}
+
+
+
+	public void searchForProduct(String text, int selectedIndex) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	public void searchForSupplier(String text, int selectedIndex) {
+		// TODO Auto-generated method stub
+		
+	}
 }

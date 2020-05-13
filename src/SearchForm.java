@@ -15,13 +15,14 @@ public class SearchForm extends JFrame{
 	private JList<String> list = new JList<String>();
 	private ArrayList<String> slist = new ArrayList<String>();
 	private DefaultListModel<String> model = new DefaultListModel<String>();
-	private JTextField key = new JTextField("Type the key",15);
-	private User user = new User();
+	private JTextField key = new JTextField("Type the text");
+	private User user ;
 	
-	public SearchForm(int type)
+	public SearchForm(int type,User u)
 	{
 		
-		//user = u;
+		
+		user = u;
 		if (type==1) {
 			
 			slist.add("Order Id  ");
@@ -53,6 +54,7 @@ public class SearchForm extends JFrame{
 		for(String s: slist) {
 			model.addElement(s);
 		}
+		
 		panel.add(chooseLabel);
 		panel.add(list);
 		panel.add(keyLabel);
@@ -61,9 +63,55 @@ public class SearchForm extends JFrame{
 		
 		searchButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				checkForError();
+				boolean flag = checkForError(type,user);
+				if (flag )
+				{
+					if (user instanceof OrderManager)
+					{
+						
+						OrderManager u = (OrderManager) user;
+						if (type==1)
+						{
+							u.searchForOrder(key.getText(),list.getSelectedIndex());
+						} 
+						else if (type==2) 
+						{
+							u.searchForProduct(key.getText(), list.getSelectedIndex());
+						}
+						else
+						{
+							u.searchForSupplier(key.getText(),list.getSelectedIndex());
+						}
+					}
+					else if (user instanceof Stockkeeper) {
+						
+						Stockkeeper u = (Stockkeeper) user;
+						if (type==1)
+						{
+							u.searchForOrder(key.getText(),list.getSelectedIndex());
+						} 
+						
+					}
+					else if (user instanceof Seller) {
+						
+						Seller u = (Seller) user;
+						if (type==1)
+						{
+							u.searchForOrder(key.getText(),list.getSelectedIndex());
+						} 
+						else if (type==2) 
+						{
+							u.searchForProduct(key.getText(), list.getSelectedIndex());
+						}
+						else
+						{
+							u.searchForSupplier(key.getText(),list.getSelectedIndex());
+						}
+					}
+					
+				}
+				}
 				
-			}
 		});
 	
 	
@@ -78,26 +126,28 @@ public class SearchForm extends JFrame{
 		
 		
 	}
-	private void checkForError()
+	private boolean checkForError(int type, User user)
 	{
-		boolean flag = true;
+		
+		boolean flag = false;
 		if(list.getSelectedIndex()==-1) {
 			
 			JOptionPane.showMessageDialog(panel,"No field choosen");
 			
-		}else if(list.getSelectedIndex()==5)
-		{
-			//DateTimeFormatter f =   DateTimeFormatter.parse( "dd/mm/uuuu" );
-			
 		}
-		if(key.getText().equals("Type the key") || key.getText().equals(""))
-		{
+		if(key.getText().equals("Type the key") || key.getText().equals("") ){
 			
 			JOptionPane.showMessageDialog(panel,"Invalid input in key field.");
 			
-		}else {
-			//if
 		}
+		else if (list.getSelectedIndex() == 1 && key.getText().length() == 6 ) {
+				JOptionPane.showMessageDialog(panel,"Invalid input in key field.");
+		}
+		else {                                                                                              
+			flag = true;
+		}
+		return flag;
+		
 	}
 	
 	
