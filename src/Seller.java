@@ -38,6 +38,26 @@ public class Seller extends User {
 		products.add(index, cp);
 	}
 	
+	/* Method searchForBuyer() : searches a buyer in the list of buyers */
+	public void searchForBuyer(String key, int column) {
+		for ( Buyers b : buyres ) {
+			if ( b.equals(column) && b.equals(key)) {
+				//calls GUI :  PresentationForm
+			}
+		}
+	}
+	
+	/* Method addBuyer() : adds the parameter to the buyers list */
+	public void addBuyer(Buyer s) {
+		buyers.add(s);
+	}
+	
+	/* Method editBuyer() : adds the b in the specific index position of list products */
+	public void editBuyer(Buyer b, int index) {
+		buyers.add(index, b);
+	}
+	
+	//Getters & Setters 
 	public CompanyProducts getProducts() {
 		return products;
 	}
