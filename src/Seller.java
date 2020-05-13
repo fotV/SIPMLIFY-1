@@ -5,8 +5,8 @@ public class Seller extends User {
 	private Buyers buyers;
 	
 	//Constructor
-	public Seller(CompanyProducts products, Buyers buyers) {
-		super();
+	public Seller(String firstName, String surName, String password, String telephone, String AMA, String id,CompanyProducts products, Buyers buyers) {
+		super(firstName,surName,password,telephone,AMA,id);
 		this.products = products;
 		this.buyers = buyers;
 	}

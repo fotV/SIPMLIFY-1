@@ -51,7 +51,7 @@ public class PresentationForm extends JFrame{
 				SupplierProduct temp = (SupplierProduct) objectList.get(i);
 				data[i][0]=temp.getName();
 				data[i][1]=temp.getId();
-				data[i][2]=temp.getstockAmount();
+				data[i][2]=temp.getStockAmount();
 			}
 			table.setModel(new DefaultTableModel(data, new String[] {"Product Name", "Product Id", "StockAmount"}));
 		}

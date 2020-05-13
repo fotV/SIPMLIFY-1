@@ -16,15 +16,16 @@ public class Buyers extends ListFromDB {
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Client");
 			
-			Buyer b = new Buyer("", "", "", "");
+			
 			while (rs.next()) {
 				
+				Buyer b = new Buyer("","", "", "", "");
 				b.setName(rs.getString("Name"));
 				b.setLastName(rs.getString("LastName"));
 				b.setId(rs.getString("Id"));
 				//s.setPhoneNumber(rs.getString());
 				b.setAFM(rs.getString("AFM"));
-				buyers.add(s);
+				buyers.add(b);
 				
 			}
 			
@@ -32,6 +33,10 @@ public class Buyers extends ListFromDB {
 		}catch(Exception e){
 			System.out.println(e);
 		}
+	}
+	public ArrayList<Buyer> getBuyers()
+	{
+		return buyers;
 	}
 
 
