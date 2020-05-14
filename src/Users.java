@@ -2,7 +2,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class Users extends ListFromDB {
-	ArrayList<User> users = new ArrayList<User>();
+	private ArrayList<User> users = new ArrayList<User>();
 	
 	/**
 	 *
@@ -65,7 +65,7 @@ public class Users extends ListFromDB {
 				users.add(om);
 				
 			}
-			System.out.print(users.size());
+			
 			c.close();
 		}catch(SQLException | ClassNotFoundException e){
 			System.out.println(e.getMessage());

@@ -10,8 +10,8 @@ public class OrderManager extends User {
 	private Supplies supplies ;
 	
 	//Constructor
-	public OrderManager(String firstName, String surName, String password, String telephone, String aMA, String id,boolean regular, String season) {
-		super(firstName,surName,password,telephone,aMA,id);
+	public OrderManager(String firstName, String surName, String password, String telephone, String AMA, String id, boolean regular, String season) {
+		super(firstName,surName,password,telephone,AMA,id);
 		this.regular = regular;
 		this.season = season;
 		proposals = new Proposals();
@@ -30,7 +30,7 @@ public class OrderManager extends User {
 		supplies.extractObjectDB();
 	}
 	
-	/* Method searchForProduct(): seasrches a product and calls a GUI to 
+	/* Method searchForProduct(): searches a product and calls a GUI to 
 	** to show the results */
 	public void searchForProduct(String key, int column) {
 		for ( SupplierProduct prod : products ) {

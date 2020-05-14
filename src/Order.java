@@ -34,6 +34,22 @@ public class Order {
 	}
 
 
+	public Order() {
+		this.orderManagerId = "";
+		this.orderId = "";
+		this.quantity = 0.0;
+		this.supplierId = "";
+		this.supplierName = "";
+		this.supplierAFM = "";
+		this.date = "";
+		this.status = 0;
+		this.price = 0.0;
+		this.totalPrice = 0.0;
+		this.productId = "";
+		this.productName = "";
+	}
+
+
 	public String getOrderManagerId() {
 		return orderManagerId;
 	}

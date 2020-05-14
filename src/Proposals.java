@@ -2,7 +2,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class Proposals extends ListFromDB {
-	ArrayList<Order> proposals = new ArrayList<>();
+	private ArrayList<Order> proposals = new ArrayList<>();
 	
 	public void extractObjectDB() {
 		Connection c = null;
