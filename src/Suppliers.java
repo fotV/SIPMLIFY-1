@@ -8,6 +8,7 @@ public class Suppliers extends ListFromDB {
 	public void extractObjectDB() {
 		Connection c = null;
 		Statement stmt = null;
+		
 		try {
 			
 			Class.forName("org.sqlite.JDBC");
