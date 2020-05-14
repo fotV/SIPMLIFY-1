@@ -7,5 +7,6 @@ public class Main {
 		Users u = new Users();
 		u.extractObjectDB();
 		for(User k: u.getUsers()) System.out.println(k.getFirstName());
+		new SearchForm(1,u.getUsers().get(2));
 	}
 }

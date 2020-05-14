@@ -2,8 +2,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -140,8 +145,17 @@ public class SearchForm extends JFrame{
 			JOptionPane.showMessageDialog(panel,"Invalid input in key field.");
 			
 		}
-		else if (list.getSelectedIndex() == 1 && key.getText().length() == 6 ) {
+		else if (list.getSelectedIndex() == 0 && key.getText().length() != 6 ) {
+			
 				JOptionPane.showMessageDialog(panel,"Invalid input in key field.");
+				
+		}
+		else if (list.getSelectedIndex() == 4 ) {
+	
+			    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			    sdf.setLenient(false);
+			    if (sdf.parse(key.getText(), new ParsePosition(0)) == null) JOptionPane.showMessageDialog(panel,"Invalid input in key field.");
+			
 		}
 		else {                                                                                              
 			flag = true;
