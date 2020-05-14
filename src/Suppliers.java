@@ -10,6 +10,7 @@ public class Suppliers extends ListFromDB {
 		Statement stmt = null;
 		
 		
+		
 		try {
 			
 			Class.forName("org.sqlite.JDBC");
