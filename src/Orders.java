@@ -2,7 +2,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class Orders extends ListFromDB {
-	ArrayList<Order> orders = new ArrayList<Order>();
+	private ArrayList<Order> orders = new ArrayList<Order>();
 	
 	
 	public void extractObjectDB() {
@@ -42,6 +42,7 @@ public class Orders extends ListFromDB {
 			System.out.println(e);
 		}
 	}
+
 
 
 	public ArrayList<Order> getOrders() {

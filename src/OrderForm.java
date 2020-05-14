@@ -114,11 +114,11 @@ public class OrderForm extends JFrame{
 					order.orderManagerId=om.id;
 					
 					//fill Order Id
-					order.orderId = textFieldOid.getText(); 			
+					order.orderId=textFieldOid.getText(); 			
 					
 					//fill  Quantity
 					double Value = Double.parseDouble(textFieldQ.getText());
-					order.quantity=Value;								
+					order.setQuantity=Value;								
 					
 					
 					//fill Supplier Id
