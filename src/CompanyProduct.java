@@ -1,10 +1,6 @@
 
 public class CompanyProduct {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> 5651c03fcced90b6825e5d0d1060347f454b4c8b
 	String id;
 	String name;
 	double price;
@@ -21,12 +17,6 @@ public class CompanyProduct {
 		 this.stockamount=stockamount;
 		 this.maxStockAmount=maxStockAmount;
 
-<<<<<<< HEAD
-=======
-	
->>>>>>> origin/master
-=======
->>>>>>> 5651c03fcced90b6825e5d0d1060347f454b4c8b
 }
 
 	public String getId() {

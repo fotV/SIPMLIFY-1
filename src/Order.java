@@ -1,10 +1,6 @@
 
 public class Order {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> 5651c03fcced90b6825e5d0d1060347f454b4c8b
 	String orderManagerId;
 	String orderId;
 	double quantity;
@@ -81,11 +77,5 @@ public double getPrice() {
 public double getTotalPrice() {
 	return totalPrice;
 }
-<<<<<<< HEAD
-=======
-	
->>>>>>> origin/master
-=======
 
->>>>>>> 5651c03fcced90b6825e5d0d1060347f454b4c8b
 }
