@@ -223,7 +223,7 @@ public class BuyerForm extends JFrame
 					{
 						if(buyerID.get(i).getId().equals(id))
 						{
-							JOptionPane.showMessageDialog(popUp, "Client already exists");
+							JOptionPane.showMessageDialog(popUp, "Client with the same ID already exists");
 							errorFlag = true;
 						}
 					}

@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -23,6 +24,7 @@ public class SelectionGui  extends JFrame
 			private User user;
 			private String[] months;
 			private JPanel panel;
+			private int user2; //0 if ordermanager, 1 if seller created to help method checkerror for options[3] input
 			
 			public SelectionGui(User user)
 			{	
@@ -67,6 +69,7 @@ public class SelectionGui  extends JFrame
 	
 				if(user instanceof OrderManager)
 				{
+					user2 = 0;
 					String OMvariables[] = {"","Cost","Orders"};
 					String OMfilter[] = {"","Date","Supplier","Product"};
 					String charts[] = {"","Pie Chart","Line Chart","Bar Chart","Matrix"};
@@ -162,7 +165,7 @@ public class SelectionGui  extends JFrame
 							
 							options[7] = yearTo.getText();
 							
-							errorFlag = checkError(options);
+							errorFlag = checkError(options,user2);
 
 							if(!errorFlag)
 							{
@@ -185,6 +188,7 @@ public class SelectionGui  extends JFrame
 				}
 				else if(user instanceof Seller)
 				{
+					user2 = 1;
 					String OMvariables[] = {"","Profit","Purchases"};
 					String OMfilter[] = {"","Date","Client","Product"};
 					String charts[] = {"","Pie Chart","Line Chart","Bar Chart","Matrix"};
@@ -213,7 +217,7 @@ public class SelectionGui  extends JFrame
 					Ekey.setBounds(117, 110, 89, 20);
 					f.getContentPane().add(Ekey);
 					
-					JLabel message = new JLabel("Enter Key only if chosen filter is Product or Client");
+					JLabel message = new JLabel("Enter ID only if chosen filter is Product or Client");
 					message.setBounds(8, 138,300, 14);
 					f.getContentPane().add(message);
 					
@@ -280,7 +284,7 @@ public class SelectionGui  extends JFrame
 							
 							options[7] = yearTo.getText();
 							
-							errorFlag = checkError(options);
+							errorFlag = checkError(options, user2);
 							
 							if(!errorFlag)
 							{
@@ -304,10 +308,11 @@ public class SelectionGui  extends JFrame
 				
 			}
 
-			private boolean checkError(String[] options)
+			private boolean checkError(String[] options, int user2)
 			{
 				int fromMonth = 0;
 				int toMonth = 0;
+				boolean keyExists = false; //true if key(id) of options[3] input exists in database
 				
 				JFrame popUp = new JFrame();
 				errorFlag = false;
@@ -325,7 +330,7 @@ public class SelectionGui  extends JFrame
 					
 					JOptionPane.showMessageDialog(popUp, "Filter Field Must Be Filled");
 				}
-				//checking key input !MUST CHECK IF INPUT EXISTS!
+				//checking key input
 				if((options[1] == "Supplier") || (options[1] == "Product") || (options[1] == "Client"))
 				{
 					if(options[2].isEmpty())
@@ -343,6 +348,78 @@ public class SelectionGui  extends JFrame
 					
 					JOptionPane.showMessageDialog(popUp, "Chart Field Must Be Filled");		
 				}
+			     
+			    //checking if options[3] input exists in database
+			     if((!options[3].isEmpty()) && (user2 == 0) )
+			     {
+			    	 if(options[2].equals("Product"))
+			    	 {
+				    	SupplierProducts productS = new SupplierProducts();
+				    	ArrayList<SupplierProduct> sProd = productS.getSupplierProducts();
+				    	for(int i = 0; i < sProd.size(); i++)
+				    	{
+				    		if(options[3].equals(sProd.get(i).getId()))
+				    		{
+				    			keyExists = true;
+				    		}
+				    	}
+			    	 }
+			    	 else if (options[2].equals("Supplier"))
+			    	 {
+			    		 Suppliers sup = new Suppliers();
+			    		 ArrayList <Supplier> supplier = sup.getSuppliers();
+			    		 for(int i = 0; i < supplier.size(); i++)
+			    		 {
+			    			 if(options[3].equals(supplier.get(i).getId()))
+			    			 {
+			    				 keyExists = true;
+			    			 }
+			    		 }
+			    	 }
+			     }
+			     
+			     if((keyExists == false) && (user2 == 0))
+			     {
+			    	 errorFlag = true;
+			    	 JOptionPane.showMessageDialog(popUp, "Key ID doesn't exist.");		
+			     }
+			     
+			     if((!options[3].isEmpty()) && (user2 == 1) )
+			     {
+			    	 if(options[2].equals("Product"))
+			    	 {
+				    	CompanyProducts prod = new CompanyProducts();
+				    	ArrayList<CompanyProduct> cProd = prod.getCompProduct();
+				    	for(int i = 0; i < cProd.size(); i++)
+				    	{
+				    		if(options[3].equals(cProd.get(i).getId()))
+				    		{
+				    			keyExists = true;
+				    		}
+				    	}
+			    	 }
+			    	 else if (options[2].equals("Client"))
+			    	 {
+			    		 Buyers b = new Buyers();
+			    		 ArrayList <Buyer> buyer = b.getBuyers();
+			    		 for(int i = 0; i < buyer.size(); i++)
+			    		 {
+			    			 if(options[3].equals(buyer.get(i).getId()))
+			    			 {
+			    				 keyExists = true;
+			    			 }
+			    		 }
+			    	 }
+			     }
+			     
+			     if((keyExists == false) && (user2 == 1))
+			     {
+			    	 errorFlag = true;
+			    	 JOptionPane.showMessageDialog(popUp, "Key doesn't exist.");		
+			     }
+			     
+			     
+			     
 			     //checking date input !MUST CHECK IF DATE EXISTS! 
 			     if(options[5].isEmpty())
 			     {
