@@ -1,23 +1,32 @@
 
 public class CompanyProduct {
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
-	private String id;
-	private String name;
-	private double price;
-	private double safetystock;
-	private double stockamount;
-	private double maxStockAmount;
+>>>>>>> 5651c03fcced90b6825e5d0d1060347f454b4c8b
+	String id;
+	String name;
+	double price;
+	int safetystock;
+	int stockamount;
+	int maxStockAmount;
 	
-	public CompanyProduct(String id,String name,double safetystock,double stockamount,double maxStockAmount,double price)
+	public CompanyProduct(String id,String name,double price,int safetystock,int stockamount,int maxStockAmount)
  {
 	     this.id=id;
 		 this.name=name;
-		 //this.price=price;
+		 this.price=price;
 		 this.safetystock=safetystock;
 		 this.stockamount=stockamount;
 		 this.maxStockAmount=maxStockAmount;
-		 this.price = price;
 
+<<<<<<< HEAD
+=======
+	
+>>>>>>> origin/master
+=======
+>>>>>>> 5651c03fcced90b6825e5d0d1060347f454b4c8b
 }
 
 	public String getId() {
@@ -28,49 +37,20 @@ public class CompanyProduct {
 		return name;
 	}
 
-	public double getSafetystock() {
-		return safetystock;
-	}
-
-	public double getStockamount() {
-		return stockamount;
-	}
-
-	public double getMaxStockAmount() {
-		return maxStockAmount;
-	}
-	public double getPrice(){
+	public double getPrice() {
 		return price;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-		
+	public int getSafetystock() {
+		return safetystock;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-		
+	public int getStockamount() {
+		return stockamount;
 	}
 
-	public void setStockAmount(double stockAmount) {
-		this.stockamount = stockAmount;
-		
-	}
-
-	public void setMaxStockAmount(double maxStockAmount) {
-		this.maxStockAmount = maxStockAmount;
-		
-	}
-
-	public void setSafetyStock(double safetyStock) {
-		this.safetystock = safetyStock;
-		
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-		
+	public int getMaxStockAmount() {
+		return maxStockAmount;
 	}
 	
 }

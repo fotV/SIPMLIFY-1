@@ -89,12 +89,12 @@ import java.awt.event.ActionEvent;
 				String Usersusername = textField.getText();
 				String Userspassword=passwordField.getText();
 				
-				Users selectedUsers = null;
+				User selectedUsers = null;
 				
 				
 				for(Users u : userList)
 				{
-					if (Users.getPassword().equals(Usersusername))
+					if (User.getPassword().equals(Usersusername))
 					{
 						selectedUsers = u;}
 					
@@ -103,7 +103,7 @@ import java.awt.event.ActionEvent;
 					if(selectedUsers != null)	
 				{
 					
-				    if(Users.getPassword().equals(Userspassword))
+				    if(User.getPassword().equals(Userspassword))
 				    {
 				    	OrderManagerForm ord= new OrderManagerForm() ;
 				    	

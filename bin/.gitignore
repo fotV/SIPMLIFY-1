@@ -13,7 +13,14 @@
 /OrderManager.class
 /OrderManagerForm.class
 /Orders.class
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 /PresentationForm$1.class
+>>>>>>> origin/master
+=======
+/PresentationForm$1.class
+>>>>>>> 5651c03fcced90b6825e5d0d1060347f454b4c8b
 /PresentationForm.class
 /ProductForm.class
 /Proposals.class
@@ -26,8 +33,16 @@
 /ShowProduct.class
 /Statistics.class
 /Stockkeeper.class
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 /StockkeeperForm$1.class
 /StockkeeperForm$2.class
+>>>>>>> origin/master
+=======
+/StockkeeperForm$1.class
+/StockkeeperForm$2.class
+>>>>>>> 5651c03fcced90b6825e5d0d1060347f454b4c8b
 /StockkeeperForm.class
 /Suppl.class
 /Supplier.class
@@ -38,7 +53,16 @@
 /Supplies.class
 /User.class
 /Users.class
+<<<<<<< HEAD
+<<<<<<< HEAD
+/LogginForm$ButtonListener.class
+=======
+/StockkeeperForm$3.class
+/OrderForm$1.class
+>>>>>>> origin/master
+=======
 /LogginForm$ButtonListener.class
 /StockkeeperForm$3.class
 /OrderForm$1.class
 
+>>>>>>> 5651c03fcced90b6825e5d0d1060347f454b4c8b

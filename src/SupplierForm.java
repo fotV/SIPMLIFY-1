@@ -116,7 +116,7 @@ public class SupplierForm {
 			
 			Supplier s = new Supplier(Suppliername, Supplierid,SuppliernphoneNumber,SupplierAFM);
 			
-			Suppliers.addSupplier(s);
+			Suppliers.add(s);
 			
 			
 			
