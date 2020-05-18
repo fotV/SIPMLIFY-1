@@ -5,23 +5,24 @@ public class Seller extends User {
 	private Buyers buyers;
 	
 	//Constructor
-	public Seller(String firstName, String surName, String password, String telephone, String AMA, String id,CompanyProducts products, Buyers buyers) {
+	public Seller(String firstName, String surName, String password, String telephone, String AMA, String id) {
 		super(firstName,surName,password,telephone,AMA,id);
-		this.products = products;
-		this.buyers = buyers;
+		this.products = new CompanyProducts();
+		this.buyers = new Buyers();
 	}
 
 	/* Method initializeLists() : extracts the infomations from database 
 	** and adds them into lists */
 	public void initializeLists() {
 		products.extractObjectDB();
+		//for & if 
 		buyers.extractObjectDB();
 	}
 	
 	/* Method searchForProduct(): searches a product and calls a GUI to 
 	** to show the results */
 	public  void searchForProduct(String key, int column) {
-		for ( CompanyProducts prod : products ) {
+		for ( CompanyProducts prod : products.getCompProduct() ) {
 			if ( prod.equals(column) && prod.equals(key) ) {
 				//calls GUI : PresentationForm
 			}
@@ -29,7 +30,7 @@ public class Seller extends User {
 	}
 	
 	/* Method addProduct() : adds the parameter to the product list */
-	public void addProduct(CompanyProducts product) {
+	public void addProduct(CompanyProduct product) {
 		products.add(product);
 	}
 	
@@ -40,7 +41,7 @@ public class Seller extends User {
 	
 	/* Method searchForBuyer() : searches a buyer in the list of buyers */
 	public void searchForBuyer(String key, int column) {
-		for ( Buyers b : buyres ) {
+		for ( Buyers b : buyers ) {
 			if ( b.equals(column) && b.equals(key)) {
 				//calls GUI :  PresentationForm
 			}

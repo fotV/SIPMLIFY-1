@@ -1,3 +1,7 @@
+import java.awt.Component;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 public class OrderManager extends User {
 	
@@ -10,22 +14,35 @@ public class OrderManager extends User {
 	private Supplies supplies ;
 	
 	//Constructor
-	public OrderManager(String firstName, String surName, String password, String telephone, String AMA, String id, boolean regular, String season, SupplierProducts products, Orders orders, Proposals proposals,
-			Suppliers suppliers, Supplies supplies) {
+	public OrderManager(String firstName, String surName, String password, String telephone, String AMA, String id, boolean regular, String season) {
 		super(firstName,surName,password,telephone,AMA,id);
 		this.regular = regular;
 		this.season = season;
-		this.products = products;
-		this.orders = orders;
-		this.proposals = proposals;
-		this.suppliers = suppliers;
-		this.supplies = supplies;
+		this.products = new SupplierProducts();
+		this.orders = new Orders();
+		this.proposals = new Proposals();
+		this.suppliers = new Suppliers();
+		this.supplies = new Supplies();
+	}
+	
+	//Constuctor2
+	public OrderManager() {
+		this.regular = true;
+		this.season = " ";
+		this.products = new SupplierProducts();
+		this.orders = new Orders();
+		this.proposals = new Proposals();
+		this.suppliers = new Suppliers();
+		this.supplies = new Supplies();
 	}
 	
 	/* Method initializeLists() : extracts the infomations from database 
 	** and adds them into lists */
 	public void initializeLists() {
+		 
 		products.extractObjectDB();
+		//for 
+	    //if (!products.getSupplierProducts().get(i).equals(this.id)) //remove from list 
 		proposals.extractObjectDB();
 		suppliers.extractObjectDB();
 		supplies.extractObjectDB();
@@ -34,11 +51,65 @@ public class OrderManager extends User {
 	/* Method searchForProduct(): searches a product and calls a GUI to 
 	** to show the results */
 	public void searchForProduct(String key, int column) {
-		for ( SupplierProduct prod : products ) {
-			if (prod.equals(column) && prod.equals(key)){
-				//calls GUI : PresentationForm
+		Boolean found=false;
+		ArrayList<Object> ordersKEY = new ArrayList<>();
+		if(column==1) {                                      //1 to orderId
+			for(Order o : orders.orders)
+			{
+				if(o.getOrderId().equals(key))
+					{
+						ordersKEY.add(o);
+						found=true;
+					}
 			}
 		}
+		else if (column==2) {                              //2 to supplierId
+			for(Order o : orders.orders)
+			{
+				if(o.getSupplierId().equals(key)) {
+					ordersKEY.add(o);
+					found=true;
+				}
+			}
+		}
+		else if (column==3) {                              //3 to productId
+			for(Order o : orders.orders)
+			{
+				if(o.getProductId().equals(key)) {
+					ordersKEY.add(o);
+					found=true;
+				}
+			}
+		}
+		else if (column==4) {                              //4 to productName
+			for(Order o : orders.orders)
+			{
+				if(o.getProductName().equals(key)) {
+					ordersKEY.add(o);
+					found=true;
+				}
+			}
+		}
+		else if (column==5) {                              //5 to date
+			for(Order o : orders.orders)
+			{
+				if(o.getDate().equals(key)) {
+					ordersKEY.add(o);
+					found=true;
+				}
+			}
+		}
+		else if (column==6) {                             //6 to status
+			int intkey = Integer.parseInt(key);
+			for(Order o : orders.orders)
+			{
+				if(o.getStatus()==intkey) ordersKEY.add(o);
+			}
+		}
+		
+		Component frame = null;
+		if (found) new PresentationForm(ordersKEY);
+		else JOptionPane.showMessageDialog(frame, "No result", "Inane error", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	/* Method addProduct() : adds the parameter to the product list */
@@ -54,7 +125,7 @@ public class OrderManager extends User {
 	/* Method searchForSupplier() : seasrches a supplier and calls a GUI to 
 	** to show the results */
 	public void searchForSupplier(String key, int column) {
-		for ( Supplier sup : suppliers ) {
+		for ( Supplier sup : suppliers.getSuppliers() ) {
 			if ( sup.equals(column) && sup.equals(key)) {
 				//Calls GUI : PresentationForm
 			}
