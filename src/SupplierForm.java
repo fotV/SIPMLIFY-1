@@ -12,15 +12,18 @@ import javax.swing.JTextField;
 import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.Dialog.ModalExclusionType;
 
 public class SupplierForm {
 
 	private JFrame frame;
 	private JTextField namefield;
+	private JTextField lastnamefield;
 	private JTextField idfield;
 	private JTextField phoneNumberfield;
 	private JTextField AFMfield;
+	private ArrayList<Supplier> suppliers;
 
 	/**
 	 * Launch the application.
@@ -89,6 +92,11 @@ public class SupplierForm {
 		panel.add(namefield);
 		namefield.setColumns(10);
 		
+		lastnamefield = new JTextField();
+		lastnamefield.setBounds(248, 82, 245, 19);
+		panel.add(lastnamefield);
+		lastnamefield.setColumns(10);
+		
 		idfield = new JTextField();
 		idfield.setBounds(248, 131, 245, 19);
 		panel.add(idfield);
@@ -109,14 +117,15 @@ public class SupplierForm {
 		public void actionPerformed(ActionEvent e) {
 			
 			String Suppliername = namefield.getText();
+			String Supplierlastname = lastnamefield.getText();
 			String Supplierid = idfield.getText();
 			String SuppliernphoneNumber = phoneNumberfield.getText();
 			String SupplierAFM = AFMfield.getText();
 			
 			
-			Supplier s = new Supplier(Suppliername, Supplierid,SuppliernphoneNumber,SupplierAFM);
+			Supplier s = new Supplier(Suppliername,Supplierlastname,Supplierid,SuppliernphoneNumber,SupplierAFM);
 			
-			Suppliers.addSupplier(s);
+			suppliers.add(s);
 			
 			
 			
