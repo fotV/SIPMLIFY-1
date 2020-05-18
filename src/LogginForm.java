@@ -73,7 +73,7 @@ import java.awt.event.ActionEvent;
     		panel.add(btnNewButton);
     		
     		JLabel lblNewLabel_2 = new JLabel("");
-    		lblNewLabel_2.setIcon(new ImageIcon(LogginForm.class.getResource("/image/OrganizedOrders2.jpg")));
+    		//lblNewLabel_2.setIcon(new ImageIcon(LogginForm.class.getResource("/image/OrganizedOrders2.jpg")));
     		lblNewLabel_2.setBounds(265, 10, 491, 299);
     		panel.add(lblNewLabel_2);
     		

@@ -1,33 +1,34 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 public class SearchForm extends JFrame{
-	private JPanel panel = new JPanel();
-	private JButton searchButton = new JButton("Search");
-	private JLabel keyLabel = new JLabel("Key");
-	private JLabel chooseLabel = new JLabel("Choose Field");
-	private JList<String> list = new JList<String>();
+	private JPanel panel ;
+	private JButton searchButton ;
+	private JLabel keyLabel ;
+	private JLabel chooseLabel ;
+	private JList<String> list = new JList<String>(); ;
 	private ArrayList<String> slist = new ArrayList<String>();
-	private DefaultListModel<String> model = new DefaultListModel<String>();
-	private JTextField key = new JTextField("Type the text");
+	private DefaultListModel<String> model= new DefaultListModel<String>();
+	private JTextField key ;
 	private User user ;
 	
 	public SearchForm(int type,User u)
 	{
 		
-		
+		panel = new JPanel();
 		user = u;
+		
 		if (type==1) {
 			
 			slist.add("Order Id  ");
@@ -60,10 +61,35 @@ public class SearchForm extends JFrame{
 			model.addElement(s);
 		}
 		
+		
+	
+		
+		
+		chooseLabel = new JLabel("Choose Field"); 
+		chooseLabel.setFont(new Font("ÇelveticaNeue-Light", Font.PLAIN, 15));
+		chooseLabel.setPreferredSize(new Dimension(120,180));
 		panel.add(chooseLabel);
+		
+		
+		list.setFont(new Font("ÇelveticaNeue-Light",Font.PLAIN,15));
+		list.setPreferredSize(new Dimension(180,140));
 		panel.add(list);
+		
+		keyLabel = new JLabel("Enter an input value ");
+		keyLabel.setFont(new Font("ÇelveticaNeue-Light", Font.PLAIN, 15));
+		keyLabel.setPreferredSize(new Dimension(187,140));
 		panel.add(keyLabel);
+		
+		
+		key = new JTextField("Type the text",15);
+		key.setFont(new Font("ÇelveticaNeue-Light",Font.PLAIN,15));
+		key.setPreferredSize(new Dimension(180,26));
 		panel.add(key);
+		
+		
+		searchButton =  new JButton("Search");
+		searchButton.setFont(new Font("ÇelveticaNeue-Light", Font.PLAIN, 15));
+		searchButton.setPreferredSize(new Dimension(159,26));
 		panel.add(searchButton);
 		
 		searchButton.addActionListener(new ActionListener(){
@@ -121,7 +147,7 @@ public class SearchForm extends JFrame{
 	
 	
 		
-		panel.setBackground(new Color(135, 206, 235));
+		panel.setBackground(new Color(153, 172, 196));
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		this.setVisible(true);
 		this.getContentPane().add(panel, BorderLayout.CENTER);
@@ -145,16 +171,20 @@ public class SearchForm extends JFrame{
 			JOptionPane.showMessageDialog(panel,"Invalid input in key field.");
 			
 		}
-		else if (list.getSelectedIndex() == 0 && key.getText().length() != 6 ) {
+		else if (list.getSelectedIndex() == 0 && (key.getText().length() != 6)) {
 			
 				JOptionPane.showMessageDialog(panel,"Invalid input in key field.");
 				
 		}
 		else if (list.getSelectedIndex() == 4 ) {
-	
 			    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			    sdf.setLenient(false);
 			    if (sdf.parse(key.getText(), new ParsePosition(0)) == null) JOptionPane.showMessageDialog(panel,"Invalid input in key field.");
+			
+		}
+		else if (list.getSelectedIndex() == 5 &&( key.getText().length() != 1 || key.getText().matches("[0-4]{1}") == false)) {
+				
+				JOptionPane.showMessageDialog(panel,"Invalid input in key field.");
 			
 		}
 		else {                                                                                              

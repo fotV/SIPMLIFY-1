@@ -13,7 +13,7 @@ public class CompanyProducts extends ListFromDB {
 			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
 			System.out.println("SQLite DB connected");
 			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Product_for_sale");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Product_for_sale INNER JOIN Buys on Product_for_sale.");
 			
 			
 			while (rs.next()) {

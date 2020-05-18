@@ -5,14 +5,16 @@ public class Supplier {
 	private String id;
 	private String phoneNumber;
 	private String AFM;
+	private String orderManagerId;
 	
-	public Supplier(String name,String lastName,String id,String phoneNumber,String AFM){
+	public Supplier(String name,String lastName,String id,String phoneNumber,String AFM,String orderManagerId){
 		
 		 this.name=name;
 		 this.lastName = lastName;
 		 this.id=id;
 		 this.phoneNumber=phoneNumber;
 		 this.AFM=AFM;
+		 this.orderManagerId = orderManagerId;
 	}
 
 	public String getName() {
@@ -30,6 +32,11 @@ public class Supplier {
 	public String getAFM() {
 		return AFM;
 	}
+	
+	public String getOrderManagerId() {
+		return orderManagerId;
+	}
+	
 	public void setName(String name) {
 		this.name = name;	
 	}
@@ -52,6 +59,9 @@ public class Supplier {
 	public void setAFM(String afm) {
 		this.AFM = afm;
 		
+	}
+	public void setOrderManagerId(String orm) {
+		this.orderManagerId = orm;
 	}
 
 

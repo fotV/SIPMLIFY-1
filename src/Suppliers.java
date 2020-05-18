@@ -17,17 +17,18 @@ public class Suppliers extends ListFromDB {
 			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
 			System.out.println("SQLite DB connected");
 			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Supplier");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Supplier INNER JOIN Buys_from on Supplier.id=Buys_from.Supplier_Id");
 			
 			
 			while (rs.next()) {
 				
-				Supplier s = new Supplier("", "", "", "", "");
+				Supplier s = new Supplier("", "", "", "", "","");
 				s.setName(rs.getString("Name"));
 				s.setLastName(rs.getString("LastName"));
 				s.setId(rs.getString("id"));
 				s.setPhoneNumber(rs.getString("PhoneNumber"));
 				s.setAFM(rs.getString("AFM"));
+				s.setOrderManagerId(rs.getString("OrderManagerId"));
 				suppliers.add(s);
 				
 			}

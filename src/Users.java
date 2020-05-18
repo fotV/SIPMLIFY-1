@@ -4,9 +4,6 @@ import java.util.ArrayList;
 public class Users extends ListFromDB {
 	private ArrayList<User> users = new ArrayList<User>();
 	
-	/**
-	 *
-	 */
 	public void extractObjectDB() {
 		Connection c = null;
 		Statement stmt = null;      //statement for Users
