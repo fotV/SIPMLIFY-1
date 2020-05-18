@@ -9,11 +9,11 @@
 /LogginForm.class
 /Main.class
 /Order.class
+/OrderForm$1.class
 /OrderForm.class
 /OrderManager.class
 /OrderManagerForm.class
 /Orders.class
-/PresentationForm$1.class
 /PresentationForm.class
 /ProductForm.class
 /Proposals.class
@@ -38,5 +38,3 @@
 /Supplies.class
 /User.class
 /Users.class
-/StockkeeperForm$3.class
-/OrderForm$1.class
