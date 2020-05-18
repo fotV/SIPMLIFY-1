@@ -36,7 +36,7 @@ public class OrderForm extends JFrame{
 		setTitle("Order Form");
 		panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel.setBackground(UIManager.getColor("InternalFrame.inactiveTitleGradient"));
+		panel.setBackground(new Color(240, 248, 255));
 
 		
 		lblorderid = new JLabel("Order ID :");
@@ -90,7 +90,7 @@ public class OrderForm extends JFrame{
 		
 		btnAdd = new JButton("Add");
 		btnAdd.setFont(new Font("Futura Bk BT", Font.PLAIN, 17));
-		btnAdd.setBounds(400, 320, 103, 28);
+		btnAdd.setBounds(401, 328, 103, 28);
 		panel.add(btnAdd);
 		
 		
@@ -182,10 +182,11 @@ public class OrderForm extends JFrame{
 			}	
 		});
 		
+		this.setVisible(true);
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Christina\\Desktop\\3\\Organizedorders\\window logo.png"));
 		this.getContentPane().add(panel);
 		this.setResizable(false);
-		this.setBounds(100, 100, 529, 396);
+		this.setBounds(100, 100, 520, 396);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
