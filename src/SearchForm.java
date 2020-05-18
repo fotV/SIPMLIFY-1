@@ -92,6 +92,7 @@ public class SearchForm extends JFrame{
 		searchButton.setPreferredSize(new Dimension(159,26));
 		panel.add(searchButton);
 		
+		
 		searchButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				boolean flag = checkForError(type,user);
