@@ -169,7 +169,7 @@ public class SelectionGui  extends JFrame
 
 							if(!errorFlag)
 							{
-								Statistics ord = new Statistics(options);
+								Statistics ord = new Statistics(options,months);
 								ord.OrdererStat();
 								
 								System.exit(0);
@@ -288,7 +288,7 @@ public class SelectionGui  extends JFrame
 							
 							if(!errorFlag)
 							{
-								Statistics sup = new Statistics(options);
+								Statistics sup = new Statistics(options, months);
 								sup.SupplierStat();
 								
 								System.exit(0);
@@ -316,21 +316,27 @@ public class SelectionGui  extends JFrame
 				
 				JFrame popUp = new JFrame();
 				errorFlag = false;
+				
 				//checking variable input
+				
 				if(options[0].isEmpty())
 				{
 					errorFlag = true;
 					
 					JOptionPane.showMessageDialog(popUp, "Variable Field Must Be Filled");
 				}
+				
 				//checking filter input
+				
 				if(options[1].isEmpty())
 				{
 					errorFlag = true;
 					
 					JOptionPane.showMessageDialog(popUp, "Filter Field Must Be Filled");
 				}
+				
 				//checking key input
+				
 				if((options[1] == "Supplier") || (options[1] == "Product") || (options[1] == "Client"))
 				{
 					if(options[2].isEmpty())
@@ -341,16 +347,10 @@ public class SelectionGui  extends JFrame
 					}
 					
 				}	
-				//checking chart input
-			     if(options[3].isEmpty())
-				{
-					errorFlag = true;
-					
-					JOptionPane.showMessageDialog(popUp, "Chart Field Must Be Filled");		
-				}
+				  
+			    //checking if options[2](key) input exists in database
 			     
-			    //checking if options[3] input exists in database
-			     if((!options[3].isEmpty()) && (user2 == 0) )
+			     if((!options[2].isEmpty()) && (user2 == 0) )
 			     {
 			    	 if(options[2].equals("Product"))
 			    	 {
@@ -358,7 +358,7 @@ public class SelectionGui  extends JFrame
 				    	ArrayList<SupplierProduct> sProd = productS.getSupplierProducts();
 				    	for(int i = 0; i < sProd.size(); i++)
 				    	{
-				    		if(options[3].equals(sProd.get(i).getId()))
+				    		if(options[2].equals(sProd.get(i).getId()))
 				    		{
 				    			keyExists = true;
 				    		}
@@ -370,7 +370,7 @@ public class SelectionGui  extends JFrame
 			    		 ArrayList <Supplier> supplier = sup.getSuppliers();
 			    		 for(int i = 0; i < supplier.size(); i++)
 			    		 {
-			    			 if(options[3].equals(supplier.get(i).getId()))
+			    			 if(options[2].equals(supplier.get(i).getId()))
 			    			 {
 			    				 keyExists = true;
 			    			 }
@@ -384,7 +384,7 @@ public class SelectionGui  extends JFrame
 			    	 JOptionPane.showMessageDialog(popUp, "Key ID doesn't exist.");		
 			     }
 			     
-			     if((!options[3].isEmpty()) && (user2 == 1) )
+			     if((!options[2].isEmpty()) && (user2 == 1) )
 			     {
 			    	 if(options[2].equals("Product"))
 			    	 {
@@ -392,7 +392,7 @@ public class SelectionGui  extends JFrame
 				    	ArrayList<CompanyProduct> cProd = prod.getCompProduct();
 				    	for(int i = 0; i < cProd.size(); i++)
 				    	{
-				    		if(options[3].equals(cProd.get(i).getId()))
+				    		if(options[2].equals(cProd.get(i).getId()))
 				    		{
 				    			keyExists = true;
 				    		}
@@ -404,7 +404,7 @@ public class SelectionGui  extends JFrame
 			    		 ArrayList <Buyer> buyer = b.getBuyers();
 			    		 for(int i = 0; i < buyer.size(); i++)
 			    		 {
-			    			 if(options[3].equals(buyer.get(i).getId()))
+			    			 if(options[2].equals(buyer.get(i).getId()))
 			    			 {
 			    				 keyExists = true;
 			    			 }
@@ -418,9 +418,17 @@ public class SelectionGui  extends JFrame
 			    	 JOptionPane.showMessageDialog(popUp, "Key doesn't exist.");		
 			     }
 			     
+			     //checking chart input
+					
+			     if(options[3].isEmpty())
+				{
+					errorFlag = true;
+					
+					JOptionPane.showMessageDialog(popUp, "Chart Field Must Be Filled");		
+				}
 			     
+			     //checking date input
 			     
-			     //checking date input !MUST CHECK IF DATE EXISTS! 
 			     if(options[5].isEmpty())
 			     {
 			    	 JOptionPane.showMessageDialog(popUp, "Enter Year From Field Must Be Filled");
@@ -459,7 +467,25 @@ public class SelectionGui  extends JFrame
 					}
 				}
 				
+			     //checking if year input is correct
+			     
+				if(!options[5].isEmpty())
+				{
+					if(((Integer.parseInt(options[5])) < 2010) || (Integer.parseInt(options[5])) > 2040)
+					{
+						errorFlag = true;
+						JOptionPane.showMessageDialog(popUp,"Wrong \"From Year\"  input");
+					}
+				}
 				
+				if(!options[7].isEmpty())
+				{
+					if(((Integer.parseInt(options[7])) < 2010) || (Integer.parseInt(options[7])) > 2040)
+					{
+						errorFlag = true;
+						JOptionPane.showMessageDialog(popUp,"Wrong \"To Year\"  input");
+					}
+				}
 				return errorFlag;
 			}
 			

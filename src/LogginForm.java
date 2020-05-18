@@ -10,10 +10,11 @@ import java.awt.event.ActionEvent;
     import javax.swing.*;
 
     public class LogginForm{
-    	private ArrayList<Users> userList;
+    	private ArrayList<User> userList;
     	private JFrame frame;
     	private JTextField textField;
     	private JPasswordField passwordField;
+    	private JButton btnNewButton; 
 
     	/**
     	 * Launch the application.
@@ -52,7 +53,7 @@ import java.awt.event.ActionEvent;
     		frame.getContentPane().add(panel, BorderLayout.CENTER);
     		panel.setLayout(null);
     		
-    		JLabel lblNewLabel = new JLabel("    Username :");
+    		JLabel lblNewLabel = new JLabel(" Username :");
     		lblNewLabel.setFont(new Font("Arial Black", Font.BOLD, 15));
     		lblNewLabel.setBounds(175, 347, 145, 40);
     		panel.add(lblNewLabel);
@@ -86,14 +87,20 @@ import java.awt.event.ActionEvent;
 		
                public void actionPerformed(ActionEvent e) {
 				
-				String Usersusername = textField.getText();
+				String Userid = textField.getText();
+				
 				String Userspassword=passwordField.getText();
 				
+<<<<<<< HEAD
 				User selectedUsers = null;
+=======
+				User selectedUser = null;
+>>>>>>> f4ac3f73645fee1afdd6341592687b61681d870c
 				
 				
-				for(Users u : userList)
+				for(User u : userList)
 				{
+<<<<<<< HEAD
 					if (User.getPassword().equals(Usersusername))
 					{
 						selectedUsers = u;}
@@ -121,17 +128,121 @@ import java.awt.event.ActionEvent;
 							StockkeeperForm st= new StockkeeperForm();
 							
 							
+=======
+					if (u.getId().equals(Userid))
+					{
+						 selectedUser = u;
+						 if (((u.getPassword().length() >= 4) && (u.getPassword().length() <= 8))) {
+							 System.out.println("Password length should be"
+					                    + " between 4 to 8 characters"); 
+>>>>>>> f4ac3f73645fee1afdd6341592687b61681d870c
 						 }
-			
-				}
-				else
-			    {System.out.println("There is no user with this username"
-			    		+ "Try Again");}
-				}
-		}
+						 else if(u.getPassword().contains(" ")) {
+							 System.out.println("Password should not"
+					                    + " contain any space"); 
+					      }
+						 else if (true) { 
+					            int count = 0; 
+					            
+					            // check digits from 0 to 9 
+					            for (int i = 0; i <= 9; i++) { 
+					  
+					                // to convert int to string 
+					                String str1 = Integer.toString(i); 
+					  
+					                if (u.getPassword().contains(str1)) { 
+					                    count = 1; 
+					                } 
+					            } 
+					            if (count == 0) { 
+					            	System.out.println("Password should contain at"
+                               + " least one uppercase letter(A-Z)");   
+					            }
+						 }
+					    else if (!(u.getPassword().contains("@") || u.getPassword().contains("#") 
+					      || u.getPassword().contains("!") || u.getPassword().contains("~") 
+					      ||u.getPassword().contains("$") || u.getPassword().contains("%") 
+					      || u.getPassword().contains("^") || u.getPassword().contains("&") 
+					     || u.getPassword().contains("*") || u.getPassword().contains("(") 
+					      || u.getPassword().contains(")") || u.getPassword().contains("-") 
+					      || u.getPassword().contains("+") || u.getPassword().contains("/") 
+					       || u.getPassword().contains(":") || u.getPassword().contains(".") 
+					       || u.getPassword().contains(", ") || u.getPassword().contains("<") 
+					              || u.getPassword().contains(">") || u.getPassword().contains("?") 
+					              || u.getPassword().contains("|"))) 
+					            {
+					    	 System.out.println("Password should contain"
+					                    + " at least one digit(0-9)");
+			                   } 
+					    else if (true) { 
+					            int count = 0; 
+					            
+					            // checking capital letters 
+					            for (int i = 65; i <= 90; i++) { 
+					  
+					                // type casting 
+					                char c = (char)i; 
+					  
+					                String str1 = Character.toString(c); 
+					                if ( u.getPassword().contains(str1)) { 
+					                    count = 1; 
+					                } 
+					            } 
+					            if (count == 0) { 
+					            	System.out.println("Password should contain at"
+					                        + " least one uppercase letter(A-Z)"); 
+					            } 
+					            }
+					    else if(true) { 
+					            int count = 0; 
+					            
+					            // checking small letters 
+					            for (int i = 90; i <= 122; i++) { 
+					  
+					                // type casting 
+					                char c = (char)i; 
+					                String str1 = Character.toString(c); 
+					  
+					                if ( u.getPassword().contains(str1)) { 
+					                    count = 1; 
+					                } 
+					            } 
+					            if (count == 0) { 
+					            	 System.out.println("Password should contain at"
+					                        + " least one lowercase letter(a-z)");  
+					            } 
+					        }
+					    else
+					    {System.out.println("The password is valid!");}
+					    	
+					    if (u.getId().contains("OR")) {
+					    	
+					    OrderManagerForm ord= new OrderManagerForm() ;	
+					    }
+					    else if(u.getId().contains("SE")) {
+					    	SellerForm sel= new SellerForm();
+					    }
+					    else if(u.getId().contains("ST")) {
+					    	StockkeeperForm st= new StockkeeperForm();
+					    }
+					         
+					    }
+			        break;
+					}
+				
+				
+				
+				
+					
+				
+				
                
                
                }
+               }
+		
+    }
+    
 				
 		
 		
