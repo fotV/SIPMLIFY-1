@@ -3,15 +3,12 @@ import java.util.ArrayList;
 
 public class Users extends ListFromDB {
 	private ArrayList<User> users = new ArrayList<User>();
-	
+	private Statement statement = null;		//statement for users that have type OrderManager
 	/**
 	 *
 	 */
 	public void extractObjectDB() {
-		Connection c = null;
-		Statement stmt = null;      //statement for Users
-		Statement statement = null;		//statement for users that have type OrderManager
-		
+
 		try {
 			
 			Class.forName("org.sqlite.JDBC");
@@ -65,7 +62,6 @@ public class Users extends ListFromDB {
 				users.add(om);
 				
 			}
-			
 			c.close();
 		}catch(SQLException | ClassNotFoundException e){
 			System.out.println(e.getMessage());
