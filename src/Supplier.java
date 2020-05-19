@@ -18,6 +18,10 @@ public class Supplier {
 	public String getName() {
 		return name;
 	}
+	
+	public String getLastName() {
+		return lastName;
+	}
 
 	public String getId() {
 		return id;
