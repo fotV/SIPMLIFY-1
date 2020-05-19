@@ -5,10 +5,10 @@ public class Seller extends User {
 	private Buyers buyers;
 	
 	//Constructor
-	public Seller(String firstName, String surName, String password, String telephone, String AMA, String id,CompanyProducts products, Buyers buyers) {
-		super(firstName,surName,password,telephone,AMA,id);
-		this.products = products;
-		this.buyers = buyers;
+	public Seller(String firstName, String surName, String password, String telephone, String AMA, String id,String company) {
+		super(firstName,surName,password,telephone,AMA,id,company);
+		this.products = new CompanyProducts();
+		this.buyers = new Buyers();
 	}
 
 	/* Method initializeLists() : extracts the infomations from database 

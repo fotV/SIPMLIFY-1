@@ -10,8 +10,8 @@ public class OrderManager extends User {
 	private Supplies supplies ;
 	
 	//Constructor
-	public OrderManager(String firstName, String surName, String password, String telephone, String AMA, String id, boolean regular, String season) {
-		super(firstName,surName,password,telephone,AMA,id);
+	public OrderManager(String firstName, String surName, String password, String telephone, String AMA, String id, boolean regular, String season,String company) {
+		super(firstName,surName,password,telephone,AMA,id,company);
 		this.regular = regular;
 		this.season = season;
 		proposals = new Proposals();

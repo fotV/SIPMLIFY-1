@@ -6,7 +6,6 @@ public class Main {
 	{
 		Users u = new Users();
 		u.extractObjectDB();
-		
-		new SearchForm(1,u.getUsers().get(2));
+		StockkeeperForm l = new StockkeeperForm((Stockkeeper) u.getUsers().get(0));
 	}
 }

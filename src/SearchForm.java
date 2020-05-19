@@ -62,9 +62,6 @@ public class SearchForm extends JFrame{
 		}
 		
 		
-	
-		
-		
 		chooseLabel = new JLabel("Choose Field"); 
 		chooseLabel.setFont(new Font("ÇelveticaNeue-Light", Font.PLAIN, 15));
 		chooseLabel.setPreferredSize(new Dimension(120,180));
@@ -96,7 +93,7 @@ public class SearchForm extends JFrame{
 		searchButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				boolean flag = checkForError(type,user);
-				if (flag )
+				if (flag == true )
 				{
 					if (user instanceof OrderManager)
 					{
