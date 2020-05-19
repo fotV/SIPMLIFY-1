@@ -5,8 +5,8 @@ public class Statistics
 	String variable;
 	String filter;
 	int numOfMonths;
-	User ordMan;
-	User seller;
+	OrderManager ordMan;
+	Seller seller;
 	String[] options;
 	String firstMonth;
 	String[] months;
@@ -30,14 +30,15 @@ public class Statistics
 		
 		firstMonth = options[4];
 		
+		
 		//calc numOfMonths
 		int years;
 		int fromMonth = 0;
 		int toMonth = 0;
 		years = Integer.parseInt(options[7]) - Integer.parseInt(options[5]);
 		
-		//calculates the numberofmonths
 		
+		//checks which months is fromMonth and which month is toMonth and keeps the index
 		for(int i = 0; i< 12; i++)
 		{
 			if(options[4].equals(months[i]))
@@ -48,12 +49,15 @@ public class Statistics
 			{
 				toMonth = i;
 			}
-		}	
+		}
+		
+		//calculates the numberofmonths 
+		
 		if(years == 0)
 		{
 			numOfMonths = toMonth - fromMonth;
 		}
-		else if(years >0)
+		else if(years > 0)
 		{
 			if(toMonth > fromMonth)
 			{
@@ -67,17 +71,17 @@ public class Statistics
 		
 		//calls the method based on the value variable
 		
-		seller = new Seller();
-		
+		seller = new Seller(" ", " ", " ", " ", " ", " ", null, null);
+		ArrayList <Order> orders = seller.getOrders();
 	
 		if(options[0].equals("Profit"))
 		{
-			calcProfit(orders);
+			calcProfit(orders, fromMonth, numOfMonths);
 			
 		}
 		else if(options[0].equals("Purchases"))
 		{
-			calcPurchases(orders);
+			calcPurchases(orders, fromMonth,numOfMonths);
 		}
 		
 		//calls the chosen chart
@@ -102,73 +106,310 @@ public class Statistics
 		}
 	}
 	
-	private void calcProfit()
+	private void calcProfit(ArrayList<Order> orders, int fromMonth, int numOfMonths)
 	{
 		ArrayList<Order> orders = seller.getOrders();
+		double sum = 0;
+		String date;
+		String year;
 		
+		year = options[5];
+		
+		//in every if after the sum = 0; there is a date update 
 		
 			if(options[2].equals("Date"))
 			{
-				for(int i = 0; i < orders.size(); i++)
+				
+				for(int j = 0; j < numOfMonths+1; j++)
 				{
+					sum = 0;
 					
+					if(fromMonth+1 != 12)
+					{
+						date += year;
+						if(fromMonth < 9)
+						{
+							date += "-0";
+						}
+						else 
+						{
+							date += "-";
+						}
+						date +=  String.valueOf(fromMonth+1);
+					}
+					else if(fromMonth+1 == 12)					//if 12 the month is december must update year
+					{
+						year += 1;
+						fromMonth = 0;
+						date += year;
+						date += "-0";
+						date +=  String.valueOf(fromMonth+1);	
+					}
+					for(int i = 0; i < orders.size(); i++)
+					{
+					
+						if(date.equals(orders.get(i).getDate().substring(0,6)))				//checks if the first 7 letters of string are the same as date given by the supplier
+						{
+							sum += (orders.get(i).getQuantity())*(orders.get(i).getPrice());	// updates sum with quantity*price in order to find the profit of the order
+						}
+						
+					}
+					value.add(sum);				//adds the total profit of the month in value
+					fromMonth += 1;
+					date = new String();
 				}
+				
+				
 			}
 			else if(options[2].equals("Product"))
 			{
-				for(int i = 0; i < orders.size(); i++)
+		
+				for(int j = 0; j < numOfMonths+1; j++)
 				{
-					if(options[2].equals(orders.get(i).getProductId()))
+					sum = 0;
+					
+					if(fromMonth+1 != 12)
+					{
+						date += year;
+						if(fromMonth < 9)
 						{
-							
+							date += "-0";
 						}
-				}	
+						else 
+						{
+							date += "-";
+						}
+						date +=  String.valueOf(fromMonth+1);
+					}
+					else if(fromMonth+1 == 12)
+					{
+						year += 1;
+						fromMonth = 0;
+						date += year;
+						date += "-0";
+						date +=  String.valueOf(fromMonth+1);	
+					}
+					
+					for(int i = 0; i < orders.size(); i++)
+					{
+						
+						if(date.equals(orders.get(i).getDate().substring(0,6)))
+						{
+							if(options[2].equals(orders.get(i).getProductId()))
+							{
+								sum += (orders.get(i).getQuantity())*(orders.get(i).getPrice());
+								
+							}
+									
+						}	
+							
+					}
+					value.add(sum);
+					fromMonth += 1;
+					date = new String();
+				}
+						
 				
 			}
 			else if(options[2].equals("Client"))
 			{
-				for(int i = 0; i < orders.size(); i++)
+				for(int j = 0; j < numOfMonths+1; j++)
 				{
-					if(options[2].equals(orders.get(i).getOrderManagerId()))
+					sum = 0;
+					
+					if(fromMonth+1 != 12)
+					{
+						date += year;
+						if(fromMonth < 9)
+						{
+							date += "-0";
+						}
+						else 
+						{
+							date += "-";
+						}
+						date +=  String.valueOf(fromMonth+1);
+					}
+					else if(fromMonth+1 == 12)
+					{
+						year += 1;
+						fromMonth = 0;
+						date += year;
+						date += "-0";
+						date +=  String.valueOf(fromMonth+1);	
+					}
+					
+					for(int i = 0; i < orders.size(); i++)
 					{
 						
+						if(date.equals(orders.get(i).getDate().substring(0,6)))
+						{
+							if(options[2].equals(orders.get(i).getOrderManagerId()))
+							{
+								sum += (orders.get(i).getQuantity())*(orders.get(i).getPrice());
+								
+							}
+									
+						}	
+							
 					}
-				}	
+					value.add(sum);
+					fromMonth += 1;
+					date = new String();
+				}
+						
+				
 			}
 	}
 	
 	
-	private void calcPurchases()
+	private void calcPurchases(ArrayList<Order> orders, int fromMonth, int numOfMonths)
 	{
 		ArrayList<Order> orders = seller.getOrders();
-	
+		double sum;
+		String date;
+		String year;
+		
+		year = options[5];
 	
 		if(options[2].equals("Date"))
 		{
-			for(int i = 0; i < orders.size(); i++)
+			for(int j = 0; j < numOfMonths+1; j++)
 			{
-			}
+				sum = 0;
+				
+				if(fromMonth+1 != 12)
+				{
+					date += year;
+					if(fromMonth < 9)
+					{
+						date += "-0";
+					}
+					else 
+					{
+						date += "-";
+					}
+					date +=  String.valueOf(fromMonth+1);
+				}
+				else if(fromMonth+1 == 12)
+				{
+					year += 1;
+					fromMonth = 0;
+					date += year;
+					date += "-0";
+					date +=  String.valueOf(fromMonth+1);	
+				}
+				
+				for(int i = 0; i < orders.size(); i++)
+				{
+				
+					if(date.equals(orders.get(i).getDate().substring(0,6)))
+					{
+						sum += orders.get(i).getQuantity();
+					}
+					
+				}
+				value.add(sum);
+				fromMonth += 1;
+				date = new String();
+			}	
 		}
 		else if(options[2].equals("Product"))
 		{
-			for(int i = 0; i < orders.size(); i++)
+			for(int j = 0; j < numOfMonths+1; j++)
 			{
-				if(options[2].equals(orders.get(i).getProductId()))
+				sum = 0;
+				
+				if(fromMonth+1 != 12)
+				{
+					date += year;
+					if(fromMonth < 9)
 					{
-						
+						date += "-0";
 					}
-			}	
+					else 
+					{
+						date += "-";
+					}
+					date +=  String.valueOf(fromMonth+1);
+				}
+				else if(fromMonth+1 == 12)
+				{
+					year += 1;
+					fromMonth = 0;
+					date += year;
+					date += "-0";
+					date +=  String.valueOf(fromMonth+1);	
+				}
+				
+				for(int i = 0; i < orders.size(); i++)
+				{
+					
+					if(date.equals(orders.get(i).getDate().substring(0,6)))
+					{
+						if(options[2].equals(orders.get(i).getProductId()))
+						{
+							sum += (orders.get(i).getQuantity());
+							
+						}
+								
+					}	
+						
+				}
+				value.add(sum);
+				fromMonth += 1;
+				date = new String();
+			}
+					
 			
 		}
 		else if(options[2].equals("Client"))
 		{
-			for(int i = 0; i < orders.size(); i++)
+			for(int j = 0; j < numOfMonths+1; j++)
 			{
-				if(options[2].equals(orders.get(i).getOrderManagerId()))
+				sum = 0;
+				
+				if(fromMonth+1 != 12)
+				{
+					date += year;
+					if(fromMonth < 9)
+					{
+						date += "-0";
+					}
+					else 
+					{
+						date += "-";
+					}
+					date +=  String.valueOf(fromMonth+1);
+				}
+				else if(fromMonth+1 == 12)
+				{
+					year += 1;
+					fromMonth = 0;
+					date += year;
+					date += "-0";
+					date +=  String.valueOf(fromMonth+1);	
+				}
+				
+				for(int i = 0; i < orders.size(); i++)
 				{
 					
+					if(date.equals(orders.get(i).getDate().substring(0,6)))
+					{
+						if(options[2].equals(orders.get(i).getSupplierId()))
+						{
+							sum += (orders.get(i).getQuantity());
+							
+						}
+								
+					}	
+						
 				}
-			}	
+				value.add(sum);
+				fromMonth += 1;
+				date = new String();
+			}
+					
 		}
 	}
 	
