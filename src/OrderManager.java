@@ -1,3 +1,7 @@
+import java.awt.Component;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 public class OrderManager extends User {
 	
@@ -20,7 +24,6 @@ public class OrderManager extends User {
 	}
 	
 	
-
 	/* Method initializeLists() : extracts the infomations from database 
 	** and adds them into lists */
 	public void initializeLists() {
@@ -33,11 +36,40 @@ public class OrderManager extends User {
 	/* Method searchForProduct(): searches a product and calls a GUI to 
 	** to show the results */
 	public void searchForProduct(String key, int column) {
-		for ( SupplierProduct prod : products ) {
-			if (prod.equals(column) && prod.equals(key)){
-				//calls GUI : PresentationForm
+		Boolean found=false;
+		ArrayList<Object> productsKEY = new ArrayList<>();
+		if(column==1) {                                      				//1 for product id 
+			for( SupplierProduct supProd : products.getSupplierProducts() )
+			{
+				if( supProd.getId().equals(key) )
+					{
+						productsKEY.add(supProd);
+						found=true;
+					}
 			}
 		}
+		else if (column==2) {                              					//2 for product name 
+			for( SupplierProduct supProd : products.getSupplierProducts() )
+			{
+				if(supProd.getName().equals(key)) {
+					productsKEY.add(supProd);
+					found=true;
+				}
+			}
+		}
+		else if (column==3) {                              					//3 for order manager id
+			for( SupplierProduct supProd : products.getSupplierProducts() )
+			{
+				if(supProd.getOrderManagerId().equals(key)) {
+					productsKEY.add(supProd);
+					found=true;
+				}
+			}
+		}
+		
+		Component frame = null;
+		if (found) new PresentationForm(productsKEY);
+		else JOptionPane.showMessageDialog(frame, "No result", "Inane error", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	/* Method addProduct() : adds the parameter to the product list */
@@ -53,11 +85,49 @@ public class OrderManager extends User {
 	/* Method searchForSupplier() : seasrches a supplier and calls a GUI to 
 	** to show the results */
 	public void searchForSupplier(String key, int column) {
-		for ( Supplier sup : suppliers ) {
-			if ( sup.equals(column) && sup.equals(key)) {
-				//Calls GUI : PresentationForm
+		Boolean found=false;
+		ArrayList<Object> suppliersKEY = new ArrayList<>();
+		if(column==1) {                                      		//1 for supplier id
+			for( Supplier suppl : suppliers.getSuppliers() )
+			{
+				if( suppl.getId().equals(key) )
+				{
+					suppliersKEY.add(suppl);
+					found=true;
+				}
 			}
 		}
+		else if (column==2) {                              		    //2 for supplier name 
+			for( Supplier suppl : suppliers.getSuppliers() )
+			{
+				if(suppl.getName().equals(key)) {
+					suppliersKEY.add(suppl);
+					found=true;
+				}
+			}
+		}
+		else if (column==3) {                              			//3 for supplier last name 
+			for( Supplier suppl : suppliers.getSuppliers() )
+			{
+				if(suppl.getLastName().equals(key)) {
+					suppliersKEY.add(suppl);
+					found=true;
+				}
+			}
+		}
+		else if (column==4) {                              			//4 for supplier AFM
+			for( Supplier suppl : suppliers.getSuppliers() )
+			{
+				if(suppl.getAFM().equals(key)) {
+					suppliersKEY.add(suppl);
+					found=true;
+				}
+			}
+		}
+		
+		Component frame = null;
+		if (found) new PresentationForm(suppliersKEY);
+		else JOptionPane.showMessageDialog(frame, "No result", "Inane error", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	/* Method addSupplier() : adds the parameter to the supplier list*/
