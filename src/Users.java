@@ -11,9 +11,6 @@ public class Users extends ListFromDB {
 
 		try {
 			
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-			stmt = c.createStatement();
 			statement = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM User  WHERE id NOT IN (SELECT id FROM OrderManager)");
 			ResultSet results = statement.executeQuery("select FirstName , LastName, Password,Phonenumber,AFM,User.id, Company,Regular,Season from User INNER JOIN OrderManager on User.id=OrderManager.Id"); 
