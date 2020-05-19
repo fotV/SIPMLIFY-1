@@ -7,6 +7,7 @@ public class Buyer {
 	private String AFM;
 	private String phoneNumber;
 	private String sellerId;
+	
 
 	public Buyer(String name,String lastName,String id,String AFM,String phoneNumber,String sellerId) {
 	

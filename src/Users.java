@@ -4,19 +4,18 @@ import java.util.ArrayList;
 
 public class Users extends ListFromDB {
 	private ArrayList<User> users = new ArrayList<User>();
-	
+
+	private Statement statement = null;		//statement for users that have type OrderManager
+	/**
+	 *
+	 */
+
 	public void extractObjectDB() {
-		Connection c = null;
-		Statement stmt = null;      //statement for Users
-		Statement statement = null;		//statement for users that have type OrderManager
-		
+
 		try {
 			
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-			stmt = c.createStatement();
 			statement = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM User  WHERE id NOT IN (SELECT id FROM OrderManager)");
+			ResultSet rs = statement.executeQuery("SELECT * FROM User  WHERE id NOT IN (SELECT id FROM OrderManager)");
 			ResultSet results = statement.executeQuery("select FirstName , LastName, Password,Phonenumber,AFM,User.id, Company,Regular,Season from User INNER JOIN OrderManager on User.id=OrderManager.Id"); 
 		    
 
@@ -65,10 +64,9 @@ public class Users extends ListFromDB {
 				users.add(om);
 				
 			}
-			
 			c.close();
-		}catch(SQLException | ClassNotFoundException e){
-			System.out.println(e.getMessage());
+		}catch(SQLException e){
+			e.getStackTrace();
 		}
 		
 		

@@ -69,10 +69,7 @@ public class Seller extends User {
 
 
 
-	public void searchForProduct(String text, int selectedIndex) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
 

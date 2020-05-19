@@ -6,17 +6,12 @@ public class SupplierProducts extends ListFromDB {
 	private ArrayList<SupplierProduct> supplierp = new ArrayList<>();
 	
 	public void extractObjectDB() {
-		Connection c = null;
-		Statement stmt = null;
+		
 		try {
 			
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-			System.out.println("SQLite DB connected");
-			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM View3");
 			
-			
+	
 			while (rs.next()) {
 				
 				SupplierProduct sp = new SupplierProduct("", "","", 0.0, 0.0, 0.0, 0.0, 0, 0.0);

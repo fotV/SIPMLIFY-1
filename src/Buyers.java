@@ -7,20 +7,15 @@ public class Buyers extends ListFromDB {
 	
 	
 	public void extractObjectDB() {
-		Connection c = null;
-		Statement stmt = null;
+		
 		try {
 			
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-			System.out.println("SQLite DB connected");
-			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Client");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Client INNER JOIN Sells_to on Client.Id=Sells_to.ClientId");
 			
 			
 			while (rs.next()) {
 				
-				Buyer b = new Buyer("","", "", "", "");
+				Buyer b = new Buyer("","", "", "", "","");
 				b.setName(rs.getString("Name"));
 				b.setLastName(rs.getString("LastName"));
 				b.setId(rs.getString("Id"));

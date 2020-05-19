@@ -29,11 +29,11 @@ public class CompanyProduct {
 		return name;
 	}
 
-	public double getSafetystock() {
+	public double getSafetyStock() {
 		return safetystock;
 	}
 
-	public double getStockamount() {
+	public double getStockAmount() {
 		return stockamount;
 	}
 

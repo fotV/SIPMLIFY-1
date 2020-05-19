@@ -6,15 +6,16 @@ public class CompanyProducts extends ListFromDB {
 	private ArrayList<CompanyProduct> companyp = new ArrayList<>();
 	
 	public void extractObjectDB() {
-		Connection c = null;
-		Statement stmt = null;
+		
 		try {
 			
+
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
 			System.out.println("SQLite DB connected");
 			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Product_for_sale INNER JOIN Buys on Product_for_sale.");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Product_for_sale INNER JOIN Buys on Product_for_sale.Id=Buys.PFS_Id");
+
 			
 			
 			while (rs.next()) {
@@ -35,7 +36,7 @@ public class CompanyProducts extends ListFromDB {
 			System.out.println(e);
 		}
 	}
-	public ArrayList<CompanyProduct> getCompProduct()
+	public ArrayList<CompanyProduct> getCompanyProducts()
 	{
 		return companyp;
 	}

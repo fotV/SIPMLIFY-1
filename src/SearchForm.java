@@ -162,12 +162,13 @@ public class SearchForm extends JFrame{
 		boolean flag = false;
 		if(list.getSelectedIndex()==-1) {
 			
-			JOptionPane.showMessageDialog(panel,"No field choosen");
-			
-		}
-		if(key.getText().equals("Type the key") || key.getText().equals("") ){
-			
-			JOptionPane.showMessageDialog(panel,"Invalid input in key field.");
+			if (key.getText().equals("Type the key") || key.getText().equals(""))
+			{
+				JOptionPane.showMessageDialog(panel,"Invalid input in key field and no field choosen");
+			}
+			else{
+				JOptionPane.showMessageDialog(panel,"No field choosen");
+			}
 			
 		}
 		else if (list.getSelectedIndex() == 0 && (key.getText().length() != 6)) {

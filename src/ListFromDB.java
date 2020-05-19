@@ -1,17 +1,23 @@
+
 package src;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.Statement;
 
 public class ListFromDB {
-	Connection c = null;
+	//connection with DataBase
+	protected Connection c = null;
+	protected Statement stmt = null;
 	ListFromDB(){
-		Connection c = null;
+		
 		try {
 			
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-			System.out.println("SQLite DB connected");
-			c.close();
+			stmt = (Statement) c.createStatement();
+			//System.out.println("SQLite DB connected");
+			
 		}catch(Exception e){
 			System.out.println(e);
 		}
