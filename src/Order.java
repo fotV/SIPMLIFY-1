@@ -48,7 +48,7 @@ public class Order {
 		this.productId = "";
 		this.productName = "";
 	}
-
+	
 
 	public String getOrderManagerId() {
 		return orderManagerId;

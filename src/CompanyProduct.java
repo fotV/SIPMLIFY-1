@@ -19,6 +19,9 @@ public class CompanyProduct {
 		 this.price = price;
 
 }
+	public CompanyProduct() {
+		
+	}
 
 	public String getId() {
 		return id;

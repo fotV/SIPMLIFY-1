@@ -1,67 +1,31 @@
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JTextField;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.Dialog.ModalExclusionType;
+	import java.awt.event.ActionListener;
+	import java.util.ArrayList;
+   import javax.swing.*;
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 
-public class SupplierForm {
 
-	private JFrame frame;
-	private JTextField namefield;
-	private JTextField lastnamefield;
-	private JTextField idfield;
-	private JTextField phoneNumberfield;
-	private JTextField AFMfield;
-	private ArrayList<Supplier> suppliers;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SupplierForm window = new SupplierForm();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public SupplierForm() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setTitle("Add a Supplier");
-		frame.getContentPane().setBackground(Color.WHITE);
-		frame.setBounds(100, 100, 834, 443);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+public class SupplierForm extends JFrame {
+	
+	private JPanel panel ;
+	private JTextField name;
+	private JTextField lastname;
+	private JTextField id;
+	private JTextField phonenumber;
+	private JTextField afm;
+	private JButton add;
+	
+	public SupplierForm(Suppliers s) {
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+		
+		panel = new JPanel();
+		
 		
 		JLabel lblNewLabel = new JLabel("Name :");
 		lblNewLabel.setFont(new Font("Arial Black", Font.BOLD, 14));
@@ -87,40 +51,61 @@ public class SupplierForm {
 		lblNewLabel_3.setBounds(135, 240, 71, 28);
 		panel.add(lblNewLabel_3);
 		
-		namefield = new JTextField();
-		namefield.setBounds(248, 82, 245, 19);
-		panel.add(namefield);
-		namefield.setColumns(10);
+		name = new JTextField();
+		name.setBounds(248, 82, 245, 19);
+		panel.add(name);
+		name.setColumns(10);
 		
-		lastnamefield = new JTextField();
-		lastnamefield.setBounds(248, 82, 245, 19);
-		panel.add(lastnamefield);
-		lastnamefield.setColumns(10);
+		lastname = new JTextField();
+		lastname.setBounds(248, 82, 245, 19);
+		panel.add(lastname);
+		lastname.setColumns(10);
 		
-		idfield = new JTextField();
-		idfield.setBounds(248, 131, 245, 19);
-		panel.add(idfield);
-		idfield.setColumns(10);
+		id = new JTextField();
+		id.setBounds(248, 131, 245, 19);
+		panel.add(id);
+		id.setColumns(10);
 		
-		phoneNumberfield = new JTextField();
-		phoneNumberfield.setBounds(248, 190, 245, 19);
-		panel.add(phoneNumberfield);
-		phoneNumberfield.setColumns(10);
+		phonenumber = new JTextField();
+		phonenumber.setBounds(248, 190, 245, 19);
+		panel.add(phonenumber);
+		phonenumber.setColumns(10);
 		
-		AFMfield = new JTextField();
-		AFMfield.setBounds(245, 240, 248, 19);
-		panel.add(AFMfield);
-		AFMfield.setColumns(10);
+		afm = new JTextField();
+		afm.setBounds(245, 240, 248, 19);
+		panel.add(afm);
+		afm.setColumns(10);
+		JButton add = new JButton("Add Supplier");
+		add.setFont(new Font("Arial", Font.BOLD, 14));
+		add.setBounds(248, 311, 194, 49);
+		panel.add(add);
+		
+		panel.setBackground(Color.WHITE);
+		this.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		ButtonListener listener = new ButtonListener();
+		add.addActionListener(listener);
+		
+		this.setTitle("SupplierForm");
+		this.setVisible(true);
+		this.setBounds(100, 100, 811, 677);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		
+		
 	}
-	
 	class ButtonListener implements ActionListener{
+
 		public void actionPerformed(ActionEvent e) {
 			
-			String Suppliername = namefield.getText();
-			String Supplierlastname = lastnamefield.getText();
-			String Supplierid = idfield.getText();
-			String SuppliernphoneNumber = phoneNumberfield.getText();
-			String SupplierAFM = AFMfield.getText();
+			
+			String Suppliername = name.getText();
+			String Supplierlastname = lastname.getText();
+			String Supplierid = id.getText();
+			String SuppliernphoneNumber = phonenumber.getText();
+			String SupplierAFM = afm.getText();
 			
 			
 			Supplier s = new Supplier(Suppliername,Supplierlastname,Supplierid,SuppliernphoneNumber,SupplierAFM);
@@ -128,16 +113,8 @@ public class SupplierForm {
 			suppliers.add(s);
 			
 			
-			
-			
-			
-			
 		}
-		
-		
-		
-		
-		
-		
-	}
+
+	
+}
 }
