@@ -1,3 +1,4 @@
+package src;
 
 public class OrderManager extends User {
 	
@@ -10,18 +11,17 @@ public class OrderManager extends User {
 	private Supplies supplies ;
 	
 	//Constructor
-	public OrderManager(boolean regular, String season, SupplierProducts products, Orders orders, Proposals proposals,
-			Suppliers suppliers, Supplies supplies) {
-		super();
+	public OrderManager(String firstName, String surName, String password, String telephone, String AMA, String id, boolean regular, String season,String company) {
+		super(firstName,surName,password,telephone,AMA,id,company);
 		this.regular = regular;
 		this.season = season;
-		this.products = products;
-		this.orders = orders;
-		this.proposals = proposals;
-		this.suppliers = suppliers;
-		this.supplies = supplies;
+		proposals = new Proposals();
+		suppliers = new Suppliers();
+		supplies = new Supplies();
 	}
 	
+	
+
 	/* Method initializeLists() : extracts the infomations from database 
 	** and adds them into lists */
 	public void initializeLists() {
@@ -31,10 +31,10 @@ public class OrderManager extends User {
 		supplies.extractObjectDB();
 	}
 	
-	/* Method searchForProduct(): seasrches a product and calls a GUI to 
+	/* Method searchForProduct(): searches a product and calls a GUI to 
 	** to show the results */
 	public void searchForProduct(String key, int column) {
-		for ( SupplierProducts prod : products ) {
+		for ( SupplierProduct prod : products ) {
 			if (prod.equals(column) && prod.equals(key)){
 				//calls GUI : PresentationForm
 			}
@@ -54,7 +54,7 @@ public class OrderManager extends User {
 	/* Method searchForSupplier() : seasrches a supplier and calls a GUI to 
 	** to show the results */
 	public void searchForSupplier(String key, int column) {
-		for ( Suppliers sup : suppliers ) {
+		for ( Supplier sup : suppliers ) {
 			if ( sup.equals(column) && sup.equals(key)) {
 				//Calls GUI : PresentationForm
 			}
@@ -137,6 +137,13 @@ public class OrderManager extends User {
 
 	public void setSupplies(Supplies supplies) {
 		this.supplies = supplies;
+	}
+
+
+
+	public void setRegular(boolean b) {
+		this.regular = b;
+		
 	}
 	
 	

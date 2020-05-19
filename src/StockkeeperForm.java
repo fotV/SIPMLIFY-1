@@ -1,3 +1,4 @@
+package src;
 import java.awt.BorderLayout;
 
 
@@ -112,7 +113,7 @@ public class StockkeeperForm extends JFrame{
 		btnSearchForOrder.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent arg0)
 			{
-					new SearchForm();
+					new SearchForm(1,stk);
 			}	
 		});
 
@@ -131,6 +132,10 @@ public class StockkeeperForm extends JFrame{
 		this.setTitle("HomePage");
 		this.setBounds(100, 100, 759, 583);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	public StockkeeperForm() {
+		// TODO Auto-generated constructor stub
 	}
 
 }

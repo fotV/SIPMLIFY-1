@@ -1,4 +1,6 @@
+package src;
 
+<<<<<<< HEAD
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -134,6 +136,8 @@ import java.awt.event.ActionEvent;
                }
 				
 		
+=======
+>>>>>>> f6348febcdb2ec0db992e3097f5719282fbddbc3
 		
     
               

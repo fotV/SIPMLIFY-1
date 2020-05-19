@@ -1,19 +1,15 @@
+package src;
 import java.sql.*;
 import java.util.ArrayList;
 
 public class Proposals extends ListFromDB {
-	ArrayList<Order> proposals = new ArrayList<>();
+	private ArrayList<Order> proposals = new ArrayList<>();
 	
 	public void extractObjectDB() {
-		Connection c = null;
-		Statement stmt = null;
+	
 		try {
 			
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-			System.out.println("SQLite DB connected");
-			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM view1");
+			ResultSet rs = stmt.executeQuery(" SELECT * FROM View1 ");
 			
 			Order o = new Order("", "", 0.0, "", "", "", "", 0, 0.0, 0.0, "", "");
 			while (rs.next()) {
@@ -39,6 +35,10 @@ public class Proposals extends ListFromDB {
 		}catch(Exception e){
 			System.out.println(e);
 		}
+	}
+	
+	public ArrayList<Order> getProposals() {
+		return proposals;
 	}
 
 }

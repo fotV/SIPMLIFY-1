@@ -1,24 +1,21 @@
+package src;
 import java.sql.*;
 import java.util.ArrayList;
 
 public class Orders extends ListFromDB {
-	ArrayList<Order> orders = new ArrayList<>();
+	private ArrayList<Order> orders = new ArrayList<Order>();
 	
 	
 	public void extractObjectDB() {
-		Connection c = null;
-		Statement stmt = null;
+		
 		try {
 			
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-			System.out.println("SQLite DB connected");
-			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM view2");
 			
-			Order o = new Order("", "", 0.0, "", "", "", "", 0, 0.0, 0.0, "", "");
+			
 			while (rs.next()) {
 				
+				Order o = new Order("", "", 0.0, "", "", "", "", 0, 0.0, 0.0, "", "");
 				o.setOrderManagerId(rs.getString("OrderManagerId"));
 				o.setOrderId(rs.getString("OrderId"));
 				o.setQuantity(rs.getDouble("Quantity"));
@@ -40,6 +37,12 @@ public class Orders extends ListFromDB {
 		}catch(Exception e){
 			System.out.println(e);
 		}
+	}
+
+
+
+	public ArrayList<Order> getOrders() {
+		return orders;
 	}
 
 }
