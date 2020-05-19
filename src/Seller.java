@@ -1,3 +1,7 @@
+import java.awt.Component;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 public class Seller extends User {
 	
@@ -21,11 +25,40 @@ public class Seller extends User {
 	/* Method searchForProduct(): searches a product and calls a GUI to 
 	** to show the results */
 	public  void searchForProduct(String key, int column) {
-		for ( CompanyProducts prod : products ) {
-			if ( prod.equals(column) && prod.equals(key) ) {
-				//calls GUI : PresentationForm
+		Boolean found=false;
+		ArrayList<Object> cProductsKEY = new ArrayList<>();
+		if(column==1) {                                     				 //1 for product id
+			for( CompanyProduct compProd : products.getCompanyProducts())
+			{
+				if(compProd.getId().equals(key))
+					{
+						cProductsKEY.add(compProd);
+						found=true;
+					}
 			}
 		}
+		else if (column==2) {                              					//2 for product name 
+			for( CompanyProduct compProd : products.getCompanyProducts())
+			{
+				if(compProd.getName().equals(key)) {
+					cProductsKEY.add(compProd);
+					found=true;
+				}
+			}
+		}
+		else if (column==3) {                             					 //3 for supplier id ?? den uparxei
+			for( CompanyProduct compProd : products.getCompanyProducts())
+			{
+				if(compProd.getSellerId().equals(key)) {   //prepei na yparxei kapoio getter 
+					cProductsKEY.add(compProd);
+					found=true;
+				}
+			}
+		}
+		
+		Component frame = null;
+		if (found) new PresentationForm(cProductsKEY);
+		else JOptionPane.showMessageDialog(frame, "No result", "Inane error", JOptionPane.ERROR_MESSAGE);	
 	}
 	
 	/* Method addProduct() : adds the parameter to the product list */
@@ -40,11 +73,54 @@ public class Seller extends User {
 	
 	/* Method searchForBuyer() : searches a buyer in the list of buyers */
 	public void searchForBuyer(String key, int column) {
-		for ( Buyers b : buyres ) {
-			if ( b.equals(column) && b.equals(key)) {
-				//calls GUI :  PresentationForm
+		Boolean found=false;
+		ArrayList<Object> buyersKEY = new ArrayList<>();
+		if(column==1) {                                      //1 for buyer id
+			for( Buyer b : buyers.getBuyers() )
+			{
+				if(b.getId().equals(key))
+					{
+						buyersKEY.add(b);
+						found=true;
+					}
 			}
 		}
+		else if (column==2) {                              //2 for name
+			for( Buyer b : buyers.getBuyers() )
+			{
+				if(b.getName().equals(key)) {
+					buyersKEY.add(b);
+					found=true;
+				}
+			}
+		}
+		else if (column==3) {                              //3 for last name 
+			for( Buyer b : buyers.getBuyers() )
+			{
+				if(b.getLastName().equals(key)) {
+					buyersKEY.add(b);
+					found=true;
+				}
+			}
+		}
+		else if (column==4) {                              //4 for buyer AFM
+			for( Buyer b : buyers.getBuyers() )
+			{
+				if(b.getAFM().equals(key)) {
+					buyersKEY.add(b);
+					found=true;
+				}
+			}
+		}
+		
+		Component frame = null;
+		if (found) new PresentationForm(buyersKEY);
+		else JOptionPane.showMessageDialog(frame, "No result", "Inane error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	//kainouria 
+	public void searchForSupplier(String text, int selectedIndex) {
+		//giati yparxei?
 	}
 	
 	/* Method addBuyer() : adds the parameter to the buyers list */
@@ -66,17 +142,4 @@ public class Seller extends User {
 		return buyers;
 	}
 
-
-
-	public void searchForProduct(String text, int selectedIndex) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	public void searchForSupplier(String text, int selectedIndex) {
-		// TODO Auto-generated method stub
-		
-	}
 }
