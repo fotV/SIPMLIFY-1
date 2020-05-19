@@ -33,6 +33,21 @@ public class SupplierProducts extends ListFromDB {
 			System.out.println(e);
 		}
 	}
+	public void updateObject() {
+		
+		String  sql = "INSERT INTO Product(Id,Name,StockAmount,MaxStockAmount,SafetyStock,AverageMonthlyConsumption,Leadtime,ExpectedAmount)\r\n" + 
+				"				  VALUES(?,?,?,?,?,?,?,?)\r\n" + 
+				"				  ON CONFLICT(Id) DO UPDATE SET\r\n" + 
+				"				    StockAmount = sp.getStockAmount()"+
+				"         WHERE StockAmount<> sp.getStockAmount();";
+		try {
+			for (SupplierProduct sp : supplierp) {
+				
+			}
+		}catch(Exception e){
+			System.out.println(e);
+		}
+	}
 
 	public ArrayList<SupplierProduct> getSupplierProducts() {
 		// TODO Auto-generated method stub
