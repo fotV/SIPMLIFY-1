@@ -1,3 +1,4 @@
+package src;
 
 public class SupplierProduct {
 	 private String name;

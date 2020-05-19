@@ -1,3 +1,4 @@
+package src;
 import java.awt.Component;
 import java.util.ArrayList;
 
@@ -11,11 +12,10 @@ public class User {
 	protected String AMA;
 	protected String id;
 	protected String company;
-	protected int type;
 	protected Orders orders = new Orders();
 	
 
-	public User(String firstName, String surName, String password, String telephone, String aMA, String id) {
+	public User(String firstName, String surName, String password, String telephone, String aMA, String id,String company) {
 		//super();
 		this.firstName = firstName;
 		this.surName = surName;
@@ -23,6 +23,7 @@ public class User {
 		this.telephone = telephone;
 		this.AMA = aMA;
 		this.id = id;
+		this.company = company;
 	
 		
 	}
@@ -158,7 +159,24 @@ public class User {
 	}
 
 	public String getPassword() {
+
 		return password;
 	}
-	
+
+
+	public String getPhonenumber() {
+		// TODO Auto-generated method stub
+		return telephone;
+	}
+
+	public String getAFM() {
+		// TODO Auto-generated method stub
+		return AMA;
+	}
+
+	public String getCompany() {
+		// TODO Auto-generated method stub
+		return company;
+	}
+
 }

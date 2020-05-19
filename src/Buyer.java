@@ -1,3 +1,4 @@
+package src;
 
 public class Buyer {
 	private String name;
@@ -5,14 +6,16 @@ public class Buyer {
 	private String id;
 	private String AFM;
 	private String phoneNumber;
+	private String sellerId;
 
-	public Buyer(String name,String lastName,String id,String AFM,String phoneNumber) {
+	public Buyer(String name,String lastName,String id,String AFM,String phoneNumber,String sellerId) {
 	
-		this.name=name;
+		this.name = name;
 		this.lastName = lastName;
-		this.id=id;
-		this.AFM=AFM;
-		this.phoneNumber=phoneNumber;
+		this.id = id;
+		this.AFM = AFM;
+		this.phoneNumber = phoneNumber;
+		this.sellerId = sellerId;
 }
 
 	public String getName() {

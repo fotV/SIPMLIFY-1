@@ -1,12 +1,10 @@
+package src;
 import java.sql.*;
 import java.util.ArrayList;
 
 public class Users extends ListFromDB {
 	private ArrayList<User> users = new ArrayList<User>();
 	
-	/**
-	 *
-	 */
 	public void extractObjectDB() {
 		Connection c = null;
 		Statement stmt = null;      //statement for Users
@@ -23,7 +21,7 @@ public class Users extends ListFromDB {
 		    
 
 			while (rs.next()) {
-			
+				
 				User us = new User();
 				us.setFirstName(rs.getString("FirstName"));
 				us.setSurName(rs.getString("LastName"));
@@ -37,19 +35,21 @@ public class Users extends ListFromDB {
 			}
 			for(User u: users)
 			{
+				System.out.println(u.getCompany().getClass());
 				int index = users.indexOf(u);
-				if (u instanceof Stockkeeper) {
-					Stockkeeper st = (Stockkeeper) u;
+				if (u.getId().startsWith("ST")) {
+					Stockkeeper st = new Stockkeeper(u.getFirstName(), u.getLastName(), u.getPassword(), u.getPhonenumber(), u.getAFM(), u.getId(), u.getCompany());
 					users.set(index,st);
 				}
-				else if(u instanceof Seller){
-					Seller se = (Seller) u;
+				else {
+					Seller se = new Seller (u.getFirstName(),u.getLastName(),u.getPassword(),u.getPhonenumber(),u.getAFM(),u.getId(),u.getCompany());
 					users.set(index, se);
+					System.out.println(users.get(index).getClass());
 			}
 			}
 			while (results.next()) {
 				
-				OrderManager om = new OrderManager("","","","","","",true,"");
+				OrderManager om = new OrderManager("","","","","","",true,"","");
 				om.setFirstName(results.getString("FirstName"));
 				om.setSurName(results.getString("LastName"));
 				om.setPassword(results.getString("Password"));
