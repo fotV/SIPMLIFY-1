@@ -1,10 +1,17 @@
+<<<<<<< HEAD
 package src;
+=======
+import java.awt.BorderLayout;
+import java.awt.Toolkit;
+>>>>>>> d84165162798e8ae4759bbfd617c789eea67382b
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import java.awt.SystemColor;
+import java.awt.Color;
 
 
 public class PresentationForm extends JFrame{
@@ -16,9 +23,14 @@ public class PresentationForm extends JFrame{
 	
 	public PresentationForm(ArrayList <Object> objectList)
 	{
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Christina\\Desktop\\3\\Organizedorders\\window logo.png"));
 		String[][] data = new String[objectList.size()][3];
 		panel = new JPanel();
 		panel.setBounds(100, 100, 584, 534);
+		
+		scroll = new JScrollPane();
+		panel.add(scroll, BorderLayout.CENTER);
+
 
 		if (objectList.get(0) instanceof Order)   
 		{
@@ -40,9 +52,9 @@ public class PresentationForm extends JFrame{
 				CompanyProduct temp = (CompanyProduct) objectList.get(i);
 				data[i][0]=temp.getName();
 				data[i][1]=temp.getId();
-				data[i][2]=temp.getPrice()+"";
+				data[i][2]=temp.getStockamount()+"";
 			}
-			table.setModel(new DefaultTableModel(data, new String[] {"Product Name", "Product Id", "Price"}));
+			table.setModel(new DefaultTableModel(data, new String[] {"Product Name", "Product Id", "StockAmount"}));
 		}
 		else if (objectList.get(0) instanceof SupplierProduct)
 		{
@@ -52,7 +64,11 @@ public class PresentationForm extends JFrame{
 				SupplierProduct temp = (SupplierProduct) objectList.get(i);
 				data[i][0]=temp.getName();
 				data[i][1]=temp.getId();
+<<<<<<< HEAD
 				data[i][2]=temp.getStockAmount();
+=======
+				data[i][2]=temp.getStockAmount()+"";
+>>>>>>> d84165162798e8ae4759bbfd617c789eea67382b
 			}
 			table.setModel(new DefaultTableModel(data, new String[] {"Product Name", "Product Id", "StockAmount"}));
 		}
@@ -80,11 +96,13 @@ public class PresentationForm extends JFrame{
 			}
 			table.setModel(new DefaultTableModel(data, new String[] {"Buyer Name", "Buyer Id", "Buyer AFM"}));
 		}
-		
-		
+		table.setForeground(Color.BLACK);
+		table.setBackground(SystemColor.info);
+		table.setFillsViewportHeight(true);
 		table.setAutoCreateRowSorter(true);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
+		scroll.setViewportView(table);
 		
 		
 		table.addMouseListener(new MouseAdapter() {
@@ -108,7 +126,7 @@ public class PresentationForm extends JFrame{
 		        	for(Object o : objectList)
 					{
 			        	CompanyProduct temp = (CompanyProduct) o;
-						if(temp.getId().equals(SelectedId)) new ProductForm(temp);
+						if(temp.getId().equals(SelectedId)) new ShowProduct(temp);
 					}
 		        }
 		        else if (n==3)
@@ -116,7 +134,7 @@ public class PresentationForm extends JFrame{
 		        	for(Object o : objectList)
 					{
 		        		SupplierProduct temp = (SupplierProduct) o;
-						if(temp.getId().equals(SelectedId)) new ProductForm(temp);
+						if(temp.getId().equals(SelectedId)) new ShowProduct(temp);
 					}
 		        }
 		        else if(n==4)
@@ -124,7 +142,7 @@ public class PresentationForm extends JFrame{
 		        	for(Object o : objectList)
 					{
 		        		Supplier temp = (Supplier) o;
-						if(temp.getId().equals(SelectedId)) new SupplierForm(temp);
+						if(temp.getId().equals(SelectedId)) new ShowBuyerSeller(temp);
 					}
 		        }
 		        else if (n==5)
@@ -132,24 +150,21 @@ public class PresentationForm extends JFrame{
 		        	for(Object o : objectList)
 					{
 		        		Buyer temp = (Buyer) o;
-						if(temp.getId().equals(SelectedId)) new BuyerForm(temp);
+						if(temp.getId().equals(SelectedId)) new ShowBuyerSeller(temp);
 					}
 		        }
 			}
 		});
-		scroll = new JScrollPane();
-		scroll.setBounds(100, 100, 584, 534);
-		scroll.setViewportView(table);
-
 		
-		panel.add(scroll);
+		
+
 		
 		this.setContentPane(panel);
 	
 		
 		this.setVisible(true);
 		this.setTitle("PresentationForm");
-		this.setBounds(100, 100, 584, 534);
+		this.setBounds(100, 100, 511, 488);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 	}

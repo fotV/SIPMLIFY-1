@@ -28,26 +28,43 @@ public class SupplierProducts extends ListFromDB {
 				
 			}
 			
-			c.close();
+			//c.close();
 		}catch(Exception e){
 			System.out.println(e);
 		}
 	}
-	public void updateObject() {
+	public void updateObjectDB() {
 		
-		String  sql = "INSERT INTO Product(Id,Name,StockAmount,MaxStockAmount,SafetyStock,AverageMonthlyConsumption,Leadtime,ExpectedAmount)\r\n" + 
+		System.out.print(2);
+		String  sql =  "INSERT INTO Product(Id,Name,StockAmount,MaxStockAmount,SafetyStock,AverageMonthlyConsumption,Leadtime,ExpectedAmount)\r\n" + 
 				"				  VALUES(?,?,?,?,?,?,?,?)\r\n" + 
 				"				  ON CONFLICT(Id) DO UPDATE SET\r\n" + 
-				"				    StockAmount = sp.getStockAmount()"+
-				"         WHERE StockAmount<> sp.getStockAmount();";
+				"				    StockAmount = excluded.getStockAmount()"+
+				"         WHERE StockAmount<> excluded.getStockAmount()";
+		System.out.println(9);
 		try {
+			System.out.println(0);
+			PreparedStatement pstmt = c.prepareStatement(sql);
 			for (SupplierProduct sp : supplierp) {
+				pstmt.setString(1,sp.getId());
+				pstmt.setString(2,sp.getName());
+				System.out.println(sp.getStockAmount());
+				pstmt.setDouble(3,sp.getStockAmount());
+				pstmt.setDouble(4,sp.getMaxStockAmount());
+				pstmt.setDouble(5,sp.getSafetyStock());
+				pstmt.setDouble(6,sp.getAverageMonthlyConsumption());
+				pstmt.setInt(7,sp.getLeadtime());
+				pstmt.setDouble(8,sp.getExpectedAmount());
+				pstmt.executeUpdate();
 				
 			}
+			
+			c.close();
 		}catch(Exception e){
-			System.out.println(e);
+			e.printStackTrace();;
 		}
 	}
+
 
 	public ArrayList<SupplierProduct> getSupplierProducts() {
 		// TODO Auto-generated method stub

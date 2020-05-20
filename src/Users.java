@@ -37,11 +37,11 @@ public class Users extends ListFromDB {
 				System.out.println(u.getCompany().getClass());
 				int index = users.indexOf(u);
 				if (u.getId().startsWith("ST")) {
-					Stockkeeper st = new Stockkeeper(u.getFirstName(), u.getLastName(), u.getPassword(), u.getPhonenumber(), u.getAFM(), u.getId(), u.getCompany());
+					Stockkeeper st = new Stockkeeper(u.getFirstName(), u.getSurName(), u.getPassword(), u.getPhonenumber(), u.getAFM(), u.getId(), u.getCompany());
 					users.set(index,st);
 				}
 				else {
-					Seller se = new Seller (u.getFirstName(),u.getLastName(),u.getPassword(),u.getPhonenumber(),u.getAFM(),u.getId(),u.getCompany());
+					Seller se = new Seller (u.getFirstName(),u.getSurName(),u.getPassword(),u.getPhonenumber(),u.getAFM(),u.getId(),u.getCompany());
 					users.set(index, se);
 					System.out.println(users.get(index).getClass());
 			}

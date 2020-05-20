@@ -1,4 +1,4 @@
-
+package src;
 import java.util.ArrayList;
 
 public class Main {
@@ -29,7 +29,7 @@ public class Main {
 		System.out.println("\n-----Suppliers-----");
 		for(Supplier k: s.getSuppliers()) System.out.println(k.getName() + "   " + k.getId());
 		System.out.println("\n-----SupplierProducts-----");
-		for(SupplierProduct k: sp.getSupplierProducts()) System.out.println(k.getName() + "   " + k.getSafetyStock());
+		for(SupplierProduct k: sp.getSupplierProducts()) System.out.println(k.getName() + "   " + k.getId());
 		System.out.println("\n-----Orders-----");
 		for(Order k: o.getOrders()) System.out.println(k.getQuantity() + "   " + k.getDate());
 		System.out.println("\n-----Proposals-----");
@@ -40,8 +40,13 @@ public class Main {
 		for(Buyer k: b.getBuyers()) System.out.println(k.getLastName() + "   " + k.getAFM());
 		System.out.println("\n-----Supplies-----");
 		for(Suppl k: sup.getSupplies()) System.out.println(k.getSupplierId() + "   " + k.getProductId() + "   " + k.getPrice());
+		sp.getSupplierProducts().get(0).setStockAmount(16000);
+		System.out.println(sp.getSupplierProducts().get(0).getStockAmount());
 		
-		//new SearchForm(1,u.getUsers().get(2));
-
+		sp.updateObjectDB();
+		System.out.println(80);
+		SupplierProducts p = new SupplierProducts();
+		p.extractObjectDB();
+		System.out.println(p.getSupplierProducts().get(0).getStockAmount());
 	}
 }

@@ -3,6 +3,7 @@ import java.awt.Color;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -16,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
+import javax.swing.UIManager;
 
 public class OrderForm extends JFrame{
 	
@@ -32,41 +34,46 @@ public class OrderForm extends JFrame{
 	
 	public OrderForm(OrderManager om)
 	{
+		setTitle("Order Form");
 		panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel.setBackground(new Color(135, 206, 235));
+		panel.setBackground(new Color(240, 248, 255));
 
 		
 		lblorderid = new JLabel("Order ID :");
 		lblorderid.setBounds(22, 36, 121, 41);
-		lblorderid.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblorderid.setFont(new Font("Futura Bk BT", Font.PLAIN, 17));
 		
 		lblSupplierid = new JLabel("Supplier ID:");
 		lblSupplierid.setBounds(22, 98, 121, 41);
-		lblSupplierid.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblSupplierid.setFont(new Font("Futura Bk BT", Font.PLAIN, 17));
 		
 		lblProductId = new JLabel("Product ID ");
 		lblProductId.setBounds(22, 167, 121, 33);
-		lblProductId.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblProductId.setFont(new Font("Futura Bk BT", Font.PLAIN, 17));
 		
 		lblQuantity = new JLabel("Quantity : ");
 		lblQuantity.setBounds(22, 227, 121, 41);
-		lblQuantity.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblQuantity.setFont(new Font("Futura Bk BT", Font.PLAIN, 17));
 		
 		
 		textFieldOid = new JTextField();
+		textFieldOid.setFont(new Font("Futura Bk BT", Font.PLAIN, 16));
 		textFieldOid.setBounds(179, 45, 247, 28);
 		textFieldOid.setColumns(10);
 		
 		textFieldSid = new JTextField();
+		textFieldSid.setFont(new Font("Futura Bk BT", Font.PLAIN, 16));
 		textFieldSid.setBounds(179, 107, 247, 28);
 		textFieldSid.setColumns(10);
 		
 		textFieldPid = new JTextField();
+		textFieldPid.setFont(new Font("Futura Bk BT", Font.PLAIN, 16));
 		textFieldPid.setBounds(179, 172, 247, 28);
 		textFieldPid.setColumns(10);
 		
 		textFieldQ = new JTextField();
+		textFieldQ.setFont(new Font("Futura Bk BT", Font.PLAIN, 16));
 		textFieldQ.setBounds(179, 236, 247, 28);
 		panel.add(textFieldQ);
 		textFieldQ.setColumns(10);
@@ -83,8 +90,8 @@ public class OrderForm extends JFrame{
 		panel.add(textFieldQ);
 		
 		btnAdd = new JButton("Add");
-		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnAdd.setBounds(400, 320, 103, 28);
+		btnAdd.setFont(new Font("Futura Bk BT", Font.PLAIN, 17));
+		btnAdd.setBounds(401, 328, 103, 28);
 		panel.add(btnAdd);
 		
 		
@@ -112,29 +119,30 @@ public class OrderForm extends JFrame{
 				if (checkForError(om))
 				{
 					//fill Order Manager Id
-					order.orderManagerId=om.id;
+					order.setOrderManagerId(om.id);
 					
 					//fill Order Id
-					order.orderId=textFieldOid.getText(); 			
+					order.setOrderId(textFieldOid.getText()); 			
 					
 					//fill  Quantity
 					double Value = Double.parseDouble(textFieldQ.getText());
-					order.setQuantity=Value;								
+					order.setQuantity(Value);								
+
 					
 					
 					//fill Supplier Id
-					order.supplierId = textFieldSid.getText();
+					order.setSupplierId(textFieldSid.getText());
 					
-					for (Supplier s : om.suppliers.suppliers)		
+					for (Supplier s : om.getSuppliers().getSuppliers())		
 					{
 						//According to the given Supplier Id
-						if (order.supplierId.equals(s.getId()))		
+						if (order.getSupplierId().equals(s.getId()))		
 						{
 							//fill Supplier Name
-							order.supplierName=s.getName();
+							order.setSupplierName(s.getName());
 							
 							//fill Supplier AFM
-							order.supplierAFM = s.getAFM();
+							order.setSupplierAFM(s.getAFM());
 						}
 					}
 					
@@ -142,47 +150,46 @@ public class OrderForm extends JFrame{
 					SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
 					Date date = new Date(System.currentTimeMillis());
 					//fill Date
-					order.date= formatter.format(date);	
+					order.setDate(formatter.format(date));
 					
 					//fill status
-					order.status=0;
+					order.setStatus(0);
 					
 					//fill Product Id
-					order.productId= textFieldPid.getText();
+					order.setProductId(textFieldPid.getText());
 					
 					
-					for (CompanyProduct cp : om.products.products)	
+					for (SupplierProduct sp : om.getProducts().getSupplierProducts())	
 					{
 						//According to the given Product Id
-						if (order.productId.equals(cp.getId()))
+						if (order.getProductId().equals(sp.getId()))
 							//fill Product Name
-							order.productName=cp.getName();
+							order.setProductName(sp.getName());
 					}
 					
 				
-					for(Suppl spl : om.supplies.supplies)
+					for(Suppl spl : om.getSupplies().getSupplies())
 					{
 						//According to the given Supplier Id and the given Product Id
-						if(spl.getSellerId().equals(order.supplierId) && (spl.getProductId().equals(order.productId)))
+						if(spl.getSupplierId().equals(order.getSupplierId()) && (spl.getProductId().equals(order.getProductId())))
 							//fill Price
-							order.price=spl.getPrice();
+							order.setPrice(spl.getPrice());
 					}
 					
 					//fill total price
-					order.totalPrice=order.price * order.quantity;
+					order.setTotalPrice(order.getPrice() * order.getQuantity());
 				
 					om.addOrder(order);
 				}
 			}	
 		});
 		
-		
 		this.setVisible(true);
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Christina\\Desktop\\3\\Organizedorders\\window logo.png"));
 		this.getContentPane().add(panel);
 		this.setResizable(false);
-		this.setBounds(100, 100, 529, 396);
+		this.setBounds(100, 100, 520, 396);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		;
 	}
 	
 	private boolean checkForError(OrderManager om) {
@@ -193,26 +200,26 @@ public class OrderForm extends JFrame{
 		if (textFieldOid.getText()!=null && textFieldSid.getText()!=null && textFieldPid.getText()!=null)
 		{
 			//checking if the order id that was given doesn't already exist.
-			for (Order o : om.orders.orders)		
+			for (Order o : om.getOrders().orders)		
 			{
-				if (!textFieldOid.getText().equals(o.orderId)) i++;
+				if (!textFieldOid.getText().equals(o.getOrderId())) i++;
 			}
 		
 			//checking if the supplier id that was given exists.
-			for (Supplier s : om.suppliers.suppliers)		
+			for (Supplier s : om.getSuppliers().suppliers)		
 			{
 				if (textFieldSid.getText().equals(s.getId())) i++;
 			}
 			
 			//checking if the product id that was given exists.
-			for (CompanyProduct cp : om.products.products)	
+			for (SupplierProduct sp : om.getProducts().getSupplierProducts())	
 			{
-				if (textFieldPid.getText().equals(cp.getId())) i++;
+				if (textFieldPid.getText().equals(sp.getId())) i++;
 			}
 			
-			for(Suppl spl : om.supplies.supplies)
+			for(Suppl spl : om.getSupplies().supplies)
 			{
-				if(spl.getSellerId().equals(textFieldSid.getText()) && (spl.getProductId().equals(textFieldPid.getText()))) i++;
+				if(spl.getSupplierId().equals(textFieldSid.getText()) && (spl.getProductId().equals(textFieldPid.getText()))) i++;
 			}
 		}
 		
@@ -226,7 +233,7 @@ public class OrderForm extends JFrame{
 		if(i==5) return true;
 		else
 		{
-			JOptionPane.showMessageDialog(f, "Invalid input", "Inane error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(f, "Invalid input", "Error", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 	}
@@ -242,5 +249,4 @@ public class OrderForm extends JFrame{
 	    }
 	    return true;
 	}
-
 }
