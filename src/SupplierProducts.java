@@ -35,27 +35,37 @@ public class SupplierProducts extends ListFromDB {
 	}
 	public void updateObjectDB() {
 		
-		System.out.print(2);
-		String  sql =  "INSERT INTO Product(Id,Name,StockAmount,MaxStockAmount,SafetyStock,AverageMonthlyConsumption,Leadtime,ExpectedAmount)\r\n" + 
-				"				  VALUES(?,?,?,?,?,?,?,?)\r\n" + 
-				"				  ON CONFLICT(Id) DO UPDATE SET\r\n" + 
-				"				    StockAmount = excluded.getStockAmount()"+
-				"         WHERE StockAmount<> excluded.getStockAmount()";
-		System.out.println(9);
+		
 		try {
-			System.out.println(0);
-			PreparedStatement pstmt = c.prepareStatement(sql);
-			for (SupplierProduct sp : supplierp) {
-				pstmt.setString(1,sp.getId());
-				pstmt.setString(2,sp.getName());
-				System.out.println(sp.getStockAmount());
-				pstmt.setDouble(3,sp.getStockAmount());
-				pstmt.setDouble(4,sp.getMaxStockAmount());
-				pstmt.setDouble(5,sp.getSafetyStock());
-				pstmt.setDouble(6,sp.getAverageMonthlyConsumption());
-				pstmt.setInt(7,sp.getLeadtime());
-				pstmt.setDouble(8,sp.getExpectedAmount());
-				pstmt.executeUpdate();
+			
+			String sql1 = "INSERT OR IGNORE INTO Product_for_purchase (Id, Name, StockAmount, MaxStockAmount, SafetyStock, AverageMonthlyConsumption, Leadtime, ExpectedAmount)  "
+				+ "VALUES (?,?,?,?,?,?,?,?);";
+			
+			PreparedStatement pstmt2 = c.prepareStatement(sql1);
+			for (SupplierProduct sp:  supplierp) {
+				
+				
+				String sql2 = "UPDATE Product_for_purchase SET  StockAmount = " + sp.getStockAmount() + " WHERE StockAmount = "+ sp.getStockAmount() ;
+				
+				
+				PreparedStatement pstmt1 = c.prepareStatement(sql2);
+				
+				
+				
+				pstmt2.setString(1 ,sp.getId());
+				pstmt2.setString(2, sp.getName());
+				pstmt2.setDouble(3, sp.getStockAmount());
+				pstmt2.setDouble(4, sp.getMaxStockAmount());
+				pstmt2.setDouble(5, sp.getSafetyStock());
+				pstmt2.setDouble(6, sp.getAverageMonthlyConsumption());
+				pstmt2.setInt(7, sp.getLeadtime());
+				pstmt2.setDouble(8, sp.getExpectedAmount());
+				
+				pstmt1.executeUpdate();
+				pstmt2.executeUpdate();
+				
+				sql1 = "";
+				sql2 = "";
 				
 			}
 			
