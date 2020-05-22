@@ -11,7 +11,7 @@ public class Proposals extends ListFromDB {
 			
 			ResultSet rs = stmt.executeQuery(" SELECT * FROM View1 ");
 			
-			Order o = new Order("", "", 0.0, "", "", "", "", 0, 0.0, 0.0, "", "");
+			Order o = new Order("", "", 0.0, "", "", "", "", 0, 0.0, 0.0, "", "","");
 			while (rs.next()) {
 				
 				o.setOrderManagerId(rs.getString("OrderManagerId"));
@@ -26,7 +26,7 @@ public class Proposals extends ListFromDB {
 				o.setTotalPrice(rs.getDouble("TotalPrice"));
 				o.setProductName(rs.getString("Name"));
 				o.setProductId(rs.getString("PFP_Id"));
-				//o.???(rs.getString(StockkeeperId));
+				o.setStockkeeperId(rs.getString("StockkeeperId"));
 				proposals.add(o);
 				
 			}

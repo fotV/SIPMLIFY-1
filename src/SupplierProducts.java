@@ -3,6 +3,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class SupplierProducts extends ListFromDB {
+	/*
+	 * Class 
+	 */
 	private ArrayList<SupplierProduct> supplierp = new ArrayList<>();
 	
 	public void extractObjectDB() {
@@ -28,7 +31,7 @@ public class SupplierProducts extends ListFromDB {
 				
 			}
 			
-			//c.close();
+			
 		}catch(Exception e){
 			System.out.println(e);
 		}
@@ -40,7 +43,7 @@ public class SupplierProducts extends ListFromDB {
 			
 			String sql1 = "INSERT OR IGNORE INTO Product_for_purchase (Id, Name, StockAmount, MaxStockAmount, SafetyStock, AverageMonthlyConsumption, Leadtime, ExpectedAmount)  "
 				+ "VALUES (?,?,?,?,?,?,?,?);";
-			
+			int numbOfRows = 0; // number of affected rows after UPDATE Statement was executed
 			PreparedStatement pstmt2 = c.prepareStatement(sql1);
 			for (SupplierProduct sp:  supplierp) {
 				
@@ -61,23 +64,26 @@ public class SupplierProducts extends ListFromDB {
 				pstmt2.setInt(7, sp.getLeadtime());
 				pstmt2.setDouble(8, sp.getExpectedAmount());
 				
-				pstmt1.executeUpdate();
+				numbOfRows += pstmt1.executeUpdate();
 				pstmt2.executeUpdate();
 				
 				sql1 = "";
 				sql2 = "";
 				
 			}
-			
-			c.close();
+			System.out.println(numbOfRows);
 		}catch(Exception e){
 			e.printStackTrace();;
 		}
 	}
-
-
+	
+	/*
+	 * Gets the list of SupplierProduct
+	 * @return An ArrayList with SupplierProducts
+	 *     name.
+	 */
 	public ArrayList<SupplierProduct> getSupplierProducts() {
-		// TODO Auto-generated method stub
+		
 		return supplierp;
 	}
 }

@@ -15,10 +15,11 @@ public class Order {
 	private double totalPrice;
 	private String productName;
 	private String productId;
+	private String stockkeeperId;
 	
 	
 	
-	public Order(String orderManagerId,String orderId,double quantity,String supplierId,String supplierName,String supplierAFM,String date,int status,double price,double totalPrice,String productId,String productName) 
+	public Order(String orderManagerId,String orderId,double quantity,String supplierId,String supplierName,String supplierAFM,String date,int status,double price,double totalPrice,String productId,String productName,String stockkeeperId) 
 	{
 		this.orderManagerId = orderManagerId;
 		this.orderId = orderId;
@@ -32,23 +33,10 @@ public class Order {
 		this.totalPrice = totalPrice;
 		this.productId = productId;
 		this.productName = productName;
+		this.stockkeeperId = stockkeeperId;
 	}
 
 
-	public Order() {
-		this.orderManagerId = "";
-		this.orderId = "";
-		this.quantity = 0.0;
-		this.supplierId = "";
-		this.supplierName = "";
-		this.supplierAFM = "";
-		this.date = "";
-		this.status = 0;
-		this.price = 0.0;
-		this.totalPrice = 0.0;
-		this.productId = "";
-		this.productName = "";
-	}
 
 
 	public String getOrderManagerId() {
@@ -165,11 +153,7 @@ public class Order {
 
 	public void setProductName(String productName) {
 		this.productName = productName;
-		
-		
 	}
-
-
 	public void setProductId(String productid) {
 		this.productId = productid;
 		
@@ -179,6 +163,17 @@ public class Order {
 	public String getProductId() {
 		return productId;
 	}
+
+
+	public void setStockkeeperId(String stockkeeperId) {
+		this.stockkeeperId = stockkeeperId;
+		
+	}
+	public String getStockkeeperId() {
+		return stockkeeperId;
+	}
+
+
 
 
 	

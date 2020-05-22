@@ -16,7 +16,7 @@ public class Users extends ListFromDB {
 			
 			statement = c.createStatement();
 			ResultSet rs = statement.executeQuery("SELECT * FROM User  WHERE id NOT IN (SELECT id FROM OrderManager)");
-			ResultSet results = statement.executeQuery("select FirstName , LastName, Password,Phonenumber,AFM,User.id, Company,Regular,Season from User INNER JOIN OrderManager on User.id=OrderManager.Id"); 
+			ResultSet results = statement.executeQuery("SELECT FirstName , LastName, Password,Phonenumber,AFM,User.id, Company,Regular,Season FROM User INNER JOIN OrderManager on User.id=OrderManager.Id"); 
 		    
 
 			while (rs.next()) {
@@ -30,7 +30,6 @@ public class Users extends ListFromDB {
 				us.setId(rs.getString("id"));
 				us.setCompany(rs.getString("Company"));
 				users.add(us);
-				
 			}
 			for(User u: users)
 			{
@@ -44,7 +43,7 @@ public class Users extends ListFromDB {
 					Seller se = new Seller (u.getFirstName(),u.getSurName(),u.getPassword(),u.getPhonenumber(),u.getAFM(),u.getId(),u.getCompany());
 					users.set(index, se);
 					System.out.println(users.get(index).getClass());
-			}
+				}
 			}
 			while (results.next()) {
 				
@@ -64,11 +63,13 @@ public class Users extends ListFromDB {
 				users.add(om);
 				
 			}
-			c.close();
 		}catch(SQLException e){
 			e.getStackTrace();
 		}
 		
+		
+	}
+	public void updateObjectDB() {
 		
 	}
 	public ArrayList<User> getUsers()

@@ -11,9 +11,6 @@ public class SupplierProduct {
 	 private int leadtime;
 	 private double expectedAmount;
 	 
-	 
-
-	 
 	 public SupplierProduct(String name,String id,String orderManagerId,double stockAmount,double maxStockAmount,double safetyStock,double averageMonthlyConsumption,int leadtime,double expectedAmount) 
 	 {
 		 this.name = name;
