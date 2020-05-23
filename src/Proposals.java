@@ -1,4 +1,4 @@
-package src;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -8,7 +8,8 @@ public class Proposals extends ListFromDB {
 	public void extractObjectDB() {
 	
 		try {
-			
+			Connection c = connect();
+			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery(" SELECT * FROM View1 ");
 			
 			Order o = new Order("", "", 0.0, "", "", "", "", 0, 0.0, 0.0, "", "","");

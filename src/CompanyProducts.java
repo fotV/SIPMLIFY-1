@@ -1,4 +1,4 @@
-package src;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -8,16 +8,9 @@ public class CompanyProducts extends ListFromDB {
 	public void extractObjectDB() {
 		
 		try {
-			
-
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-			System.out.println("SQLite DB connected");
-			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Product_for_sale INNER JOIN Buys on Product_for_sale.Id=Buys.PFS_Id");
-
-			
-			
+			Connection c = connect();
+			Statement stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Product_for_sale INNER JOIN Seller_Watches_Product on Product_for_sale.Id = Seller_Watches_Product.PFS_Id");
 			while (rs.next()) {
 				
 				CompanyProduct cp = new CompanyProduct("","",0.0,0.0,0.0,0.0);
@@ -30,7 +23,6 @@ public class CompanyProducts extends ListFromDB {
 				companyp.add(cp);
 				
 			}
-			
 			c.close();
 		}catch(Exception e){
 			System.out.println(e);

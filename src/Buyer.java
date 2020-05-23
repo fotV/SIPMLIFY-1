@@ -1,4 +1,4 @@
-package src;
+
 
 public class Buyer {
 	private String name;
@@ -37,25 +37,31 @@ public class Buyer {
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-
+	public String getSellerId() {
+		return sellerId;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
-		
+		this.lastName = lastName;	
 	}
-
 	public void setId(String id) {
-		this.id = id;
-		
+		this.id = id;	
+	}
+	public void setAFM(String afm) {
+		this.AFM = afm;	
 	}
 
-	public void setAFM(String afm) {
-		this.AFM = afm;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public void setSellerId(String sellerId) {
+		this.sellerId = sellerId;
 		
 	}
+	
 
 	
 	

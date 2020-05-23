@@ -1,5 +1,5 @@
 
-package src;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -14,13 +14,19 @@ public class ListFromDB {
 	protected Connection c = null;
 	protected Statement stmt = null;
 	public ListFromDB(){
+		
+	}
+	public Connection connect() {
+		Connection c = null;
+		Statement stmt = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-			stmt = (Statement) c.createStatement();
+			
 		}catch(Exception e){
 			System.out.println(e);
 		}
+		return c;
 	}
 	
 	public void extractObjectDB() {

@@ -1,4 +1,4 @@
-package src;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -11,7 +11,8 @@ public class SupplierProducts extends ListFromDB {
 	public void extractObjectDB() {
 		
 		try {
-			
+			Connection c = connect();
+			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM View3");
 			
 	
@@ -40,36 +41,32 @@ public class SupplierProducts extends ListFromDB {
 		
 		
 		try {
-			
-			String sql1 = "INSERT OR IGNORE INTO Product_for_purchase (Id, Name, StockAmount, MaxStockAmount, SafetyStock, AverageMonthlyConsumption, Leadtime, ExpectedAmount)  "
+			Connection c = connect ();
+			String insertIntoPFP = "INSERT OR IGNORE INTO Product_for_purchase (Id, Name, StockAmount, MaxStockAmount, SafetyStock, AverageMonthlyConsumption, Leadtime, ExpectedAmount)  "
 				+ "VALUES (?,?,?,?,?,?,?,?);";
 			int numbOfRows = 0; // number of affected rows after UPDATE Statement was executed
-			PreparedStatement pstmt2 = c.prepareStatement(sql1);
+			PreparedStatement statementPFP = c.prepareStatement(insertIntoPFP);
 			for (SupplierProduct sp:  supplierp) {
 				
 				
-				String sql2 = "UPDATE Product_for_purchase SET  StockAmount = " + sp.getStockAmount() + " WHERE StockAmount = "+ sp.getStockAmount() ;
+				String updatePFP = "UPDATE Product_for_purchase SET  StockAmount = " + sp.getStockAmount() + " WHERE StockAmount = "+ sp.getStockAmount() ;
 				
 				
-				PreparedStatement pstmt1 = c.prepareStatement(sql2);
+				PreparedStatement statementUpdate= c.prepareStatement(updatePFP);
 				
-				
-				
-				pstmt2.setString(1 ,sp.getId());
-				pstmt2.setString(2, sp.getName());
-				pstmt2.setDouble(3, sp.getStockAmount());
-				pstmt2.setDouble(4, sp.getMaxStockAmount());
-				pstmt2.setDouble(5, sp.getSafetyStock());
-				pstmt2.setDouble(6, sp.getAverageMonthlyConsumption());
-				pstmt2.setInt(7, sp.getLeadtime());
-				pstmt2.setDouble(8, sp.getExpectedAmount());
-				
-				numbOfRows += pstmt1.executeUpdate();
-				pstmt2.executeUpdate();
-				
-				sql1 = "";
-				sql2 = "";
-				
+				statementPFP.setString(1 ,sp.getId());
+				statementPFP.setString(2, sp.getName());
+				statementPFP.setDouble(3, sp.getStockAmount());
+				statementPFP.setDouble(4, sp.getMaxStockAmount());
+				statementPFP.setDouble(5, sp.getSafetyStock());
+				statementPFP.setDouble(6, sp.getAverageMonthlyConsumption());
+				statementPFP.setInt(7, sp.getLeadtime());
+				statementPFP.setDouble(8, sp.getExpectedAmount());
+			
+				statementPFP.executeUpdate();
+				statementUpdate.executeUpdate();
+
+				updatePFP = "";
 			}
 			System.out.println(numbOfRows);
 		}catch(Exception e){
