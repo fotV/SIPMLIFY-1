@@ -40,20 +40,22 @@ public class Main {
 		for(Buyer k: b.getBuyers()) System.out.println(k.getLastName() + "   " + k.getAFM());
 		System.out.println("\n-----Supplies-----");
 		for(Suppl k: sup.getSupplies()) System.out.println(k.getSupplierId() + "   " + k.getProductId() + "   " + k.getPrice());
-		sp.getSupplierProducts().get(0).setStockAmount(16000);
-		sp.getSupplierProducts().get(1).setLeadTime(15);
-		sp.getSupplierProducts().get(2).setId("idddd");
-		SupplierProduct spp = new SupplierProduct("GALA", "GL3355", "OM6678", 55.66, 108.0, 12.15, 6.35, 12, 12.2);
-		sp.getSupplierProducts().add(spp);
 		
-		//OrderManager om = new OrderManager();
-		sp.updateObjectDB(om);
+		Supplier s1 = new Supplier("Strgios", "Margaritopoulos", "sup123", "6949555666", "12345678", "om123");
+		s.getSuppliers().add(s1);
+		s.updateObjectDB();
+		Suppliers st = new Suppliers();
+		st.extractObjectDB();
+		System.out.println("\n-----Suppliers-----");
+		for(Supplier k: st.getSuppliers()) System.out.println(k.getName() + "   " + k.getId());
 		
-		SupplierProducts spp1 = new SupplierProducts();
-		spp1.extractObjectDB();
-		System.out.println("\n-----SupplierProducts-----");
-		for(SupplierProduct k: spp1.getSupplierProducts()) System.out.println(k.getName() + "	" + k.getId() + "	" + k.getLeadtime() + "	" + k.getStockAmount());
-		//System.out.println(sp.getSupplierProducts().get(0).getStockAmount());
+		Buyer b1 = new Buyer(" Eleni", "Polyzoidou", "buy123", "1234321", "6988222000", "sel111");
+		b.getBuyers().add(b1);
+		b.updateObjectDB();
+		Buyers bt = new Buyers();
+		bt.extractObjectDB();
+		System.out.println("\n-----Buyers-----");
+		for(Buyer k: b.getBuyers()) System.out.println(k.getLastName() + "   " + k.getAFM());
 		
 	}
 }

@@ -54,7 +54,7 @@ public class Suppliers extends ListFromDB {
 				buys_fromStatement.executeUpdate();
 				supplierStatement.executeUpdate();	
 			}
-			c.close();
+			closeConnection();
 		}catch(Exception e){
 				e.printStackTrace();;
 		}
