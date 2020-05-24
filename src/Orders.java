@@ -1,3 +1,4 @@
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -9,7 +10,10 @@ public class Orders extends ListFromDB {
 		
 		try {
 			
-			ResultSet rs = stmt.executeQuery("SELECT * FROM view2");
+			connect();
+			Statement stmt = c.createStatement ();
+			ResultSet rs = stmt.executeQuery("SELECT Order_for_purchase.OrderId as OrderId ,Order_for_purchase.OrderManagerId as OrderManagerId, Order_for_purchase.Price as Price, Order_for_purchase.StockkeeperId as StockkeeperId, Order_for_purchase.Status as Status, Order_for_purchase.Date as Date , Order_for_purchase.Quantity as Quantity, Supplier.id as Supplier_Id, Order_for_purchase.PFP_Id as PFP_Id, Order_for_purchase.TotalPrice as TotalPrice, Supplier.Name as SupplierName, Supplier.AFM as SupplierAFM, Product_for_purchase.Name as Name FROM Order_for_purchase inner join Supplier on Order_for_purchase.Supplier_Id=Supplier.id inner join Product_for_purchase on Product_for_purchase.Id=Order_for_purchase.PFP_Id");
+
 			
 			while (rs.next()) {
 				Order o = new Order("", "", 0.0, "", "", "", "", 0, 0.0, 0.0, "", "","");
@@ -35,24 +39,33 @@ public class Orders extends ListFromDB {
 			System.out.println(e);
 		}
 	}
+	
 	public void updateObjectDB(){
 		try {
-			String sql1 = "INSERT OR IGNORE INTO Order_for_purchase (OrderId, OrderManagerId, Price, StockkeeperId, Status, Date, Quantity, Supplier_Id, PFP_Id, TotalPrice)  "
+			connect();
+			String stringForInsert = "INSERT OR IGNORE INTO Order_for_purchase (OrderId, OrderManagerId, Price, StockkeeperId, Status, Date, Quantity, Supplier_Id, PFP_Id, TotalPrice)  "
 					+ "VALUES (?,?,?,?,?,?,?,?,?,?);";
+			PreparedStatement pstmtForInsert = c.prepareStatement(stringForInsert);
 			for (Order or : orders) {
-				PreparedStatement pstmt1 = c.prepareStatement(sql1);
-				pstmt1.setString(1 ,or.getOrderId());
-				pstmt1.setString(2, or.getOrderManagerId());
-				pstmt1.setDouble(3, or.getPrice());
-				pstmt1.setString(4, or.getStockkeeperId());
-				pstmt1.setInt(5, or.getStatus());
-				pstmt1.setString(6, or.getDate());
-				pstmt1.setDouble(7, or.getQuantity());
-				pstmt1.setString(8, or.getSupplierId());
-				pstmt1.setString(9, or.getProductId());
-				pstmt1.setDouble(10, or.getTotalPrice());
-				pstmt1.executeUpdate();
+				String stringForUpdate = "UPDATE Orders SET  Status = " + or.getStatus() + "," + "Price = "+ or.getPrice()+" WHERE Status <> " + or.getStatus() + " or Price <> "+or.getPrice();
+				PreparedStatement pstmtForUpdate   = c.prepareStatement(stringForUpdate);
+				pstmtForInsert.setString(1 ,or.getOrderId());
+				pstmtForInsert.setString(2, or.getOrderManagerId());
+				pstmtForInsert.setDouble(3, or.getPrice());
+				pstmtForInsert.setString(4, or.getStockkeeperId());
+				pstmtForInsert.setInt(5, or.getStatus());
+				pstmtForInsert.setString(6, or.getDate());
+				pstmtForInsert.setDouble(7, or.getQuantity());
+				pstmtForInsert.setString(8, or.getSupplierId());
+				pstmtForInsert.setString(9, or.getProductId());
+				pstmtForInsert.setDouble(10, or.getTotalPrice());
+				
+				pstmtForInsert.executeUpdate();
+				pstmtForUpdate.executeUpdate();
+				stringForUpdate = "";
 			}
+			closeConnection();
+
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

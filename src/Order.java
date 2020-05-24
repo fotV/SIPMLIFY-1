@@ -134,8 +134,11 @@ public class Order {
 
 	public void setStockkeeperId(String stockkeeperId) {
 		this.stockkeeperId = stockkeeperId;
+
 	}
+}
 	
 	
 
-}
+
+	

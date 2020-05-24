@@ -10,12 +10,12 @@ public class SupplierProducts extends ListFromDB {
 	public void extractObjectDB() {
 		
 		try {
-			
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Product_for_purchase INNER JOIN OrderManager_Watches_Product on "
-					+ "Product_for_purchase.Id = OrderManager_Watches_Product.PFP_Id");
+			connect();
+			Statement stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Product_for_purchase INNER JOIN OrderManager_Watches_Product "
+					+ "ON Product_for_purchase.Id = OrderManager_Watches_Product.PFP_Id");
 
 			while (rs.next()) {
-				
 				SupplierProduct sp = new SupplierProduct("", "","", 0.0, 0.0, 0.0, 0.0, 0, 0.0);
 				sp.setName(rs.getString("Name"));
 				sp.setId(rs.getString("Id"));
@@ -30,48 +30,57 @@ public class SupplierProducts extends ListFromDB {
 				
 			}
 			
-			
+			closeConnection();
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);
 		}
 	}
-	public void updateObjectDB() {
-		
+	public void updateObjectDB(OrderManager ordermanager) {
+		OrderManager om = ordermanager;
 		
 		try {
 			
-			String sql1 = "INSERT OR IGNORE INTO Product_for_purchase (Id, Name, StockAmount, MaxStockAmount, SafetyStock, AverageMonthlyConsumption, Leadtime, ExpectedAmount)  "
+			connect ();
+			String insertIntoPFP = "INSERT OR IGNORE INTO Product_for_purchase (Id, Name, StockAmount, MaxStockAmount,"
+					+ " SafetyStock, AverageMonthlyConsumption, Leadtime, ExpectedAmount)  "
 				+ "VALUES (?,?,?,?,?,?,?,?);";
-			int numbOfRows = 0; // number of affected rows after UPDATE Statement was executed
-			PreparedStatement pstmt2 = c.prepareStatement(sql1);
+			PreparedStatement statementPFP = c.prepareStatement(insertIntoPFP);
+			String insertIntoWatches = "INSERT OR IGNORE INTO OrderManager_Watches_Product (PFP_Id, OrderManagerId) "
+				+ "VALUES (?,?);";
+			PreparedStatement statementWatches = c.prepareStatement(insertIntoWatches);
+			
 			for (SupplierProduct sp:  supplierp) {
 				
 				
-				String sql2 = "UPDATE Product_for_purchase SET  StockAmount = " + sp.getStockAmount() + " WHERE StockAmount = "+ sp.getStockAmount() ;
+				String updatePFP = "UPDATE Product_for_purchase SET  StockAmount = " + sp.getStockAmount() + 
+								", Leadtime = " + sp.getLeadtime() + ", ExpectedAmount = " + sp.getExpectedAmount() +
+								" WHERE StockAmount <> "+ sp.getStockAmount() + "or Leadtime <> " + sp.getLeadtime() + 
+								"or ExpectedAmount <> " + sp.getExpectedAmount();
 				
 				
-				PreparedStatement pstmt1 = c.prepareStatement(sql2);
+				PreparedStatement statementUpdate= c.prepareStatement(updatePFP);
 				
+				statementPFP.setString(1 ,sp.getId());
+				statementPFP.setString(2, sp.getName());
+				statementPFP.setDouble(3, sp.getStockAmount());
+				statementPFP.setDouble(4, sp.getMaxStockAmount());
+				statementPFP.setDouble(5, sp.getSafetyStock());
+				statementPFP.setDouble(6, sp.getAverageMonthlyConsumption());
+				statementPFP.setInt(7, sp.getLeadtime());
+				statementPFP.setDouble(8, sp.getExpectedAmount());
 				
-				
-				pstmt2.setString(1 ,sp.getId());
-				pstmt2.setString(2, sp.getName());
-				pstmt2.setDouble(3, sp.getStockAmount());
-				pstmt2.setDouble(4, sp.getMaxStockAmount());
-				pstmt2.setDouble(5, sp.getSafetyStock());
-				pstmt2.setDouble(6, sp.getAverageMonthlyConsumption());
-				pstmt2.setInt(7, sp.getLeadTime());
-				pstmt2.setDouble(8, sp.getExpectedAmount());
-				
-				numbOfRows += pstmt1.executeUpdate();
-				pstmt2.executeUpdate();
-				
-				sql1 = "";
-				sql2 = "";
-				
+				statementWatches.setString(1, sp.getId());
+				statementWatches.setString(2, om.getId());
+			
+				statementPFP.executeUpdate();
+				statementWatches.executeUpdate();
+				statementUpdate.executeUpdate();
+
+				updatePFP = "";
+
 			}
-			System.out.println(numbOfRows);
+			closeConnection();
 		}catch(Exception e){
 			e.printStackTrace();;
 		}

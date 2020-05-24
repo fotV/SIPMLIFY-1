@@ -1,3 +1,4 @@
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -12,7 +13,9 @@ public class Users extends ListFromDB {
 	public void extractObjectDB() {
 
 		try {
-			
+
+			connect();
+
 			statement = c.createStatement();
 			ResultSet rs = statement.executeQuery("SELECT * FROM User  WHERE id NOT IN (SELECT id FROM OrderManager)");
 			ResultSet results = statement.executeQuery("SELECT FirstName , LastName, Password,Phonenumber,AFM,User.id, Company,Regular,Season FROM User INNER JOIN OrderManager on User.id=OrderManager.Id"); 
@@ -68,9 +71,8 @@ public class Users extends ListFromDB {
 		
 		
 	}
-	public void updateObjectDB() {
-		
-	}
+	
+	
 	public ArrayList<User> getUsers()
 	{
 		return users;

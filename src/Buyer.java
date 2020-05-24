@@ -1,51 +1,72 @@
 
+
 public class Buyer {
 	private String name;
 	private String lastName;
 	private String id;
 	private String AFM;
+	private String phoneNumber;
+	private String sellerId;
+
 	
-	public Buyer(String name, String lastName, String id, String aFM) {
+	public Buyer(String name,String lastName,String id,String AFM,String phoneNumber,String sellerId) {
+	
 		this.name = name;
 		this.lastName = lastName;
 		this.id = id;
-		AFM = aFM;
-	}
+		this.AFM = AFM;
+		this.phoneNumber = phoneNumber;
+		this.sellerId = sellerId;
+}
 
 	public String getName() {
 		return name;
 	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getLastName() {
 		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public String getId() {
 		return id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public String getAFM() {
 		return AFM;
 	}
 
-	public void setAFM(String aFM) {
-		AFM = aFM;
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public String getSellerId() {
+		return sellerId;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;	
+	}
+	public void setId(String id) {
+		this.id = id;	
+	}
+	public void setAFM(String afm) {
+		this.AFM = afm;	
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public void setSellerId(String sellerId) {
+		this.sellerId = sellerId;
+		
 	}
 	
-	
+
 	
 	
 
+
 }
+
+
