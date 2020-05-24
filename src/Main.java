@@ -57,5 +57,13 @@ public class Main {
 		System.out.println("\n-----Buyers-----");
 		for(Buyer k: bt.getBuyers()) System.out.println(k.getLastName() + "   " + k.getAFM());
 		
+		Suppl sup1 = new Suppl("hgfigwe", "hisdhp", 20.0);
+		sup.getSupplies().add(sup1);
+		sup.updateObjectDB();
+		Supplies supt = new Supplies();
+		supt.extractObjectDB();
+		System.out.println("\n-----Supplies-----");
+		for(Suppl k: sup.getSupplies()) System.out.println(k.getSupplierId() + "   " + k.getProductId() + "   " + k.getPrice());
+		
 	}
 }

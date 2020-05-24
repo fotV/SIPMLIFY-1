@@ -36,7 +36,7 @@ public class Supplies extends ListFromDB {
 		 */
 		try {
 			connect();
-			String insertIntoSupplies = "INSERT OR IGNORE INTO Suppies (Supplier_Id, PFP_Id, Price) VALUES (?,?,?);";
+			String insertIntoSupplies = "INSERT OR IGNORE INTO Supplies (Supplier_Id, PFP_Id, Price) VALUES (?,?,?);";
 			PreparedStatement statementSupplies = c.prepareStatement(insertIntoSupplies);
 			for(Suppl s: supplies) {
 				statementSupplies.setString(1, s.getSupplierId());
