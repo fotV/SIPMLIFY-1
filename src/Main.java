@@ -55,7 +55,7 @@ public class Main {
 		Buyers bt = new Buyers();
 		bt.extractObjectDB();
 		System.out.println("\n-----Buyers-----");
-		for(Buyer k: b.getBuyers()) System.out.println(k.getLastName() + "   " + k.getAFM());
+		for(Buyer k: bt.getBuyers()) System.out.println(k.getLastName() + "   " + k.getAFM());
 		
 	}
 }
