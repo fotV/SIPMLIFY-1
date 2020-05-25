@@ -1,5 +1,3 @@
-
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -18,7 +16,7 @@ public class ListFromDB {
 		
 	}
 	
-	public void connect() {
+	public Connection connect() {
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -28,6 +26,7 @@ public class ListFromDB {
 			System.out.println(this.getClass());
 			System.out.println(e);
 		}
+		return c;
 	}
 	
 	public void closeConnection() {
@@ -38,7 +37,6 @@ public class ListFromDB {
 			e.printStackTrace();
 		}
 	}
-	
 	public void extractObjectDB() {
 		
 	}

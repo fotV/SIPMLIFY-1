@@ -47,7 +47,7 @@ public class Orders extends ListFromDB {
 					+ "VALUES (?,?,?,?,?,?,?,?,?,?);";
 			PreparedStatement pstmtForInsert = c.prepareStatement(stringForInsert);
 			for (Order or : orders) {
-				String stringForUpdate = "UPDATE Orders SET  Status = " + or.getStatus() + "," + "Price = "+ or.getPrice()+" WHERE Status <> " + or.getStatus() + " or Price <> "+or.getPrice();
+				String stringForUpdate = "UPDATE Order_for_purchase SET  Status = " + or.getStatus() + "," + "Price = "+ or.getPrice()+" WHERE Status <> " + or.getStatus() + " or Price <> "+or.getPrice();
 				PreparedStatement pstmtForUpdate   = c.prepareStatement(stringForUpdate);
 				pstmtForInsert.setString(1 ,or.getOrderId());
 				pstmtForInsert.setString(2, or.getOrderManagerId());

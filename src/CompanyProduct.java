@@ -76,6 +76,11 @@ public class CompanyProduct {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	public String geSellertId() {
+		// TODO Auto-generated method stub
+		return sellerId;
+	}
 	
 }
 	

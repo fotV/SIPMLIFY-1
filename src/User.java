@@ -15,9 +15,19 @@ public class User {
 	protected String company;
 	protected Orders orders = new Orders();
 	
-	public User() {
+	public User(String firstName, String surName, String password, String telephone, String aFM, String id,String company) {
+		this.firstName = firstName;
+		this.surName = surName;
+		this.password = password;
+		this.telephone = telephone;
+		this.AFM = aFM;
+		this.id = id;
+		this.company = company;
+	
 		
-	};
+	}
+	public User() {
+	}
 	
 
 	public void initializeLists()

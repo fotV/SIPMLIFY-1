@@ -10,7 +10,7 @@ public class Supplies extends ListFromDB {
 		try {
 			connect();
 			Statement stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Supplies");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Supplies INNER JOIN Buys");
 			
 			while (rs.next()) {
 

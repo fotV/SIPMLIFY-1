@@ -1,4 +1,4 @@
-package src;
+
 
 public class Seller extends User {
 	

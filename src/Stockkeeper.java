@@ -1,5 +1,4 @@
 
-package src;
 
 public class Stockkeeper extends User {
 
