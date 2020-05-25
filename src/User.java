@@ -18,7 +18,22 @@ public class User {
 	public User() {
 		
 	};
-	
+
+	public User(String firstName, String surName, String password, String telephone, String aFM, String id,
+			String company) {
+		super();
+		this.firstName = firstName;
+		this.surName = surName;
+		this.password = password;
+		this.telephone = telephone;
+		AFM = aFM;
+		this.id = id;
+		this.company = company;
+		
+	}
+
+
+
 
 	public void initializeLists()
 	{

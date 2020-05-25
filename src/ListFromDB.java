@@ -18,16 +18,24 @@ public class ListFromDB {
 		
 	}
 	
-	public void connect() {
+	public Connection connect() {
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-
+			
+			
+			if (c == null) {
+		        c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
+		    } else {
+		        closeConnection();
+		        c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
+		    }
+			
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);
 		}
+		return c;
 	}
 	
 	public void closeConnection() {

@@ -35,13 +35,13 @@ public class Main {
 		System.out.println("\n-----Proposals-----");
 		for(Order k: pr.getProposals()) System.out.println(k.getStatus() + "   " + k.getPrice());
 		System.out.println("\n-----CompanyProducts-----");
-		for(CompanyProduct k: cp.getCompanyProducts()) System.out.println(k.getName() + "   " + k.getSafetyStock());
+		for(CompanyProduct k: cp.getCompanyProducts()) System.out.println(k.getName() + "	" + k.getSafetyStock());
 		System.out.println("\n-----Buyers-----");
-		for(Buyer k: b.getBuyers()) System.out.println(k.getLastName() + "   " + k.getAFM());
+		for(Buyer k: b.getBuyers()) System.out.println(k.getLastName() + "   " + k.getAFM() + "	" + k.getSellerId());
 		System.out.println("\n-----Supplies-----");
 		for(Suppl k: sup.getSupplies()) System.out.println(k.getSupplierId() + "   " + k.getProductId() + "   " + k.getPrice());
 		
-		Supplier s1 = new Supplier("Strgios", "Margaritopoulos", "sup123", "6949555666", "12345678", "om123");
+		/*Supplier s1 = new Supplier("Strgios", "Margaritopoulos", "sup123", "6949555666", "12345678", "om123");
 		s.getSuppliers().add(s1);
 		s.updateObjectDB();
 		Suppliers st = new Suppliers();
@@ -57,7 +57,7 @@ public class Main {
 		System.out.println("\n-----Buyers-----");
 		for(Buyer k: bt.getBuyers()) System.out.println(k.getLastName() + "   " + k.getAFM());
 		
-		Suppl sup1 = new Suppl("hgfigwe", "hisdhp", 20.0);
+		Suppl sup1 = new Suppl("se0000", "10888", 10.0);
 		sup.getSupplies().add(sup1);
 		sup.updateObjectDB();
 		Supplies supt = new Supplies();
@@ -65,5 +65,15 @@ public class Main {
 		System.out.println("\n-----Supplies-----");
 		for(Suppl k: sup.getSupplies()) System.out.println(k.getSupplierId() + "   " + k.getProductId() + "   " + k.getPrice());
 		
+		CompanyProduct cpp = new CompanyProduct("PINAKAS", "10801", "SEL144", 250.0, 1500.0, 250.0, 5.11);
+		cp.getCompanyProducts().add(cpp);
+		cp.getCompanyProducts().get(1).setSafetyStock(111.1);
+		cp.getCompanyProducts().get(0).setName("ROKA");
+		cp.updateObjectDB();
+		CompanyProducts cpt = new CompanyProducts();
+		cpt.extractObjectDB();
+		System.out.println("\n-----CompanyProducts-----");
+		for(CompanyProduct k: cpt.getCompanyProducts()) System.out.println(k.getName() + "   " + k.getSafetyStock());
+		*/
 	}
 }

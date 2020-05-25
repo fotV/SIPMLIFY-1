@@ -10,7 +10,7 @@ public class CompanyProducts extends ListFromDB {
 	public void extractObjectDB() {
 		
 		try {
-			connect();
+			c = connect();
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Product_for_sale INNER JOIN Seller_Watches_Product "
 					+ "ON Product_for_sale.Id=Seller_Watches_Product.PFS_ID");
@@ -25,10 +25,9 @@ public class CompanyProducts extends ListFromDB {
 				cp.setSafetyStock(rs.getDouble("SafetyStock"));
 				cp.setPrice(rs.getDouble("Price"));
 				companyp.add(cp);
-				System.out.println("CP: "+cp);
 				
 			}
-			
+			stmt.close();
 			closeConnection();
 		}catch(Exception e) {
 			System.out.println(this.getClass());
@@ -37,22 +36,23 @@ public class CompanyProducts extends ListFromDB {
 	}
 
 	
-public void updateObjectDB(Seller seller) {
-		Seller sel = seller;
+public void updateObjectDB() {
+		
 		
 		try {
-			connect();
+			c = connect();
 			String insertIntoPFS = "INSERT OR IGNORE INTO Product_for_sale (Id, Name, StockAmount, MaxStockAmount, SafetyStock, Price)  "
 				+ "VALUES (?,?,?,?,?,?);";
 			PreparedStatement statementPFS = c.prepareStatement(insertIntoPFS);
-			String insertIntoWatches = "INSERT OR IGNORE INTO OrderManager_Watches_Product (SellerId, PFS_Id) "
+			String insertIntoWatches = "INSERT OR IGNORE INTO Seller_Watches_Product (SellerId, PFS_Id) "
 					+ "VALUES (?,?);";
 			PreparedStatement statementWatches = c.prepareStatement(insertIntoWatches);
 				
 			for (CompanyProduct cp:  companyp) {
 				
 				String updatePFS = "UPDATE Product_for_sale SET  StockAmount = " + cp.getStockAmount() + ", Price = " + cp.getPrice() + 
-						" WHERE StockAmount <> "+ cp.getStockAmount() + "or Price <> " + cp.getPrice() ;
+						" WHERE StockAmount <> " + cp.getStockAmount() + " or Price <> " + cp.getPrice();
+						
 				PreparedStatement statementUpdate = c.prepareStatement(updatePFS);
 				
 				statementPFS.setString(1, cp.getId());
@@ -62,14 +62,17 @@ public void updateObjectDB(Seller seller) {
 				statementPFS.setDouble(5, cp.getSafetyStock());
 				statementPFS.setDouble(6, cp.getPrice());
 				
-				statementWatches.setString(1, sel.getId());
+				statementWatches.setString(1, cp.getSellerId());
 				statementWatches.setString(2, cp.getId());
 				
 				statementPFS.executeUpdate();
+				statementWatches.executeUpdate();
 				statementUpdate.executeUpdate();
 				updatePFS = "";
 				
 			}
+			statementPFS.close();
+			statementWatches.close();
 			closeConnection();
 		}catch(Exception e){
 			e.printStackTrace();;

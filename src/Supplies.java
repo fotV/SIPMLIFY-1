@@ -8,7 +8,7 @@ public class Supplies extends ListFromDB {
 	public void extractObjectDB() {
 		
 		try {
-			connect();
+			c = connect();
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Supplies");
 			
@@ -35,7 +35,7 @@ public class Supplies extends ListFromDB {
 		 * MAY HAVE ERRORS!!!! I HAVE NOT TEST IT YET!!!!!!!!!!!
 		 */
 		try {
-			connect();
+			c = connect();
 			String insertIntoSupplies = "INSERT OR IGNORE INTO Supplies (Supplier_Id, PFP_Id, Price) VALUES (?,?,?);";
 			PreparedStatement statementSupplies = c.prepareStatement(insertIntoSupplies);
 			for(Suppl s: supplies) {
@@ -49,7 +49,7 @@ public class Supplies extends ListFromDB {
 					ResultSet rs = stmt.executeQuery(sql);
 					statementSupplies.setDouble(3, rs.getDouble("Price") );
 				}
-				statementSupplies.execute();
+				statementSupplies.executeUpdate();
 			}
 			closeConnection();
 		}catch(Exception e) {
