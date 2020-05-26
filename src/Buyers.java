@@ -10,32 +10,34 @@ public class Buyers extends ListFromDB {
 		
 		try {
 			
-			connect();
+			Connection c = connect();
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Client INNER JOIN Sells_to on Client.Id = Sells_to.ClientId");
 			while (rs.next()) {
 				
-				Buyer b = new Buyer("","", "", "", "","");
+				Buyer b = new Buyer("","", "", "","");
 				b.setName(rs.getString("Name"));
 				b.setLastName(rs.getString("LastName"));
 				b.setId(rs.getString("Id"));
-				//b.setPhoneNumber(rs.getString("PhoneNumber"));
 				b.setAFM(rs.getString("AFM"));
 				b.setSellerId(rs.getString("SellerId"));
 				buyers.add(b);			
 
 			}
-			closeConnection();
+			stmt.close();
+			c.close();
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);
 		}
 	}
 
-	public void updateObjectFromDB(){
+	public void updateObjectDB(){
 		try {
-			connect();
-			String insertIntoClient = "INSERT OR IGNORE INTO Client (Id, Name, LastName, AFM, PhoneNumber) VALUES (?,?,?,?,?);";
+			
+			Connection c = connect();
+			
+			String insertIntoClient = "INSERT OR IGNORE INTO Client (Id, Name, LastName, AFM) VALUES (?,?,?,?);";
 			String insertIntoSells_to = "INSERT OR IGNORE INTO Sells_to (SellerId, ClientId) VALUES (?,?);";
 			PreparedStatement statementClient = c.prepareStatement(insertIntoClient);
 			PreparedStatement statementSells_to = c.prepareStatement(insertIntoSells_to);
@@ -43,16 +45,18 @@ public class Buyers extends ListFromDB {
 				statementClient.setString(1 ,b.getId());
 				statementClient.setString(2, b.getName());
 				statementClient.setString(3, b.getLastName());
-				statementClient.setString(4, b.getPhoneNumber());
-				statementClient.setString(5, b.getAFM());
+				statementClient.setString(4, b.getAFM());
 				
-				statementSells_to.setString(1, b.getId());
-				statementSells_to.setString(2, b.getSellerId());
+				statementSells_to.setString(1, b.getSellerId());
+				statementSells_to.setString(2, b.getId());
 				
 				statementClient.executeUpdate();	
 				statementSells_to.executeUpdate();
+				
 			}
-			closeConnection();
+			statementClient.close();
+			statementSells_to.close();
+			c.close();
 		}catch(Exception e){
 				e.printStackTrace();;
 		}

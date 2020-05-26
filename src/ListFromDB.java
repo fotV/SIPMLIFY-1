@@ -12,40 +12,33 @@ public class ListFromDB {
 	 * @author Eleni Polyzoidou, Evangelia Papagiannaki.
 	 * @version 1.0
 	 */
-	protected Connection c = null;
+	//protected Connection c = null;
 	
 	public ListFromDB(){
 		
 	}
 	
 	public Connection connect() {
-		
+		Connection c = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
 			
 			
-			if (c == null) {
-		        c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-		    } else {
-		        closeConnection();
-		        c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-		    }
+			
+		    c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
+		        
+		   
 			
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);
 		}
 		return c;
+		
+		
 	}
 	
-	public void closeConnection() {
-		try {
-			c.close();
-		} catch (SQLException e) {
-			System.out.println(this.getClass());
-			e.printStackTrace();
-		}
-	}
+	
 	
 	public void extractObjectDB() {
 		

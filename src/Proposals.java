@@ -8,7 +8,7 @@ public class Proposals extends ListFromDB {
 	public void extractObjectDB() {
 	
 		try {
-			connect();
+			Connection c = connect();
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery(" SELECT * FROM Supplies inner join Buys_from on Supplies.Supplier_Id=Buys_from.Supplier_Id "
 					+ "inner join Forecast_proposal on Supplies.PFP_Id=Forecast_proposal.PFP_Id "
@@ -35,7 +35,7 @@ public class Proposals extends ListFromDB {
 				
 			}
 			
-			closeConnection();
+			c.close();
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);

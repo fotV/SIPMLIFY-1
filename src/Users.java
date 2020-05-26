@@ -14,7 +14,7 @@ public class Users extends ListFromDB {
 
 		try {
 
-			connect();
+			Connection c = connect();
 
 			statement = c.createStatement();
 			ResultSet rs = statement.executeQuery("SELECT * FROM User  WHERE id NOT IN (SELECT id FROM OrderManager)");
@@ -35,7 +35,7 @@ public class Users extends ListFromDB {
 			}
 			for(User u: users)
 			{
-				System.out.println(u.getCompany().getClass());
+				//System.out.println(u.getCompany().getClass());
 				int index = users.indexOf(u);
 				if (u.getId().startsWith("ST")) {
 					Stockkeeper st = new Stockkeeper(u.getFirstName(), u.getSurName(), u.getPassword(), u.getPhonenumber(), u.getAFM(), u.getId(), u.getCompany());
@@ -44,7 +44,7 @@ public class Users extends ListFromDB {
 				else {
 					Seller se = new Seller (u.getFirstName(),u.getSurName(),u.getPassword(),u.getPhonenumber(),u.getAFM(),u.getId(),u.getCompany());
 					users.set(index, se);
-					System.out.println(users.get(index).getClass());
+					//System.out.println(users.get(index).getClass());
 				}
 			}
 			while (results.next()) {
@@ -65,6 +65,7 @@ public class Users extends ListFromDB {
 				users.add(om);
 				
 			}
+			c.close();
 		}catch(SQLException e){
 			e.getStackTrace();
 		}

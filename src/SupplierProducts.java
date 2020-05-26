@@ -10,7 +10,7 @@ public class SupplierProducts extends ListFromDB {
 	public void extractObjectDB() {
 		
 		try {
-			connect();
+			Connection c = connect();
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Product_for_purchase INNER JOIN OrderManager_Watches_Product "
 					+ "ON Product_for_purchase.Id = OrderManager_Watches_Product.PFP_Id");
@@ -30,18 +30,17 @@ public class SupplierProducts extends ListFromDB {
 				
 			}
 			
-			closeConnection();
+			c.close();
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);
 		}
 	}
-	public void updateObjectDB(OrderManager ordermanager) {
-		OrderManager om = ordermanager;
+	public void updateObjectDB() {
 		
 		try {
 			
-			connect ();
+			Connection c = connect ();
 			String insertIntoPFP = "INSERT OR IGNORE INTO Product_for_purchase (Id, Name, StockAmount, MaxStockAmount,"
 					+ " SafetyStock, AverageMonthlyConsumption, Leadtime, ExpectedAmount)  "
 				+ "VALUES (?,?,?,?,?,?,?,?);";
@@ -53,12 +52,8 @@ public class SupplierProducts extends ListFromDB {
 			for (SupplierProduct sp:  supplierp) {
 				
 				
-				String updatePFP = "UPDATE Product_for_purchase SET  StockAmount = " + sp.getStockAmount() + 
-								", Leadtime = " + sp.getLeadtime() + ", ExpectedAmount = " + sp.getExpectedAmount() +
-								" WHERE StockAmount <> "+ sp.getStockAmount() + "or Leadtime <> " + sp.getLeadtime() + 
-								"or ExpectedAmount <> " + sp.getExpectedAmount();
-				
-				
+				String updatePFP = "UPDATE Product_for_purchase SET  StockAmount = ?  , Leadtime = ? , "
+						+ "ExpectedAmount = ?  WHERE id = ? ";
 				PreparedStatement statementUpdate= c.prepareStatement(updatePFP);
 				
 				statementPFP.setString(1 ,sp.getId());
@@ -71,16 +66,25 @@ public class SupplierProducts extends ListFromDB {
 				statementPFP.setDouble(8, sp.getExpectedAmount());
 				
 				statementWatches.setString(1, sp.getId());
-				statementWatches.setString(2, om.getId());
+				statementWatches.setString(2, sp.getOrderManagerId());
+				
+				statementUpdate.setDouble(1, sp.getStockAmount());
+				statementUpdate.setDouble(2, sp.getLeadtime());
+				statementUpdate.setDouble(3, sp.getExpectedAmount());
+				statementUpdate.setString(4, sp.getId());
+				
+				statementUpdate.executeUpdate();
 			
 				statementPFP.executeUpdate();
 				statementWatches.executeUpdate();
-				statementUpdate.executeUpdate();
+				
 
 				updatePFP = "";
 
 			}
-			closeConnection();
+			statementPFP.close();
+			statementWatches.close();
+			c.close();
 		}catch(Exception e){
 			e.printStackTrace();;
 		}

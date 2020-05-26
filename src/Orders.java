@@ -10,7 +10,7 @@ public class Orders extends ListFromDB {
 		
 		try {
 			
-			c = connect();
+			Connection c = connect();
 			Statement stmt = c.createStatement ();
 			ResultSet rs = stmt.executeQuery("SELECT Order_for_purchase.OrderId as OrderId ,Order_for_purchase.OrderManagerId as OrderManagerId, Order_for_purchase.Price as Price, Order_for_purchase.StockkeeperId as StockkeeperId, Order_for_purchase.Status as Status, Order_for_purchase.Date as Date , Order_for_purchase.Quantity as Quantity, Supplier.id as Supplier_Id, Order_for_purchase.PFP_Id as PFP_Id, Order_for_purchase.TotalPrice as TotalPrice, Supplier.Name as SupplierName, Supplier.AFM as SupplierAFM, Product_for_purchase.Name as Name FROM Order_for_purchase inner join Supplier on Order_for_purchase.Supplier_Id=Supplier.id inner join Product_for_purchase on Product_for_purchase.Id=Order_for_purchase.PFP_Id");
 
@@ -33,7 +33,7 @@ public class Orders extends ListFromDB {
 				orders.add(o);
 			}
 			
-			closeConnection();
+			c.close();
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);

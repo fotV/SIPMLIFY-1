@@ -5,17 +5,17 @@ public class Buyer {
 	private String lastName;
 	private String id;
 	private String AFM;
-	private String phoneNumber;
+	
 	private String sellerId;
 
 	
-	public Buyer(String name,String lastName,String id,String AFM,String phoneNumber,String sellerId) {
+	public Buyer(String name,String lastName,String id,String AFM,String sellerId) {
 	
 		this.name = name;
 		this.lastName = lastName;
 		this.id = id;
 		this.AFM = AFM;
-		this.phoneNumber = phoneNumber;
+		
 		this.sellerId = sellerId;
 }
 
@@ -34,9 +34,7 @@ public class Buyer {
 		return AFM;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+	
 	public String getSellerId() {
 		return sellerId;
 	}
@@ -53,9 +51,7 @@ public class Buyer {
 		this.AFM = afm;	
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+	
 
 	public void setSellerId(String sellerId) {
 		this.sellerId = sellerId;

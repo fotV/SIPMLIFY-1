@@ -10,7 +10,7 @@ public class CompanyProducts extends ListFromDB {
 	public void extractObjectDB() {
 		
 		try {
-			c = connect();
+			Connection c = connect();
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Product_for_sale INNER JOIN Seller_Watches_Product "
 					+ "ON Product_for_sale.Id=Seller_Watches_Product.PFS_ID");
@@ -28,7 +28,7 @@ public class CompanyProducts extends ListFromDB {
 				
 			}
 			stmt.close();
-			closeConnection();
+			c.close();
 		}catch(Exception e) {
 			System.out.println(this.getClass());
 			System.out.println(e);
@@ -40,7 +40,7 @@ public void updateObjectDB() {
 		
 		
 		try {
-			c = connect();
+			Connection c = connect();
 			String insertIntoPFS = "INSERT OR IGNORE INTO Product_for_sale (Id, Name, StockAmount, MaxStockAmount, SafetyStock, Price)  "
 				+ "VALUES (?,?,?,?,?,?);";
 			PreparedStatement statementPFS = c.prepareStatement(insertIntoPFS);
@@ -49,9 +49,7 @@ public void updateObjectDB() {
 			PreparedStatement statementWatches = c.prepareStatement(insertIntoWatches);
 				
 			for (CompanyProduct cp:  companyp) {
-				
-				String updatePFS = "UPDATE Product_for_sale SET  StockAmount = " + cp.getStockAmount() + ", Price = " + cp.getPrice() + 
-						" WHERE StockAmount <> " + cp.getStockAmount() + " or Price <> " + cp.getPrice();
+				String updatePFS = "UPDATE Product_for_sale SET  StockAmount = ?  , Price = ? WHERE id = ? ";
 						
 				PreparedStatement statementUpdate = c.prepareStatement(updatePFS);
 				
@@ -65,15 +63,21 @@ public void updateObjectDB() {
 				statementWatches.setString(1, cp.getSellerId());
 				statementWatches.setString(2, cp.getId());
 				
+				statementUpdate.setDouble(1, cp.getStockAmount());
+				statementUpdate.setDouble(2, cp.getPrice());
+				statementUpdate.setString(3, cp.getId());
+	
+				statementUpdate.executeUpdate();
+				
 				statementPFS.executeUpdate();
 				statementWatches.executeUpdate();
-				statementUpdate.executeUpdate();
+				
 				updatePFS = "";
 				
 			}
 			statementPFS.close();
 			statementWatches.close();
-			closeConnection();
+			c.close();
 		}catch(Exception e){
 			e.printStackTrace();;
 		}

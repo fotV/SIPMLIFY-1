@@ -8,7 +8,7 @@ public class Supplies extends ListFromDB {
 	public void extractObjectDB() {
 		
 		try {
-			c = connect();
+			Connection c = connect();
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Supplies");
 			
@@ -21,7 +21,7 @@ public class Supplies extends ListFromDB {
 				supplies.add(s);
 			}
 			
-			closeConnection();
+			c.close();
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);

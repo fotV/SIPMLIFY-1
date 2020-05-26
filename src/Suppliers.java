@@ -10,7 +10,7 @@ public class Suppliers extends ListFromDB {
 
 		try {
 
-			c = connect();
+			Connection c = connect();
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Supplier INNER JOIN Buys_from on Supplier.id = Buys_from.Supplier_Id");
 
@@ -29,7 +29,7 @@ public class Suppliers extends ListFromDB {
 			}
 			
 			stmt.close();
-			closeConnection();
+			c.close();
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);
@@ -38,7 +38,7 @@ public class Suppliers extends ListFromDB {
 
 	public void updateObjectDB() {
 		try {
-			c = connect();
+			Connection c = connect();
 			String insertIntoSupplier = "INSERT OR IGNORE INTO Supplier (Id, Name, LastName, PhoneNumber, AFM) VALUES (?,?,?,?,?);";
 			String insertIntoBuys_from = "INSERT OR IGNORE INTO Buys_from (Supplier_Id, OrderManagerId) VALUES (?,?) ;";
 			PreparedStatement supplierStatement = c.prepareStatement(insertIntoSupplier);
@@ -59,7 +59,7 @@ public class Suppliers extends ListFromDB {
 			
 			supplierStatement.close();
 			buys_fromStatement.close();
-			closeConnection();
+			c.close();
 		}catch(Exception e){
 				e.printStackTrace();;
 		}
