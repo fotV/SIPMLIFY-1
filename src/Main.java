@@ -19,10 +19,10 @@ public class Main {
 		s.extractObjectDB();
 		sp.extractObjectDB();
 		o.extractObjectDB();
-		pr.extractObjectDB();
 		cp.extractObjectDB();
 		b.extractObjectDB();
 		sup.extractObjectDB();
+		pr.extractObjectDB();
 		
 		System.out.println("\n-----Users-----");
 		for(User k: u.getUsers()) System.out.println(k.getFirstName());
@@ -33,7 +33,8 @@ public class Main {
 		System.out.println("\n-----Orders-----");
 		for(Order k: o.getOrders()) System.out.println(k.getQuantity() + "   " + k.getDate());
 		System.out.println("\n-----Proposals-----");
-		for(Order k: pr.getProposals()) System.out.println(k.getStatus() + "   " + k.getPrice());
+		for(Order k: pr.getProposals()) System.out.println(k.getOrderId() + "	" + k.getOrderManagerId() + "	" + k.getPrice() + "	" 
+														+ k.getDate() + "   " + k.getProductId() + "	" + k.getProductName() + "	" + k.getTotalPrice());
 		System.out.println("\n-----CompanyProducts-----");
 		for(CompanyProduct k: cp.getCompanyProducts()) System.out.println(k.getName() + "	" + k.getSafetyStock());
 		System.out.println("\n-----Buyers-----");
@@ -64,7 +65,7 @@ public class Main {
 		supt.extractObjectDB();
 		System.out.println("\n-----Supplies-----");
 		for(Suppl k: sup.getSupplies()) System.out.println(k.getSupplierId() + "   " + k.getProductId() + "   " + k.getPrice());
-		*/
+		
 		CompanyProduct cpp = new CompanyProduct("PC", "108012", "SE0002", 10.0, 150.0, 25.0, 400.0);
 		cp.getCompanyProducts().add(cpp);
 		cp.getCompanyProducts().get(0).setStockAmount(666.0);
@@ -75,7 +76,6 @@ public class Main {
 		System.out.println("\n-----CompanyProducts-----");
 		for(CompanyProduct k: cpt.getCompanyProducts()) System.out.println(k.getName() + "   " + k.getSafetyStock() + "	" + k.getPrice());
 		
-		/*
 		SupplierProduct spp = new SupplierProduct("PLATE", "108022", "OR0003", 1500.0, 5000.0, 2000.0, 1100.0, 26, 500.0);
 		sp.getSupplierProducts().add(spp);
 		sp.getSupplierProducts().get(0).setStockAmount(999.0);
@@ -85,6 +85,10 @@ public class Main {
 		spt.extractObjectDB();
 		System.out.println("\n-----SupplierProducts-----");
 		for(SupplierProduct k: spt.getSupplierProducts()) System.out.println(k.getName() + "	" + k.getLeadtime() +"   " + k.getStockAmount());
+		
+		Order or = new Order("", "", 200.0, "SE0003", "", "", "2020-05-26", 0, 0.23, 46.0, "", "107281","");
+		pr.getProposals().add(or);
+		pr.updateObjectDB();
 		*/
 	}
 }
