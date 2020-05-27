@@ -10,7 +10,7 @@ public class SupplierProducts extends ListFromDB {
 	public void extractObjectDB() {
 		
 		try {
-			connect();
+			Connection c = connect();
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Product_for_purchase INNER JOIN OrderManager_Watches_Product "
 					+ "ON Product_for_purchase.Id = OrderManager_Watches_Product.PFP_Id");
@@ -31,17 +31,16 @@ public class SupplierProducts extends ListFromDB {
 			}
 			
 			c.close();
-		}catch(Exception e){
-			System.out.println(this.getClass());
-			System.out.println(e);
+		}catch(SQLException e){
+			e.printStackTrace();
 		}
 	}
 	public void updateObjectDB() {
 		
-		
 		try {
 			
-			c = connect ();
+			Connection c = connect ();
+
 			String insertIntoPFP = "INSERT OR IGNORE INTO Product_for_purchase (Id, Name, StockAmount, MaxStockAmount,"
 					+ " SafetyStock, AverageMonthlyConsumption, Leadtime, ExpectedAmount)  "
 				+ "VALUES (?,?,?,?,?,?,?,?);";
@@ -52,7 +51,6 @@ public class SupplierProducts extends ListFromDB {
 			String updatePFP = "UPDATE Product_for_purchase SET  StockAmount = ?  , Leadtime = ? , ExpectedAmount = ?  WHERE id = ? ";
 			PreparedStatement statementUpdate= c.prepareStatement(updatePFP);
 			for (SupplierProduct sp:  supplierp) {
-				
 				
 				statementUpdate.setDouble(1, sp.getStockAmount());
 				statementUpdate.setDouble(2, sp.getLeadtime());
@@ -79,8 +77,8 @@ public class SupplierProducts extends ListFromDB {
 			statementUpdate.close();
 			statementPFP.close();
 			c.close();
-		}catch(Exception e){
-			e.printStackTrace();;
+		}catch(SQLException e){
+			e.printStackTrace();
 		}
 	}
 	

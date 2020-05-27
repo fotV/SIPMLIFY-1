@@ -1,4 +1,3 @@
-
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -11,8 +10,9 @@ public class Users extends ListFromDB {
 	 */
 
 	public void extractObjectDB() {
+		Connection c = connect();
 		try {
-			c = connect();
+			
 			statement = c.createStatement();
 			ResultSet rs = statement.executeQuery("SELECT * FROM User  WHERE id NOT IN (SELECT id FROM OrderManager)");
 			while (rs.next()) {
@@ -39,7 +39,7 @@ public class Users extends ListFromDB {
 					users.set(index, se);
 				}
 			}
-			statement.close();
+			rs.close();
 		}catch(SQLException e){
 			e.getStackTrace();
 		}
@@ -61,17 +61,22 @@ public class Users extends ListFromDB {
 					om.setRegular(false);
 				om.setSeason(results.getString("Season"));
 				users.add(om);
-				System.out.println(om);
 			}
-			
+			results.close();
 		}catch(SQLException e){
-		e.getStackTrace();
+			e.getStackTrace();
 		}
-		
+		finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	public void updateObjectDB() {
 		
 	}
-	
-	
 	public ArrayList<User> getUsers()
 	{
 		return users;

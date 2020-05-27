@@ -6,9 +6,9 @@ public class Supplies extends ListFromDB {
 	ArrayList<Suppl> supplies = new ArrayList<>();
 	
 	public void extractObjectDB() {
-		
+		Connection c = connect();
 		try {
-			connect();
+			
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Supplies ");
 			
@@ -20,34 +20,45 @@ public class Supplies extends ListFromDB {
 				s.setPrice(rs.getDouble("Price"));
 				supplies.add(s);
 			}
-			
-			c.close();
+			stmt.close();
+			rs.close();
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public void updateObjectDB()
 	{
-
-		/*
-		 * MAY HAVE ERRORS!!!! I HAVE NOT TEST IT YET!!!!!!!!!!!
-		 */
+		Connection c = connect();
 		try {
-			connect();
+			
 			String insertIntoSupplies = "INSERT OR IGNORE INTO Supplies (Supplier_Id, PFP_Id, Price) VALUES (?,?,?);";
 			PreparedStatement statementSupplies = c.prepareStatement(insertIntoSupplies);
 			for(Suppl s: supplies) {
 				statementSupplies.setString(1, s.getSupplierId());
 				statementSupplies.setString(2, s.getProductId());
 				statementSupplies.setDouble(3, s.getPrice());
-				statementSupplies.execute();
+				statementSupplies.executeUpdate();
 			}
+			statementSupplies.close();
 			c.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	}
 
 	}
 	public ArrayList<Suppl> getSupplies()

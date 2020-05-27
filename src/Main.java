@@ -1,6 +1,4 @@
 
-import java.util.ArrayList;
-
 public class Main {
 
 	public static void main(String[] args) 
@@ -14,31 +12,23 @@ public class Main {
 		Buyers b = new Buyers();
 		Supplies sup = new Supplies();
 		
-		
-	
+		u.extractObjectDB();
+		s.extractObjectDB();
+		sp.extractObjectDB();
 		o.extractObjectDB();
-		//System.out.println("\n-----SupplierProducts-----");
-		//for(SupplierProduct k: sp.getSupplierProducts()) System.out.println(k.getName() + "   " + k.getId());
-		System.out.println("\n-----Orders-----");
-		for(Order k: o.getOrders()) System.out.println(k.getQuantity() + "   " + k.getDate()+ " "+k.getStatus());
-		//Order order = new Order("OR0002", "122222", 120, "SE0003","NIKOS", "HFSDSDDF","2020-04-23", 0, 0.25, 25,"BOTTLE WATER", "107288" , "ST0002");
-		//o.getOrders().add(order);
-		//o.updateObjectDB();
+		cp.extractObjectDB();
+		b.extractObjectDB();
+		sup.extractObjectDB();
+		pr.extractObjectDB();
 		
-		o.getOrders().get(1).setStatus(4);
-		o.updateObjectDB();
-		Orders d = new Orders();
-		d.extractObjectDB();
-		System.out.println("\n-----Orders-----");
-		for(Order k: d.getOrders()) System.out.println(k.getQuantity() + "   " + k.getDate()+" "+k.getOrderId()+ " "+k.getStatus());
-		/*System.out.println("\n-----Users-----");
-		for(User k: u.getUsers()) System.out.println(k.getFirstName());
+		System.out.println("\n-----Users-----");
+		for(User k: u.getUsers()) System.out.println(k.getFirstName() + "	" + k.getId());
 		System.out.println("\n-----Suppliers-----");
 		for(Supplier k: s.getSuppliers()) System.out.println(k.getName() + "   " + k.getId());
 		System.out.println("\n-----SupplierProducts-----");
 		for(SupplierProduct k: sp.getSupplierProducts()) System.out.println(k.getName() + "   " + k.getId());
 		System.out.println("\n-----Orders-----");
-		for(Order k: o.getOrders()) System.out.println(k.getQuantity() + "   " + k.getDate());
+		for(Order k: o.getOrders()) System.out.println(k.getQuantity() + "   " + k.getDate() + "	" + k.getOrderManagerId());
 		System.out.println("\n-----Proposals-----");
 		for(Order k: pr.getProposals()) System.out.println(k.getOrderId() + "	" + k.getOrderManagerId() + "	" + k.getPrice() + "	" 
 														+ k.getDate() + "   " + k.getProductId() + "	" + k.getProductName() + "	" + k.getTotalPrice());
@@ -49,7 +39,7 @@ public class Main {
 		System.out.println("\n-----Supplies-----");
 		for(Suppl k: sup.getSupplies()) System.out.println(k.getSupplierId() + "   " + k.getProductId() + "   " + k.getPrice());
 		
-		Supplier s1 = new Supplier("ELENI", "POLYZOIDOU", "SE0005", "6949555777", "B000345678", "OR0003");
+		/*Supplier s1 = new Supplier("ELENI", "POLYZOIDOU", "SE0005", "6949555777", "B000345678", "OR0003");
 		s.getSuppliers().add(s1);
 		s.updateObjectDB();
 		Suppliers st = new Suppliers();
@@ -57,7 +47,7 @@ public class Main {
 		System.out.println("\n-----Suppliers-----");
 		for(Supplier k: st.getSuppliers()) System.out.println(k.getName() + "   " + k.getId());
 		
-		Buyer b1 = new Buyer("ELENI", "PAPADOPOULOU", "OR0004", "74575674","AB01234321", "SE0004");
+		Buyer b1 = new Buyer("ELENI", "PAPADOPOULOU", "OR0004","23445555", "AB01234321", "SE0004");
 		b.getBuyers().add(b1);
 		b.updateObjectDB();
 		Buyers bt = new Buyers();
@@ -96,6 +86,10 @@ public class Main {
 		Order or = new Order("", "", 200.0, "SE0003", "", "", "2020-05-26", 0, 0.23, 46.0, "", "107281","");
 		pr.getProposals().add(or);
 		pr.updateObjectDB();
-		*/
+		
+		//Order or = new Order("OR0002", "or1234",  10, "SE0002",  " ", " ", "2020-05-24", 4, 0.25, 2.5, " ",  "107288", "ST0002");
+		//o.getOrders().add(or);
+		//o.updateObjectDB();
+*/
 	}
 }

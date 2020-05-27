@@ -24,7 +24,6 @@ public class User {
 		this.id = id;
 		this.company = company;
 	
-		
 	}
 	public User() {
 	}
