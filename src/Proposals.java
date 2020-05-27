@@ -31,13 +31,9 @@ public class Proposals extends ListFromDB {
 				String OMId = "";
 				OMId = rs.getString("OrderManagerId");
 				o.setOrderManagerId(OMId);
-				System.out.println(OMId);
 				o.setOrderId(n+"");
-				System.out.println(n+"");
 				o.setQuantity(rs.getDouble("Quantity"));
-				System.out.println(rs.getDouble("Quantity"));
 				o.setSupplierId(rs.getString("sId"));
-				System.out.println(rs.getString("sId"));
 				o.setSupplierName(rs.getString("sName"));
 				o.setSupplierAFM(rs.getString("sAFM"));
 				o.setDate(rs.getString("Date"));
@@ -47,17 +43,14 @@ public class Proposals extends ListFromDB {
 				String productId = "";
 				productId = rs.getString("PFP_Id");
 				o.setProductId(productId);
-				System.out.println(productId);
 				ResultSet rs2 = stmt2.executeQuery("SELECT Name FROM Product_for_purchase WHERE Id = " + productId);
 				o.setProductName(rs2.getString("Name"));
-				System.out.println(rs2.getString("Name"));
 				ResultSet rs3 = stmt3.executeQuery("SELECT Company FROM  User WHERE id = \"" + OMId + "\";");
 				String company = "";
 				company = rs3.getString("Company");
-				System.out.println(company);
 				ResultSet rs4 = stmt4.executeQuery("SELECT id FROM  User WHERE Company = \"" + company + "\" and id LIKE \"ST%\"");
 				o.setStockkeeperId(rs4.getString("Id"));
-				System.out.println(rs4.getString("Id"));
+
 				proposals.add(o);
 				
 			}

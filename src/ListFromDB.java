@@ -12,7 +12,6 @@ public class ListFromDB {
 	 * @author Eleni Polyzoidou, Evangelia Papagiannaki.
 	 * @version 1.0
 	 */
-	//protected Connection c = null;
 	
 	public ListFromDB(){
 		
@@ -23,18 +22,14 @@ public class ListFromDB {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			
-			
-			
 		    c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-		        
-		   
 			
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);
 		}
-		return c;
 		
+		return c;	
 		
 	}
 	

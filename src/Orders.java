@@ -1,4 +1,3 @@
-
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -12,8 +11,12 @@ public class Orders extends ListFromDB {
 			
 			Connection c = connect();
 			Statement stmt = c.createStatement ();
-			ResultSet rs = stmt.executeQuery("SELECT Order_for_purchase.OrderId as OrderId ,Order_for_purchase.OrderManagerId as OrderManagerId, Order_for_purchase.Price as Price, Order_for_purchase.StockkeeperId as StockkeeperId, Order_for_purchase.Status as Status, Order_for_purchase.Date as Date , Order_for_purchase.Quantity as Quantity, Supplier.id as Supplier_Id, Order_for_purchase.PFP_Id as PFP_Id, Order_for_purchase.TotalPrice as TotalPrice, Supplier.Name as SupplierName, Supplier.AFM as SupplierAFM, Product_for_purchase.Name as Name FROM Order_for_purchase inner join Supplier on Order_for_purchase.Supplier_Id=Supplier.id inner join Product_for_purchase on Product_for_purchase.Id=Order_for_purchase.PFP_Id");
-
+			ResultSet rs = stmt.executeQuery("SELECT Order_for_purchase.OrderId as OrderId ,Order_for_purchase.OrderManagerId as OrderManagerId, "
+					+ "Order_for_purchase.Price as Price, Order_for_purchase.StockkeeperId as StockkeeperId, Order_for_purchase.Status as Status, "
+					+ "Order_for_purchase.Date as Date , Order_for_purchase.Quantity as Quantity, Supplier.id as Supplier_Id, "
+					+ "Order_for_purchase.PFP_Id as PFP_Id, Order_for_purchase.TotalPrice as TotalPrice, Supplier.Name as SupplierName, "
+					+ "Supplier.AFM as SupplierAFM, Product_for_purchase.Name as Name FROM Order_for_purchase "
+					+ "inner join Supplier on Order_for_purchase.Supplier_Id=Supplier.id inner join Product_for_purchase on Product_for_purchase.Id=Order_for_purchase.PFP_Id");
 			
 			while (rs.next()) {
 				Order o = new Order("", "", 0.0, "", "", "", "", 0, 0.0, 0.0, "", "","");
@@ -35,21 +38,17 @@ public class Orders extends ListFromDB {
 			
 			c.close();
 		}catch(Exception e){
-			System.out.println(this.getClass());
 			System.out.println(e);
 		}
 	}
-	
 	public void updateObjectDB(){
 		try {
-			c = connect();
-			String stringForInsert = "INSERT OR IGNORE INTO Order_for_purchase (OrderId, OrderManagerId, Price,"
-					+ " StockkeeperId, Status, Date, Quantity, Supplier_Id, PFP_Id, TotalPrice)  "
+			Connection c = connect();
+			String stringForInsert = "INSERT OR IGNORE INTO Order_for_purchase (OrderId, OrderManagerId, Price, StockkeeperId, Status, Date, Quantity, Supplier_Id, PFP_Id, TotalPrice)  "
 					+ "VALUES (?,?,?,?,?,?,?,?,?,?);";
 			PreparedStatement pstmtForInsert = c.prepareStatement(stringForInsert);
 			for (Order or : orders) {
-				String stringForUpdate = "UPDATE Orders SET  Status = " + or.getStatus() + "," + "Price = "+ or.getPrice()+
-						" WHERE Status <> " + or.getStatus() + " or Price <> "+or.getPrice();
+				String stringForUpdate = "UPDATE Order_for_purchase SET  Status = " + or.getStatus() + "," + "Price = "+ or.getPrice()+" WHERE Status <> " + or.getStatus() + " or Price <> "+or.getPrice();
 				PreparedStatement pstmtForUpdate   = c.prepareStatement(stringForUpdate);
 				pstmtForInsert.setString(1 ,or.getOrderId());
 				pstmtForInsert.setString(2, or.getOrderManagerId());
@@ -66,14 +65,11 @@ public class Orders extends ListFromDB {
 				pstmtForUpdate.executeUpdate();
 				stringForUpdate = "";
 			}
-			closeConnection();
-
+			c.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
-
 	public ArrayList<Order> getOrders() {
 		return orders;
 	}

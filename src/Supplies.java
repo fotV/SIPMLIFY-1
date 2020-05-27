@@ -20,7 +20,7 @@ public class Supplies extends ListFromDB {
 				s.setPrice(rs.getDouble("Price"));
 				supplies.add(s);
 			}
-			
+			stmt.close();
 			c.close();
 		}catch(Exception e){
 			System.out.println(this.getClass());
@@ -35,7 +35,7 @@ public class Supplies extends ListFromDB {
 		 * MAY HAVE ERRORS!!!! I HAVE NOT TEST IT YET!!!!!!!!!!!
 		 */
 		try {
-			c = connect();
+			Connection c = connect();
 			String insertIntoSupplies = "INSERT OR IGNORE INTO Supplies (Supplier_Id, PFP_Id, Price) VALUES (?,?,?);";
 			PreparedStatement statementSupplies = c.prepareStatement(insertIntoSupplies);
 			for(Suppl s: supplies) {
@@ -51,7 +51,7 @@ public class Supplies extends ListFromDB {
 				}
 				statementSupplies.executeUpdate();
 			}
-			closeConnection();
+			c.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
