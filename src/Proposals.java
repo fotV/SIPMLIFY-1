@@ -19,10 +19,10 @@ public class Proposals extends ListFromDB {
 			while (rs.next()) {
 				
 				o.setOrderManagerId(rs.getString("OrderManagerId"));
-				o.setOrderId(rs.getString("OrderId"));
+				//o.setOrderId(rs.getString("OrderId"));
 				o.setQuantity(rs.getDouble("Quantity"));
 				o.setSupplierId(rs.getString("Supplier_Id"));
-				o.setSupplierName(rs.getString("SupplierName"));
+				o.setSupplierName(rs.getString("Supplier_Name"));
 				o.setSupplierAFM(rs.getString("SupplierAFM"));
 				o.setDate(rs.getString("Date"));
 				o.setStatus(rs.getInt("Status"));
@@ -34,8 +34,7 @@ public class Proposals extends ListFromDB {
 				proposals.add(o);
 				
 			}
-			
-			closeConnection();
+			c.close();
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);
@@ -60,7 +59,7 @@ public class Proposals extends ListFromDB {
 				pstmtForInsert.executeUpdate();
 				
 			}
-			closeConnection();
+			c.close();
 
 		}catch(SQLException e) {
 			e.printStackTrace();

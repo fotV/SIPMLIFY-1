@@ -30,18 +30,18 @@ public class SupplierProducts extends ListFromDB {
 				
 			}
 			
-			closeConnection();
+			c.close();
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);
 		}
 	}
-	public void updateObjectDB(OrderManager ordermanager) {
-		OrderManager om = ordermanager;
+	public void updateObjectDB() {
+		
 		
 		try {
 			
-			connect ();
+			c = connect ();
 			String insertIntoPFP = "INSERT OR IGNORE INTO Product_for_purchase (Id, Name, StockAmount, MaxStockAmount,"
 					+ " SafetyStock, AverageMonthlyConsumption, Leadtime, ExpectedAmount)  "
 				+ "VALUES (?,?,?,?,?,?,?,?);";
@@ -49,17 +49,16 @@ public class SupplierProducts extends ListFromDB {
 			String insertIntoWatches = "INSERT OR IGNORE INTO OrderManager_Watches_Product (PFP_Id, OrderManagerId) "
 				+ "VALUES (?,?);";
 			PreparedStatement statementWatches = c.prepareStatement(insertIntoWatches);
-			
+			String updatePFP = "UPDATE Product_for_purchase SET  StockAmount = ?  , Leadtime = ? , ExpectedAmount = ?  WHERE id = ? ";
+			PreparedStatement statementUpdate= c.prepareStatement(updatePFP);
 			for (SupplierProduct sp:  supplierp) {
 				
 				
-				String updatePFP = "UPDATE Product_for_purchase SET  StockAmount = " + sp.getStockAmount() + 
-								", Leadtime = " + sp.getLeadtime() + ", ExpectedAmount = " + sp.getExpectedAmount() +
-								" WHERE StockAmount <> "+ sp.getStockAmount() + "or Leadtime <> " + sp.getLeadtime() + 
-								"or ExpectedAmount <> " + sp.getExpectedAmount();
-				
-				
-				PreparedStatement statementUpdate= c.prepareStatement(updatePFP);
+				statementUpdate.setDouble(1, sp.getStockAmount());
+				statementUpdate.setDouble(2, sp.getLeadtime());
+				statementUpdate.setDouble(3, sp.getExpectedAmount());
+				statementUpdate.setString(4, sp.getId());
+				statementUpdate.executeUpdate();
 				
 				statementPFP.setString(1 ,sp.getId());
 				statementPFP.setString(2, sp.getName());
@@ -69,18 +68,17 @@ public class SupplierProducts extends ListFromDB {
 				statementPFP.setDouble(6, sp.getAverageMonthlyConsumption());
 				statementPFP.setInt(7, sp.getLeadtime());
 				statementPFP.setDouble(8, sp.getExpectedAmount());
+				statementPFP.executeUpdate();
 				
 				statementWatches.setString(1, sp.getId());
-				statementWatches.setString(2, om.getId());
-			
-				statementPFP.executeUpdate();
+				statementWatches.setString(2, sp.getOrderManagerId());
 				statementWatches.executeUpdate();
-				statementUpdate.executeUpdate();
-
-				updatePFP = "";
-
+				
 			}
-			closeConnection();
+			statementWatches.close();
+			statementUpdate.close();
+			statementPFP.close();
+			c.close();
 		}catch(Exception e){
 			e.printStackTrace();;
 		}

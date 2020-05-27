@@ -10,7 +10,7 @@ public class Supplies extends ListFromDB {
 		try {
 			connect();
 			Statement stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Supplies INNER JOIN Buys");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Supplies ");
 			
 			while (rs.next()) {
 
@@ -21,7 +21,7 @@ public class Supplies extends ListFromDB {
 				supplies.add(s);
 			}
 			
-			closeConnection();
+			c.close();
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);
@@ -41,17 +41,10 @@ public class Supplies extends ListFromDB {
 			for(Suppl s: supplies) {
 				statementSupplies.setString(1, s.getSupplierId());
 				statementSupplies.setString(2, s.getProductId());
-				if (s.getPrice() != 0.0) {
-					statementSupplies.setDouble(3, s.getPrice());}
-				else {
-					String sql = "select price from Seller INNER JOIN Seller_Watches_Product on Seller.Id = Seller_Watches_Product.SellerId WHERE Seller.Id ="+ s.getSupplierId()+");";
-					Statement stmt = c.createStatement();
-					ResultSet rs = stmt.executeQuery(sql);
-					statementSupplies.setDouble(3, rs.getDouble("Price") );
-				}
+				statementSupplies.setDouble(3, s.getPrice());
 				statementSupplies.execute();
 			}
-			closeConnection();
+			c.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

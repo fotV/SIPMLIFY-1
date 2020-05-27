@@ -42,13 +42,20 @@ public class Orders extends ListFromDB {
 	
 	public void updateObjectDB(){
 		try {
-			connect();
+			c = connect();
 			String stringForInsert = "INSERT OR IGNORE INTO Order_for_purchase (OrderId, OrderManagerId, Price, StockkeeperId, Status, Date, Quantity, Supplier_Id, PFP_Id, TotalPrice)  "
 					+ "VALUES (?,?,?,?,?,?,?,?,?,?);";
 			PreparedStatement pstmtForInsert = c.prepareStatement(stringForInsert);
+			String stringForUpdate = "UPDATE Order_for_purchase SET  Status = ? , Price = ?, TotalPrice = ? WHERE OrderId = ?";
+			PreparedStatement pstmtForUpdate   = c.prepareStatement(stringForUpdate);
 			for (Order or : orders) {
-				String stringForUpdate = "UPDATE Order_for_purchase SET  Status = " + or.getStatus() + "," + "Price = "+ or.getPrice()+" WHERE Status <> " + or.getStatus() + " or Price <> "+or.getPrice();
-				PreparedStatement pstmtForUpdate   = c.prepareStatement(stringForUpdate);
+				
+				pstmtForUpdate.setInt(1, or.getStatus());
+				pstmtForUpdate.setDouble(2, or.getPrice());
+				pstmtForUpdate.setDouble(3, or.getTotalPrice());
+				pstmtForUpdate.setString(4, or.getOrderId());
+				pstmtForUpdate.executeUpdate();
+				
 				pstmtForInsert.setString(1 ,or.getOrderId());
 				pstmtForInsert.setString(2, or.getOrderManagerId());
 				pstmtForInsert.setDouble(3, or.getPrice());
@@ -61,10 +68,12 @@ public class Orders extends ListFromDB {
 				pstmtForInsert.setDouble(10, or.getTotalPrice());
 				
 				pstmtForInsert.executeUpdate();
-				pstmtForUpdate.executeUpdate();
-				stringForUpdate = "";
+				
+				
 			}
-			closeConnection();
+			pstmtForInsert.close();
+			pstmtForUpdate.close();
+			c.close();
 
 		}catch(SQLException e) {
 			e.printStackTrace();

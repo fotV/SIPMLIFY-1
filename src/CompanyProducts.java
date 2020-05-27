@@ -29,7 +29,7 @@ public class CompanyProducts extends ListFromDB {
 				
 			}
 			
-			closeConnection();
+			c.close();
 		}catch(Exception e) {
 			System.out.println(this.getClass());
 			System.out.println(e);
@@ -68,7 +68,7 @@ public void updateObjectDB() {
 				updatePFS = "";
 				
 			}
-			closeConnection();
+			c.close();
 		}catch(Exception e){
 			e.printStackTrace();;
 		}

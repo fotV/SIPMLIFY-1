@@ -28,15 +28,6 @@ public class ListFromDB {
 		}
 		return c;
 	}
-	
-	public void closeConnection() {
-		try {
-			c.close();
-		} catch (SQLException e) {
-			System.out.println(this.getClass());
-			e.printStackTrace();
-		}
-	}
 	public void extractObjectDB() {
 		
 	}

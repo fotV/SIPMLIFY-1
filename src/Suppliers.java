@@ -27,7 +27,7 @@ public class Suppliers extends ListFromDB {
 				suppliers.add(s);
 				
 			}
-			closeConnection();
+			c.close();
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);
@@ -54,7 +54,9 @@ public class Suppliers extends ListFromDB {
 				buys_fromStatement.executeUpdate();
 				supplierStatement.executeUpdate();	
 			}
-			closeConnection();
+			buys_fromStatement.close();
+			supplierStatement.close();
+			c.close();
 		}catch(Exception e){
 				e.printStackTrace();;
 		}
