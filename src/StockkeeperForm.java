@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -42,7 +43,7 @@ public class StockkeeperForm extends JFrame{
 	{
 		panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBackground(new Color(176, 196, 222));
+		panel.setBackground(new Color(136, 177, 179));
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 
 
@@ -53,11 +54,10 @@ public class StockkeeperForm extends JFrame{
 		btnSearchForOrder.setBounds(10, 448, 243, 79);
 		panel.add(btnSearchForOrder);
 	
-		Refreshbutton = new JButton();
+		Icon icon = new ImageIcon("refresh.png");
+		Refreshbutton = new JButton(icon);
 		Refreshbutton.setToolTipText("Refresh your data");
 		Refreshbutton.setBackground(new Color(255, 255, 224));
-		Refreshbutton.setIcon(new ImageIcon("C:\\Users\\Christina\\Desktop\\3\\Organizedorders\\refresh.png"));
-		Refreshbutton.setForeground(Color.WHITE);
 		Refreshbutton.setBounds(647, 448, 86, 85);
 		panel.add(Refreshbutton);
 		
@@ -146,7 +146,6 @@ public class StockkeeperForm extends JFrame{
 		panel.add(separator_3);
 		
 		
-		this.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Christina\\Desktop\\3\\Organizedorders\\window logo.png"));
 		this.setVisible(true);
 		this.getContentPane().add(panel, BorderLayout.CENTER);
 		this.setResizable(false);

@@ -21,12 +21,11 @@ public class PresentationForm extends JFrame{
 	 * The following constructor creates the gui for the Presentation Form which is used to present very briefly to the user
 	 * a list of data in order for them to choose one to open and see it in more detail.
 	 */
-	public PresentationForm(ArrayList <Object> objectList)
+	public PresentationForm(User u, ArrayList <Object> objectList)
 	{
-		this.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Christina\\Desktop\\3\\Organizedorders\\window logo.png"));
 		String[][] data = new String[objectList.size()][3];
 		panel = new JPanel();
-		panel.setBackground(new Color(240, 255, 255));
+		panel.setBackground(new Color(136, 177, 179));
 		panel.setBounds(100, 100, 584, 534);
 		
 		scroll = new JScrollPane();
@@ -99,7 +98,7 @@ public class PresentationForm extends JFrame{
 		table.setFillsViewportHeight(true);
 		table.setAutoCreateRowSorter(true);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setSelectionBackground(Color.ORANGE);
+		table.setSelectionBackground(new Color(255, 152, 61));
 
 		scroll.setViewportView(table);
 		
@@ -117,7 +116,7 @@ public class PresentationForm extends JFrame{
 			        for(Object o : objectList)
 					{
 			        	Order temp = (Order) o;
-						if(temp.getOrderId().equals(SelectedId)) new ShowOrder(temp);
+						if(temp.getOrderId().equals(SelectedId)) new ShowOrder(u, temp);
 					}
 		        }
 		        else if (n==2)

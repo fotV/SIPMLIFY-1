@@ -40,7 +40,7 @@ public class OrderForm extends JFrame{
 		setTitle("Order Form");
 		panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel.setBackground(new Color(240, 248, 255));
+		panel.setBackground(new Color(189, 213, 234));
 	
 		lblorderid = new JLabel("Order ID :");
 		lblorderid.setBounds(22, 36, 121, 41);

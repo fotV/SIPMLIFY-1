@@ -109,7 +109,7 @@ public class User {
 		}
 		
 		Component frame = null;
-		if (found) new PresentationForm(ordersKEY);
+		if (found) new PresentationForm(this, ordersKEY);
 		else JOptionPane.showMessageDialog(frame, "No result", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
