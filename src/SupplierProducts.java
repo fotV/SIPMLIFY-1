@@ -8,9 +8,12 @@ public class SupplierProducts extends ListFromDB {
 	private ArrayList<SupplierProduct> supplierp = new ArrayList<>();
 	
 	public void extractObjectDB() {
-		
+		/*
+		 * 
+		 */
+		Connection c = connect();
 		try {
-			Connection c = connect();
+			
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Product_for_purchase INNER JOIN OrderManager_Watches_Product "
 					+ "ON Product_for_purchase.Id = OrderManager_Watches_Product.PFP_Id");
@@ -29,18 +32,25 @@ public class SupplierProducts extends ListFromDB {
 				supplierp.add(sp);
 				
 			}
-			
-			c.close();
-		}catch(Exception e){
-			System.out.println(this.getClass());
-			System.out.println(e);
+			stmt.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
+	
 	public void updateObjectDB() {
-		
+		/*
+		 * 
+		 */
+		Connection c = connect ();
 		try {
 			
-			Connection c = connect ();
 			String insertIntoPFP = "INSERT OR IGNORE INTO Product_for_purchase (Id, Name, StockAmount, MaxStockAmount,"
 					+ " SafetyStock, AverageMonthlyConsumption, Leadtime, ExpectedAmount)  "
 				+ "VALUES (?,?,?,?,?,?,?,?);";
@@ -48,13 +58,11 @@ public class SupplierProducts extends ListFromDB {
 			String insertIntoWatches = "INSERT OR IGNORE INTO OrderManager_Watches_Product (PFP_Id, OrderManagerId) "
 				+ "VALUES (?,?);";
 			PreparedStatement statementWatches = c.prepareStatement(insertIntoWatches);
+			String updatePFP = "UPDATE Product_for_purchase SET  StockAmount = ?  , Leadtime = ? , "
+					+ "ExpectedAmount = ?  WHERE id = ? ";
+			PreparedStatement statementUpdate= c.prepareStatement(updatePFP);
 			
 			for (SupplierProduct sp:  supplierp) {
-				
-				
-				String updatePFP = "UPDATE Product_for_purchase SET  StockAmount = ?  , Leadtime = ? , "
-						+ "ExpectedAmount = ?  WHERE id = ? ";
-				PreparedStatement statementUpdate= c.prepareStatement(updatePFP);
 				
 				statementPFP.setString(1 ,sp.getId());
 				statementPFP.setString(2, sp.getName());
@@ -74,20 +82,23 @@ public class SupplierProducts extends ListFromDB {
 				statementUpdate.setString(4, sp.getId());
 				
 				statementUpdate.executeUpdate();
-			
 				statementPFP.executeUpdate();
 				statementWatches.executeUpdate();
-				
-
-				updatePFP = "";
-
+			
 			}
+			statementUpdate.close();
 			statementPFP.close();
 			statementWatches.close();
-			c.close();
-		}catch(Exception e){
-			e.printStackTrace();;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
+			
 	}
 	
 	/*

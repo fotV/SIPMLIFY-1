@@ -6,9 +6,12 @@ public class Supplies extends ListFromDB {
 	ArrayList<Suppl> supplies = new ArrayList<>();
 	
 	public void extractObjectDB() {
-		
+		/*
+		 * 
+		 */
+		Connection c = connect();
 		try {
-			Connection c = connect();
+			
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Supplies");
 			
@@ -21,21 +24,25 @@ public class Supplies extends ListFromDB {
 				supplies.add(s);
 			}
 			stmt.close();
-			c.close();
-		}catch(Exception e){
-			System.out.println(this.getClass());
-			System.out.println(e);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public void updateObjectDB()
 	{
-
 		/*
-		 * MAY HAVE ERRORS!!!! I HAVE NOT TEST IT YET!!!!!!!!!!!
+		 * 
 		 */
+		Connection c = connect();
 		try {
-			Connection c = connect();
+			
 			String insertIntoSupplies = "INSERT OR IGNORE INTO Supplies (Supplier_Id, PFP_Id, Price) VALUES (?,?,?);";
 			PreparedStatement statementSupplies = c.prepareStatement(insertIntoSupplies);
 			for(Suppl s: supplies) {
@@ -48,14 +55,21 @@ public class Supplies extends ListFromDB {
 					Statement stmt = c.createStatement();
 					ResultSet rs = stmt.executeQuery(sql);
 					statementSupplies.setDouble(3, rs.getDouble("Price") );
+					stmt.close();
 				}
 				statementSupplies.executeUpdate();
 			}
-			c.close();
-		}catch(Exception e) {
+			statementSupplies.close();
+			
+			}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-
 	}
 	public ArrayList<Suppl> getSupplies()
 	{

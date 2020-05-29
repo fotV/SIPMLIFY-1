@@ -1,4 +1,3 @@
-package src;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -63,29 +62,29 @@ public class SearchForm extends JFrame{
 		
 		
 		chooseLabel = new JLabel("Choose Field");                                          
-		chooseLabel.setFont(new Font("ÇelveticaNeue-Light", Font.PLAIN, 15));
+		chooseLabel.setFont(new Font("Ã‡elveticaNeue-Light", Font.PLAIN, 15));
 		chooseLabel.setPreferredSize(new Dimension(120,180));
 		panel.add(chooseLabel);
 		
 		
-		list.setFont(new Font("ÇelveticaNeue-Light",Font.PLAIN,15));
+		list.setFont(new Font("Ã‡elveticaNeue-Light",Font.PLAIN,15));
 		list.setPreferredSize(new Dimension(180,140));
 		panel.add(list);
 		
 		keyLabel = new JLabel("Enter an input value ");
-		keyLabel.setFont(new Font("ÇelveticaNeue-Light", Font.PLAIN, 15));
+		keyLabel.setFont(new Font("Ã‡elveticaNeue-Light", Font.PLAIN, 15));
 		keyLabel.setPreferredSize(new Dimension(187,140));
 		panel.add(keyLabel);
 		
 		
 		key = new JTextField("Type the text",15);
-		key.setFont(new Font("ÇelveticaNeue-Light",Font.PLAIN,15));
+		key.setFont(new Font("Ã‡elveticaNeue-Light",Font.PLAIN,15));
 		key.setPreferredSize(new Dimension(180,26));
 		panel.add(key);
 		
 		
 		searchButton =  new JButton("Search");
-		searchButton.setFont(new Font("ÇelveticaNeue-Light", Font.PLAIN, 15));
+		searchButton.setFont(new Font("Ã‡elveticaNeue-Light", Font.PLAIN, 15));
 		searchButton.setPreferredSize(new Dimension(159,26));
 		panel.add(searchButton);
 		

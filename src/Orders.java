@@ -6,10 +6,8 @@ public class Orders extends ListFromDB {
 	
 	
 	public void extractObjectDB() {
-		
+		Connection c = connect();
 		try {
-			
-			Connection c = connect();
 			Statement stmt = c.createStatement ();
 			ResultSet rs = stmt.executeQuery("SELECT Order_for_purchase.OrderId as OrderId ,Order_for_purchase.OrderManagerId as OrderManagerId, "
 					+ "Order_for_purchase.Price as Price, Order_for_purchase.StockkeeperId as StockkeeperId, Order_for_purchase.Status as Status,"
@@ -36,9 +34,15 @@ public class Orders extends ListFromDB {
 				orders.add(o);
 			}
 			
-			c.close();
-		}catch(Exception e){
-			System.out.println(e);
+			stmt.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -48,7 +52,7 @@ public class Orders extends ListFromDB {
 			String stringForInsert = "INSERT OR IGNORE INTO Order_for_purchase (OrderId, OrderManagerId, Price, StockkeeperId, Status, Date,"
 					+ " Quantity, Supplier_Id, PFP_Id, TotalPrice)  VALUES (?,?,?,?,?,?,?,?,?,?);";
 			PreparedStatement pstmtForInsert = c.prepareStatement(stringForInsert);
-			String stringForUpdate = "UPDATE Order_for_purchase SET  Status = ? , Price = ?, TotalPrice = ? WHERE OrderId = ?";
+			String stringForUpdate = "UPDATE Order_for_purchase SET  Status = ? , Price = ?, TotalPrice = ?, Quantity = ? WHERE OrderId = ?";
 			PreparedStatement pstmtForUpdate   = c.prepareStatement(stringForUpdate);
 			
 			
@@ -57,7 +61,8 @@ public class Orders extends ListFromDB {
 				pstmtForUpdate.setInt(1, or.getStatus());
 				pstmtForUpdate.setDouble(2, or.getPrice());
 				pstmtForUpdate.setDouble(3, or.getTotalPrice());
-				pstmtForUpdate.setString(4, or.getOrderId());
+				pstmtForUpdate.setDouble(4, or.getQuantity());
+				pstmtForUpdate.setString(5, or.getOrderId());
 				pstmtForUpdate.executeUpdate();
 				
 				pstmtForInsert.setString(1 ,or.getOrderId());
@@ -76,10 +81,15 @@ public class Orders extends ListFromDB {
 			}
 			pstmtForInsert.close();
 			pstmtForUpdate.close();
-			c.close();
 
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	
 }

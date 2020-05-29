@@ -7,14 +7,15 @@ public class Suppliers extends ListFromDB {
 	
 	
 	public void extractObjectDB() {
-
+		/*
+		 * 
+		 */
+		Connection c = connect();
 		try {
 
-			Connection c = connect();
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Supplier INNER JOIN Buys_from on Supplier.id = Buys_from.Supplier_Id");
-
-
+			
 			while (rs.next()) {
 				
 				Supplier s = new Supplier("", "", "", "", "","");
@@ -29,21 +30,31 @@ public class Suppliers extends ListFromDB {
 			}
 			
 			stmt.close();
-			c.close();
-		}catch(Exception e){
-			System.out.println(this.getClass());
-			System.out.println(e);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	public void updateObjectDB() {
+		/*
+		 * 
+		 */
+		Connection c = connect();
 		try {
-			Connection c = connect();
+			
 			String insertIntoSupplier = "INSERT OR IGNORE INTO Supplier (Id, Name, LastName, PhoneNumber, AFM) VALUES (?,?,?,?,?);";
 			String insertIntoBuys_from = "INSERT OR IGNORE INTO Buys_from (Supplier_Id, OrderManagerId) VALUES (?,?) ;";
 			PreparedStatement supplierStatement = c.prepareStatement(insertIntoSupplier);
 			PreparedStatement buys_fromStatement = c.prepareStatement(insertIntoBuys_from);
+			
 			for (Supplier sup:  suppliers) {
+				
 				supplierStatement.setString(1 ,sup.getId());
 				supplierStatement.setString(2, sup.getName());
 				supplierStatement.setString(3, sup.getLastName());
@@ -59,9 +70,14 @@ public class Suppliers extends ListFromDB {
 			
 			supplierStatement.close();
 			buys_fromStatement.close();
-			c.close();
-		}catch(Exception e){
-				e.printStackTrace();;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

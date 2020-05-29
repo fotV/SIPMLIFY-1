@@ -7,9 +7,9 @@ public class Proposals extends ListFromDB {
 	private ArrayList<Order> proposals = new ArrayList<>();
 	
 	public void extractObjectDB() {
-	
+		Connection c = connect();
 		try {
-			Connection c = connect();
+			
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery(" SELECT  Buys_from.OrderManagerId as OrderManagerId, Forecast_Proposal.Quantity as Quantity, "
 					+ "Forecast_Proposal.Supplier_Id as sId, Supplier.Name as sName, Supplier.AFM as sAFM, Forecast_Proposal.datee as Date, "
@@ -58,16 +58,20 @@ public class Proposals extends ListFromDB {
 			stmt2.close();
 			stmt3.close();
 			stmt4.close();
-			c.close();
-		}catch(Exception e){
-			System.out.println(this.getClass());
-			System.out.println(e);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public void updateObjectDB(){
+		Connection c = connect();
 		try {
-			Connection c = connect();
 			String stringForInsert = "INSERT OR IGNORE INTO Forecast_Proposal (PFP_Id, datee, Quantity, Supplier_Id, PFPId, TotalPrice)  "
 					+ "VALUES (?,?,?,?,?,?);";
 			PreparedStatement pstmtForInsert = c.prepareStatement(stringForInsert);
@@ -84,10 +88,14 @@ public class Proposals extends ListFromDB {
 				
 			}
 			pstmtForInsert.close();
-			c.close();
-
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

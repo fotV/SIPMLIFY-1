@@ -7,12 +7,15 @@ public class Buyers extends ListFromDB {
 	
 	
 	public void extractObjectDB() {
-		
+		/*
+		 * 
+		 */
+		Connection c = connect();
 		try {
-			
-			Connection c = connect();
+
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Client INNER JOIN Sells_to on Client.Id = Sells_to.ClientId");
+			
 			while (rs.next()) {
 				
 				Buyer b = new Buyer("","", "", "","");
@@ -25,22 +28,29 @@ public class Buyers extends ListFromDB {
 
 			}
 			stmt.close();
-			c.close();
-		}catch(Exception e){
-			System.out.println(this.getClass());
-			System.out.println(e);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	public void updateObjectDB(){
+		/*
+		 * 
+		 */
+		Connection c = connect();
 		try {
-			
-			Connection c = connect();
 			
 			String insertIntoClient = "INSERT OR IGNORE INTO Client (Id, Name, LastName, AFM) VALUES (?,?,?,?);";
 			String insertIntoSells_to = "INSERT OR IGNORE INTO Sells_to (SellerId, ClientId) VALUES (?,?);";
 			PreparedStatement statementClient = c.prepareStatement(insertIntoClient);
 			PreparedStatement statementSells_to = c.prepareStatement(insertIntoSells_to);
+			
 			for (Buyer b:  buyers) {
 				statementClient.setString(1 ,b.getId());
 				statementClient.setString(2, b.getName());
@@ -56,9 +66,14 @@ public class Buyers extends ListFromDB {
 			}
 			statementClient.close();
 			statementSells_to.close();
-			c.close();
-		}catch(Exception e){
-				e.printStackTrace();;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

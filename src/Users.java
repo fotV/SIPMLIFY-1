@@ -10,8 +10,8 @@ public class Users extends ListFromDB {
 	 */
 
 	public void extractObjectDB() {
+		Connection c = connect();
 		try {
-			Connection c = connect();
 			statement = c.createStatement();
 			ResultSet rs = statement.executeQuery("SELECT * FROM User  WHERE id NOT IN (SELECT id FROM OrderManager)");
 			while (rs.next()) {
@@ -39,9 +39,10 @@ public class Users extends ListFromDB {
 				}
 			}
 			statement.close();
-		}catch(SQLException e){
-			e.getStackTrace();
+		}catch(SQLException e) {
+			e.printStackTrace();
 		}
+		
 		try {
 			ResultSet results = statement.executeQuery("SELECT FirstName , LastName, Password,Phonenumber,AFM,User.id, Company,Regular,Season FROM User INNER JOIN OrderManager on User.id=OrderManager.Id");
 			while (results.next()) {
@@ -60,16 +61,20 @@ public class Users extends ListFromDB {
 					om.setRegular(false);
 				om.setSeason(results.getString("Season"));
 				users.add(om);
-				//System.out.println(om);
+				
 			}
-			
-		}catch(SQLException e){
-			e.getStackTrace();
+			statement.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
-	public void updateObjectDB() {
-		
-	}
+	
 	public ArrayList<User> getUsers()
 	{
 		return users;
