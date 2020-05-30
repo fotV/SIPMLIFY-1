@@ -62,32 +62,42 @@ public class SearchForm extends JFrame{
 		}
 		
 		
+				
 		chooseLabel = new JLabel("Choose Field");                                          
-		chooseLabel.setFont(new Font("ﾇelveticaNeue-Light", Font.PLAIN, 15));
+		chooseLabel.setFont(new Font("ﾎ容lveticaNeue", Font.BOLD, 17));
 		chooseLabel.setPreferredSize(new Dimension(120,180));
+		chooseLabel.setBounds(225, 335, 159, 32);
 		panel.add(chooseLabel);
 		
 		
-		list.setFont(new Font("ﾇelveticaNeue-Light",Font.PLAIN,15));
-		list.setPreferredSize(new Dimension(180,140));
+		list.setFont(new Font("ﾎ容lveticaNeue", Font.PLAIN, 15));
+		list.setPreferredSize(new Dimension(200, 140));
+		list.setSelectionBackground(new Color(255, 152, 61));
 		panel.add(list);
 		
+		
 		keyLabel = new JLabel("Enter an input value ");
-		keyLabel.setFont(new Font("ﾇelveticaNeue-Light", Font.PLAIN, 15));
-		keyLabel.setPreferredSize(new Dimension(187,140));
+		keyLabel.setFont(new Font("ﾎ容lveticaNeue", Font.BOLD, 17));
+		keyLabel.setBounds(1200, 1300, 100, 50);
 		panel.add(keyLabel);
 		
 		
-		key = new JTextField("Type the text",15);
-		key.setFont(new Font("ﾇelveticaNeue-Light",Font.PLAIN,15));
+		key = new JTextField("Type the text",20);
+		key.setFont(new Font("ﾎ容lveticaNeue",Font.PLAIN,15));
 		key.setPreferredSize(new Dimension(180,26));
 		panel.add(key);
 		
 		
 		searchButton =  new JButton("Search");
-		searchButton.setFont(new Font("ﾇelveticaNeue-Light", Font.PLAIN, 15));
+		searchButton.setFont(new Font("ﾎ容lveticaNeue-Light", Font.PLAIN, 17));
 		searchButton.setPreferredSize(new Dimension(159,26));
 		panel.add(searchButton);
+		
+		
+		
+		
+		
+		
 		
 		
 		searchButton.addActionListener(new ActionListener(){
@@ -129,12 +139,12 @@ public class SearchForm extends JFrame{
 				}
 			}	
 		});
-		panel.setBackground(new Color(153, 172, 196));
+		panel.setBackground(new Color(136, 177, 179));
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		this.setVisible(true);
 		this.getContentPane().add(panel, BorderLayout.CENTER);
 		this.setTitle("SearchForm");
-		this.setSize(500,500);
+		this.setSize(100, 100, 1041, 653);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
