@@ -87,7 +87,7 @@ public class Statistics
 		
 		//calls the chosen chart
 		
-		CreateChart ch = new CreateChart(months);
+		CreateChart ch = new CreateChart(months,options);
 		
 		if(options[3].equals("Pie Chart"))
 		{
@@ -117,7 +117,7 @@ public class Statistics
 		
 		//in every if after the sum = 0; there is a date update 
 		
-			if(options[2].equals("Date"))
+			if(options[1].equals("Date"))
 			{
 				
 				for(int j = 0; j < numOfMonths+1; j++)
@@ -167,7 +167,7 @@ public class Statistics
 				
 				
 			}
-			else if(options[2].equals("Product"))
+			else if(options[1].equals("Product"))
 			{
 		
 				for(int j = 0; j < numOfMonths+1; j++)
@@ -217,7 +217,7 @@ public class Statistics
 						
 				
 			}
-			else if(options[2].equals("Client"))
+			else if(options[1].equals("Client"))
 			{
 				for(int j = 0; j < numOfMonths+1; j++)
 				{
@@ -278,7 +278,7 @@ public class Statistics
 		
 		year = options[5];
 	
-		if(options[2].equals("Date"))
+		if(options[1].equals("Date"))
 		{
 			for(int j = 0; j < numOfMonths+1; j++)
 			{
@@ -324,7 +324,7 @@ public class Statistics
 				date = new String();
 			}	
 		}
-		else if(options[2].equals("Product"))
+		else if(options[1].equals("Product"))
 		{
 			for(int j = 0; j < numOfMonths+1; j++)
 			{
@@ -373,7 +373,7 @@ public class Statistics
 					
 			
 		}
-		else if(options[2].equals("Client"))
+		else if(options[1].equals("Client"))
 		{
 			for(int j = 0; j < numOfMonths+1; j++)
 			{

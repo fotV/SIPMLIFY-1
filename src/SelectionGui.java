@@ -11,9 +11,9 @@ public class SelectionGui extends JFrame
 	private String[] options;
 	 //options[0] variable
 	 //options[1] filter
-       //options[2] key
-    //options[3] chart
-    //options[4] from month
+     //options[2] key
+     //options[3] chart
+     //options[4] from month
 	 //options[5] from year
 	 //options[6] to month
 	 //options[7] to year
@@ -71,101 +71,135 @@ public class SelectionGui extends JFrame
 	}
 	
 
-	public String[] getOptions()
-	{
-		return options;
-	}
-	
-	public String[] getMonths()
-	{
-		return months;  
-	}
-	
 	public void initialize() 
 	{
 		
-		JFrame f = new JFrame();
-		JPanel panel=new JPanel();  
-		
-		f.getContentPane().setBackground(new Color(176, 224, 230));
-
 		if(user.equals("om"))
 		{
 			user2 = 0;
 			String OMvariables[] = {"","Cost","Orders"};
 			String OMfilter[] = {"","Date","Supplier","Product"};
 			String charts[] = {"","Pie Chart","Line Chart","Bar Chart","Matrix"};
-					
+				
+			JFrame f = new JFrame();
+			f.getContentPane().setBackground(new Color(136, 177, 179));
+			
+			//variable
+			
 			JLabel var = new JLabel("Choose Variable :");
-			var.setBounds(8, 20, 100, 14);
+			var.setBounds(197, 45, 196, 30);
+			var.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
 			f.getContentPane().add(var);
 			
-			JComboBox varCb = new JComboBox(OMvariables);   
-			varCb.setBounds(117, 16, 89, 22);    
-		    	f.getContentPane().add(varCb);  
+			JComboBox varCb = new JComboBox(OMvariables);
+			varCb.setFont(new Font("Helvetica Neue", Font.PLAIN, 22));
+			varCb.setBounds(504, 45, 264, 30);    
+		    f.getContentPane().add(varCb);  
 		    
-		    	JLabel filter = new JLabel("Choose Filter :");
-		    	filter.setBounds(8, 66, 100, 14);
+		    //filter
+		    
+		    JLabel filter = new JLabel("Choose Filter :");
+		    filter.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
+		    filter.setBounds(197, 144, 196, 30);
 			f.getContentPane().add(filter);
 			
 			JComboBox filterCb = new JComboBox(OMfilter);
-			filterCb.setBounds(117, 62, 89, 22);
+			filterCb.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
+			filterCb.setBounds(504, 144, 264, 30);
 			f.getContentPane().add(filterCb);
 			
+			//key
+			
 			JLabel key = new JLabel("Enter Key :");
-			key.setBounds(8, 113, 100, 14);
+			key.setBounds(197, 243, 196, 30);
+			key.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
 			f.getContentPane().add(key);
 			
 			JTextField Ekey = new JTextField();
-			Ekey.setBounds(117, 110, 89, 20);
+			Ekey.setBounds(504, 250, 264, 30);
 			f.getContentPane().add(Ekey);
 			
 			JLabel message = new JLabel("Enter Key only if chosen filter is product or supplier");
-			message.setBounds(8, 138,300, 14);
+			message.setBounds(504, 236,300, 14);
+			message.setFont(new Font("Helvetica Neue", Font.PLAIN, 10));
 			f.getContentPane().add(message);
 			
+			//chart
+			
 			JLabel chart = new JLabel("Choose Chart : ");
-			chart.setBounds(8, 182, 100, 14);
+			chart.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
+			chart.setBounds(197, 361, 196, 30);
 			f.getContentPane().add(chart);
 			
 			JComboBox chartCb = new JComboBox(charts);
-			chartCb.setBounds(117, 178, 89, 22);
+			chartCb.setFont(new Font("Helvetica Neue", Font.PLAIN, 22));
+			chartCb.setBounds(504, 367, 264, 30);
 			f.getContentPane().add(chartCb);
 			
-		    	JLabel from = new JLabel("From :");
-			from.setBounds(8, 226, 46, 14);
+			//from months
+			
+		    JLabel from = new JLabel("From :");
+		    from.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
+		    from.setBounds(197, 470, 107, 26);
 			f.getContentPane().add(from);
 			
 			JComboBox fromMonth = new JComboBox(months);
-			fromMonth.setBounds(117, 229, 89, 22);
+			fromMonth.setFont(new Font("Helvetica Neue", Font.PLAIN, 18));
+			fromMonth.setBounds(399, 476, 150, 26);
 			f.getContentPane().add(fromMonth);
 			
+			//to month
+			
 			JLabel to = new JLabel("To :");
-			to.setBounds(8, 273, 46, 14);
+			to.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
+			to.setBounds(197, 526, 46, 30);
 			f.getContentPane().add(to);
 			
 			JComboBox toMonth = new JComboBox(months);
-			toMonth.setBounds(117, 269, 89, 22);
+			toMonth.setFont(new Font("Helvetica Neue", Font.PLAIN, 18));
+			toMonth.setBounds(399, 534, 150, 26);
 			f.getContentPane().add(toMonth);
 			
-			JLabel enterYear = new JLabel("Enter Year :");
-			enterYear.setBounds(228, 214, 75, 14);
-			f.getContentPane().add(enterYear);
+			//year
 			
+			JLabel enterYear = new JLabel("Enter Year :");
+			setFont(new Font("Helvetica Neue", Font.PLAIN, 15));
+			enterYear.setBounds(640, 449, 128, 20);
+			f.getContentPane().add(enterYear);
+		
 			JTextField yearFrom = new JTextField();
-			yearFrom.setBounds(228, 231, 58, 20);
+			yearFrom.setBounds(604, 480, 164, 20);
 			f.getContentPane().add(yearFrom);
 			yearFrom.setColumns(10);
 			
 			JTextField yearTo = new JTextField();
 			yearTo.setColumns(10);
-			yearTo.setBounds(228, 270, 58, 20);
+			yearTo.setBounds(604, 538, 164, 20);
 			f.getContentPane().add(yearTo);
 			
-			JButton b = new JButton("Done");
-			b.setBounds(415, 310, 71, 23); 
-			f.getContentPane().add(b);
+			//seperators
 			
+
+			JSeparator separator = new JSeparator();
+			separator.setBounds(8, 106, 1007, 2);
+			f.getContentPane().add(separator);
+			
+			JSeparator separator_1 = new JSeparator();
+			separator_1.setBounds(8, 214, 1007, 2);
+			f.getContentPane().add(separator_1);
+			
+			JSeparator separator_2 = new JSeparator();
+			separator_2.setBounds(10, 318, 1007, 2);
+			f.getContentPane().add(separator_2);
+			
+			JSeparator separator_3 = new JSeparator();
+			separator_3.setBounds(8, 437, 1007, 2);
+			f.getContentPane().add(separator_3);
+			
+			
+			JButton b = new JButton("Ok");
+			b.setBounds(915, 573, 85, 21); 
+			f.getContentPane().add(b);
 			
 			b.addActionListener(new ActionListener()
 			{
@@ -201,9 +235,8 @@ public class SelectionGui extends JFrame
 					
 			});
 			
-			
-			f.setSize(512, 383); 
-			f.setTitle("Order Mnager Statistics");
+			f.setBounds(100, 100, 1041, 653);
+			f.setTitle("Statistics");
 			f.setLayout(null); 
 			f.setVisible(true);
 		
@@ -211,80 +244,129 @@ public class SelectionGui extends JFrame
 		else if(user.equals("seller"))
 		{
 			user2 = 1;
-			String OMvariables[] = {"","Profit","Purchases"};
-			String OMfilter[] = {"","Date","Client","Product"};
+			String Svariables[] = {"","Profit","Purchases"};
+			String Sfilter[] = {"","Date","Client","Product"};
 			String charts[] = {"","Pie Chart","Line Chart","Bar Chart","Matrix"};
 					
+			JFrame f = new JFrame();
+			f.getContentPane().setBackground(new Color(136, 177, 179));
+
+			//variable
+			
 			JLabel var = new JLabel("Choose Variable :");
-			var.setBounds(8, 20, 100, 14);
+			var.setBounds(197, 45, 196, 30);
+			var.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
 			f.getContentPane().add(var);
 			
-			JComboBox varCb = new JComboBox(OMvariables);   
-			varCb.setBounds(117, 16, 89, 22);    
+			JComboBox varCb = new JComboBox(Svariables);
+			varCb.setFont(new Font("Helvetica Neue", Font.PLAIN, 22));
+			varCb.setBounds(504, 45, 264, 30);    
 		    f.getContentPane().add(varCb);  
 		    
+		    //filter
+		    
 		    JLabel filter = new JLabel("Choose Filter :");
-		    filter.setBounds(8, 66, 100, 14);
+		    filter.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
+		    filter.setBounds(197, 144, 196, 30);
 			f.getContentPane().add(filter);
 			
-			JComboBox filterCb = new JComboBox(OMfilter);
-			filterCb.setBounds(117, 62, 89, 22);
+			JComboBox filterCb = new JComboBox(Sfilter);
+			filterCb.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
+			filterCb.setBounds(504, 144, 264, 30);
 			f.getContentPane().add(filterCb);
 			
+			//key
+			
 			JLabel key = new JLabel("Enter Key :");
-			key.setBounds(8, 113, 100, 14);
+			key.setBounds(197, 243, 196, 30);
+			key.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
 			f.getContentPane().add(key);
 			
 			JTextField Ekey = new JTextField();
-			Ekey.setBounds(117, 110, 89, 20);
+			Ekey.setBounds(504, 250, 264, 30);
 			f.getContentPane().add(Ekey);
 			
-			JLabel message = new JLabel("Enter ID only if chosen filter is Product or Client");
-			message.setBounds(8, 138,300, 14);
+			JLabel message = new JLabel("Enter Key only if chosen filter is product or supplier");
+			message.setBounds(504, 236,300, 14);
+			message.setFont(new Font("Helvetica Neue", Font.PLAIN, 10));
 			f.getContentPane().add(message);
 			
+			//chart
+			
 			JLabel chart = new JLabel("Choose Chart : ");
-			chart.setBounds(8, 182, 100, 14);
+			chart.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
+			chart.setBounds(197, 361, 196, 30);
 			f.getContentPane().add(chart);
 			
 			JComboBox chartCb = new JComboBox(charts);
-			chartCb.setBounds(117, 178, 89, 22);
+			chartCb.setFont(new Font("Helvetica Neue", Font.PLAIN, 22));
+			chartCb.setBounds(504, 367, 264, 30);
 			f.getContentPane().add(chartCb);
 			
+			//from months
+			
 		    JLabel from = new JLabel("From :");
-			from.setBounds(8, 226, 46, 14);
+		    from.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
+		    from.setBounds(197, 470, 107, 26);
 			f.getContentPane().add(from);
 			
 			JComboBox fromMonth = new JComboBox(months);
-			fromMonth.setBounds(117, 229, 89, 22);
+			fromMonth.setFont(new Font("Helvetica Neue", Font.PLAIN, 18));
+			fromMonth.setBounds(399, 476, 150, 26);
 			f.getContentPane().add(fromMonth);
 			
+			//to month
+			
 			JLabel to = new JLabel("To :");
-			to.setBounds(8, 273, 46, 14);
+			to.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
+			to.setBounds(197, 526, 46, 30);
 			f.getContentPane().add(to);
 			
 			JComboBox toMonth = new JComboBox(months);
-			toMonth.setBounds(117, 269, 89, 22);
+			toMonth.setFont(new Font("Helvetica Neue", Font.PLAIN, 18));
+			toMonth.setBounds(399, 534, 150, 26);
 			f.getContentPane().add(toMonth);
 			
-			JLabel enterYear = new JLabel("Enter Year :");
-			enterYear.setBounds(228, 214, 75, 14);
-			f.getContentPane().add(enterYear);
+			//year
 			
+			JLabel enterYear = new JLabel("Enter Year :");
+			setFont(new Font("Helvetica Neue", Font.PLAIN, 15));
+			enterYear.setBounds(640, 449, 128, 20);
+			f.getContentPane().add(enterYear);
+		
 			JTextField yearFrom = new JTextField();
-			yearFrom.setBounds(228, 231, 58, 20);
+			yearFrom.setBounds(604, 480, 164, 20);
 			f.getContentPane().add(yearFrom);
 			yearFrom.setColumns(10);
 			
 			JTextField yearTo = new JTextField();
 			yearTo.setColumns(10);
-			yearTo.setBounds(228, 270, 58, 20);
+			yearTo.setBounds(604, 538, 164, 20);
 			f.getContentPane().add(yearTo);
 			
-			JButton b = new JButton("Done");
-			b.setBounds(415, 310, 71, 23); 
-			f.getContentPane().add(b);
+			//seperators
 			
+
+			JSeparator separator = new JSeparator();
+			separator.setBounds(8, 106, 1007, 2);
+			f.getContentPane().add(separator);
+			
+			JSeparator separator_1 = new JSeparator();
+			separator_1.setBounds(8, 214, 1007, 2);
+			f.getContentPane().add(separator_1);
+			
+			JSeparator separator_2 = new JSeparator();
+			separator_2.setBounds(10, 318, 1007, 2);
+			f.getContentPane().add(separator_2);
+			
+			JSeparator separator_3 = new JSeparator();
+			separator_3.setBounds(8, 437, 1007, 2);
+			f.getContentPane().add(separator_3);
+			
+			
+			JButton b = new JButton("Ok");
+			b.setBounds(915, 573, 85, 21); 
+			f.getContentPane().add(b);
 			
 			b.addActionListener(new ActionListener()
 			{
