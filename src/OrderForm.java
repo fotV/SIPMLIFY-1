@@ -37,50 +37,50 @@ public class OrderForm extends JFrame{
 	 */
 	public OrderForm(OrderManager om)
 	{
-		setTitle("Order Form");
+		this.setTitle("Order Form");
 		panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel.setBackground(new Color(189, 213, 234));
+		panel.setBackground(new Color(136, 177, 179));
 	
 		lblorderid = new JLabel("Order ID :");
-		lblorderid.setBounds(22, 36, 121, 41);
-		lblorderid.setFont(new Font("Futura Bk BT", Font.PLAIN, 17));
+		lblorderid.setBounds(207, 93, 157, 41);
+		lblorderid.setFont(new Font("HelveticaNeue", Font.PLAIN, 24));
 		
 		lblSupplierid = new JLabel("Supplier ID:");
-		lblSupplierid.setBounds(22, 98, 121, 41);
-		lblSupplierid.setFont(new Font("Futura Bk BT", Font.PLAIN, 17));
+		lblSupplierid.setBounds(207, 194, 157, 41);
+		lblSupplierid.setFont(new Font("HelveticaNeue", Font.PLAIN, 24));
 		
 		lblProductId = new JLabel("Product ID :");
-		lblProductId.setBounds(22, 167, 121, 33);
-		lblProductId.setFont(new Font("Futura Bk BT", Font.PLAIN, 17));
+		lblProductId.setBounds(207, 293, 157, 33);
+		lblProductId.setFont(new Font("HelveticaNeue", Font.PLAIN, 24));
 		
 		lblQuantity = new JLabel("Quantity : ");
-		lblQuantity.setBounds(22, 288, 121, 41);
-		lblQuantity.setFont(new Font("Futura Bk BT", Font.PLAIN, 17));
+		lblQuantity.setBounds(207, 463, 121, 41);
+		lblQuantity.setFont(new Font("HelveticaNeue", Font.PLAIN, 24));
 		
 		
 		textFieldOid = new JTextField();
 		textFieldOid.setToolTipText("Insert the Order ID you want");
-		textFieldOid.setFont(new Font("Futura Bk BT", Font.PLAIN, 16));
-		textFieldOid.setBounds(179, 45, 247, 28);
+		textFieldOid.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
+		textFieldOid.setBounds(533, 98, 247, 36);
 		textFieldOid.setColumns(10);
 		
 		textFieldSid = new JTextField();
 		textFieldSid.setToolTipText("Insert the Supplier ID you want");
-		textFieldSid.setFont(new Font("Futura Bk BT", Font.PLAIN, 16));
-		textFieldSid.setBounds(179, 107, 247, 28);
+		textFieldSid.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
+		textFieldSid.setBounds(533, 201, 247, 34);
 		textFieldSid.setColumns(10);
 		
 		textFieldPid = new JTextField();
 		textFieldPid.setToolTipText("Insert the Product ID you want");
-		textFieldPid.setFont(new Font("Futura Bk BT", Font.PLAIN, 16));
-		textFieldPid.setBounds(179, 172, 247, 28);
+		textFieldPid.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
+		textFieldPid.setBounds(533, 293, 247, 33);
 		textFieldPid.setColumns(10);
 		
 		textFieldQ = new JTextField();
 		textFieldQ.setToolTipText("Insert the Quantity you want");
-		textFieldQ.setFont(new Font("Futura Bk BT", Font.PLAIN, 16));
-		textFieldQ.setBounds(179, 295, 247, 28);
+		textFieldQ.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
+		textFieldQ.setBounds(533, 470, 247, 34);
 		panel.add(textFieldQ);
 		textFieldQ.setColumns(10);
 		
@@ -96,36 +96,36 @@ public class OrderForm extends JFrame{
 		
 		btnAdd = new JButton("Add");
 		btnAdd.setToolTipText("Add this new order");
-		btnAdd.setFont(new Font("Futura Bk BT", Font.PLAIN, 17));
-		btnAdd.setBounds(400, 378, 103, 28);
+		btnAdd.setFont(new Font("HelveticaNeue", Font.PLAIN, 17));
+		btnAdd.setBounds(909, 572, 116, 41);
 		panel.add(btnAdd);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 85, 493, 2);
+		separator.setBounds(10, 172, 1015, 2);
 		panel.add(separator);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(10, 154, 493, 2);
+		separator_1.setBounds(10, 265, 1015, 2);
 		panel.add(separator_1);
 		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(10, 214, 493, 2);
+		separator_2.setBounds(10, 354, 1015, 2);
 		panel.add(separator_2);
 
 		JSeparator separator_3 = new JSeparator();
-		separator_3.setBounds(10, 275, 493, 2);
+		separator_3.setBounds(10, 450, 1015, 2);
 		panel.add(separator_3);
 		
 		JLabel lblStockkeeperId = new JLabel("Stockkeeper ID :");
-		lblStockkeeperId.setFont(new Font("Futura Bk BT", Font.PLAIN, 17));
-		lblStockkeeperId.setBounds(22, 223, 121, 41);
+		lblStockkeeperId.setFont(new Font("HelveticaNeue", Font.PLAIN, 24));
+		lblStockkeeperId.setBounds(207, 383, 201, 41);
 		panel.add(lblStockkeeperId);
 		
 		textFieldStKid = new JTextField();
 		textFieldStKid.setToolTipText("Insert the StockKeeper ID you want");
-		textFieldStKid.setFont(new Font("Futura Bk BT", Font.PLAIN, 16));
+		textFieldStKid.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
 		textFieldStKid.setColumns(10);
-		textFieldStKid.setBounds(179, 236, 247, 28);
+		textFieldStKid.setBounds(533, 383, 247, 35);
 		panel.add(textFieldStKid);
 		
 		btnAdd.addActionListener( new ActionListener()
@@ -205,11 +205,9 @@ public class OrderForm extends JFrame{
 			}	
 		});
 		this.setVisible(true);
-		this.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Christina\\Desktop\\3\\Organizedorders\\window logo.png"));
 		this.getContentPane().add(panel);
 		this.setResizable(false);
-		this.setBounds(100, 100, 522, 446);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setBounds(100, 100, 1041, 653);
 	}
 	
 	/*

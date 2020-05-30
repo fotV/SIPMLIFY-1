@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.SystemColor;
 import java.awt.Color;
+import java.awt.Font;
 
 
 public class PresentationForm extends JFrame{
@@ -27,9 +28,11 @@ public class PresentationForm extends JFrame{
 		panel = new JPanel();
 		panel.setBackground(new Color(136, 177, 179));
 		panel.setBounds(100, 100, 584, 534);
+		panel.setLayout(null);
 		
 		scroll = new JScrollPane();
-		panel.add(scroll, BorderLayout.CENTER);
+		scroll.setBounds(53, 37, 924, 552);
+		panel.add(scroll);
 
 
 		if (objectList.get(0) instanceof Order)    //here we check if the objects in the list we have are of type Order
@@ -92,9 +95,8 @@ public class PresentationForm extends JFrame{
 			}
 			table.setModel(new DefaultTableModel(data, new String[] {"Buyer Name", "Buyer Id", "Buyer AFM"}));
 		}
-		table.setToolTipText("");
-		table.setForeground(Color.BLACK);
-		table.setBackground(new Color(176, 196, 222));
+		table.setFont(new Font("HelveticaNeue", Font.PLAIN, 17));
+		table.setBackground(new Color(136, 177, 179));
 		table.setFillsViewportHeight(true);
 		table.setAutoCreateRowSorter(true);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -158,10 +160,9 @@ public class PresentationForm extends JFrame{
 	
 		
 		this.setVisible(true);
-		this.setTitle("PresentationForm");
-		this.setBounds(100, 100, 511, 461);
+		this.setTitle("Presentation Form");
+		this.setBounds(100, 100, 1041, 653);
 		this.setResizable(false);
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 	}
 	                    
 	
