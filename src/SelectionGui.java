@@ -231,7 +231,7 @@ public class SelectionGui extends JFrame
 	
 					}
 				
-					}
+				}
 					
 			});
 			

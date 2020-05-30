@@ -32,7 +32,7 @@ public class CreateChart extends JFrame
 	public void matrixChart(ArrayList<Double> value, int numOfMonths, String firstMonth)
 	{
 		JPanel panel = new JPanel();
-		panel.setBounds(100, 100, 584, 534);
+		panel.setBounds(100, 100, 1041, 653);
 		
 		int monthC = 0;
 		String date;
@@ -111,6 +111,7 @@ public class CreateChart extends JFrame
 				columns[0] = "Date";
 				columns[1] = title;
 				
+				//create jtable
 				JTable table = new JTable();
 				table.setModel(new DefaultTableModel(data, columns));
 				table.setBounds(30,40,200,300);          
@@ -125,7 +126,7 @@ public class CreateChart extends JFrame
 				this.setContentPane(panel);
 				this.setVisible(true);
 				this.setTitle("Matrix Chart");
-				this.setBounds(100, 100, 584, 534);
+				this.setBounds(100, 100, 1041, 653);
 				this.setResizable(false);
 				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	    
 		

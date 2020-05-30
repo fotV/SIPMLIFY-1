@@ -33,7 +33,6 @@ public class BuyerForm extends JFrame
 			frame = new JFrame(); 
 			frame.getContentPane().setBackground(new Color(136, 177, 179));
 		
-		
 			// name
 			
 			JLabel nameLabel = new JLabel("First Name :");
@@ -128,7 +127,6 @@ public class BuyerForm extends JFrame
 			frame.getContentPane().add(separator_3);
 			
 			
-			
 			//add button
 			
 			JButton addButton = new JButton("Add");
@@ -163,8 +161,7 @@ public class BuyerForm extends JFrame
 			});
 			
 			
-			
-			frame.setSize(1041, 653); 
+			frame.setBounds(100,100,1041, 653); 
 			frame.setTitle("Buyer Form");
 			frame.setResizable(false);
 			frame.setLayout(null); 
