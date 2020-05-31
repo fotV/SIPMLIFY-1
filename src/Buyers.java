@@ -3,13 +3,19 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class Buyers extends ListFromDB {
+	/*
+	 * Buyers.java
+	 * Inherits from ListFromDB.java
+	 * Purpose: Extracts data and updates database for Buyers.
+	 * @author Evangelia Papagiannaki, Eleni Polyzoidou.
+	 */
 	private ArrayList<Buyer> buyers = new ArrayList<Buyer>();
 	
-	
+	/*
+	 * Extracts data from database for Buyers and adds them into list buyers.
+	 */
+	@Override
 	public void extractObjectDB() {
-		/*
-		 * 
-		 */
 		Connection c = connect();
 		try {
 
@@ -38,16 +44,17 @@ public class Buyers extends ListFromDB {
 			}
 		}
 	}
-
+	
+	/*
+	 * Update buyers and inserts new records into arrays that are related to buyers.
+	 */
+	@Override
 	public void updateObjectDB(){
-		/*
-		 * 
-		 */
 		Connection c = connect();
 		try {
 			
-			String insertIntoClient = "INSERT OR IGNORE INTO Client (Id, Name, LastName, AFM) VALUES (?,?,?,?);";
-			String insertIntoSells_to = "INSERT OR IGNORE INTO Sells_to (SellerId, ClientId) VALUES (?,?);";
+			String insertIntoClient = "INSERT OR IGNORE INTO Client (Id, Name, LastName, AFM) VALUES (?,?,?,?);";    //SQL statement for insertion into array Client
+			String insertIntoSells_to = "INSERT OR IGNORE INTO Sells_to (SellerId, ClientId) VALUES (?,?);";         //SQL statement for insertion into array Sells_to
 			PreparedStatement statementClient = c.prepareStatement(insertIntoClient);
 			PreparedStatement statementSells_to = c.prepareStatement(insertIntoSells_to);
 			
