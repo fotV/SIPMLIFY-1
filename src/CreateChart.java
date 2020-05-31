@@ -15,6 +15,10 @@ import org.jfree.data.general.DefaultPieDataset;
 
 public class CreateChart extends JFrame
 {
+	/*CreateChart.java
+	 * Purpose : Displays the selected chart with the calculated values
+	 * @author Fotiadou Vassiliki, Bitsa Antouela
+	 */
 	private String[] months;
 	private String[] options;
 
@@ -31,6 +35,7 @@ public class CreateChart extends JFrame
 	
 	public void matrixChart(ArrayList<Double> value, int numOfMonths, String firstMonth)
 	{
+		
 		JPanel panel = new JPanel();
 		panel.setBounds(100, 100, 1041, 653);
 		
@@ -41,7 +46,7 @@ public class CreateChart extends JFrame
 		String[][] data = new String[size][2];
 		String[] columns = new String[2];
 		
-		//data input 
+		//data input (value,dates)
 		
 		year = Integer.parseInt(options[5]);
 		
@@ -72,7 +77,7 @@ public class CreateChart extends JFrame
 			
 		}
 		
-		//set string column
+		//sets name columns
 		
 				String title = new String() ;
 				if(options[0].equals("Profit"))
@@ -92,17 +97,17 @@ public class CreateChart extends JFrame
 					title = "Orders";
 				}
 				
-				if(options[1].contentEquals("Product"))
+				if(options[1].equals("Product"))
 				{
 					title += " For Product With ID : ";
 					title += options[2];
 				}
-				else if(options[1].contentEquals("Client"))
+				else if(options[1].equals("Client"))
 				{
 					title += " For Client With ID : ";
 					title += options[2];
 				}
-				else if(options[1].contentEquals("Supplier"))
+				else if(options[1].equals("Supplier"))
 				{
 					title += " For Supplier With ID : ";
 					title += options[2];
@@ -111,10 +116,12 @@ public class CreateChart extends JFrame
 				columns[0] = "Date";
 				columns[1] = title;
 				
-				//create jtable
+				//creates jtable
+				
 				JTable table = new JTable();
 				table.setModel(new DefaultTableModel(data, columns));
-				table.setBounds(30,40,200,300);          
+				table.setBounds(30,40,200,300); 
+				
 			    JScrollPane scroll = new JScrollPane();    
 			    scroll = new JScrollPane();
 				scroll.setBounds(100, 100, 584, 534);
@@ -138,7 +145,7 @@ public class CreateChart extends JFrame
 		int year;
 		
 		
-		//data input
+		//data input (value,date)
 		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		
@@ -166,7 +173,7 @@ public class CreateChart extends JFrame
 			
 		}
 		
-		//set bar chart title
+		//sets bar chart title
 		
 		String title = new String() ;
 		if(options[0].equals("Profit"))
@@ -186,21 +193,24 @@ public class CreateChart extends JFrame
 			title = "Orders";
 		}
 		
-		if(options[1].contentEquals("Product"))
+		if(options[1].equals("Product"))
 		{
 			title += " For Product With ID : ";
 			title += options[2];
 		}
-		else if(options[1].contentEquals("Client"))
+		else if(options[1].equals("Client"))
 		{
 			title += " For Client With ID : ";
 			title += options[2];
 		}
-		else if(options[1].contentEquals("Supplier"))
+		else if(options[1].equals("Supplier"))
 		{
 			title += " For Supplier With ID : ";
 			title += options[2];
 		}
+		
+		//creates bar chart
+		
 		JFreeChart chart = ChartFactory.createBarChart(title, "Year" , "Value", dataset, PlotOrientation.VERTICAL, true, true, false);
 		ChartFrame frame = new ChartFrame("Bar Chart ",chart);
 		
@@ -217,7 +227,7 @@ public class CreateChart extends JFrame
 		String date;
 		int year;
 		
-		//data input 
+		//data input (value,date)
 		
 		DefaultPieDataset dataset = new DefaultPieDataset();
 		year = Integer.parseInt(options[5]);
@@ -247,7 +257,7 @@ public class CreateChart extends JFrame
 			
 		}
 		
-		//set pie chart title
+		//sets pie chart title
 		
 		String title = new String() ;
 		if(options[0].equals("Profit"))
@@ -267,21 +277,24 @@ public class CreateChart extends JFrame
 			title = "Orders";
 		}
 		
-		if(options[1].contentEquals("Product"))
+		if(options[1].equals("Product"))
 		{
 			title += " For Product With ID : ";
 			title += options[2];
 		}
-		else if(options[1].contentEquals("Client"))
+		else if(options[1].equals("Client"))
 		{
 			title += " For Client With ID : ";
 			title += options[2];
 		}
-		else if(options[1].contentEquals("Supplier"))
+		else if(options[1].cequals("Supplier"))
 		{
 			title += " For Supplier With ID : ";
 			title += options[2];
 		}
+		
+		//creates pie chart
+		
 		JFreeChart chart = ChartFactory.createPieChart(title, dataset, true, true, true);
 		ChartFrame frame = new ChartFrame("Pie Chart ",chart);
 		

@@ -8,6 +8,11 @@ import javax.swing.*;
 
 public class SelectionGui extends JFrame
 {
+	/*SelectionGui.java
+	 * Purpose : Creates the GUI for user to select the statictics he wishes to see.
+	 * @author Fotiadou Vassiliki
+	 */
+
 	private String[] options;
 	 //options[0] variable
 	 //options[1] filter
@@ -23,7 +28,6 @@ public class SelectionGui extends JFrame
 	private Seller seller;
 	private String user;
 	private String[] months;
-	private JPanel panel;
 	private int user2; //0 if ordermanager, 1 if seller created to help method checkerror for options[3] input
 	
 	public SelectionGui(OrderManager om)
@@ -73,10 +77,16 @@ public class SelectionGui extends JFrame
 
 	public void initialize() 
 	{
+		/*Creates GUI for options and calls the respective function from statistics class 
+		 * if there is no error in the filled form
+		 * */
 		
 		if(user.equals("om"))
 		{
 			user2 = 0;
+			
+			//JComboBox data
+			
 			String OMvariables[] = {"","Cost","Orders"};
 			String OMfilter[] = {"","Date","Supplier","Product"};
 			String charts[] = {"","Pie Chart","Line Chart","Bar Chart","Matrix"};
@@ -84,7 +94,7 @@ public class SelectionGui extends JFrame
 			JFrame f = new JFrame();
 			f.getContentPane().setBackground(new Color(136, 177, 179));
 			
-			//variable
+			//variable GUI
 			
 			JLabel var = new JLabel("Choose Variable :");
 			var.setBounds(197, 45, 196, 30);
@@ -96,7 +106,7 @@ public class SelectionGui extends JFrame
 			varCb.setBounds(504, 45, 264, 30);    
 		    f.getContentPane().add(varCb);  
 		    
-		    //filter
+		    //filter GUI
 		    
 		    JLabel filter = new JLabel("Choose Filter :");
 		    filter.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
@@ -108,9 +118,9 @@ public class SelectionGui extends JFrame
 			filterCb.setBounds(504, 144, 264, 30);
 			f.getContentPane().add(filterCb);
 			
-			//key
+			//key GUI(filled only if chosen filter = product or supplier
 			
-			JLabel key = new JLabel("Enter Key :");
+			JLabel key = new JLabel("Enter ID :");
 			key.setBounds(197, 243, 196, 30);
 			key.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
 			f.getContentPane().add(key);
@@ -119,12 +129,12 @@ public class SelectionGui extends JFrame
 			Ekey.setBounds(504, 250, 264, 30);
 			f.getContentPane().add(Ekey);
 			
-			JLabel message = new JLabel("Enter Key only if chosen filter is product or supplier");
+			JLabel message = new JLabel("Enter ID only if chosen filter is product or supplier");
 			message.setBounds(504, 236,300, 14);
 			message.setFont(new Font("Helvetica Neue", Font.PLAIN, 10));
 			f.getContentPane().add(message);
 			
-			//chart
+			//chart GUI
 			
 			JLabel chart = new JLabel("Choose Chart : ");
 			chart.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
@@ -136,7 +146,7 @@ public class SelectionGui extends JFrame
 			chartCb.setBounds(504, 367, 264, 30);
 			f.getContentPane().add(chartCb);
 			
-			//from months
+			//from months GUI
 			
 		    JLabel from = new JLabel("From :");
 		    from.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
@@ -148,7 +158,7 @@ public class SelectionGui extends JFrame
 			fromMonth.setBounds(399, 476, 150, 26);
 			f.getContentPane().add(fromMonth);
 			
-			//to month
+			//to month GUI
 			
 			JLabel to = new JLabel("To :");
 			to.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
@@ -160,7 +170,7 @@ public class SelectionGui extends JFrame
 			toMonth.setBounds(399, 534, 150, 26);
 			f.getContentPane().add(toMonth);
 			
-			//year
+			//year GUI
 			
 			JLabel enterYear = new JLabel("Enter Year :");
 			setFont(new Font("Helvetica Neue", Font.PLAIN, 15));
@@ -179,7 +189,6 @@ public class SelectionGui extends JFrame
 			
 			//seperators
 			
-
 			JSeparator separator = new JSeparator();
 			separator.setBounds(8, 106, 1007, 2);
 			f.getContentPane().add(separator);
@@ -197,6 +206,8 @@ public class SelectionGui extends JFrame
 			f.getContentPane().add(separator_3);
 			
 			
+			//ok button
+			
 			JButton b = new JButton("Ok");
 			b.setBounds(915, 573, 85, 21); 
 			f.getContentPane().add(b);
@@ -205,6 +216,8 @@ public class SelectionGui extends JFrame
 			{
 				public void actionPerformed(ActionEvent e) 
 				{
+					//gets selected options
+					
 					options[0] = (String) varCb.getSelectedItem();
 					
 					options[1] =(String) filterCb.getSelectedItem();
@@ -221,8 +234,10 @@ public class SelectionGui extends JFrame
 					
 					options[7] = yearTo.getText();
 					
+					//calls checkError before calling respective function
 					errorFlag = checkError(options,user2);
 
+					//if errorFlag = false there is no error, calls respective function
 					if(!errorFlag)
 					{
 						f.setVisible(false);
@@ -244,6 +259,9 @@ public class SelectionGui extends JFrame
 		else if(user.equals("seller"))
 		{
 			user2 = 1;
+			
+			//JComboBox data
+			
 			String Svariables[] = {"","Profit","Purchases"};
 			String Sfilter[] = {"","Date","Client","Product"};
 			String charts[] = {"","Pie Chart","Line Chart","Bar Chart","Matrix"};
@@ -251,7 +269,7 @@ public class SelectionGui extends JFrame
 			JFrame f = new JFrame();
 			f.getContentPane().setBackground(new Color(136, 177, 179));
 
-			//variable
+			//variable GUI
 			
 			JLabel var = new JLabel("Choose Variable :");
 			var.setBounds(197, 45, 196, 30);
@@ -263,7 +281,7 @@ public class SelectionGui extends JFrame
 			varCb.setBounds(504, 45, 264, 30);    
 		    f.getContentPane().add(varCb);  
 		    
-		    //filter
+		    //filter GUI
 		    
 		    JLabel filter = new JLabel("Choose Filter :");
 		    filter.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
@@ -275,9 +293,9 @@ public class SelectionGui extends JFrame
 			filterCb.setBounds(504, 144, 264, 30);
 			f.getContentPane().add(filterCb);
 			
-			//key
+			//key GUI
 			
-			JLabel key = new JLabel("Enter Key :");
+			JLabel key = new JLabel("Enter ID :");
 			key.setBounds(197, 243, 196, 30);
 			key.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
 			f.getContentPane().add(key);
@@ -286,12 +304,12 @@ public class SelectionGui extends JFrame
 			Ekey.setBounds(504, 250, 264, 30);
 			f.getContentPane().add(Ekey);
 			
-			JLabel message = new JLabel("Enter Key only if chosen filter is product or supplier");
+			JLabel message = new JLabel("Enter ID only if chosen filter is product or supplier");
 			message.setBounds(504, 236,300, 14);
 			message.setFont(new Font("Helvetica Neue", Font.PLAIN, 10));
 			f.getContentPane().add(message);
 			
-			//chart
+			//chart GUI
 			
 			JLabel chart = new JLabel("Choose Chart : ");
 			chart.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
@@ -303,7 +321,7 @@ public class SelectionGui extends JFrame
 			chartCb.setBounds(504, 367, 264, 30);
 			f.getContentPane().add(chartCb);
 			
-			//from months
+			//from months GUI
 			
 		    JLabel from = new JLabel("From :");
 		    from.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
@@ -315,7 +333,7 @@ public class SelectionGui extends JFrame
 			fromMonth.setBounds(399, 476, 150, 26);
 			f.getContentPane().add(fromMonth);
 			
-			//to month
+			//to month GUI
 			
 			JLabel to = new JLabel("To :");
 			to.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
@@ -327,7 +345,7 @@ public class SelectionGui extends JFrame
 			toMonth.setBounds(399, 534, 150, 26);
 			f.getContentPane().add(toMonth);
 			
-			//year
+			//year GUI
 			
 			JLabel enterYear = new JLabel("Enter Year :");
 			setFont(new Font("Helvetica Neue", Font.PLAIN, 15));
@@ -346,7 +364,6 @@ public class SelectionGui extends JFrame
 			
 			//seperators
 			
-
 			JSeparator separator = new JSeparator();
 			separator.setBounds(8, 106, 1007, 2);
 			f.getContentPane().add(separator);
@@ -363,6 +380,7 @@ public class SelectionGui extends JFrame
 			separator_3.setBounds(8, 437, 1007, 2);
 			f.getContentPane().add(separator_3);
 			
+			//ok button
 			
 			JButton b = new JButton("Ok");
 			b.setBounds(915, 573, 85, 21); 
@@ -372,6 +390,7 @@ public class SelectionGui extends JFrame
 			{
 				public void actionPerformed(ActionEvent e) 
 				{
+					//gets selected options
 					options[0] = (String) varCb.getSelectedItem();
 					
 					options[1] =(String) filterCb.getSelectedItem();
@@ -388,8 +407,10 @@ public class SelectionGui extends JFrame
 					
 					options[7] = yearTo.getText();
 					
+					//calls checkError before calling respective function
 					errorFlag = checkError(options, user2);
 					
+					//if errorFlag = false there is no error, calls respective function
 					if(!errorFlag)
 					{
 						f.setVisible(false);
@@ -413,6 +434,8 @@ public class SelectionGui extends JFrame
 	}
 		private boolean checkError(String[] options, int user2)
 		{
+			/*checks if there is an error in filled selection form */
+			
 			int fromMonth = 0;
 			int toMonth = 0;
 			boolean keyExists = false; //true if key(id) of options[3] input exists in database

@@ -2,6 +2,11 @@ import java.util.ArrayList;
 
 public class Statistics 
 {
+	/*Statistics.java
+	 * Purpose : Calculates the statistics to be displayed.
+	 * @author Fotiadou Vassiliki, Bitsa Antouela
+	 */
+	
 	String variable;
 	String filter;
 	int numOfMonths;
@@ -27,7 +32,8 @@ public class Statistics
 
 	public void SupplierStat(Seller seller)
 	{
-		
+		/*Calculates the date for the chart,call the function to calculate statistics and calls the function of the chosen chart*/
+		 
 		firstMonth = options[4];
 		
 		
@@ -70,7 +76,7 @@ public class Statistics
 		}
 		
 
-		//calls the method based on the value variable
+		//calls the function based on the variable value
 		
 		ArrayList <Order> orders = seller.getOrders();
 	
@@ -84,7 +90,7 @@ public class Statistics
 			calcPurchases(orders, fromMonth,numOfMonths,seller);
 		}
 		
-		//calls the chosen chart
+		//calls the function of the chosen chart from CreateChart class
 		
 		CreateChart ch = new CreateChart(months,options);
 		
@@ -115,7 +121,7 @@ public class Statistics
 		year = Integer.parseInt(options[5]);
 		
 		//in every if after the sum = 0; there is a date update 
-		
+		//if filter is date
 			if(options[1].equals("Date"))
 			{
 				
@@ -166,6 +172,7 @@ public class Statistics
 				
 				
 			}
+			//if filter is product 
 			else if(options[1].equals("Product"))
 			{
 		
@@ -216,6 +223,7 @@ public class Statistics
 						
 				
 			}
+			//if filter is client
 			else if(options[1].equals("Client"))
 			{
 				for(int j = 0; j < numOfMonths+1; j++)

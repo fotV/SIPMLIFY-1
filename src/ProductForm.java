@@ -13,13 +13,17 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 
-public class ProductForm
+public class ProductForm extends JFrame
 {
+	/*ProductForm.java
+	 * Purpose : Displays the GUI of a form for user in order to add a product to the database.
+	 * @author Fotiadou Vassiliki
+	 */
 	private JFrame frame;
 	private Seller seller;
 	private OrderManager om;
 	String user; 
-	private boolean errorFlag; //false if there are no errors
+	private boolean errorFlag; //false if there are no errors else true
 
 	public ProductForm(OrderManager om)
 	{
@@ -38,13 +42,18 @@ public class ProductForm
 	
 	public void addAProduct()
 	{
+		/*Checks if user is an ordermanager or seller and creates the GUI and adds product 
+		 * in ArrayList if there is no error in filled form
+		 * */
+		
+		//if user = ordermanager
 		
 		if(user.equals("om"))
 		{
 			frame = new JFrame();  
 			frame.getContentPane().setBackground(new Color(136, 177, 179));
 			
-			//name
+			//name field and textfield
 			
 			JLabel nameLabel = new JLabel("Product Name :");
 			nameLabel.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
@@ -56,7 +65,7 @@ public class ProductForm
 			frame.getContentPane().add(nameTXT);
 			nameTXT.setColumns(10);
 			
-			//id
+			//id field and textfield
 			
 			JLabel idLabel = new JLabel("Product  ID :");
 			idLabel.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
@@ -73,7 +82,7 @@ public class ProductForm
 			idMaxCharacters.setBounds(562, 65, 70, 30);
 			frame.getContentPane().add(idMaxCharacters);
 			
-			//stock amount
+			//stock amount field and textfield
 			
 			JLabel stockAmLabel = new JLabel("Stock Amount :");
 			stockAmLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));
@@ -85,7 +94,7 @@ public class ProductForm
 			stockTXT.setBounds(205, 198, 191, 27);
 			frame.getContentPane().add(stockTXT);
 			
-			//max stock amount
+			//max stock amount field and textfield
 			
 			JLabel maxStockLabel = new JLabel("MaxStock Amount :");
 			maxStockLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));
@@ -97,7 +106,7 @@ public class ProductForm
 			maxStockTXT.setBounds(763, 198, 191, 27);
 			frame.getContentPane().add(maxStockTXT);
 			
-			//safety stock
+			//safety stock field and textfield
 			
 			JLabel safetyLabel = new JLabel("Safety Stock : ");
 			safetyLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));
@@ -110,7 +119,7 @@ public class ProductForm
 					);
 			frame.getContentPane().add(safetyTXT);
 			
-			//average monthly consumption
+			//average monthly consumption field and textfield
 			
 			JLabel avMonConLabel = new JLabel("Average Monthly");
 			avMonConLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));
@@ -127,7 +136,7 @@ public class ProductForm
 			avMonTXT.setBounds(763, 364, 191, 27);
 			frame.getContentPane().add(avMonTXT);
 			
-			//leadtime
+			//leadtime field and textfield
 			
 			JLabel leadtimeLabel = new JLabel("Leadtime :");
 			leadtimeLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));
@@ -139,7 +148,7 @@ public class ProductForm
 			leadtimeTXT.setBounds(205, 524, 191, 27);
 			frame.getContentPane().add(leadtimeTXT);
 			
-			//expected amount
+			//expected amount field and textfield
 			
 			JLabel expAmLabel = new JLabel("Expected Amount :");
 			expAmLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));
@@ -186,16 +195,18 @@ public class ProductForm
 					String leadtime = leadtimeTXT.getText();
 					String expAm = expAmTXT.getText();
 					
+					//calls checkErrorOM function before adding product 
 					errorFlag = checkErrorOM(name,id,stockAm,maxStock,safety,avMonCon,leadtime,expAm);
 					
-						if(!errorFlag)
-						{
-							frame.setVisible(false);
+					//if errorFlag = false there is no error, adds product in ArrayList Supplier Product
+					if(!errorFlag)
+					{
+						frame.setVisible(false);
 							
-							String omId = om.getId();
-							SupplierProduct sup = new SupplierProduct(name,id,omId,Double.parseDouble(stockAm),Double.parseDouble(maxStock),
+						String omId = om.getId();
+						SupplierProduct sup = new SupplierProduct(name,id,omId,Double.parseDouble(stockAm),Double.parseDouble(maxStock),
 												  Double.parseDouble(safety),Double.parseDouble(avMonCon),Integer.parseInt(leadtime),Double.parseDouble(expAm));
-							om.getProducts().add(sup);
+						om.getProducts().add(sup);
 							
 							
 							
@@ -212,12 +223,13 @@ public class ProductForm
 			frame.setVisible(true);	
 			
 		}
+		//user = seller
 		else if(user.equals("seller"))
 		{
 			frame = new JFrame();  
 			frame.getContentPane().setBackground(new Color(136, 177, 179));
 			
-				//product name
+				//product name field and textfield
 				
 				JLabel lblName = new JLabel("Product Name :");
 				lblName.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
@@ -229,7 +241,7 @@ public class ProductForm
 				frame.getContentPane().add(nameTXT);
 				nameTXT.setColumns(10);
 				
-				//product id
+				//product id field and textfield
 
 				JLabel lblID = new JLabel("Product ID :");
 				lblID.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
@@ -246,7 +258,7 @@ public class ProductForm
 				maxid.setBounds(562, 74, 70, 21);
 				frame.getContentPane().add(maxid);
 				
-				//product price
+				//product price field and textfield
 				
 				JLabel lblPrice = new JLabel("Product Price :");
 				lblPrice.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
@@ -258,7 +270,7 @@ public class ProductForm
 				priceTXT.setBounds(205, 198, 191, 27);
 				frame.getContentPane().add(priceTXT);
 				
-				//supplier ID
+				//supplier ID field and textfield
 				
 				JLabel SupplierID = new JLabel("Supplier ID :");
 				SupplierID.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
@@ -275,7 +287,7 @@ public class ProductForm
 				label.setBounds(562, 216, 70, 21);
 				frame.getContentPane().add(label);
 				
-				//stock amount
+				//stock amount field and textfield
 				
 				JLabel lblStockAmount = new JLabel("Stock Amount :");
 				lblStockAmount.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
@@ -287,7 +299,7 @@ public class ProductForm
 				stockTXT.setBounds(205, 364, 191, 27);
 				frame.getContentPane().add(stockTXT);
 				
-				//max stock amount
+				//max stock amount field and textfield
 				
 				JLabel lblMaxstockAmount = new JLabel("Max Stock Amount :");
 				lblMaxstockAmount.setFont(new Font("Helvetica Neue", Font.PLAIN,19));
@@ -300,7 +312,7 @@ public class ProductForm
 				frame.getContentPane().add(maxStockTXT);
 				
 
-				//safety stock
+				//safety stock field and textfield
 				
 				JLabel lblSafetyStock = new JLabel("Safety Stock :");
 				lblSafetyStock.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
@@ -346,9 +358,10 @@ public class ProductForm
 						String maxStock = maxStockTXT.getText();
 						String safety = safetyTXT.getText();
 						
-						
+						//calls checkErrorSeller function before adding product
 						errorFlag = checkErrorSeller(name,id,price,supplierID,safety,stockAm,maxStock);
 						
+						//if errorFlag = false there is no error, adds product in ArrayList Company Product
 						if(!errorFlag)
 						{
 							frame.setVisible(false);
@@ -376,6 +389,7 @@ public class ProductForm
 	private boolean checkErrorOM(String name,String id,String stockAmount,String maxStockAmount,String safetyStock,
 			String averageMonthlyConsumption,String leadtime,String expectedAmount)
 	{
+		/*checks if there is an error in filled product form */
 		
 		errorFlag = false;
 		
@@ -485,71 +499,11 @@ public class ProductForm
 		}	
 		return errorFlag;
 	}
-	
-	private boolean checkErrorSeller(String name,String id,String safetyStock,String stockAmount,String maxStockAmount,
-			String price)
-{
-		JFrame popUp = new JFrame();
-		errorFlag = false;
-		
-		// checks if all fields are filled
-		if(name.isEmpty())
-		{
-			JOptionPane.showMessageDialog(popUp, "Name Field Must Be Filled");
-			errorFlag = true;
-		}
-		
-		if(id.isEmpty())
-		{
-			JOptionPane.showMessageDialog(popUp, "ID Field Must Be Filled");
-			errorFlag = true;
-		}
-		
-		if(safetyStock.isEmpty())
-		{
-			JOptionPane.showMessageDialog(popUp, "Safety Stock Field Must Be Filled");
-			errorFlag = true;
-		}
-		
-		if(stockAmount.isEmpty())
-		{
-			JOptionPane.showMessageDialog(popUp, "Stock Amount Field Must Be Filled");
-			errorFlag = true;
-		}
-		
-		if(maxStockAmount.isEmpty())
-		{
-			JOptionPane.showMessageDialog(popUp, "Maximum Stock Amount Field Must Be Filled");
-			errorFlag = true;
-		}
-		
-		if(price.isEmpty())
-		{
-			JOptionPane.showMessageDialog(popUp, "Price Field Must Be Filled");
-			errorFlag = true;
-		}
-		
-		//checks if product already exists in database
-		
-		if(!(id.isEmpty()))
-		{
-			CompanyProducts comp = new CompanyProducts();
-			ArrayList<CompanyProduct> compP = comp.getCompProduct();
-			for(int i = 0; i < compP.size(); i++)
-			{
-				if(id.equals(compP.get(i).getId()))
-				{
-					JOptionPane.showMessageDialog(popUp, "A Product with the same ID already exists");
-					errorFlag = true;
-				}
-			}
-		}
-	
-		return errorFlag;
-	}
-	
+
 	private boolean checkErrorSeller(String name, String id, String price, String supplierID, String safetyStock,String stockAmount,String maxStockAmount)
 	{
+		/*checks if there is an error in filled product form */
+		
 		errorFlag = false;
 		
 		// checks if all fields are filled

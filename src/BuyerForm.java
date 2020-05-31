@@ -15,7 +15,10 @@ import javax.swing.SwingConstants;
 	
 public class BuyerForm extends JFrame
 {
-
+	/*BuyerForm.java
+	 * Purpose : Displays the GUI of a form for the seller in order to add a buyer to the database.
+	 * @author Fotiadou Vassiliki
+	 */
 
 		private JFrame frame;
 		private boolean errorFlag;//false if there is no error else true
@@ -28,12 +31,14 @@ public class BuyerForm extends JFrame
 		
 		public void addAClient()
 		{
+			/* Creates GUI and adds buyer in ArrayList Buyer if there is no error in filled form*/
+			
 			//creation of gui
 			
 			frame = new JFrame(); 
 			frame.getContentPane().setBackground(new Color(136, 177, 179));
 		
-			// name
+			// name label and textfield
 			
 			JLabel nameLabel = new JLabel("First Name :");
 			nameLabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
@@ -45,7 +50,7 @@ public class BuyerForm extends JFrame
 			frame.getContentPane().add( nameTXT);
 			nameTXT.setColumns(10);
 			
-			//last name
+			//last name label and textfield
 			
 			JLabel lastNameLabel = new JLabel("Last Name :");
 			lastNameLabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
@@ -57,7 +62,7 @@ public class BuyerForm extends JFrame
 			lastNameTXT.setBounds(489, 180, 291, 34);
 			frame.getContentPane().add(lastNameTXT);
 
-			//id
+			//id label and textfield
 			
 			JLabel idLabel = new JLabel("ID :");
 			idLabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
@@ -74,7 +79,7 @@ public class BuyerForm extends JFrame
 			idmaxCharacters.setBounds(207, 308, 109, 14);
 			frame.getContentPane().add(idmaxCharacters);
 			
-			//afm
+			//afm label and textfield
 			
 			JLabel afmLabel = new JLabel("AFM :");
 			afmLabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
@@ -91,7 +96,7 @@ public class BuyerForm extends JFrame
 			afmMaxCharacters.setBounds(207, 432, 109, 14);
 			frame.getContentPane().add(afmMaxCharacters);
 			
-			//phone
+			//phone label and textfield
 			
 			JLabel phonelabel = new JLabel("Phone Number :");
 			phonelabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
@@ -138,16 +143,17 @@ public class BuyerForm extends JFrame
 			{
 				public void actionPerformed(ActionEvent e) 
 				{
-					
+				
 					String name = nameTXT.getText();
 					String lastName = lastNameTXT.getText();
 					String id = idTXT.getText();
 					String afm = afmTXT.getText();
 					String phone = phoneTXT.getText();
 					
-				
+					//calls checkError function before adding client 
 					errorFlag = checkError(name,lastName,id,afm,phone);
 					
+					//if errorFlag = false there is no error, adds client in ArrayList Buyers
 					if(!errorFlag)
 					{
 						frame.setVisible(false);
@@ -170,6 +176,9 @@ public class BuyerForm extends JFrame
 		
 		private boolean checkError(String name,String lastName,String id,String afm,String phone)
 		{
+			/* Purpose : Checks if the filled form has all the fields filled and there is no such client already in database*/
+			 
+			
 			//checks if all fields are filled
 			
 			errorFlag = false;
