@@ -130,49 +130,51 @@ public class ShowProduct extends JFrame {
 		lblNewLabel_8.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(lblNewLabel_8);
 		
-		textField_8 = new JTextField();
+		
+		textField_8 = new JTextField(spl.getId());
 		textField_8.setBounds(637, 31, 188, 32);
 		textField_8.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		frame.getContentPane().add(textField_8);
 		textField_8.setColumns(10);
 		
-		textField_1 = new JTextField();
+		textField_1 = new JTextField(spl.getName());
 		textField_1.setBounds(637, 90, 188, 36);
 		textField_1.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
-		textsa = new JTextField();
+		
+		textsa = new JTextField(spl.getStockAmount());
 		textsa.setBounds(637, 150, 188, 36);
 		textsa.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		frame.getContentPane().add(textsa);
 		textsa.setColumns(10);
 		
-		textField_3 = new JTextField();
+		textField_3 = new JTextField(spl.getMaxStockAmount());
 		textField_3.setBounds(637, 217, 188, 36);
 		textField_3.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		frame.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 		
-		textField_4 = new JTextField();
+		textField_4 = new JTextField(spl.getSafetyStock());
 		textField_4.setBounds(637, 280, 188, 36);
 		textField_4.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		frame.getContentPane().add(textField_4);
 		textField_4.setColumns(10);
 		
-		textField_5 = new JTextField();
+		textField_5 = new JTextField(spl.getAverageMonthlyConsumption());
 		textField_5.setBounds(636, 351, 189, 34);
 		textField_5.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		frame.getContentPane().add(textField_5);
 		textField_5.setColumns(10);
 		
-		textlt= new JTextField();
+		textlt= new JTextField(spl.getLeadtime());
 		textlt.setBounds(637, 420, 189, 36);
 		textlt.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		frame.getContentPane().add(textlt);
 		textlt.setColumns(10);
 		
-		textea = new JTextField();
+		textea = new JTextField(spl.getExpectedAmount());
 		textea.setBounds(637, 489, 189, 36);
 		textea.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		frame.getContentPane().add(textea);
@@ -290,7 +292,7 @@ public class ShowProduct extends JFrame {
 		lblPrice.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(lblPrice);
 		
-		
+	
 		textidcp = new JTextField(cp.getId());
 		textidcp.setBounds(707, 34, 153, 33);
 		textidcp.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
