@@ -1,3 +1,4 @@
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -5,30 +6,74 @@ public class Supplies extends ListFromDB {
 	ArrayList<Suppl> supplies = new ArrayList<>();
 	
 	public void extractObjectDB() {
-		Connection c = null;
-		Statement stmt = null;
+		/*
+		 * 
+		 */
+		Connection c = connect();
 		try {
 			
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-			System.out.println("SQLite DB connected");
-			stmt = c.createStatement();
+			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Supplies");
 			
-			Suppl s = new Suppl("", "", 0.0);
 			while (rs.next()) {
-				
-				b.setProductId(rs.getString(PFP_Id));
-				b.setSellerId(rs.getString(Supplier_Id));
-				b.setPrice(rs.getDouble(Price));
+
+				Suppl s = new Suppl("", "", 0.0);
+				s.setProductId(rs.getString("PFP_Id"));
+				s.setSupplierId(rs.getString("Supplier_Id"));
+				s.setPrice(rs.getDouble("Price"));
 				supplies.add(s);
-				
 			}
-			
-			c.close();
-		}catch(Exception e){
-			System.out.println(e);
+			stmt.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
+	}
+	
+	public void updateObjectDB()
+	{
+		/*
+		 * 
+		 */
+		Connection c = connect();
+		try {
+			
+			String insertIntoSupplies = "INSERT OR IGNORE INTO Supplies (Supplier_Id, PFP_Id, Price) VALUES (?,?,?);";
+			PreparedStatement statementSupplies = c.prepareStatement(insertIntoSupplies);
+			for(Suppl s: supplies) {
+				statementSupplies.setString(1, s.getSupplierId());
+				statementSupplies.setString(2, s.getProductId());
+				if (s.getPrice() != 0.0) {
+					statementSupplies.setDouble(3, s.getPrice());}
+				else {
+					String sql = "select price from Seller INNER JOIN Seller_Watches_Product on Seller.Id = Seller_Watches_Product.SellerId WHERE Seller.Id ="+ s.getSupplierId()+");";
+					Statement stmt = c.createStatement();
+					ResultSet rs = stmt.executeQuery(sql);
+					statementSupplies.setDouble(3, rs.getDouble("Price") );
+					stmt.close();
+				}
+				statementSupplies.executeUpdate();
+			}
+			statementSupplies.close();
+			
+			}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	public ArrayList<Suppl> getSupplies()
+	{
+		return supplies;
 	}
  
 }
