@@ -1,4 +1,5 @@
 
+
 public class Buyer {
 	/*Buyer.java
 	 * @author Vlasakoudi Christina
@@ -66,3 +67,4 @@ public class Buyer {
 
 	
 }
+

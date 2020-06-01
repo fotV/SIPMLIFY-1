@@ -1,20 +1,39 @@
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ListFromDB {
-	Connection c = null;
-	ListFromDB(){
+	/*
+	 * ListFromDB.java
+	 * Purpose: Class parent that creates the connection to the database.
+	 * @author Eleni Polyzoidou, Evangelia Papagiannaki.
+	 * @version 1.0
+	 */
+	
+	public ListFromDB(){
+		
+	}
+	
+	public Connection connect() {
 		Connection c = null;
 		try {
-			
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-			System.out.println("SQLite DB connected");
-			c.close();
+			
+		    c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
+			
 		}catch(Exception e){
+			System.out.println(this.getClass());
 			System.out.println(e);
 		}
+		
+		return c;	
+		
 	}
+	
+	
 	
 	public void extractObjectDB() {
 		

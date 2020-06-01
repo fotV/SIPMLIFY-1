@@ -1,3 +1,4 @@
+
 public class SupplierProduct {
 	/*SupplierProduct.java
 	 * @author Vlasakoudi Christina
@@ -109,5 +110,6 @@ public class SupplierProduct {
 
 		 
       }
+
 
 

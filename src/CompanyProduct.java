@@ -1,4 +1,5 @@
 
+
 public class CompanyProduct {
 	/*CompanyProduct.java
 	 * @author Vlasakoudi Christina
@@ -75,5 +76,6 @@ public class CompanyProduct {
 		
 	}
 }
+
 
 

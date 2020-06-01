@@ -9,6 +9,7 @@ import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 
 
 
+
     public class LogginForm extends JFrame{
     	/*LogginForm.java
     	 * Purpose : Displays the GUI of a loggin form for users.
@@ -260,9 +261,7 @@ import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
                    
         
     		
-    			
-    
-    
+
 		
     
               
@@ -276,16 +275,7 @@ import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 						
 		
 			
-	
-    	
 
-    						
-					
-					
-						
-		
-			
-	
 						
 					
 						
@@ -304,4 +294,4 @@ import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 		
 
 
-	
+
