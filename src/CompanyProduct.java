@@ -4,24 +4,23 @@ public class CompanyProduct {
 	/*CompanyProduct.java
 	 * @author Vlasakoudi Christina
 	 */
-	private String id;
 	private String name;
-	private double price;
-	private double safetystock;
-	private double stockamount;
+	private String id;
+	private String sellerId;
+	private double stockAmount;
 	private double maxStockAmount;
+	private double safetyStock;
+	private double price;
 	
-	public CompanyProduct(String id,String name,double safetystock,double stockamount,double maxStockAmount,double price)
- {
-	     this.id=id;
-		 this.name=name;
-		 this.price=price;
-		 this.safetystock=safetystock;
-		 this.stockamount=stockamount;
-		 this.maxStockAmount=maxStockAmount;
-		 this.price = price;
-
-}
+	public CompanyProduct(String name, String id, String sellerId, double stockAmount, double maxStockAmount, double safetyStock,double price) {
+		this.name = name;
+		this.id = id;
+		this.sellerId = sellerId;
+		this.stockAmount = stockAmount;
+		this.maxStockAmount = maxStockAmount;
+		this.safetyStock = safetyStock;
+		this.price = price;
+	}
 
 	public String getId() {
 		return id;
