@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Supplies.java
- * Inherits from LIstFromDB.java
- * Purpose: Manages the data from matrix Supplies (in simplify.db).
+ * Inherits from ListFromDB.java
+ * Purpose: Manages the data from table Supplies (in simplify.db).
  * @author Eleni Polyzoidou, Evangelia Papagiannaki.
  */
 public class Supplies extends ListFromDB {
