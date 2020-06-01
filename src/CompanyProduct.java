@@ -29,11 +29,9 @@ public class CompanyProduct {
 	public String getName() {
 		return name;
 	}
-
 	public double getSafetyStock() {
 		return safetystock;
 	}
-
 	public double getStockAmount() {
 		return stockamount;
 	}
@@ -44,36 +42,39 @@ public class CompanyProduct {
 	public double getPrice(){
 		return price;
 	}
+	public String getSellertId() {
+		return sellerId;
+	}
+	
+
 
 	public void setName(String name) {
 		this.name = name;
-		
 	}
 
 	public void setId(String id) {
 		this.id = id;
-		
 	}
 
 	public void setStockAmount(double stockAmount) {
 		this.stockamount = stockAmount;
-		
 	}
 
 	public void setMaxStockAmount(double maxStockAmount) {
 		this.maxStockAmount = maxStockAmount;
-		
 	}
 
 	public void setSafetyStock(double safetyStock) {
 		this.safetystock = safetyStock;
-		
 	}
 
 	public void setPrice(double price) {
 		this.price = price;
-		
 	}
+	
+	public void setSellerId(String id) {
+		this.sellerId = id;
+	}	
 }
 
 
