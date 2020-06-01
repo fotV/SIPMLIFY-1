@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * Proposals.java
- * Inherits from LIstFromDB.java
+ * Inherits from ListFromDB.java
  * Purpose: Manages the data from table Forcast_Proposal (in simplify.db).
  * @author Eleni Polyzoidou, Evangelia Papagiannaki.
  */
