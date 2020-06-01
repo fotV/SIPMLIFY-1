@@ -2,14 +2,12 @@
 import java.sql.*;
 import java.util.ArrayList;
 
+
 public class Buyers extends ListFromDB {
 	private ArrayList<Buyer> buyers = new ArrayList<Buyer>();
 	
-	
 	public void extractObjectDB() {
-		/*
-		 * 
-		 */
+		
 		Connection c = connect();
 		try {
 
@@ -40,9 +38,6 @@ public class Buyers extends ListFromDB {
 	}
 
 	public void updateObjectDB(){
-		/*
-		 * 
-		 */
 		Connection c = connect();
 		try {
 			

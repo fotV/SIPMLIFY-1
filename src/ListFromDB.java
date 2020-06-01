@@ -1,22 +1,27 @@
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * ListFromDB.java
+ * Purpose: Class parent that creates the connection to the simplify.db.
+ * @author Eleni Polyzoidou, Evangelia Papagiannaki.
+ */
 public class ListFromDB {
-	/*
-	 * ListFromDB.java
-	 * Purpose: Class parent that creates the connection to the database.
-	 * @author Eleni Polyzoidou, Evangelia Papagiannaki.
-	 * @version 1.0
-	 */
 	
+	/**
+	 * Constractor.
+	 */
 	public ListFromDB(){
 		
 	}
 	
+	/**
+	 * The method that creates the connection to the database.
+	 * @return c of type Connection, when connection to the database is successful.
+	 */
 	public Connection connect() {
 		Connection c = null;
 		try {
@@ -29,16 +34,19 @@ public class ListFromDB {
 			System.out.println(e);
 		}
 		
-		return c;	
-		
+		return c;		
 	}
 	
-	
-	
+	/**
+	 * Loads data in list.
+	 */
 	public void extractObjectDB() {
 		
 	}
 	
+	/**
+	 * Uploads data from list.
+	 */
 	public void updateObjectDB() {
 		
 	}

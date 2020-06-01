@@ -1,16 +1,20 @@
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * CompanyProducts.java
+ * Inherits from LIstFromDB.java
+ * Purpose: Manages the data from matrix Product_for_sale (in simplify.db).
+ * @author Eleni Polyzoidou, Evangelia Papagiannaki.
+ */
 public class CompanyProducts extends ListFromDB {
-	/*
-	 * Class
-	 */
 	private ArrayList<CompanyProduct> companyp = new ArrayList<>();
 	
+	/**
+	 * Loads data in companyp.
+	 */
+	@Override
 	public void extractObjectDB() {
-		/*
-		 * 
-		 */
 		Connection c = connect();
 		try {
 			
@@ -42,11 +46,11 @@ public class CompanyProducts extends ListFromDB {
 		}
 	}
 
-	
-public void updateObjectDB() {
-	/*
-	 * 
-	 */
+	/**
+	 * Uploads data from companyp.
+	 */	
+	@Override
+	public void updateObjectDB() {
 		Connection c = connect();
 		try {
 			
@@ -94,7 +98,10 @@ public void updateObjectDB() {
 		}
 	}
 	
-	
+	/**
+	 * Gets the list with objects of type CompanyProduct.
+	 * @return companyp of type ArrayList<CompanyProduct>.
+	 */
 	public ArrayList<CompanyProduct> getCompanyProducts() {
 		return companyp;
 	}

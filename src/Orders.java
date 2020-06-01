@@ -1,10 +1,19 @@
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Orders.java
+ * Inherits from LIstFromDB.java
+ * Purpose: Manages the data from matrix Order_for_purchase (in simplify.db).
+ * @author Eleni Polyzoidou, Evangelia Papagiannaki.
+ */
 public class Orders extends ListFromDB {
 	private ArrayList<Order> orders = new ArrayList<Order>();
 	
-	
+	/**
+	 * Loads data in orders.
+	 */
+	@Override
 	public void extractObjectDB() {
 		Connection c = connect();
 		try {
@@ -46,6 +55,10 @@ public class Orders extends ListFromDB {
 		}
 	}
 	
+	/**
+	 * Uploads data from orders.
+	 */
+	@Override
 	public void updateObjectDB(){
 		Connection c = connect();
 		try {
@@ -92,8 +105,12 @@ public class Orders extends ListFromDB {
 			}
 		}
 	
-}
+	}
 
+	/**
+	 * Gets the list with objects of type Order.
+	 * @return orders of type ArrayList<Order> (the list with orders).
+	 */
 	public ArrayList<Order> getOrders() {
 		return orders;
 	}

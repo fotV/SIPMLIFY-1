@@ -1,16 +1,20 @@
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * SupplierProducts.java
+ * Inherits from LIstFromDB.java
+ * Purpose: Manages the data from matrix Product_for_purchase (in simplify.db).
+ * @author Eleni Polyzoidou, Evangelia Papagiannaki.
+ */
 public class SupplierProducts extends ListFromDB {
-	/*
-	 * Class 
-	 */
 	private ArrayList<SupplierProduct> supplierp = new ArrayList<>();
 	
+	/*
+	 * Loads data in supplierp.
+	 */
+	@Override
 	public void extractObjectDB() {
-		/*
-		 * 
-		 */
 		Connection c = connect();
 		try {
 			
@@ -44,10 +48,11 @@ public class SupplierProducts extends ListFromDB {
 		}
 	}
 	
+	/*
+	 * Uploads data from supplierp.
+	 */
+	@Override
 	public void updateObjectDB() {
-		/*
-		 * 
-		 */
 		Connection c = connect ();
 		try {
 			
@@ -101,7 +106,7 @@ public class SupplierProducts extends ListFromDB {
 			
 	}
 	
-	/*
+	/**
 	 * Gets the list of SupplierProduct
 	 * @return An ArrayList with SupplierProducts
 	 *     name.

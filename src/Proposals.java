@@ -3,9 +3,19 @@ import java.sql.*;
 import java.util.Random;
 import java.util.ArrayList;
 
+/**
+ * Proposals.java
+ * Inherits from LIstFromDB.java
+ * Purpose: Manages the data from matrix Forcast_Proposal (in simplify.db).
+ * @author Eleni Polyzoidou, Evangelia Papagiannaki.
+ */
 public class Proposals extends ListFromDB {
 	private ArrayList<Order> proposals = new ArrayList<>();
 	
+	/**
+	 * Loads data in proposals.
+	 */
+	@Override
 	public void extractObjectDB() {
 		Connection c = connect();
 		try {
@@ -69,6 +79,10 @@ public class Proposals extends ListFromDB {
 		}
 	}
 	
+	/**
+	 * Uploads data from proposals.
+	 */
+	@Override
 	public void updateObjectDB(){
 		Connection c = connect();
 		try {
@@ -99,7 +113,10 @@ public class Proposals extends ListFromDB {
 		}
 	}
 	
-	
+	/**
+	 * Gets the list with objects of type Order.
+	 * @return proposals of type ArrayList<Order> (the list with order proposals).
+	 */
 	public ArrayList<Order> getProposals() {
 		return proposals;
 	}

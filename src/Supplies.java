@@ -2,13 +2,20 @@
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Supplies.java
+ * Inherits from LIstFromDB.java
+ * Purpose: Manages the data from matrix Supplies (in simplify.db).
+ * @author Eleni Polyzoidou, Evangelia Papagiannaki.
+ */
 public class Supplies extends ListFromDB {
 	ArrayList<Suppl> supplies = new ArrayList<>();
 	
+	/**
+	 * Loads data in supplies.
+	 */
+	@Override
 	public void extractObjectDB() {
-		/*
-		 * 
-		 */
 		Connection c = connect();
 		try {
 			
@@ -35,11 +42,11 @@ public class Supplies extends ListFromDB {
 		}
 	}
 	
-	public void updateObjectDB()
-	{
-		/*
-		 * 
-		 */
+	/**
+	 * Uploads data from supplies.
+	 */
+	@Override
+	public void updateObjectDB() {
 		Connection c = connect();
 		try {
 			
@@ -71,6 +78,11 @@ public class Supplies extends ListFromDB {
 			}
 		}
 	}
+	
+	/**
+	 * Gets the list with objects of type suppl.
+	 * @return supplies of type ArrayList<Suppl>
+	 */
 	public ArrayList<Suppl> getSupplies()
 	{
 		return supplies;
