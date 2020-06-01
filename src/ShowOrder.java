@@ -710,19 +710,18 @@ public class ShowOrder {
  {
 
      if(textPR.getText()!=null && textSTATUS.getText()!=null)
-	   {
+     {
 		 if((textSTATUS.getText()>=1 && textSTATUS.getText()=< 5) && (textPR.getText()).matches("[0-9]+"))
 		 {
 			 return true;
 		 }
-	   }
-	  else
-	   {   
+	     else
+	     {   
 			 System.out.println("Some of the data you have entered must be invalid.Please try again");
 			 return false;
-		}
+	      }
 			
-	   }
+      }
       else
       {
    	   System.out.println("You didn't fill in all the information needed.Please try again.");
