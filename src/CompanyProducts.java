@@ -4,7 +4,7 @@ import java.util.ArrayList;
 /**
  * CompanyProducts.java
  * Inherits from LIstFromDB.java
- * Purpose: Manages the data from matrix Product_for_sale (in simplify.db).
+ * Purpose: Manages the data from table Product_for_sale (in simplify.db).
  * @author Eleni Polyzoidou, Evangelia Papagiannaki.
  */
 public class CompanyProducts extends ListFromDB {
