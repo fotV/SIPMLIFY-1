@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 /**
  * CompanyProducts.java
- * Inherits from LIstFromDB.java
+ * Inherits from ListFromDB.java
  * Purpose: Manages the data from table Product_for_sale (in simplify.db).
  * @author Eleni Polyzoidou, Evangelia Papagiannaki.
  */
