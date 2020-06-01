@@ -2,12 +2,19 @@
 import java.sql.*;
 import java.util.ArrayList;
 
-
+/**
+ * Buyers.java
+ * Inherits from ListFromDB.java
+ * Purpose: Manages the data from table Client (in simplify.db).
+ * @author Eleni Polyzoidou, Evangelia Papagiannaki.
+ */
 public class Buyers extends ListFromDB {
 	private ArrayList<Buyer> buyers = new ArrayList<Buyer>();
-	
+	/*
+	 * Loads data in buyers.
+	 */
+	@Override
 	public void extractObjectDB() {
-		
 		Connection c = connect();
 		try {
 
@@ -36,7 +43,11 @@ public class Buyers extends ListFromDB {
 			}
 		}
 	}
-
+	
+        /*
+	 * Uploads data from buyers.
+	 */
+	@Override
 	public void updateObjectDB(){
 		Connection c = connect();
 		try {
@@ -71,7 +82,10 @@ public class Buyers extends ListFromDB {
 			}
 		}
 	}
-
+        /**
+	 * Gets the list of SupplierProduct
+	 * @return An ArrayList with SupplierProducts
+	 */
 	public ArrayList<Buyer> getBuyers()
 	{
 		return buyers;
