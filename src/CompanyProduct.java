@@ -6,7 +6,6 @@ public class CompanyProduct {
 	private double safetystock;
 	private double stockamount;
 	private double maxStockAmount;
-
 	
 	public CompanyProduct(String id,String name,double safetystock,double stockamount,double maxStockAmount,double price)
  {
@@ -17,7 +16,6 @@ public class CompanyProduct {
 		 this.stockamount=stockamount;
 		 this.maxStockAmount=maxStockAmount;
 		 this.price = price;
-
 
 }
 
@@ -73,7 +71,6 @@ public class CompanyProduct {
 		this.price = price;
 		
 	}
-	
 }
 
 
