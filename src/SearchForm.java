@@ -8,17 +8,15 @@ import java.awt.event.ActionListener;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
+/*
+ * SearchForm.java
+ * Purpose: Shows a GUI for searching .
+ * @author Evangelia Papagiannaki.
+ */
 public class SearchForm extends JFrame{
-	/*
-	 * SearchForm.java
-	 * Purpose: Shows a GUI for searching .
-	 * @author Evangelia Papagiannaki.
-	 * @version 1.0
-	 */
+	
 	private JPanel panel;
 	private JButton searchButton;
 	private JLabel keyLabel;
