@@ -4,7 +4,7 @@ import java.util.ArrayList;
 /**
  * Orders.java
  * Inherits from LIstFromDB.java
- * Purpose: Manages the data from matrix Order_for_purchase (in simplify.db).
+ * Purpose: Manages the data from table Order_for_purchase (in simplify.db).
  * @author Eleni Polyzoidou, Evangelia Papagiannaki.
  */
 public class Orders extends ListFromDB {
