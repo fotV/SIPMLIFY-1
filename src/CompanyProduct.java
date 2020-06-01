@@ -1,5 +1,8 @@
 
 public class CompanyProduct {
+	/*CompanyProduct.java
+	 * @author Vlasakoudi Christina
+	 */
 	private String id;
 	private String name;
 	private double price;

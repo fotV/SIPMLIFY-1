@@ -1,5 +1,8 @@
 
 public class Buyer {
+	/*Buyer.java
+	 * @author Vlasakoudi Christina
+	 */
 	private String name;
 	private String lastName;
 	private String id;

@@ -15,7 +15,7 @@ import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 public class SupplierForm extends JFrame {
 	
 	
-	/*SypplierForm.java
+	/*SupplierForm.java
 	 * Purpose : Displays the GUI of a form for the ordermanager.Add a supplier to the database.
 	 * @author Vlasakoudi Christina
 	 */

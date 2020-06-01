@@ -1,6 +1,9 @@
 
 
 	public class Order {
+		/*Order.java
+		 * @author Vlasakoudi Christina
+		 */
 	
 		
 		private String orderManagerId;

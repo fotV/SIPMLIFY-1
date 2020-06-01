@@ -1,4 +1,7 @@
 public class SupplierProduct {
+	/*SupplierProduct.java
+	 * @author Vlasakoudi Christina
+	 */
 	 private String name;
 	 private String id;
 	 private String orderManagerId; // the orderManagerId is needed in this class

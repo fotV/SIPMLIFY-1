@@ -1,5 +1,8 @@
 
 public class Suppl {
+	/*Suppl.java
+	 * @author Vlasakoudi Christina
+	 */
 	private String productId;
 	private String supplierId;
 	private double price;
