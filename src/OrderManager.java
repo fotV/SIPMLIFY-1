@@ -29,14 +29,14 @@ public class OrderManager extends User {
 	public void initializeLists() {
 		
 		/* Extracts the products from DB of the specific order manager */
-		for (TrySupplierProduct supProd : products) {
+		for (SupplierProduct supProd : products) {
 			if ( supProd.getOrderManagerId().equals(id) ) {
 				products.extractObjectDB();
 			}
 		}
 		
 		/* Extracts the suppliers from DB of the specific order manager */
-		for (TrySupplier suppl : suppliers) {
+		for (Supplier suppl : suppliers) {
 			if ( suppl.getOrderManagerId().equals(id) ) {
 				suppliers.extractObjectDB();
 			}
