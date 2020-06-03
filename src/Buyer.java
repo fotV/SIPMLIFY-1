@@ -2,6 +2,7 @@
 
 public class Buyer {
 	/*Buyer.java
+	 * Purpose: Class that repre
 	 * @author Vlasakoudi Christina
 	 */
 	private String name;
@@ -20,7 +21,7 @@ public class Buyer {
 		this.AFM = AFM;
 		this.phoneNumber = phoneNumber;
 		this.sellerId = sellerId;
-}
+	}
 
 	public String getName() {
 		return name;

@@ -108,19 +108,19 @@ public class ShowProduct extends JFrame {
 		textField_1.setColumns(10);
 		
 		
-		textsa = new JTextField(spl.getStockAmount());
+		textsa = new JTextField(" "+spl.getStockAmount());
 		textsa.setBounds(637, 150, 188, 36);
 		textsa.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		frame.getContentPane().add(textsa);
 		textsa.setColumns(10);
 		
-		textField_3 = new JTextField(spl.getMaxStockAmount());
+		textField_3 = new JTextField(" "+spl.getMaxStockAmount());
 		textField_3.setBounds(637, 217, 188, 36);
 		textField_3.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		frame.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 		
-		textField_4 = new JTextField(spl.getSafetyStock());
+		textField_4 = new JTextField(""+spl.getSafetyStock());
 		textField_4.setBounds(637, 280, 188, 36);
 		textField_4.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		frame.getContentPane().add(textField_4);

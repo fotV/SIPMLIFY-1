@@ -47,7 +47,7 @@ public class Users extends ListFromDB {
 			ResultSet results = statement.executeQuery("SELECT FirstName , LastName, Password,Phonenumber,AFM,User.id, Company,Regular,Season FROM User INNER JOIN OrderManager on User.id=OrderManager.Id");
 			while (results.next()) {
 				
-				OrderManager om = new OrderManager("","","","","","",true,"","");
+				OrderManager om = new OrderManager("","","","","","","",true,"");
 				om.setFirstName(results.getString("FirstName"));
 				om.setSurName(results.getString("LastName"));
 				om.setPassword(results.getString("Password"));

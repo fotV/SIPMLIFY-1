@@ -14,7 +14,7 @@ public class OrderManager extends User {
 	private Supplies supplies ;
 	
 	//Constructor
-	public OrderManager(String firstName, String surName, String password, String telephone, String AMA, String id,String company, boolean regular, String season) {
+	public OrderManager(String firstName, String surName, String password, String telephone, String AMA, String id, String company, boolean regular, String season){
 		super(firstName, surName, password, telephone, AMA, company, id);
 		this.regular = regular;
 		this.season = season;
@@ -23,20 +23,19 @@ public class OrderManager extends User {
 		supplies = new Supplies();
 	}
 	
-	
 	/* Method initializeLists() : extracts the infomations from database 
 	** and adds them into lists */
 	public void initializeLists() {
 		
 		/* Extracts the products from DB of the specific order manager */
-		for (SupplierProduct supProd : products) {
+		for (SupplierProduct supProd : products.getSupplierProducts()) {
 			if ( supProd.getOrderManagerId().equals(id) ) {
 				products.extractObjectDB();
 			}
 		}
 		
 		/* Extracts the suppliers from DB of the specific order manager */
-		for (Supplier suppl : suppliers) {
+		for (Supplier suppl : suppliers.getSuppliers()) {
 			if ( suppl.getOrderManagerId().equals(id) ) {
 				suppliers.extractObjectDB();
 			}
@@ -81,18 +80,18 @@ public class OrderManager extends User {
 		}
 		
 		Component frame = null;
-		if (found) new PresentationForm(productsKEY);
+		if (found) new PresentationForm(this, productsKEY);
 		else JOptionPane.showMessageDialog(frame, "No result", "Inane error", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	/* Method addProduct() : adds the parameter to the product list */
 	public void addProduct(SupplierProduct product) {
-		products.add(product);
+		products.getSupplierProducts().add(product);
 	}
 	
 	/* Method editProduct() : adds the sp in the specific index position of list products */
 	public void editProduct(SupplierProduct sp, int index) {
-		products.add(index, sp);
+		products.getSupplierProducts().add(index, sp);
 	}
 	
 	/* Method searchForSupplier() : seasrches a supplier and calls a GUI to 
@@ -139,23 +138,23 @@ public class OrderManager extends User {
 		}
 		
 		Component frame = null;
-		if (found) new PresentationForm(suppliersKEY);
+		if (found) new PresentationForm(this, suppliersKEY);
 		else JOptionPane.showMessageDialog(frame, "No result", "Inane error", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	/* Method addSupplier() : adds the parameter to the supplier list*/
 	public void addSupplier(Supplier s) {
-		suppliers.add(s);
+		suppliers.getSuppliers().add(s);
 	}
 	
 	/* Method editSupplier() : adds the s to the specific index position of list suppliers*/
 	public void editSupplier(Supplier s, int index) {
-		suppliers.add(index, s);
+		suppliers.getSuppliers().add(index, s);
 	}
 	
 	/* Method addOrder() : adds the parameter to the orders list */
 	public void addOrder(Order order) {
-		orders.add(order);
+		orders.getOrders().add(order);
 	}
 	
 	/* Method chooseBusinessType() : sets if the business is regular or not */

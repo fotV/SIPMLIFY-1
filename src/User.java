@@ -55,7 +55,7 @@ public class User {
 		Boolean found=false;
 		ArrayList<Object> ordersKEY = new ArrayList<>();
 		if(column==0) {                                      //0 to orderId
-			for(Order o : this.orders.orders)
+			for(Order o : this.orders.getOrders())
 			{
 				if(o.getOrderId().equals(key))
 					{
@@ -65,7 +65,7 @@ public class User {
 			}
 		}
 		else if (column==1) {                              //1 to supplierId
-			for(Order o : this.orders.orders)
+			for(Order o : this.orders.getOrders())
 			{
 				if(o.getSupplierId().equals(key)) {
 					ordersKEY.add(o);
@@ -74,7 +74,7 @@ public class User {
 			}
 		}
 		else if (column==2) {                              //2 to productId
-			for(Order o : this.orders.orders)
+			for(Order o : this.orders.getOrders())
 			{
 				if(o.getProductId().equals(key)) {
 					ordersKEY.add(o);
@@ -92,7 +92,7 @@ public class User {
 			}
 		}
 		else if (column==4) {                              //4 to date
-			for(Order o : this.orders.orders)
+			for(Order o : this.orders.getOrders())
 			{
 				if(o.getDate().equals(key)) {
 					ordersKEY.add(o);
@@ -102,7 +102,7 @@ public class User {
 		}
 		else if (column==5) {                             //5 to status
 			int intkey = Integer.parseInt(key);
-			for(Order o : this.orders.orders)
+			for(Order o : this.orders.getOrders())
 			{
 				if(o.getStatus()==intkey) ordersKEY.add(o);
 			}
@@ -179,20 +179,17 @@ public class User {
 		this.company = company;
 	}
 
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
-	}
-
 	public Orders getOrders() {
 		return orders;
 	}
 
 	public void setOrders(Orders orders) {
 		this.orders = orders;
+	}
+
+	public String getPhonenumber() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 

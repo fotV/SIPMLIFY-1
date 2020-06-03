@@ -158,8 +158,8 @@ public class BuyerForm extends JFrame
 					if(!errorFlag)
 					{
 						frame.setVisible(false);
-						Buyer buyer = new Buyer(name,lastName,id,afm,phone);
-						seller.getBuyers().add(buyer);
+						Buyer buyer = new Buyer(name, lastName, phone, id, afm, phone);
+						seller.addBuyer(buyer);
 						
 					}
 					

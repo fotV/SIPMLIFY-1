@@ -24,11 +24,12 @@ public class Buyers extends ListFromDB {
 			
 			while (rs.next()) {
 				
-				Buyer b = new Buyer("","", "", "","");
+				Buyer b = new Buyer("","", "", "","","");
 				b.setName(rs.getString("Name"));
 				b.setLastName(rs.getString("LastName"));
 				b.setId(rs.getString("Id"));
 				b.setAFM(rs.getString("AFM"));
+				b.setPhoneNumber("PhoneNumber");
 				b.setSellerId(rs.getString("SellerId"));
 				buyers.add(b);			
 
@@ -53,7 +54,7 @@ public class Buyers extends ListFromDB {
 		Connection c = connect();
 		try {
 			
-			String insertIntoClient = "INSERT OR IGNORE INTO Client (Id, Name, LastName, AFM) VALUES (?,?,?,?);";    //SQL statement for insertion into array Client
+			String insertIntoClient = "INSERT OR IGNORE INTO Client (Id, Name, LastName, AFM) VALUES (?,?,?,?,?);";    //SQL statement for insertion into array Client
 			String insertIntoSells_to = "INSERT OR IGNORE INTO Sells_to (SellerId, ClientId) VALUES (?,?);";         //SQL statement for insertion into array Sells_to
 			PreparedStatement statementClient = c.prepareStatement(insertIntoClient);
 			PreparedStatement statementSells_to = c.prepareStatement(insertIntoSells_to);
@@ -63,6 +64,7 @@ public class Buyers extends ListFromDB {
 				statementClient.setString(2, b.getName());
 				statementClient.setString(3, b.getLastName());
 				statementClient.setString(4, b.getAFM());
+				statementClient.setString(5, b.getPhoneNumber());
 				
 				statementSells_to.setString(1, b.getSellerId());
 				statementSells_to.setString(2, b.getId());

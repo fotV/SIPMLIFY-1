@@ -92,7 +92,7 @@ import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
     				{
     					if (Userid.contains("OR")) {
      				    	
-    					    OrderManagerForm ord= new OrderManagerForm() ;	
+    					    OrderManagerForm ord= new OrderManagerForm(user) ;	
     					    }
     					    else if(Userid.contains("SE")) {
     					    	SellerForm sel= new SellerForm();

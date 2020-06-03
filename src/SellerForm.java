@@ -166,7 +166,7 @@ public class SellerForm extends JFrame{
 		mntmShowProducts.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ev) {
 		    	
-		    	ArrayList<Object> temp = new ArrayList<>(s.getProducts().getCompProduct());
+		    	ArrayList<Object> temp = new ArrayList<>(s.getProducts().getCompanyProducts());
 		    	new PresentationForm(s, temp);
 		    	
 		    	}

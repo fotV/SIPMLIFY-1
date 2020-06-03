@@ -34,11 +34,7 @@ public class SupplierForm extends JFrame {
 	
 	public SupplierForm(OrderManager ordermanager) {
 		this.ordermanager=ordermanager;
-		
-	}
 	
-	
-	public void AddSupplier() {
 		/* Creates GUI and adds supplier in ArrayList Supplier if there is no error in filled form*/
 		
 		//creation of gui
@@ -150,7 +146,7 @@ public class SupplierForm extends JFrame {
 			{
 				
 				Supplier supplier = new Supplier(Suppliername,Supplierlastname,Supplierid,SuppliernphoneNumber,SupplierAFM,SupplierOrdermanagerid);
-				ordermanager.getSuppliers().suppliers.add(supplier);
+				ordermanager.getSuppliers().getSuppliers().add(supplier);
 				
 			}
 		

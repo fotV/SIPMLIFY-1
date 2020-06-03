@@ -17,6 +17,12 @@ import javax.swing.border.EtchedBorder;
  */
 public class SearchForm extends JFrame{
 	
+	/*
+	 * SearchForm.java
+	 * Purpose: Shows a GUI for searching .
+	 * @author Evangelia Papagiannaki.
+	 * @version 1.0
+	 */
 	private JPanel panel;
 	private JButton searchButton;
 	private JLabel keyLabel;
@@ -59,30 +65,34 @@ public class SearchForm extends JFrame{
 		}
 		
 		
+				
 		chooseLabel = new JLabel("Choose Field");                                          
-		chooseLabel.setFont(new Font("Ã‡elveticaNeue-Light", Font.PLAIN, 15));
+		chooseLabel.setFont(new Font("ÇelveticaNeue", Font.BOLD, 17));
 		chooseLabel.setPreferredSize(new Dimension(120,180));
+		chooseLabel.setBounds(225, 335, 159, 32);
 		panel.add(chooseLabel);
 		
 		
-		list.setFont(new Font("Ã‡elveticaNeue-Light",Font.PLAIN,15));
-		list.setPreferredSize(new Dimension(180,140));
+		list.setFont(new Font("ÇelveticaNeue", Font.PLAIN, 15));
+		list.setPreferredSize(new Dimension(200, 140));
+		list.setSelectionBackground(new Color(255, 152, 61));
 		panel.add(list);
 		
+		
 		keyLabel = new JLabel("Enter an input value ");
-		keyLabel.setFont(new Font("Ã‡elveticaNeue-Light", Font.PLAIN, 15));
-		keyLabel.setPreferredSize(new Dimension(187,140));
+		keyLabel.setFont(new Font("ÇelveticaNeue", Font.BOLD, 17));
+		keyLabel.setBounds(1200, 1300, 100, 50);
 		panel.add(keyLabel);
 		
 		
-		key = new JTextField("Type the text",15);
-		key.setFont(new Font("Ã‡elveticaNeue-Light",Font.PLAIN,15));
+		key = new JTextField("Type the text",20);
+		key.setFont(new Font("ÇelveticaNeue",Font.PLAIN,15));
 		key.setPreferredSize(new Dimension(180,26));
 		panel.add(key);
 		
 		
 		searchButton =  new JButton("Search");
-		searchButton.setFont(new Font("Ã‡elveticaNeue-Light", Font.PLAIN, 15));
+		searchButton.setFont(new Font("ÇelveticaNeue", Font.PLAIN, 17));
 		searchButton.setPreferredSize(new Dimension(159,26));
 		panel.add(searchButton);
 		
@@ -126,12 +136,12 @@ public class SearchForm extends JFrame{
 				}
 			}	
 		});
-		panel.setBackground(new Color(153, 172, 196));
+		panel.setBackground(new Color(136, 177, 179));
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		this.setVisible(true);
 		this.getContentPane().add(panel, BorderLayout.CENTER);
 		this.setTitle("SearchForm");
-		this.setSize(500,500);
+		this.setBounds(100, 100, 1041, 653);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
@@ -144,14 +154,12 @@ public class SearchForm extends JFrame{
 	private boolean checkForError(int type, User user)
 	{
 		boolean flag = false;
-		if(list.getSelectedIndex()==-1) {                                                                              //if the user did not select a field from the list
-			if (key.getText().equals("Type the key") || key.getText().equals("")){                                     // if the key field does not have the correct input
-				JOptionPane.showMessageDialog(panel,"Invalid input in key field and no field choosen");
-			}                                                                                                         
-			else{                                                                                                      // if the key field containt the correct input
-				JOptionPane.showMessageDialog(panel,"No field choosen");
-			}
-		}
+		if(list.getSelectedIndex()==-1){                                                                                
+			JOptionPane.showMessageDialog(panel,"No field choosen");
+		}                                                                     
+		if (key.getText().equals("Type the text") || key.getText().equals("")){                                     // if the key field does not have the correct input
+				JOptionPane.showMessageDialog(panel,"Invalid input in key field");
+		}                                                                                                         
 		else if (list.getSelectedIndex() == 0 && (key.getText().length() != 6)) {                                      //if the user selected the first field from the list and key field does not have 6 characters
 			JOptionPane.showMessageDialog(panel,"Invalid input in key field.");		
 		}

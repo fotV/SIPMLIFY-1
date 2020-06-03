@@ -4,9 +4,8 @@ public class Stockkeeper extends User {
 	/*
 	 * Stock keeper's Constructor.
 	 * */
-	public Stockkeeper(String firstName, String surName, String password, String telephone, String aFM, String id,
-			String company, int type) {
-		super(firstName, surName, password, telephone, aFM, id, company, type);
+	public Stockkeeper(String firstName, String surName, String password, String telephone, String aFM, String id, String company) {
+		super(firstName, surName, password, telephone, aFM, id, company);
 	}
 
 	/*

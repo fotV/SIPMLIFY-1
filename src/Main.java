@@ -3,11 +3,12 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		// TODO Auto-generated method stub
-		new SupplierForm();
-
 		
-		
+		Users u = new Users();
+		u.extractObjectDB();
+	
+		OrderManager k = (OrderManager) u.getUsers().get(8);
+		new OrderManagerForm(k);
 
 	}
 
