@@ -12,7 +12,6 @@ public class User {
 	protected String AFM;
 	protected String id;
 	protected String company;
-	protected int type;
 	protected Orders orders;
 	
 	/*
@@ -24,16 +23,15 @@ public class User {
 	/*
 	 * Constructor
 	 */
-	public User(String firstName, String surName, String password, String telephone, String aFM, String id, String company, int type)
+	public User(String firstName, String surName, String password, String telephone, String aFM, String id, String company)
 	{
 		this.firstName = firstName;
 		this.surName = surName;
 		this.password = password;
 		this.telephone = telephone;
-		AFM = aFM;
+		this.AFM = aFM;
 		this.id = id;
 		this.company = company;
-		this.type = type;
 		this.orders=new Orders();
 	}
 

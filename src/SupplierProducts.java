@@ -27,7 +27,7 @@ public class SupplierProducts extends ListFromDB {
 				sp.setMaxStockAmount(rs.getDouble("MaxStockAmount"));
 				sp.setSafetyStock(rs.getDouble("SafetyStock"));
 				sp.setAverageMonthlyConsumption(rs.getDouble("AverageMonthlyConsumption"));
-				sp.setLeadTime(rs.getInt("Leadtime"));
+				sp.setLeadtime(rs.getInt("Leadtime"));
 				sp.setExpectedAmount(rs.getDouble("ExpectedAmount"));
 				supplierp.add(sp);
 				

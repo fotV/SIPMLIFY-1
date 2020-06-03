@@ -48,15 +48,7 @@ public class Supplies extends ListFromDB {
 			for(Suppl s: supplies) {
 				statementSupplies.setString(1, s.getSupplierId());
 				statementSupplies.setString(2, s.getProductId());
-				if (s.getPrice() != 0.0) {
-					statementSupplies.setDouble(3, s.getPrice());}
-				else {
-					String sql = "select price from Seller INNER JOIN Seller_Watches_Product on Seller.Id = Seller_Watches_Product.SellerId WHERE Seller.Id ="+ s.getSupplierId()+");";
-					Statement stmt = c.createStatement();
-					ResultSet rs = stmt.executeQuery(sql);
-					statementSupplies.setDouble(3, rs.getDouble("Price") );
-					stmt.close();
-				}
+				statementSupplies.setDouble(3, s.getPrice());
 				statementSupplies.executeUpdate();
 			}
 			statementSupplies.close();

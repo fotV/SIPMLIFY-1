@@ -30,10 +30,10 @@ public class CompanyProduct {
 		return name;
 	}
 	public double getSafetyStock() {
-		return safetystock;
+		return safetyStock;
 	}
 	public double getStockAmount() {
-		return stockamount;
+		return stockAmount;
 	}
 
 	public double getMaxStockAmount() {
@@ -42,7 +42,7 @@ public class CompanyProduct {
 	public double getPrice(){
 		return price;
 	}
-	public String getSellertId() {
+	public String getSellerId() {
 		return sellerId;
 	}
 	
@@ -57,7 +57,7 @@ public class CompanyProduct {
 	}
 
 	public void setStockAmount(double stockAmount) {
-		this.stockamount = stockAmount;
+		this.stockAmount = stockAmount;
 	}
 
 	public void setMaxStockAmount(double maxStockAmount) {
@@ -65,7 +65,7 @@ public class CompanyProduct {
 	}
 
 	public void setSafetyStock(double safetyStock) {
-		this.safetystock = safetyStock;
+		this.safetyStock = safetyStock;
 	}
 
 	public void setPrice(double price) {
