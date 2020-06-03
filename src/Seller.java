@@ -5,11 +5,8 @@ import javax.swing.JOptionPane;
 
 public class Seller extends User {
 	
-	private CompanyProducts products;
-	private Buyers buyers;
-	
 	//Constructor
-	public Seller(String firstName, String surName, String password, String telephone, String AMA, String id,CompanyProducts products, Buyers buyers) {
+	public Seller(String firstName, String surName, String password, String telephone, String AMA, String id, CompanyProducts products, Buyers buyers) {
 		super(firstName,surName,password,telephone,AMA,id);
 		this.products = products;
 		this.buyers = buyers;
@@ -49,7 +46,7 @@ public class Seller extends User {
 		else if (column==3) {                             					 //3 for supplier id ?? den uparxei
 			for( CompanyProduct compProd : products.getCompanyProducts())
 			{
-				if(compProd.getSellerId().equals(key)) {   //prepei na yparxei kapoio getter 
+				if(compProd.getId().equals(key)) {   //prepei na yparxei kapoio getter 
 					cProductsKEY.add(compProd);
 					found=true;
 				}
@@ -63,12 +60,12 @@ public class Seller extends User {
 	
 	/* Method addProduct() : adds the parameter to the product list */
 	public void addProduct(CompanyProducts product) {
-		products.add(product);
+		products.getCompanyProducts().add(product);
 	}
 	
 	/*Method editProduct() : adds the cp in the specific index position of list products */
 	public void editProduct(CompanyProducts cp, int index) {
-		products.add(index, cp);
+		products.getCompanyProducts().add(index, cp);
 	}
 	
 	/* Method searchForBuyer() : searches a buyer in the list of buyers */
@@ -118,19 +115,19 @@ public class Seller extends User {
 		else JOptionPane.showMessageDialog(frame, "No result", "Inane error", JOptionPane.ERROR_MESSAGE);
 	}
 	
-	//kainouria 
+	//kainouria den xreiazetai
 	public void searchForSupplier(String text, int selectedIndex) {
 		//giati yparxei?
 	}
 	
 	/* Method addBuyer() : adds the parameter to the buyers list */
 	public void addBuyer(Buyer s) {
-		buyers.add(s);
+		buyers.getBuyers().add(s);
 	}
 	
 	/* Method editBuyer() : adds the b in the specific index position of list products */
 	public void editBuyer(Buyer b, int index) {
-		buyers.add(index, b);
+		buyers.getBuyers().add(index, b);
 	}
 	
 	//Getters & Setters 
@@ -141,5 +138,8 @@ public class Seller extends User {
 	public Buyers getBuyers() {
 		return buyers;
 	}
+
+}
+
 
 }
