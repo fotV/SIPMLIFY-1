@@ -27,9 +27,22 @@ public class OrderManager extends User {
 	/* Method initializeLists() : extracts the infomations from database 
 	** and adds them into lists */
 	public void initializeLists() {
-		products.extractObjectDB();
+		
+		/* Extracts the products from DB of the specific order manager */
+		for (TrySupplierProduct supProd : products) {
+			if ( supProd.getOrderManagerId().equals(id) ) {
+				products.extractObjectDB();
+			}
+		}
+		
+		/* Extracts the suppliers from DB of the specific order manager */
+		for (TrySupplier suppl : suppliers) {
+			if ( suppl.getOrderManagerId().equals(id) ) {
+				suppliers.extractObjectDB();
+			}
+		}
+		
 		proposals.extractObjectDB();
-		suppliers.extractObjectDB();
 		supplies.extractObjectDB();
 	}
 	
