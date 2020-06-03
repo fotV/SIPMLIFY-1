@@ -43,7 +43,7 @@ private JFrame frame ;   //frame
 		
 		/* Searches for an order*/
 		JMenuItem searchForJMnItm = new JMenuItem("Orders");
-		searchForJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		searchForJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		searchForJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new SearchForm(1, ordManager);
@@ -53,7 +53,7 @@ private JFrame frame ;   //frame
 		
 		/* Searches for a product */
 		JMenuItem productsJMnItm = new JMenuItem("Products");
-		productsJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		productsJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		productsJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new SearchForm(2, ordManager);
@@ -63,7 +63,7 @@ private JFrame frame ;   //frame
 		
 		/* Searches for a supplier */
 		JMenuItem suppliersJMnItm = new JMenuItem("Suppliers");
-		suppliersJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		suppliersJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		suppliersJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new SearchForm(3, ordManager);
@@ -80,7 +80,7 @@ private JFrame frame ;   //frame
 		
 		/* Shows the product form an adds it into the list */
 		JMenuItem addProdJMnItm = new JMenuItem("Add a Product");
-		addProdJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		addProdJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		addProdJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new ProductForm(ordManager).addAProduct();
@@ -90,7 +90,7 @@ private JFrame frame ;   //frame
 		
 		/* Shows a specific product from presentation form */
 		JMenuItem showProdJMnItm = new JMenuItem("Show a Product");
-		showProdJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		showProdJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		showProdJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Object> temp = new ArrayList<>(ordManager.getProducts().getSupplierProducts()); 			
@@ -108,7 +108,7 @@ private JFrame frame ;   //frame
 		
 		/* Shows the order form an adds it into the list */
 		JMenuItem addOrderJMnItm = new JMenuItem("Add an Order");
-		addOrderJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		addOrderJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		addOrderJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new OrderForm(ordManager);
@@ -118,7 +118,7 @@ private JFrame frame ;   //frame
 		
 		/* Shows a specific order from presentation form */
 		JMenuItem showOrdJMnItm = new JMenuItem("Show an Order");
-		showOrdJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		showOrdJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		showOrdJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Object> temp = new ArrayList<>(ordManager.getOrders().getOrders()); 			
@@ -136,7 +136,7 @@ private JFrame frame ;   //frame
 		
 		/* Shows the supplier form an adds it into the list */
 		JMenuItem addSupplJMnItm = new JMenuItem("Add a Supplier");
-		addSupplJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		addSupplJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		addSupplJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new SupplierForm();
@@ -146,7 +146,7 @@ private JFrame frame ;   //frame
 		
 		/* Shows a specific supplier from presentation form */
 		JMenuItem showSupplJMnItm = new JMenuItem("Show Supplier");
-		showSupplJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		showSupplJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		showSupplJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Object> temp = new ArrayList<>(ordManager.getSuppliers().getSuppliers()); 			
