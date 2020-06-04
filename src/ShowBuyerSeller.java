@@ -9,27 +9,25 @@ import javax.swing.JSeparator;
 public class ShowBuyerSeller {
 	private JFrame frame;
 	private JLabel lblName;
-	private JLabel lblNewLabel;
+	private JLabel lblLastName;
 	private JLabel lblId;
 	private	JLabel lblAfm;
 	private	JLabel lblPhoneNumber;
-	private	JLabel lblfname;
-	private	JLabel lblLname;
-	private	JLabel lblBid ;
-	private	JLabel lblBAFM ;
-	private	JLabel lblBPN ;
+	private JLabel labelName;
+	private JLabel labelLastName;
+	private JLabel labelId;
+	private JLabel labelAfm;
+	private JLabel labelPhoneNumber;
 	private	JSeparator separator ;
 	private	JSeparator separator_1;
 	private JSeparator separator_2 ;
 	private JSeparator separator_3;
-	private Object object;
 		
 	public ShowBuyerSeller(Buyer byr)
 	{
 		frame = new JFrame();
 		frame.setTitle("Buyer Information");
 		frame.setBounds(100, 100, 1041, 653);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().setBounds(new Rectangle(100, 100, 1041, 653));
 		frame.getContentPane().setBackground(new Color(136, 177, 179));
@@ -40,10 +38,10 @@ public class ShowBuyerSeller {
 		lblName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(lblName);
 		
-		lblNewLabel = new JLabel("Last name :");
-		lblNewLabel.setBounds(144, 170, 150, 32);
-		lblNewLabel.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblNewLabel);
+		lblLastName = new JLabel("Last name :");
+		lblLastName.setBounds(144, 170, 150, 32);
+		lblLastName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(lblLastName);
 		
 		lblId = new JLabel("ID :");
 		lblId.setBounds(144, 282, 150, 32);
@@ -60,34 +58,34 @@ public class ShowBuyerSeller {
 		lblPhoneNumber.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(lblPhoneNumber);
 		
-		lblfname = new JLabel(byr.getName());
-		lblfname.setBounds(613, 62, 190, 32);
-		lblfname.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblfname);
+		labelName = new JLabel(byr.getName());
+		labelName.setBounds(613, 62, 190, 32);
+		labelName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelName);
 		
 		
-		lblLname = new JLabel(byr.getLastName());
-		lblLname.setBounds(613, 189, 264, 32);
-		lblLname.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblLname);
+		labelLastName = new JLabel(byr.getLastName());
+		labelLastName.setBounds(613, 189, 264, 32);
+		labelLastName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelLastName);
 		
 		
-		lblBid = new JLabel(byr.getId());
-		lblBid.setBounds(613, 282, 190, 32);
-		lblBid.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblBid);
+		labelId = new JLabel(byr.getId());
+		labelId.setBounds(613, 282, 190, 32);
+		labelId.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelId);
 		
 		
-		lblBAFM = new JLabel(byr.getAFM());
-		lblBAFM.setBounds(198, 145, 46, 14);
-		lblBAFM.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblBAFM);
+		labelAfm = new JLabel(byr.getAFM());
+		labelAfm.setBounds(613, 145, 46, 14);
+		labelAfm.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelAfm);
 	
 		
-		lblBPN = new JLabel(byr.getPhoneNumber());
-		lblBPN.setBounds(613, 494, 190, 32);
-		lblBPN.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblBPN);
+		labelPhoneNumber = new JLabel(byr.getPhoneNumber());
+		labelPhoneNumber.setBounds(613, 494, 190, 32);
+		labelPhoneNumber.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelPhoneNumber);
 		
 		separator = new JSeparator();
 		separator.setBounds(10, 245, 1015,2);
@@ -104,32 +102,31 @@ public class ShowBuyerSeller {
 		separator_3 = new JSeparator();
 		separator_3.setBounds(10, 132, 1015, 2);
 		frame.getContentPane().add(separator_3);
-		
+		frame.setVisible(true);
 
 		
 	}
-	public ShowBuyerSeller(Seller cl)
+	public ShowBuyerSeller(Supplier cl)
 	{  
 		
 		frame = new JFrame();
 		frame.setTitle("Seller information");
 		frame.setBounds(100, 100, 1041, 653);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().setBounds(new Rectangle(100, 100, 1041, 653));
 		frame.getContentPane().setBackground(new Color(136, 177, 179));
 		frame.setResizable(false);
 		
+		
 		lblName = new JLabel("First name :");
-		lblName.setBounds(144, 62, 150, 32);
+		lblName.setBounds(57, 23, 10, 32);
 		lblName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(lblName);
 		
-		lblLname = new JLabel("Last name :");
-		lblLname.setBounds(144, 170, 150, 32);
-		lblLname.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblLname);
-		
+		lblLastName = new JLabel("Last name :");
+		lblLastName.setBounds(144, 170, 150, 32);
+		lblLastName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(lblLastName);
 		
 		lblId = new JLabel("ID :");
 		lblId.setBounds(144, 282, 150, 32);
@@ -137,7 +134,7 @@ public class ShowBuyerSeller {
 		frame.getContentPane().add(lblId);
 		
 		lblAfm = new JLabel("AFM :");
-		lblAfm.setBounds(198, 145, 46, 14);
+		lblAfm.setBounds(144, 385, 150, 32);
 		lblAfm.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(lblAfm);
 		
@@ -146,55 +143,57 @@ public class ShowBuyerSeller {
 		lblPhoneNumber.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(lblPhoneNumber);
 		
-		lblfname = new JLabel(cl.getName());
-		lblfname.setBounds(613, 62, 190, 32);
-		lblfname.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblfname);
+		labelName = new JLabel(cl.getName());
+		lblName.setBounds(613, 32, 190, 32);
+		System.out.println(cl.getName());
+		lblName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelName);
 		
 		
-		lblLname = new JLabel(cl.getLastName());
-		lblLname.setBounds(613, 189, 264, 32);
-		lblLname.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblLname);
+		labelLastName = new JLabel(cl.getLastName());
+		labelLastName.setBounds(613, 175, 264, 32);
+		labelLastName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelLastName);
 		
 		
-		lblBid = new JLabel(cl.getId());
-		lblBid.setBounds(613, 282, 190, 32);
-		lblBid.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblBid);
+		labelId = new JLabel(cl.getId());
+		labelId.setBounds(613, 282, 190, 32);
+		labelId.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelId);
 		
 		
-		lblBAFM = new JLabel(cl.getAFM());
-		lblBAFM.setBounds(198, 145, 46, 14);
-		lblBAFM.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblBAFM);
+		labelAfm = new JLabel(cl.getAFM());
+		System.out.println(cl.getAFM());
+		labelAfm.setBounds(613, 385, 190, 32);
+		labelAfm.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelAfm);
 	
 		
-		lblBPN = new JLabel(cl.getPhoneNumber());
-		lblBPN.setBounds(613, 494, 190, 32);
-		lblBPN.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblBPN);
+		labelPhoneNumber = new JLabel(cl.getPhoneNumber());
+		labelPhoneNumber.setBounds(613, 499, 190, 32);
+		labelPhoneNumber.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelPhoneNumber);
 		
-
+		
 		separator = new JSeparator();
 		separator.setBounds(10, 245, 1015,2);
 		frame.getContentPane().add(separator);
+		
 		
 		separator_1 = new JSeparator();
 		separator_1.setBounds(10, 349, 1015, 2);
 		frame.getContentPane().add(separator_1);
 		
+		
 		separator_2 = new JSeparator();
 		separator_2.setBounds(10, 455, 1015, 2);
 		frame.getContentPane().add(separator_2);
 		
+		
 		separator_3 = new JSeparator();
 		separator_3.setBounds(10, 132, 1015, 2);
 		frame.getContentPane().add(separator_3);
-		
-	
-	
-	
+		frame.setVisible(true);
 	}
 	
 	
