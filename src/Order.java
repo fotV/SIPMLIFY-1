@@ -39,9 +39,9 @@
 			this.productName = productName;
 			this.stockkeeperId = stockkeeperId;
 		}
-
-
-
+		public Order() {
+			
+		}
 
 		public String getOrderManagerId() {
 			return orderManagerId;

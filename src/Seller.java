@@ -18,8 +18,36 @@ public class Seller extends User {
 	/* Method initializeLists() : extracts the infomations from database 
 	** and adds them into lists */
 	public void initializeLists() {
-		products.extractObjectDB();
-		buyers.extractObjectDB();
+
+		this.orders.extractObjectDB();
+		ArrayList<Order> ord = new ArrayList<Order>();
+		for (Order o: this.orders.getOrders()) {
+			if(o.getOrderManagerId().equals(this.id))
+				ord.add(o);
+		}
+		this.orders.getOrders().clear();
+		this.orders.getOrders().addAll(ord);
+		   
+		this.products.extractObjectDB();                           // Extracts the products from DB for the specific order manager      
+		ArrayList<CompanyProduct> companyProducts = new ArrayList<CompanyProduct>();
+		for (CompanyProduct comProd : this.products.getCompanyProducts()) {
+			if ( comProd.getSellerId().equals(this.id) ) {
+				companyProducts.add(comProd);
+			}
+		}
+		this.products.getCompanyProducts().clear();
+		this.products.getCompanyProducts().addAll(companyProducts);
+		
+		this.buyers.extractObjectDB();							//Extracts the suppliers for DB of the specific order manager 
+		ArrayList<Buyer> supp = new ArrayList<Buyer>();
+		for (Buyer buyer : this.buyers.getBuyers()) {
+			if ( buyer.getSellerId().equals(this.id) ) {
+				supp.add(buyer);
+			}
+		}
+		this.buyers.getBuyers().clear();
+		this.buyers.getBuyers().addAll(supp);
+		 
 	}
 	
 	/* Method searchForProduct(): searches a product and calls a GUI to 

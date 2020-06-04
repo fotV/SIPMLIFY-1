@@ -73,7 +73,7 @@ public class OrderManagerForm {
 		
 		
 		searchForJMnItm = new JMenuItem("Orders");                                 //Searches for an order
-		searchForJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		searchForJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		searchForJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new SearchForm(1, ordManager);
@@ -83,7 +83,7 @@ public class OrderManagerForm {
 		
 		
 		productsJMnItm = new JMenuItem("Products");                               // Searches for a product
-		productsJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		productsJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		productsJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new SearchForm(2, ordManager);
@@ -93,7 +93,7 @@ public class OrderManagerForm {
 		
 		
 		suppliersJMnItm = new JMenuItem("Suppliers");                           //Searches for a supplier 
-		suppliersJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		suppliersJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		suppliersJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new SearchForm(3, ordManager);
@@ -110,17 +110,17 @@ public class OrderManagerForm {
 		
 		                                                          
 		addProdJMnItm = new JMenuItem("Add a Product");                            //Shows the product form an adds it into the list 
-		addProdJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		addProdJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		addProdJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ProductForm(ordManager).addAProduct();
+				new ProductForm(ordManager);
 			}
 		});
 		myProdJMn.add(addProdJMnItm);
 		
 		/* Shows a specific product from presentation form */
 		showProdJMnItm = new JMenuItem("Show a Product");
-		showProdJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		showProdJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		showProdJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Object> temp = new ArrayList<>(ordManager.getProducts().getSupplierProducts()); 			
@@ -138,7 +138,7 @@ public class OrderManagerForm {
 		
 		/* Shows the order form an adds it into the list */
 		addOrderJMnItm = new JMenuItem("Add an Order");
-		addOrderJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		addOrderJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20 ));
 		addOrderJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new OrderForm(ordManager);
@@ -148,7 +148,7 @@ public class OrderManagerForm {
 		
 		
 		showOrdJMnItm = new JMenuItem("Show an Order");          //Shows a specific order from presentation form 
-		showOrdJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		showOrdJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		showOrdJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Object> temp = new ArrayList<>(ordManager.getOrders().getOrders()); 			
@@ -166,7 +166,7 @@ public class OrderManagerForm {
 		
 		
 		addSupplJMnItm = new JMenuItem("Add a Supplier");				// Shows the supplier form an adds it into the list 
-		addSupplJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		addSupplJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		addSupplJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new SupplierForm(ordManager);
@@ -176,7 +176,7 @@ public class OrderManagerForm {
 		
 		
 		showSupplJMnItm = new JMenuItem("Show Supplier");             // Shows a specific supplier from presentation form 
-		showSupplJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		showSupplJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		showSupplJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Object> temp = new ArrayList<>(ordManager.getSuppliers().getSuppliers()); 			

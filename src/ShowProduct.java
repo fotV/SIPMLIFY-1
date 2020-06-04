@@ -52,7 +52,6 @@ public class ShowProduct extends JFrame {
 		this.setTitle("Supplier Product");
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1041, 653);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().setBounds(new Rectangle(100, 100, 1041, 653));
 		frame.getContentPane().setBackground(new Color(136, 177, 179));
@@ -68,35 +67,35 @@ public class ShowProduct extends JFrame {
 		labelName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelName);
 		
-		JLabel lblNewLabel_3 = new JLabel("Stock Amount :");
-		lblNewLabel_3.setBounds(42, 150, 173, 36);
-		lblNewLabel_3.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblNewLabel_3);
+		labelStockAmount = new JLabel("Stock Amount :");
+		labelStockAmount.setBounds(42, 150, 173, 36);
+		labelStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelStockAmount);
 		
-		JLabel lblNewLabel_4 = new JLabel("Max Stock Amount :");
-		lblNewLabel_4.setBounds(42, 216, 287, 36);
-		lblNewLabel_4.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblNewLabel_4);
+		labelMaxStockAmount = new JLabel("Max Stock Amount :");
+		labelMaxStockAmount.setBounds(42, 216, 287, 36);
+		labelMaxStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelMaxStockAmount);
 		
-		JLabel lblNewLabel_5 = new JLabel("Safety Stock :");
-		lblNewLabel_5.setBounds(42, 280, 195, 36);
-		lblNewLabel_5.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblNewLabel_5);
+		labelSafetyStock = new JLabel("Safety Stock :");
+		labelSafetyStock.setBounds(42, 280, 195, 36);
+		labelSafetyStock.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelSafetyStock);
 		
-		JLabel lblNewLabel_6 = new JLabel("Average Monthly Consumption :");
-		lblNewLabel_6.setBounds(42, 348, 343, 36);
-		lblNewLabel_6.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblNewLabel_6);
+		labelAverageMonthlyConsu = new JLabel("Average Monthly Consumption :");
+		labelAverageMonthlyConsu.setBounds(42, 348, 343, 36);
+		labelAverageMonthlyConsu.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelAverageMonthlyConsu);
 		
-		JLabel lblNewLabel_7 = new JLabel("Lead Time :");
-		lblNewLabel_7.setBounds(42, 420, 173, 34);
-		lblNewLabel_7.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblNewLabel_7);
+		labelLeadTime= new JLabel("Lead Time :");
+		labelLeadTime.setBounds(42, 420, 173, 34);
+		labelLeadTime.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelLeadTime);
 		
-		JLabel lblNewLabel_8 = new JLabel("Expected Amount :");
-		lblNewLabel_8.setBounds(37, 488, 216, 36);
-		lblNewLabel_8.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblNewLabel_8);
+		labelExpectedAmount = new JLabel("Expected Amount :");
+		labelExpectedAmount.setBounds(37, 488, 216, 36);
+		labelExpectedAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelExpectedAmount);
 		
 		
 		textId = new JTextField(spl.getId());
