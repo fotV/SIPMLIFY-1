@@ -1,150 +1,154 @@
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
-
+/**
+ * Forecast.java
+ * Purpose: The class produces proposals of orders for every product in SupplierProducts(list).
+ * @author Polyzoidou Eleni, Gkouli Nikoleta
+ */
 public class Forecast {
 
-	int i;
+	private double per;
 	OrderManager orderManager;
 	SupplierProducts productsList;
 	Orders order;
-	Proposals proposal;
-	String name;
-	String id;
-	double Per;
-	int Leadtime ;
-	double SafetyStock;
-	double stockAmount;
-	double maxStorageAmount;
-	double averageonthlyConsumption;
-	double expectedAmount;
-	boolean type;
-	private ArrayList<SupplierProduct> prod;
-	double amount;
-	String season;
-	String date;
+	Proposals proposals;
+	boolean isTypeRegular;
 	
-	//Forecast method
-	private Forecast(OrderManager om)
+	public Forecast(OrderManager om)
 	{    
-		  prod = om.getProducts().getSupplierProducts();
-		  Suppliers suppliers = om.getSuppliers();
-	      Supplies supplies = om.getSupplies();
-		  type = om.getRegular();
+		  orderManager = om;
+		  ArrayList<SupplierProduct> prod = orderManager.getProducts().getSupplierProducts();
+		  Suppliers suppliers = orderManager.getSuppliers();
+		  Supplies supplies = orderManager.getSupplies();
+		  boolean isTypeRegular = orderManager.getRegular();
+		  
+		  double stockAmount;
+		  double expectedAmount;
+		  double averageMonthlyConsumption;
+		  int leadtime;
+		  double safetyStock;
+		  double maxStorageAmount;
 		 
-	 for(i=0; i<prod.size(); i-- )
-	 {
-		stockAmount = SupplierProduct.getStockAmount();
-		expectedAmount = SupplierProduct. getExpectedAmount();
-		averagetion = SupplierProduct. getAverageMonthlyConsumption();
-		Leadtime = SupplierProduct. getLeadtime();
-		SafetyStock = SupplierProduct. getSafetyStock();
-		maxStorageAmount = SupplierProduct.getMaxStockAmount();
-		
-		
-		
-		
-		if(type == true)
-		{    
-            Per = 1;
-            date = " ";
-             
-		   amount = Calculaterder(stockAmount,expectedAmount,averaonsumption,Leadtime ,SafetyStock,maxStorageAmount,Per);
-		
-		}
-		else
-		{
-			Calendar cal;
-			//get current date
-			int month = cal.get(Calendar.MONTH);
-			int day = cal.get(Calendar.DAY_OF_MONTH);
+		  double amount = 0.0;
+		  boolean flag = false; //checks if at least one proposal has been created
 		  
-		  season = om.getSeason();
-		 Per = Percentage(season,month,day);
-		 amount = Calculaterder(stockAmount,expectedAmount,averageonthlyConsumption,Leadtime ,SafetyStock,maxStorageAmount,Per);
+		  for(SupplierProduct p : prod) {
+			  stockAmount = p.getStockAmount();
+			  expectedAmount = p. getExpectedAmount();
+			  averageMonthlyConsumption = p. getAverageMonthlyConsumption();
+			  leadtime = p. getLeadtime();
+			  safetyStock = p. getSafetyStock();
+			  maxStorageAmount = p.getMaxStockAmount();
 		  
-		 //create an order
-		   order = new Orders();
+			  if(isTypeRegular == true) {
+				  
+				  per = 1.0;
+				  if (stockAmount + expectedAmount - averageMonthlyConsumption - leadtime <= safetyStock) {  
+				  	amount = calculateOrder(stockAmount,expectedAmount,averageMonthlyConsumption,leadtime ,safetyStock,per);
+				  	flag = true;
+				  }
+			  }
+			  else {
+				 
+				  String season = om.getSeason();
+				  per = Percentage(season);
+				  if (stockAmount + expectedAmount - averageMonthlyConsumption - leadtime <= safetyStock) {
+					  amount = calculateOrder(stockAmount,expectedAmount,averageMonthlyConsumption,leadtime ,safetyStock,per);    
+					  flag = true;
+				  }
+			  } 
+			  
+			  
+			  Suppl s = new Suppl(p.getId(), "", 0.0);
+			  for (Suppl sp : supplies.getSupplies()) {
+				  if (p.getId().equals(sp.getProductId())) {
+					  s.setSupplierId(sp.getSupplierId());
+					  s.setPrice(sp.getPrice());
+				  }  
+			  } 
+			  Supplier sup = new Supplier("", "", s.getSupplierId(), "", "", "");
+			  for (Supplier sp : suppliers.getSuppliers()) {
+				  if (s.getSupplierId().equals(sp.getId())) {
+					  sup.setLastName(sp.getLastName());
+					  sup.setAFM(sp.getAFM());
+				  }
+			  }
+			  
+			  //get current date
+			  SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+			  Date date = new Date();
+			  String datee = formatter.format(date);
+			  
+			  //create new order
+			  Order order = new Order(p.getOrderManagerId(), " ", amount, s.getSupplierId(), sup.getLastName(), 
+					  sup.getAFM(), datee, 0, s.getPrice(), amount*s.getPrice(), p.getName(), p.getId(), " ");
+			  //add the order in the proposals-list
+			  om.getProposals().getProposals().add(order);
+			  
+			  if (amount + expectedAmount + stockAmount > maxStorageAmount) {
+				  amount = maxStorageAmount - (expectedAmount + stockAmount);
+			  }
+	
+		  }
 		  
-		  //add the order to the proposals
-		  om.getProposals().getProposals().add(order);
-		
-		}
-		
-		
-     }
-		 
-		  
+		  UIManager.put("OptionPane.background", Color.LIGHT_GRAY);
+	          UIManager.put("OptionPane.messagebackground", Color.LIGHT_GRAY);
+	          UIManager.put("Panel.background", Color.LIGHT_GRAY);
+		  if (flag == true) {
+			  
+			  JOptionPane.showMessageDialog(null, "Forecast calculation is completed!", "Forecast", JOptionPane.DEFAULT_OPTION);
+		  }
+		  else {
+			  JOptionPane.showMessageDialog(null, "There is no product in deficit!", "Forecast", JOptionPane.DEFAULT_OPTION);
+		  }
+		 	  
 	}
+
 	
-	
-
-
-
-	private double Calculateder(double stockAmount,double expectedAmount,double averageonsumption,int Leadtime,double SafetyStock,double maxStorageAmount,double Per)
+	/**
+	 * The method calculates an amount of every product that must been ordered.
+	 * @param stockAmount
+	 * @param expectedAmount
+	 * @param averageMonthlyConsumption
+	 * @param leadtime
+	 * @param safetyStock
+	 * @param per
+	 * @return amount
+	 */
+	private double calculateOrder(double stockAmount,double expectedAmount,double averageMonthlyConsumption,double leadtime,double safetyStock,double per)
 	{   
-		if(type==true)
-	    {
-			if((stockAmount+expectedAmount-averageonthlyConsumption- Leadtime)<=SafetyStock)	
-	        {
-	    	   amount = SafetyStock+2*averageonthlyConsumption-stockAmount-expectedAmount+Leadtime;
-	    	   if((amount+expectedAmount+stockAmount)>maxStorageAmount)
-	    	   {
-	    		   amount = maxStorageAmount-expectedAmount-stockAmount;
-	    	   }
-	        
-	        }
-			else 
-			{
-				System.out.println("Product's storage is full,there is no need for a new order.");
-			}
-	    }	
-		else
-		{
-			if((stockAmount+expectedAmount-averagehlyConsumption- Leadtime)<= SafetyStock*Per)	
-	        {
-				
-				
-				amount = SafetyStock+2*averagethlyConsumption-stockAmount-expectedAmount+Leadtime;
-				amount = amount *Per;
-	        }
-			else
-			{
-				System.out.println("Product's storage is full,there is no need for a new order.");
-			}
-		}
-		
+		double amount = (safetyStock + 2*averageMonthlyConsumption + leadtime - stockAmount - expectedAmount)*per;
 		return amount;
 		
 	}	
 	
 	
-	private double Percentage( String season,int month,int day)
+	/**
+	 * The method set the right value in per depends on the type of season company
+	 * @param season
+	 * @return per
+	 */
+	private double Percentage( String season)
 	{   
+		//get current month
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		String str = formatter.format(date);
+		Integer month = Integer.parseInt(str.substring(5, 7));
 		
-		
-		if((day>=1 && month>=3) && (day<1 && month<9))
+		double per;
+		if (((month>=3) && (month<9) && (season == "summer"))||((month>=9) && (month<3) && (season == "winter")))
 		{
-			if(season == "summer"){
-				Per = 1.2;
-			}
-			else{
-				Per = 0.7;
-			}
+			per = 1.2;
 		}
 		else {
-			if(season == "summer"){
-				Per = 0.7;
-			}
-			else{
-				Per = 1.2;
-			}
+			per = 0.7;
 		}
-		
-		
-		return Per;
+		return per;
 	}
-	
-	
+}	
