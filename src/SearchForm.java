@@ -10,19 +10,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
-/*
+/**
  * SearchForm.java
  * Purpose: Shows a GUI for searching .
  * @author Evangelia Papagiannaki.
  */
 public class SearchForm extends JFrame{
-	
-	/*
-	 * SearchForm.java
-	 * Purpose: Shows a GUI for searching .
-	 * @author Evangelia Papagiannaki.
-	 * @version 1.0
-	 */
 
 	private JButton searchButton;
 	private JLabel keyLabel;
@@ -144,7 +137,7 @@ public class SearchForm extends JFrame{
 	
 	}
 	
-	/*
+	/**
 	 * Checks for errors in the form.
 	 * @param type   the type of searching
 	 * @param user   the type of user who wants to do the searching

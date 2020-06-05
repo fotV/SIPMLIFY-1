@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-/*LogginForm.java
+/**LogginForm.java
  * Purpose : Displays the GUI of a loggin form for users.
  * @author Vlasakoudi Christina
  */
