@@ -7,13 +7,15 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import java.awt.SystemColor;
 import java.awt.Color;
 import java.awt.Font;
 
 
 public class PresentationForm extends JFrame{
 	
+	/**
+	 * 
+	 */
 	private JPanel panel;
 	private JTable table = new JTable();
 	private JScrollPane scroll;
@@ -56,7 +58,7 @@ public class PresentationForm extends JFrame{
 				CompanyProduct temp = (CompanyProduct) objectList.get(i);
 				data[i][0]=temp.getName();
 				data[i][1]=temp.getId();
-				data[i][2]=temp.getStockamount()+"";
+				data[i][2]=temp.getStockAmount()+"";
 			}
 			table.setModel(new DefaultTableModel(data, new String[] {"Product Name", "Product Id", "StockAmount"}));
 		}
@@ -114,42 +116,32 @@ public class PresentationForm extends JFrame{
 		        TableModel model = table.getModel();
 		        
 		        String SelectedId = model.getValueAt(index, 1).toString();
-		        if(n==1)
-		        {
-			        for(Object o : objectList)
-					{
+		        if(n==1){
+			        for(Object o : objectList){
 			        	Order temp = (Order) o;
 						if(temp.getOrderId().equals(SelectedId)) new ShowOrder(u, temp);
 					}
 		        }
-		        else if (n==2)
-		        {
-		        	for(Object o : objectList)
-					{
+		        else if (n==2){
+		        	for(Object o : objectList){
 			        	CompanyProduct temp = (CompanyProduct) o;
-						if(temp.getId().equals(SelectedId)) new ShowProduct(temp);
+						if(temp.getId().equals(SelectedId)) new ShowProduct(u, temp);
 					}
 		        }
-		        else if (n==3)
-		        {
-		        	for(Object o : objectList)
-					{
+		        else if (n==3){
+		        	for(Object o : objectList){
 		        		SupplierProduct temp = (SupplierProduct) o;
-						if(temp.getId().equals(SelectedId)) new ShowProduct(temp);
+						if(temp.getId().equals(SelectedId)) new ShowProduct(u, temp);
 					}
 		        }
-		        else if(n==4)
-		        {
-		        	for(Object o : objectList)
-					{
+		        else if(n==4){
+		        	for(Object o : objectList){
 		        		Supplier temp = (Supplier) o;
 						if(temp.getId().equals(SelectedId)) new ShowBuyerSeller(temp);
 					}
 		        }
-		        else if (n==5)
-		        {
-		        	for(Object o : objectList)
-					{
+		        else if (n==5){
+		        	for(Object o : objectList){
 		        		Buyer temp = (Buyer) o;
 						if(temp.getId().equals(SelectedId)) new ShowBuyerSeller(temp);
 					}
@@ -158,8 +150,6 @@ public class PresentationForm extends JFrame{
 		});
 		
 		this.setContentPane(panel);
-	
-		
 		this.setVisible(true);
 		this.setTitle("Presentation Form");
 		this.setBounds(100, 100, 1041, 653);

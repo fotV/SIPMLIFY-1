@@ -46,8 +46,6 @@ public class LogginForm extends JFrame{
     	lblNewLabel_2.setBounds(182, 36, 535, 316);
     	panel.add(lblNewLabel_2);
     		
-    		
-    		
     	passwordField = new JPasswordField();           //password textfield
     	passwordField.setBounds(367, 470, 219, 19);
     	panel.add(passwordField);
@@ -59,38 +57,35 @@ public class LogginForm extends JFrame{
     		
     	btnNewButton.addActionListener(new ActionListener() 
     	{
-    			public void actionPerformed(ActionEvent e) {
+    		public void actionPerformed(ActionEvent e) {
     				
-                  String Userid = textField.getText();
-    			  System.out.print(Userid);
-    			  char[] password = passwordField.getPassword()	;
-    			  String Userspassword = new String(password);
-    			  System.out.print(Userspassword);
-    			  errorFlag = checkError(Userid,Userspassword);
+                String Userid = textField.getText();
+    			System.out.print(Userid);
+    			char[] password = passwordField.getPassword()	;
+    			String Userspassword = new String(password);
+    			System.out.print(Userspassword);
+    			errorFlag = checkError(Userid,Userspassword);
     				
     			
-    				if( errorFlag )
-    				{
-    					System.out.println(user.getFirstName());
-    					if (Userid.startsWith("OR")) {
-     				    	OrderManager or = (OrderManager) user;
-     				    	or.initializeLists();
-    					    OrderManagerForm ord= new OrderManagerForm(or) ;	
-    					    
-    					 }else if(Userid.startsWith("SE")) {
-    						Seller se = (Seller) user; 
-    					    SellerForm sel= new SellerForm(se);
-    					 }
-    					 else if(Userid.contains("ST")) {
-    						Stockkeeper st = (Stockkeeper) user;
-    					    StockkeeperForm stop = new StockkeeperForm(st);
-    					   }
+    			if( errorFlag ){
+    				System.out.println(user.getFirstName());
+    				if (Userid.startsWith("OR")) {
+     				    OrderManager or = (OrderManager) user;
+     				    or.initializeLists();
+    					new OrderManagerForm(or) ;	  
+    				}else if(Userid.startsWith("SE")) {
+    					Seller se = (Seller) user; 
+    					new SellerForm(se);
+    				}else if(Userid.contains("ST")) {
+    					Stockkeeper st = (Stockkeeper) user;
+    					new StockkeeperForm(st);
     				}
+    			}
     	}});
     	this.setTitle("Login");
     	this.setVisible(true);
     	this.setBounds(100, 100, 811, 677);
-    	this.dispose();
+    	//this.dispose();
     				
     	}
     			
@@ -106,18 +101,16 @@ public class LogginForm extends JFrame{
 					 if (userspassword.length() < 8) 
 						 JOptionPane.showMessageDialog(panel, "Password length should be between 8 characters"); 
 					else{
-						System.out.println(userspassword.length());
-						System.out.println(u.getPassword().length());
 						if (userspassword.equals(u.getPassword())) {
 							user = u;
 							return errorFlag = true ;
 						}else if( !(userspassword.contains("!") || userspassword.contains(".") || userspassword.contains(",") || userspassword.contains("*"))){
 						  JOptionPane.showMessageDialog(panel, "Password should contain at least one special character ");
 					     
-					   }else if (! userspassword.matches(".*[0-9].*")){
+					    }else if (! userspassword.matches(".*[0-9].*")){
 						   JOptionPane.showMessageDialog(panel, "Password should at least contain one digit");
 						   
-			           }else{ 
+			            }else{ 
 					            int count1 = 0; 
 					            for (int i = 65; i <= 90; i++) {               // checking capital letters 
 					  
@@ -140,17 +133,17 @@ public class LogginForm extends JFrame{
 					            	 System.out.println("Password should contain at least one lowercase letter(a-z) and uppercase letter(A-Z)");  
 					            	
 					            } 
-			           		}
+			           	}
 					}
 				}
 			}
+			if (errorFlag == false) {
+				JOptionPane.showMessageDialog(this, "Invalid username", "Loggin", JOptionPane.DEFAULT_OPTION);
+			}
     		return errorFlag;
-    	
     }
     	
-    
-    		
-    	
+   	
 }    
     		
     	

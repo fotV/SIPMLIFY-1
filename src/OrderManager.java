@@ -89,28 +89,26 @@ public class OrderManager extends User {
 	public void searchForProduct(String key, int column) {
 		Boolean found=false;
 		ArrayList<Object> productsKEY = new ArrayList<>();
-		if(column==1) {                                      				//1 for product id 
+		if(column == 0) {                                      				//1 for product id 
 			for( SupplierProduct supProd : products.getSupplierProducts() )
 			{
 				if( supProd.getId().equals(key) )
 					{
 						productsKEY.add(supProd);
-						found=true;
+						found = true;
 					}
 			}
 		}
-		else if (column==2) {                              					//2 for product name 
-			for( SupplierProduct supProd : products.getSupplierProducts() )
-			{
+		else if (column==1) {                              					//2 for product name 
+			for( SupplierProduct supProd : products.getSupplierProducts() ){
 				if(supProd.getName().equals(key)) {
 					productsKEY.add(supProd);
 					found=true;
 				}
 			}
 		}
-		else if (column==3) {                              					//3 for order manager id
-			for( SupplierProduct supProd : products.getSupplierProducts() )
-			{
+		else if (column==2) {                              					//3 for order manager id
+			for( SupplierProduct supProd : products.getSupplierProducts() ){
 				if(supProd.getOrderManagerId().equals(key)) {
 					productsKEY.add(supProd);
 					found=true;
@@ -138,37 +136,32 @@ public class OrderManager extends User {
 	public void searchForSupplier(String key, int column) {
 		Boolean found=false;
 		ArrayList<Object> suppliersKEY = new ArrayList<>();
-		if(column==1) {                                      		//1 for supplier id
-			for( Supplier suppl : suppliers.getSuppliers() )
-			{
-				if( suppl.getId().equals(key) )
-				{
+		if(column == 0) {                                      		//1 for supplier id
+			for( Supplier suppl : suppliers.getSuppliers() ){
+				if( suppl.getId().equals(key) ){
 					suppliersKEY.add(suppl);
 					found=true;
 				}
 			}
 		}
-		else if (column==2) {                              		    //2 for supplier name 
-			for( Supplier suppl : suppliers.getSuppliers() )
-			{
+		else if (column == 1) {                              		    //2 for supplier name 
+			for( Supplier suppl : suppliers.getSuppliers() ){
 				if(suppl.getName().equals(key)) {
 					suppliersKEY.add(suppl);
 					found=true;
 				}
 			}
 		}
-		else if (column==3) {                              			//3 for supplier last name 
-			for( Supplier suppl : suppliers.getSuppliers() )
-			{
+		else if (column ==  2) {                              			//3 for supplier last name 
+			for( Supplier suppl : suppliers.getSuppliers() ){
 				if(suppl.getLastName().equals(key)) {
 					suppliersKEY.add(suppl);
 					found=true;
 				}
 			}
 		}
-		else if (column==4) {                              			//4 for supplier AFM
-			for( Supplier suppl : suppliers.getSuppliers() )
-			{
+		else if (column == 3) {                              			//4 for supplier AFM
+			for( Supplier suppl : suppliers.getSuppliers() ){
 				if(suppl.getAFM().equals(key)) {
 					suppliersKEY.add(suppl);
 					found=true;

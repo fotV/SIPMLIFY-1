@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 public class ShowProduct extends JFrame {
 
 	private JFrame frame;
-	private JButton btnEditProductInformation;
+	private JButton editButton;
 	private JTextField textName;
 	private JTextField textId;
 	private JTextField textStockAmount;
@@ -36,185 +36,213 @@ public class ShowProduct extends JFrame {
 	private JLabel labelStockAmount;
 	private JLabel labelSafetyStock;
 	private JLabel labelMaxStockAmount;
-	private JSeparator separator;
-	private JSeparator separator_1;
-	private JSeparator separator_2;
-	private JSeparator separator_3;
-	private JSeparator separator_4;
-	private JSeparator separator_5;
-	private JSeparator separator_6;
-	protected static User user;
+	private JLabel labelAverageMonthlyConsu;
+	private JLabel labelPrice;
+	private JLabel labelLeadTime;
+	private JLabel labelExpectedAmount;
+	private JSeparator firstSeparator;
+	private JSeparator secondSeparator;
+	private JSeparator thirdSeparator;
+	private JSeparator fourthSeparator;
+	private JSeparator fifthSeparator;
+	private JSeparator sixthSeparator;
+	private JSeparator seventhSeparator;
+	private JButton saveButton;
+	protected  User user;
 	
+public ShowProduct( User u, SupplierProduct spl){
 	
-
-	public ShowProduct(SupplierProduct spl)
-	{
-		this.setTitle("Supplier Product");
+		OrderManager user = (OrderManager) u;
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1041, 653);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().setBounds(new Rectangle(100, 100, 1041, 653));
 		frame.getContentPane().setBackground(new Color(136, 177, 179));
+		frame.setTitle("Supplier Product");
 		frame.setResizable(false);
 		
-		labelId = new JLabel("ID :");
+		labelId = new JLabel("ID :");										       		//label for Id
 		labelId.setBounds(42, 90, 113, 36);
 		labelId.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelId);
 		
-		labelName = new JLabel("Name :");
+		labelName = new JLabel("Name :");									     	 	//label for Name
 		labelName.setBounds(42, 31, 137, 36);
 		labelName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelName);
 		
-		labelStockAmount = new JLabel("Stock Amount :");
+		labelStockAmount = new JLabel("Stock Amount :");					      		//label for StockAmount
 		labelStockAmount.setBounds(42, 150, 173, 36);
 		labelStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelStockAmount);
 		
-		labelMaxStockAmount = new JLabel("Max Stock Amount :");
+		labelMaxStockAmount = new JLabel("Max Stock Amount :");				      		//label for MaxStockAmount
 		labelMaxStockAmount.setBounds(42, 216, 287, 36);
 		labelMaxStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelMaxStockAmount);
 		
-		labelSafetyStock = new JLabel("Safety Stock :");
+		labelSafetyStock = new JLabel("Safety Stock :");					      		//label for SafetyStock
 		labelSafetyStock.setBounds(42, 280, 195, 36);
 		labelSafetyStock.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelSafetyStock);
 		
-		labelAverageMonthlyConsu = new JLabel("Average Monthly Consumption :");
+		labelAverageMonthlyConsu = new JLabel("Average Monthly Consumption :");   		//label for AverageMontlhyConsumption
 		labelAverageMonthlyConsu.setBounds(42, 348, 343, 36);
 		labelAverageMonthlyConsu.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelAverageMonthlyConsu);
 		
-		labelLeadTime= new JLabel("Lead Time :");
+		labelLeadTime= new JLabel("Lead Time :");							     		//label for LeadTime
 		labelLeadTime.setBounds(42, 420, 173, 34);
 		labelLeadTime.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelLeadTime);
 		
-		labelExpectedAmount = new JLabel("Expected Amount :");
+		labelExpectedAmount = new JLabel("Expected Amount :");                 			 //label for ExpectedAmount
 		labelExpectedAmount.setBounds(37, 488, 216, 36);
 		labelExpectedAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelExpectedAmount);
 		
 		
-		textId = new JTextField(spl.getId());
+		textId = new JTextField(spl.getId());							        		//textField for id attribute
 		textId.setBounds(637, 31, 188, 32);
 		textId.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
+		textId.setEditable(false);
 		frame.getContentPane().add(textId);
 		textId.setColumns(10);
 		
-		textName = new JTextField(spl.getName());
+		textName = new JTextField(spl.getName());										//textField for name attribute
 		textName.setBounds(637, 90, 188, 36);
 		textName.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
+		textName.setEditable(false);
 		frame.getContentPane().add(textName);
 		textName.setColumns(10);
 		
 		
-		textStockAmount = new JTextField(" "+spl.getStockAmount());
+		textStockAmount = new JTextField(" "+spl.getStockAmount());            			//textField for stockAmount attribute
 		textStockAmount.setBounds(637, 150, 188, 36);
 		textStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
+		textStockAmount.setEditable(false);									  			//the value can not be changed
 		frame.getContentPane().add(textStockAmount);
 		textStockAmount.setColumns(10);
 		
-		textMaxStockAmount = new JTextField(" "+spl.getMaxStockAmount());
+		textMaxStockAmount = new JTextField(" "+spl.getMaxStockAmount());     			//textField for maxStockAmount attribute
 		textMaxStockAmount.setBounds(637, 217, 188, 36);
 		textMaxStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
-		frame.getContentPane().add(textStockAmount);
+		textMaxStockAmount.setEditable(false);											//the value can not be changed
+		frame.getContentPane().add(textMaxStockAmount);
 		textMaxStockAmount.setColumns(10);
 		
-		textSafetyStock = new JTextField(""+spl.getSafetyStock());
+		textSafetyStock = new JTextField(""+spl.getSafetyStock());						//textField for SafetyStock
 		textSafetyStock.setBounds(637, 280, 188, 36);
 		textSafetyStock.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
+		textSafetyStock.setEditable(false);												//the value can not be changed
 		frame.getContentPane().add(textSafetyStock);
 		textSafetyStock.setColumns(10);
 		
-		textAverageMonthlyConsu = new JTextField(""+spl.getAverageMonthlyConsumption());
+		textAverageMonthlyConsu = new JTextField(""+spl.getAverageMonthlyConsumption());    	//textField for averageMonthlyConsumption attribute
 		textAverageMonthlyConsu.setBounds(636, 351, 189, 34);
 		textAverageMonthlyConsu.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
+		textAverageMonthlyConsu.setEditable(false);												//the value can not be changed
 		frame.getContentPane().add(textAverageMonthlyConsu);
 		textAverageMonthlyConsu.setColumns(10);
 		
-		textLeadTime= new JTextField(spl.getLeadtime());
+		textLeadTime= new JTextField(""+spl.getLeadtime());                				//textField for leadTime attribute
 		textLeadTime.setBounds(637, 420, 189, 36);
 		textLeadTime.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
+		textLeadTime.setEditable(false);												//the value can not be changed
 		frame.getContentPane().add(textLeadTime);
 		textLeadTime.setColumns(10);
 		
-		textExpectedAmount = new JTextField(""+spl.getExpectedAmount());
+		textExpectedAmount = new JTextField(""+spl.getExpectedAmount());				//textField for expectedAmount attribute
 		textExpectedAmount.setBounds(637, 489, 189, 36);
 		textExpectedAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
+		textExpectedAmount.setEditable(false);											//the value can not be changed
 		frame.getContentPane().add(textExpectedAmount);
 		textExpectedAmount.setColumns(10);
 		
-		separator = new JSeparator();
-		separator.setBounds(10, 77, 1015,  2);
-		frame.getContentPane().add(separator);
+		firstSeparator = new JSeparator();
+		firstSeparator.setBounds(10, 77, 1015,  2);
+		frame.getContentPane().add(firstSeparator);
 		
-		separator_1 = new JSeparator();
-		separator_1.setBounds(10, 137, 1015, 2);
-		frame.getContentPane().add(separator_1);
+		secondSeparator = new JSeparator();
+		secondSeparator.setBounds(10, 137, 1015, 2);
+		frame.getContentPane().add(secondSeparator);
 		
-		separator_2 = new JSeparator();
-		separator_2.setBounds(10, 197, 1015, 2);
-		frame.getContentPane().add(separator_2);
+		thirdSeparator = new JSeparator();
+		thirdSeparator.setBounds(10, 197, 1015, 2);
+		frame.getContentPane().add(thirdSeparator);
 		
-		separator_3 = new JSeparator();
-		separator_3.setBounds(10, 267, 1015, 2);
-		frame.getContentPane().add(separator_3);
+		fourthSeparator = new JSeparator();
+		fourthSeparator.setBounds(10, 267, 1015, 2);
+		frame.getContentPane().add(fourthSeparator);
 		
-		separator_4 = new JSeparator();
-		separator_4.setBounds(10, 335, 1015, 2);
-		frame.getContentPane().add(separator_4);
+		fifthSeparator = new JSeparator();
+		fifthSeparator.setBounds(10, 335, 1015, 2);
+		frame.getContentPane().add(fifthSeparator);
 		
-		separator_5 = new JSeparator();
-		separator_5.setBounds(10, 407, 1015, 2);
-		frame.getContentPane().add(separator_5);
+		sixthSeparator = new JSeparator();
+		sixthSeparator.setBounds(10, 407, 1015, 2);
+		frame.getContentPane().add(sixthSeparator);
 		
-		separator_6 = new JSeparator();
-		separator_6.setBounds(10, 475, 1015, 2);
-		frame.getContentPane().add(separator_6);
+		seventhSeparator = new JSeparator();
+		seventhSeparator.setBounds(10, 475, 1015, 2);
+		frame.getContentPane().add(seventhSeparator);
 		
+		saveButton = new JButton(" Save");
+		saveButton.setEnabled(false);
 		
-		JButton btnEditProductInformation = new JButton("Edit Product Information");
-		btnEditProductInformation.addActionListener(new ActionListener() {
+		editButton = new JButton("Edit Product");
+		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ENABLE TEXTFIELDS stockAmount, LeadTime, ExpectedAmount.
-				
 			    textStockAmount.setEditable(true);
-                Double  StockAmount = Double.parseDouble(textStockAmount.getText());
-		        
-			    textLeadTime.setEditable(true);
-				Double LeadTime = Double.parseDouble(textLeadTime.getText());
-	
+			    textLeadTime.setEditable(true);       //enables stockAmount, LeadTime, ExpectedAmount textField to change
 	            textExpectedAmount.setEditable(true);
-			    Double ExpectedAmount = Double.parseDouble(textExpectedAmount.getText());
-			   
-			    boolean flag = checkForError();
-			    
+	            saveButton.setEnabled(true);
 			  }
-			});
-			btnEditProductInformation.setBounds(147, 579, 166, 36);
-			frame.getContentPane().add(btnEditProductInformation);
+		});
+		editButton.setBounds(147, 579, 166, 36);
+		frame.getContentPane().add(editButton);
 		
 
-			JButton btnSave = new JButton(" Save");
-			btnSave.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					//save and add product
-				      //OrderManager.addProduct(spl);
-				}
-			});
-			btnSave.setBounds(636, 579, 137, 34);
-			frame.getContentPane().add(btnSave);
-			frame.setVisible(true);
-		
 	
+		saveButton.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+				
+				boolean flag = checkForError();
+				if (! flag) {
+					if (! textStockAmount.getText().equals("" + spl.getStockAmount())) {                //if textStockAmount has changed, set the new value to stockAmount attribute
+						spl.setStockAmount(Double.parseDouble(textStockAmount.getText()));
+					}
+					textStockAmount.setText("" + spl.getStockAmount());
+						
+						
+					if ( !textLeadTime.getText().equals("" + spl.getLeadtime())) {						 //if textLeadTime has changed, set the new value to leadTime attribute
+						spl.setLeadtime(Integer.parseInt(textLeadTime.getText()));
+					}
+					textLeadTime.setText("" + spl.getLeadtime());
+						
+						
+					if ( !textExpectedAmount.getText().equals("" + spl.getExpectedAmount())) {			 //if textExpectedAmount has changed, set the new value to expectedAmount attribute
+						spl.setExpectedAmount(Double.parseDouble(textExpectedAmount.getText()));
+					}
+					textExpectedAmount.setText("" + spl.getExpectedAmount());
+					
+					int index = user.getProducts().getSupplierProducts().indexOf(spl);
+					user.getProducts().getSupplierProducts().set(index, spl);
+					textStockAmount.setEditable(false);
+					textLeadTime.setEditable(false);
+			        textExpectedAmount.setEditable(false);
+			        saveButton.setEnabled(false);
+			       
+				}
+			}});
+			saveButton.setBounds(636, 579, 137, 34);
+			frame.getContentPane().add(saveButton);
+			frame.setVisible(true);
    }
 		
     
-	public ShowProduct(CompanyProduct cp)
-	{   
+	public ShowProduct(User iu, CompanyProduct cp){ 
+		Seller user = (Seller) iu;
 		this.setTitle("Company Product");
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1041, 653);
@@ -223,147 +251,174 @@ public class ShowProduct extends JFrame {
 		frame.getContentPane().setBounds(new Rectangle(100, 100, 1041, 653));
 		frame.getContentPane().setBackground(new Color(136, 177, 179));
 		frame.setResizable(false);
+		frame.setTitle("Company Product");
 		
-		labelId = new JLabel(" ID :");
+		labelId = new JLabel(" ID :");											//label for Id
 		labelId.setBounds(153, 34, 86, 33);
 		labelId.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelId);
 		
-		JLabel lblNewLabel = new JLabel(" Name :");
-		lblNewLabel.setBounds(153, 112, 153, 33);
-		lblNewLabel.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblNewLabel);
+		labelName = new JLabel(" Name :");										//label for Name
+		labelName.setBounds(153, 112, 153, 33);
+		labelName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelName);
 		
-		JLabel lblProduct = new JLabel(" Safety stock :");
-		lblProduct.setBounds(153, 193, 179, 33);
-		lblProduct.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblProduct);
+		labelSafetyStock = new JLabel(" Safety stock :");						//label for SafetyStock
+		labelSafetyStock.setBounds(153, 193, 179, 33);
+		labelSafetyStock.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelSafetyStock);
 		
-		JLabel lblProduct_1 = new JLabel(" Stock amount :");
-		lblProduct_1.setBounds(153, 277, 179, 35);
-		lblProduct_1.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblProduct_1);
+		labelStockAmount = new JLabel(" Stock amount :");						//label for StockAmount
+		labelSafetyStock.setBounds(153, 277, 179, 35);
+		labelSafetyStock.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelSafetyStock);
 		
-		JLabel lblMaxStockAmount = new JLabel(" Max stock amount :");
-		lblMaxStockAmount.setBounds(153, 369, 224, 33);
-		lblMaxStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblMaxStockAmount);
+		labelMaxStockAmount = new JLabel(" Max stock amount :");				//label for MaxStockAmount
+		labelMaxStockAmount.setBounds(153, 369, 224, 33);
+		labelMaxStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelMaxStockAmount);
 		
-		JLabel lblPrice = new JLabel(" Price :");
-		lblPrice.setBounds(153, 462, 164, 33);
-		lblPrice.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(lblPrice);
+		labelPrice = new JLabel(" Price :");									//label for Price
+		labelPrice.setBounds(153, 462, 164, 33);
+		labelPrice.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelPrice);
 		
 	
-		textId = new JTextField(cp.getId());
+		textId = new JTextField(cp.getId());									//text for id attribute
 		textId.setBounds(707, 34, 153, 33);
 		textId.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(textId);
 		textId.setColumns(10);
-		textId.setEditable(false);
+		textId.setEditable(false);												//the value can not be changed
 		
 		
-		textName = new JTextField(cp.getName());
+		textName = new JTextField(cp.getName());								//text for Name attribute
 		textName.setBounds(707, 112, 153, 33);
 		textName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(textName);
 		textName.setColumns(10);
-		textName.setEditable(false);
+		textName.setEditable(false);											//the value can not be changed
 
-		textSafetyStock = new JTextField("" + cp.getSafetyStock());
+		textSafetyStock = new JTextField("" + cp.getSafetyStock());				//text for safetyStock attribute
 		textSafetyStock.setBounds(707, 193, 153, 33);
 		textSafetyStock.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(textSafetyStock);
 		textSafetyStock.setColumns(10);
-		textSafetyStock.setEditable(false);
+		textSafetyStock.setEditable(false);										//the value can not be changed
 		
-		textStockAmount = new JTextField("" + cp.getStockAmount());
+		textStockAmount = new JTextField("" + cp.getStockAmount());				//text for stockAmount attribute
 		textStockAmount.setBounds(707, 277, 153, 33);
 		textStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(textStockAmount);
 		textStockAmount.setColumns(10);
-		textStockAmount.setEditable(false);
+		textStockAmount.setEditable(false);										//value can not be changed
 		
-		textMaxStockAmount = new JTextField("" + cp.getMaxStockAmount());
+		textMaxStockAmount = new JTextField("" + cp.getMaxStockAmount());		//text for maxStockAmount attribute
 		textMaxStockAmount.setBounds(707, 369, 153, 33);
 		textMaxStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(textMaxStockAmount);
 		textMaxStockAmount.setColumns(10);
-		textMaxStockAmount.setEditable(false);
+		textMaxStockAmount.setEditable(false);              					//value can not be changed
 		
-		textPrice = new JTextField("" + cp.getPrice());
+		textPrice = new JTextField("" + cp.getPrice());							//text for price attribute
 		textPrice.setBounds(707, 462, 153, 32);
 		textPrice.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(textPrice);
 		textPrice.setColumns(10);
-		textPrice.setEditable(false);
+		textPrice.setEditable(false);											//value can not be changed 
 		
-		separator = new JSeparator();
-		separator.setBounds(10, 88, 1015,  2);
-		frame.getContentPane().add(separator);
+		firstSeparator = new JSeparator();
+		firstSeparator.setBounds(10, 88, 1015,  2);
+		frame.getContentPane().add(firstSeparator);
 		
-		separator_1 = new JSeparator();
-		separator_1.setBounds(10, 168, 1015, 2);
-		frame.getContentPane().add(separator_1);
+		secondSeparator = new JSeparator();
+		secondSeparator.setBounds(10, 168, 1015, 2);
+		frame.getContentPane().add(secondSeparator);
 		
-		separator_2 = new JSeparator();
-		separator_2.setBounds(10, 250, 1015, 2);
-		frame.getContentPane().add(separator_2);
+		thirdSeparator = new JSeparator();
+		thirdSeparator.setBounds(10, 250, 1015, 2);
+		frame.getContentPane().add(thirdSeparator);
 		
-		separator_3 = new JSeparator();
-		separator_3.setBounds(10, 335, 1015, 2);
-		frame.getContentPane().add(separator_3);
+		fourthSeparator = new JSeparator();
+		fourthSeparator.setBounds(10, 335, 1015, 2);
+		frame.getContentPane().add(fourthSeparator);
 		
-		separator_4 = new JSeparator();
-		separator_4.setBounds(10, 425, 1015, 2);
-		frame.getContentPane().add(separator_4);
+		fifthSeparator = new JSeparator();
+		fifthSeparator.setBounds(10, 425, 1015, 2);
+		frame.getContentPane().add(fifthSeparator);
 		
-		JButton btnEditProductInformation = new JButton("Edit Product Information");
-		btnEditProductInformation.addActionListener(new ActionListener() {
+		saveButton = new JButton("Save");
+		
+		editButton = new JButton("Edit ");
+		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				//enable textfileds stockamount,price and get new numbers
 				textStockAmount.setEditable(true);
-				String StockAmount = textStockAmount.getText();
-				Double.parseDouble(StockAmount);
-				checkForError();
-				
-				
-			    //expectedAmount
 				textPrice.setEditable(true);
-				String Price= textPrice.getText();
-				Double.parseDouble(Price);
-				checkForError();
-				
+				saveButton.setEnabled(true);
 			}
 		});
-		btnEditProductInformation.setBounds(197, 580, 180, 33);
-		frame.getContentPane().add(btnEditProductInformation);
+		editButton.setBounds(197, 580, 180, 33);
+		frame.getContentPane().add(editButton);
 		
-		JButton btnNewButton = new JButton("Save");
-		btnNewButton.addActionListener(new ActionListener() {
+		
+		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//save and add product
-				//Seller.addProduct(cp);
+				boolean flag = checkForError();
+				if (! flag) {
+					if (! textStockAmount.getText().equals("" + cp.getStockAmount())) {                //if textStockAmount has changed, set the new value to stockAmount attribute
+						cp.setStockAmount(Double.parseDouble(textStockAmount.getText()));
+					}
+					textStockAmount.setText("" + cp.getStockAmount());
+						
+						
+					if ( !textPrice.getText().equals("" + cp.getPrice())) {                          //if textPrice has changed, set the new value to price attribute
+						cp.setPrice(Integer.parseInt(textPrice.getText()));
+					}
+					textPrice.setText("" + cp.getPrice());
+					int index = user.getProducts().getCompanyProducts().indexOf(cp);
+					//user.getProducts().getSupplierProducts().set(index, cp);
+					textStockAmount.setEditable(false);
+			        textPrice.setEnabled(false);
+			        saveButton.setEnabled(false); 
+				}
 			}
 		});
-		btnNewButton.setBounds(654, 580, 146, 33);
-		frame.getContentPane().add(btnNewButton);
+		saveButton.setBounds(654, 580, 146, 33);
+		frame.getContentPane().add(saveButton);
 		frame.setVisible(true);
-		
 	}
 		
-	
-		private boolean checkForError() 
-		{
-		
-          //if(textsa.getText()!=null && textStockAmount.getText()!=null && textpricecp.getText()!=null && textLeadTime.getText()!=null && textExpectedAmount.getText()!=null){
-			return true;
-         // }
-         // else if(textsa.getText()!=null || textStockAmount.getText()!=null || textpricecp.getText()!=null || textLeadTime.getText()!=null && textExpectedAmount.getText()!=null){
-        	   //JOptionPane.showMessageDialog(frame, ("Some fields are empty.");
-        	  // return false;
-          // }
+	/*
+	 * Purpose Checks for error in the editable text fields
+	 * @return flag Returns true if there are not errors, else false.
+	 */
+	private boolean checkForError(){
+		boolean flag = false;
+		if ( frame.getContentPane().isAncestorOf(textPrice)) {                                           //frame contains textPrice, this means that we are checking for errors for a CompanyProduct
+			if (textStockAmount.getText().equals("") && textPrice.getText().equals("")) {				 //if all fields are empty, show error Message
+				JOptionPane.showMessageDialog(frame, "All fields are empty");                            
+				flag = true;
+			}else {
+				if (!(textStockAmount.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+|[0-9]+") || textPrice.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]|[0-9]+"))) {           //fields should match  regex for integer and double number
+					JOptionPane.showMessageDialog(frame, "Fields must contain digit");
+					flag = true;
+				}
+			}
+			
+		}else {																																	 //frame contains textPrice, this means that we are checking for errors for a SupplierProduct
+			if (textStockAmount.getText().equals("") && textExpectedAmount.getText().equals("") && textLeadTime.getText().equals("")) {          //if all fields are empty, show error Message
+				JOptionPane.showMessageDialog(frame,"All fields are empty");
+				flag = true;
+			}
+			else {
+				if (!(textStockAmount.getText().matches("[0-9]+|[0-9][.]{1}[0-9]+") || textLeadTime.getText().matches("[0-9]+") || textExpectedAmount.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+"))) {				//fields should match  regex for integer and double number
+					JOptionPane.showMessageDialog(frame, "Fields must contain digit");
+					flag = true;
+				}
+			}
+		}
+		return flag;	
 	}
 }
 	

@@ -21,25 +21,25 @@ public class OrderManagerForm {
 	private JFrame frame ;   //frame
 	private	JMenuBar ordManagerJMenuBar;
 	private	JMenu searchForJMn ;
+	private	JMenu myProdJMn;
+	private	JMenu myOrdersJMn;
+	private	JMenu mySuppliersJMn;
+	private	JMenu statisticsJMn;
+	private	JMenu forecastJMn;
 	private	JMenuItem searchForJMnItm;
 	private	JMenuItem productsJMnItm;
 	private	JMenuItem suppliersJMnItm ;
-	private	JLabel spaceLabel1 ;
-	private	JMenu myProdJMn;
 	private	JMenuItem addProdJMnItm;
 	private	JMenuItem showProdJMnItm ;
-	private	JLabel spaceLabel2;
-	private	JMenu myOrdersJMn;
 	private	JMenuItem addOrderJMnItm;
 	private	JMenuItem showOrdJMnItm;
-	private	JLabel spaceLabel3;
-	private	JMenu mySuppliersJMn;
 	private	JMenuItem addSupplJMnItm;
 	private	JMenuItem showSupplJMnItm;
+	private	JLabel spaceLabel2;
+	private	JLabel spaceLabel1 ;
+	private	JLabel spaceLabel3;
 	private	JLabel spaceLabel4;
-	private	JMenu statisticsJMn;
 	private	JLabel spaceLabel5;
-	private	JMenu forecastJMn;
 	private	JPanel panel;
 	private	JLabel firstNameJLbl;
 	private	JLabel surNameJLbl;
@@ -52,9 +52,10 @@ public class OrderManagerForm {
 	private	JLabel resultAfmJLbl;
 	private	JLabel resultIdJLbl;
 	private	JLabel resultSeasonJLbl;
+	private	JLabel afmJLbl;
 	private	JButton resultChangeBusinessTypeJLbl;
 	private	JButton resultRefreshJLbl;
-	private	JLabel afmJLbl;
+	
 		
 	
 	public OrderManagerForm(OrderManager ordManager) {
@@ -118,8 +119,8 @@ public class OrderManagerForm {
 		});
 		myProdJMn.add(addProdJMnItm);
 		
-		/* Shows a specific product from presentation form */
-		showProdJMnItm = new JMenuItem("Show a Product");
+		
+		showProdJMnItm = new JMenuItem("Show a Product");						//Shows a specific product from presentation form 
 		showProdJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		showProdJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

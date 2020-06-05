@@ -23,7 +23,7 @@ public class SearchForm extends JFrame{
 	 * @author Evangelia Papagiannaki.
 	 * @version 1.0
 	 */
-	private JPanel panel;
+
 	private JButton searchButton;
 	private JLabel keyLabel;
 	private JLabel chooseLabel;
@@ -33,13 +33,11 @@ public class SearchForm extends JFrame{
 	private ArrayList<String> slist = new ArrayList<String>();
 	private DefaultListModel<String> model= new DefaultListModel<String>();
 	
-	
-	public SearchForm(int type,User u)
-	{
-		panel = new JPanel();
+	public SearchForm(int type,User u){
+		
 		user = u;
 		
-		if (type==1) {                    //sets the strings that are needed for searching an order
+		if (type == 1) {                    //sets the strings that are needed for searching an order
 			slist.add("Order Id  ");
 			slist.add("Supplier Id  ");
 			slist.add("Product Id  ");
@@ -47,7 +45,7 @@ public class SearchForm extends JFrame{
 			slist.add("Date  ");
 			slist.add("Status");
 		}
-		else if (type==2) {			     //sets the strings that are needed for searching a SupplierProduct/CompanyProduct
+		else if (type == 2) {			     //sets the strings that are needed for searching a SupplierProduct/CompanyProduct
 			slist.add("Product Id");
 			slist.add("Product Name");
 			slist.add("Supplier Id");
@@ -68,42 +66,42 @@ public class SearchForm extends JFrame{
 				
 		chooseLabel = new JLabel("Choose Field");                                          
 		chooseLabel.setFont(new Font("ÇelveticaNeue", Font.BOLD, 17));
-		chooseLabel.setPreferredSize(new Dimension(120,180));
-		chooseLabel.setBounds(225, 335, 159, 32);
-		panel.add(chooseLabel);
+		chooseLabel.setBounds(246, 141, 175, 41);
+		this.getContentPane().add(chooseLabel);
 		
 		
 		list.setFont(new Font("ÇelveticaNeue", Font.PLAIN, 15));
-		list.setPreferredSize(new Dimension(200, 140));
+		list.setBounds(493, 61, 213, 167);
 		list.setSelectionBackground(new Color(255, 152, 61));
-		panel.add(list);
+		this.getContentPane().add(list);
 		
 		
 		keyLabel = new JLabel("Enter an input value ");
 		keyLabel.setFont(new Font("ÇelveticaNeue", Font.BOLD, 17));
-		keyLabel.setBounds(1200, 1300, 100, 50);
-		panel.add(keyLabel);
+		keyLabel.setBounds(246, 390, 181, 41);
+		this.getContentPane().add(keyLabel);
 		
 		
 		key = new JTextField("Type the text",20);
 		key.setFont(new Font("ÇelveticaNeue",Font.PLAIN,15));
-		key.setPreferredSize(new Dimension(180,26));
-		panel.add(key);
+		key.setBounds(493, 396, 265, 25);
+		key.setColumns(10);
+		this.getContentPane().add(key);
 		
 		
 		searchButton =  new JButton("Search");
 		searchButton.setFont(new Font("ÇelveticaNeue", Font.PLAIN, 17));
-		searchButton.setPreferredSize(new Dimension(159,26));
-		panel.add(searchButton);
+		searchButton.setBounds(852, 573, 164, 30);
+		this.getContentPane().add(searchButton);
+		
+		
 		
 		
 		searchButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				boolean flag = checkForError(type,user);
-				if (flag == true )														  // if there are not errors in the form
-				{
-					if (user instanceof OrderManager)                                     // if user is OrderManager
-					{
+				if (flag == true ) {													  // if there are not errors in the form
+					if (user instanceof OrderManager)  {                                   // if user is OrderManager
 						OrderManager u = (OrderManager) user;
 						if (type==1) {                                                    //searching for an Order
 							u.searchForOrder(key.getText(),list.getSelectedIndex());
@@ -136,13 +134,14 @@ public class SearchForm extends JFrame{
 				}
 			}	
 		});
-		panel.setBackground(new Color(136, 177, 179));
-		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		this.add(new JSeparator(SwingConstants.VERTICAL));
+		this.getContentPane().setBackground(new Color(136, 177, 179));
 		this.setVisible(true);
-		this.getContentPane().add(panel, BorderLayout.CENTER);
+		this.setLayout(null);
+		this.setResizable(false);
 		this.setTitle("SearchForm");
 		this.setBounds(100, 100, 1041, 653);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
 	}
 	
 	/*
@@ -155,23 +154,23 @@ public class SearchForm extends JFrame{
 	{
 		boolean flag = false;
 		if(list.getSelectedIndex()==-1){                                                                                
-			JOptionPane.showMessageDialog(panel,"No field choosen");
+			JOptionPane.showMessageDialog(this,"No field choosen");
 		}                                                                     
 		if (key.getText().equals("Type the text") || key.getText().equals("")){                                     // if the key field does not have the correct input
-				JOptionPane.showMessageDialog(panel,"Invalid input in key field");
+				JOptionPane.showMessageDialog(this,"Invalid input in key field");
 		}                                                                                                         
 		else if (list.getSelectedIndex() == 0 && (key.getText().length() != 6)) {                                      //if the user selected the first field from the list and key field does not have 6 characters
-			JOptionPane.showMessageDialog(panel,"Invalid input in key field.");		
+			JOptionPane.showMessageDialog(this,"Invalid input in key field.");		
 		}
 		else if (list.getSelectedIndex() == 4 ) {                                                                     //if the user selected the fifth field from the field 
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			sdf.setLenient(false);
 			if (sdf.parse(key.getText(), new ParsePosition(0)) == null) {                                             //if key field does not have the correct format for date
-			    JOptionPane.showMessageDialog(panel,"Invalid input in key field.");   
+			    JOptionPane.showMessageDialog(this,"Invalid input in key field.");   
 			}
 		}
 		else if (list.getSelectedIndex() == 5 &&( key.getText().length() != 1 || key.getText().matches("[0-4]{1}") == false)) {     //if sixth field was choosen from the list and key field length does not have 1 character or contain digits other than [0-4].	
-			JOptionPane.showMessageDialog(panel,"Invalid input in key field.");
+			JOptionPane.showMessageDialog(this,"Invalid input in key field.");
 		}
 		else {                                                                                                                     //if none of the above are true                                                                               
 			flag = true;
