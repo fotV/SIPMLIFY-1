@@ -172,36 +172,31 @@ private JFrame frame ;   //frame
 		ordManagerJMenuBar.add(spaceLabel5);
 		
 		/* Shows the results of forecast */
+		*************************************************************************************
 		JMenu forecastJMn = new JMenu("Forecast");
 		forecastJMn.setFont(new Font("HelveticaNeue", Font.BOLD | Font.ITALIC, 20));
-		forecastJMn.addActionListener(new ActionListener() {
+		ordManagerJMenuBar.add(forecastJMn);
+		
+		JMenuItem showProposalsJMnItm = new JMenuItem("Show Proposals");
+		showProposalsJMnItm.setFont(new Font("HelveticaNeue", Font.BOLD | Font.ITALIC, 20));
+		showProposalsJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<Object> ordManObject = new ArrayList<Object>();
-				JFrame frame = new JFrame();
-				frame.setTitle("Forecast");
-				frame.setSize(400, 400);
-				frame.setVisible(true);
-				frame.setResizable(false);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				
-				JPanel panel = new JPanel();
-				panel.setBackground(new Color(136, 177, 179));
-				
-				JLabel label = new JLabel(" Forecast Result : ");
-				panel.add(label);
-				
-				JTable table = new JTable();
-				if (ordManager.getId().equals(resultIdJLbl)) {
-					ordManObject.add(ordManager.getProposals().getProposals());
-					for (Object ob : ordManObject) {
-						table.setModel(new DefaultTableModel(ob));
-					}
-				}
-				table.setBounds(30,40,200,300);
-				panel.add(table);
+				ArrayList<Object> listofProposals = new ArrayList<>(ordManager.getProposals().getProposals());
+				new TryPresentationForm(ordManager, listofProposals);
 			}
 		});
-		ordManagerJMenuBar.add(forecastJMn);
+		ordManagerJMenuBar.add(showProposalsJMnItm);
+		
+		JMenuItem calculateJMnItm = new JMenuItem("Calculate");
+		calculateJMnItm.setFont(new Font("HelveticaNeue", Font.BOLD | Font.ITALIC, 20));
+		calculateJMnItm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Object> listofProposals = new ArrayList<>(ordManager.getProposals().getProposals());
+				new TryPresentationForm(ordManager, listofProposals);
+			}
+		});
+		ordManagerJMenuBar.add(calculateJMnItm);   
+		*************************************************************************************
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(136, 177, 179));
@@ -211,67 +206,90 @@ private JFrame frame ;   //frame
 		JLabel firstNameJLbl = new JLabel("First Name :");
 		firstNameJLbl.setFont(new Font("HelveticaNeue", Font.BOLD, 24));
 		firstNameJLbl.setHorizontalAlignment(SwingConstants.LEFT);
-		firstNameJLbl.setBounds(125, 59, 151, 21);
+		firstNameJLbl.setBounds(225, 99, 159, 32);   *******
 		panel.add(firstNameJLbl);
 		
 		JLabel surNameJLbl = new JLabel("Surname :");
 		surNameJLbl.setFont(new Font("HelveticaNeue", Font.BOLD, 24));
 		surNameJLbl.setHorizontalAlignment(SwingConstants.LEFT);
-		surNameJLbl.setBounds(125, 116, 151, 21);
+		surNameJLbl.setBounds(225, 192, 159, 32);  ********
 		panel.add(surNameJLbl);
 		
 		JLabel telephoneJLbl = new JLabel("Telephone :");
 		telephoneJLbl.setFont(new Font("HelveticaNeue", Font.BOLD, 24));
 		telephoneJLbl.setHorizontalAlignment(SwingConstants.LEFT);
-		telephoneJLbl.setBounds(125, 167, 151, 21);
+		telephoneJLbl.setBounds(225, 272, 159, 32);  ******
 		panel.add(telephoneJLbl);
 		
 		JLabel afmJLbl = new JLabel("AFM : ");
 		afmJLbl.setFont(new Font("HelveticaNeue", Font.BOLD, 24));
 		afmJLbl.setHorizontalAlignment(SwingConstants.LEFT);
-		afmJLbl.setBounds(125, 229, 151, 21);
+		afmJLbl.setBounds(225, 355, 159, 32);  ******
 		panel.add(afmJLbl);
 		
 		JLabel idJLbl = new JLabel("ID : ");
 		idJLbl.setFont(new Font("HelveticaNeue", Font.BOLD, 24));
 		idJLbl.setHorizontalAlignment(SwingConstants.LEFT);
-		idJLbl.setBounds(125, 311, 151, 21);
+		idJLbl.setBounds(225, 427, 159, 32);  ******
 		panel.add(idJLbl);
 		
 		JLabel typeOfBusinessJLbl = new JLabel("Type of Business : ");
 		typeOfBusinessJLbl.setFont(new Font("HelveticaNeue", Font.BOLD, 24));
 		typeOfBusinessJLbl.setHorizontalAlignment(SwingConstants.LEFT);
-		typeOfBusinessJLbl.setBounds(125, 372, 227, 21);
+		typeOfBusinessJLbl.setBounds(225, 550, 159, 32);  ******
 		panel.add(typeOfBusinessJLbl);
+		
+		****************************************************************************************
+		JSeparator separator = new JSeparator();
+		separator.setBounds(24, 167, 984, 2);
+		panel.add(separator);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(27, 246, 981, 2);
+		panel.add(separator_1);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBounds(27, 331, 981, 2);
+		panel.add(separator_2);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBounds(30, 414, 981, 2);
+		panel.add(separator_3);	
+	
+		JSeparator separator_4 = new JSeparator();
+		separator_4.setBounds(30, 520, 981, 2);
+		panel.add(separator_4);
+		
+		****************************************************************************************
 		
 		JLabel resultFirstNameJLbl = new JLabel(ordManager.getFirstName());
 		resultFirstNameJLbl.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
-		resultFirstNameJLbl.setBounds(524, 67, 123, 21);
+		resultFirstNameJLbl.setBounds(608, 102, 226, 26);    *****
 		panel.add(resultFirstNameJLbl);
 		
 		JLabel resultLastNameJLbl = new JLabel(ordManager.getLastName());
 		resultLastNameJLbl.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
-		resultLastNameJLbl.setBounds(524, 116, 123, 21);
+		resultLastNameJLbl.setBounds(608, 195, 226, 26);   ******
 		panel.add(resultLastNameJLbl);
 		
 		JLabel resultTelephoneJLbl = new JLabel(ordManager.getTelephone());
 		resultTelephoneJLbl.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
-		resultTelephoneJLbl.setBounds(524, 175, 123, 21);
+		resultTelephoneJLbl.setBounds(608, 275, 226, 26);    *******
 		panel.add(resultTelephoneJLbl);
 		
 		JLabel resultAfmJLbl = new JLabel(ordManager.getAfm());
 		resultAfmJLbl.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
-		resultAfmJLbl.setBounds(524, 236, 123, 21);
+		resultAfmJLbl.setBounds(608, 358, 226, 26);   ******
 		panel.add(resultAfmJLbl);
 		
 		JLabel resultIdJLbl = new JLabel(ordManager.getId());
 		resultIdJLbl.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
-		resultIdJLbl.setBounds(524, 312, 123, 21);
+		resultIdJLbl.setBounds(608, 430, 226, 26);   ******
 		panel.add(resultIdJLbl);
 		
 		JLabel resultSeasonJLbl = new JLabel(ordManager.getSeason());
 		resultSeasonJLbl.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
-		resultSeasonJLbl.setBounds(525, 369, 122, 21);
+		resultSeasonJLbl.setBounds(608, 560, 226, 26);  *******
 		panel.add(resultSeasonJLbl);
 		
 		/* Changes the type of business */
@@ -286,14 +304,26 @@ private JFrame frame ;   //frame
 				frame.setResizable(false);
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				
-				JPanel panel = new JPanel();
-				panel.setBackground(SystemColor.activeCaption);
+				JPanel panel = new JPanel();   
+				frame.getContentPane().add(panel, BorderLayout.CENTER); ************
+   				
+				JLabel label = new JLabel(" Do you want to change your business type? "); 
+				*************************************************
+				label.setFont(new Font("HelveticaNeue", Font.BOLD | Font.ITALIC, 25));  ***25***
+				label.setHorizontalAlignment(SwingConstants.CENTER);
+				label.setBounds(73, 72, 265, 14);  
+				**************************************************
+				panel.add(label); 
 				
-				JLabel label = new JLabel(" Do you want to change your business type? ");
-				panel.add(label);
+				*******************************
+				JSeparator separator = new JSeparator();
+				separator.setBounds(61, 109, 288, 14);
+				panel.add(separator);
+				*******************************
 				
 				JButton regularJBtn = new JButton("Regular");
 				regularJBtn.setFont(new Font("HelveticaNeue", Font.BOLD, 20));
+				regularJBtn.setBounds(92, 139, 89, 37);  *************
 				regularJBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						resultSeasonJLbl.setText(ordManager.setSeason("Regular"));
@@ -306,6 +336,7 @@ private JFrame frame ;   //frame
 				
 				JButton seasonalJBtn = new JButton("Seasonal");
 				seasonalJBtn.setFont(new Font("HelveticaNeue", Font.BOLD, 20));
+				seasonalJBtn.setBounds(227, 139, 89, 37);  ***************
 				seasonalJBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JFrame frame = new JFrame();
@@ -316,13 +347,25 @@ private JFrame frame ;   //frame
 						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						
 						JPanel panel2 = new JPanel();
-						panel2.setBackground(SystemColor.activeCaption);
+						frame.getContentPane().add(panel2, BorderLayout.CENTER); *************
 						
 						JLabel label = new JLabel(" Choose Seasons : ");
+						*********************************************
+						label.setFont(new Font("HelveticaNeue", Font.BOLD | Font.ITALIC, 25)); ****25****
+						label.setHorizontalAlignment(SwingConstants.CENTER);
+						label.setBounds(73, 72, 265, 14);	
+						*********************************************
 						panel2.add(label);
 						
+						********************************************
+						JSeparator separator = new JSeparator();
+						separator.setBounds(61, 109, 288, 14);
+						panel.add(separator);
+						********************************************
+						
 						JButton autmnWinter = new JButton("Autumn - Winter");
-						autmnWinter.setFont(new Font("HelveticaNeue", Font.BOLD, 11));
+						autmnWinter.setFont(new Font("HelveticaNeue", Font.BOLD, 20));  ***20***
+						autmnWinter.setBounds(92, 139, 89, 37);   *********************
 						autmnWinter.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								resultSeasonJLbl.setText(ordManager.setSeason("Autumn - Winter"));
@@ -334,7 +377,8 @@ private JFrame frame ;   //frame
 						panel2.add(autmnWinter);
 						
 						JButton springSummer = new JButton("Spring - Summer");
-						springSummer.setFont(new Font("HelveticaNeue", Font.BOLD, 11));
+						springSummer.setFont(new Font("HelveticaNeue", Font.BOLD, 20));  ****20***
+						springSummer.setBounds(227, 139, 89, 37);   *****************
 						springSummer.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								resultSeasonJLbl.setText(ordManager.setSeason("Spring - Summer"));
@@ -353,18 +397,19 @@ private JFrame frame ;   //frame
 				frame.getContentPane().add(panel);
 			}
 		});
-		resultChangeBusinessTypeJLbl.setBounds(125, 473, 189, 38);
+		resultChangeBusinessTypeJLbl.setBounds(125, 473, 189, 38);   *********************
 		panel.add(resultChangeBusinessTypeJLbl);
 		
 		/* Refreshes all the changes that has been made in the array lists to the database */
-		JButton resultRefreshJLbl = new JButton("Refresh");
-		resultRefreshJLbl.setFont(new Font("HelveticaNeue", Font.BOLD, 11));
-		resultRefreshJLbl.addActionListener(new ActionListener() {
+		///alakse kai to onoma apo resultRfreshJLbl se resultRefreshJBtn/////
+		JButton resultRefreshJBtn = new JButton("Refresh");
+		resultRefreshJBtn.setFont(new Font("HelveticaNeue", Font.BOLD, 20));
+		resultRefreshJBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ordManager.refresh();
 			}
 		});
-		resultRefreshJLbl.setBounds(818, 473, 89, 38);
-		panel.add(resultRefreshJLbl);
+		resultRefreshJBtn.setBounds(818, 473, 89, 38);    ******************
+		panel.add(resultRefreshJBtn);
 	}
 }
