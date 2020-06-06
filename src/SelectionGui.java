@@ -319,7 +319,7 @@ public class SelectionGui extends JFrame
 		    	 if(options[2].equals("Product")) {
 		    		 
 			    	CompanyProducts prod = new CompanyProducts();
-			    	ArrayList<CompanyProduct> cProd = prod.getCompProduct();
+			    	ArrayList<CompanyProduct> cProd = prod.getCompanyProducts();
 			    	while((i < cProd.size()) && !keyExists){
 			    		
 			    		if(options[2].equals(cProd.get(i).getId())){
