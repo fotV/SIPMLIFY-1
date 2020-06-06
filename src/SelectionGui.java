@@ -75,9 +75,9 @@ public class SelectionGui extends JFrame
 		var.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
 		f.getContentPane().add(var);
 		 
-	    JLabel filter = new JLabel("Choose Filter :");
-	    filter.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));					//filter JLabel
-	    filter.setBounds(197, 144, 196, 30);
+	   	JLabel filter = new JLabel("Choose Filter :");
+	   	filter.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));					//filter JLabel
+	   	filter.setBounds(197, 144, 196, 30);
 		f.getContentPane().add(filter);
 		
 
@@ -105,9 +105,9 @@ public class SelectionGui extends JFrame
 		chartCb.setBounds(504, 367, 264, 30);
 		f.getContentPane().add(chartCb);
 		
-	    JLabel from = new JLabel("From :");
-	    from.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));      				//from month JLabel
-	    from.setBounds(197, 470, 107, 26);
+	    	JLabel from = new JLabel("From :");
+	    	from.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));      				//from month JLabel
+	    	from.setBounds(197, 470, 107, 26);
 		f.getContentPane().add(from);
 		
 		JComboBox fromMonth = new JComboBox(months);
@@ -169,7 +169,7 @@ public class SelectionGui extends JFrame
 			JComboBox varCb = new JComboBox(OMvariables);
 			varCb.setFont(new Font("Helvetica Neue", Font.PLAIN, 22));					//variable JComboBox Input
 			varCb.setBounds(504, 45, 264, 30);    
-		    f.getContentPane().add(varCb);  
+		        f.getContentPane().add(varCb);  
 		    
 			JComboBox filterCb = new JComboBox(OMfilter);
 			filterCb.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));				//filter JComboBox Input
@@ -214,7 +214,7 @@ public class SelectionGui extends JFrame
 			JComboBox varCb = new JComboBox(Svariables);
 			varCb.setFont(new Font("Helvetica Neue", Font.PLAIN, 22));			//variable JComboBox Input
 			varCb.setBounds(504, 45, 264, 30);    
-		    f.getContentPane().add(varCb);  
+		   	f.getContentPane().add(varCb);  
 		    
 			JComboBox filterCb = new JComboBox(Sfilter);
 			filterCb.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));		//filter JComboBox Input
