@@ -22,6 +22,7 @@ public class BuyerForm extends JFrame{
 		private Seller seller;
 		
 		/* Creates GUI and adds buyer in ArrayList Buyer if there is no error in filled form*/
+		public BuyerForm(Seller seller){
 			this.seller = seller;
 		
 			frame = new JFrame(); 														//creates gui
@@ -209,5 +210,5 @@ public class BuyerForm extends JFrame{
 				errorFlag = true;
 			}	
 			return errorFlag;
-		
+		}
 	}
