@@ -182,7 +182,7 @@ private JFrame frame ;   //frame
 		showProposalsJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Object> listofProposals = new ArrayList<>(ordManager.getProposals().getProposals());
-				new TryPresentationForm(ordManager, listofProposals);
+				new PresentationForm(ordManager, listofProposals);
 			}
 		});
 		ordManagerJMenuBar.add(showProposalsJMnItm);
@@ -191,8 +191,7 @@ private JFrame frame ;   //frame
 		calculateJMnItm.setFont(new Font("HelveticaNeue", Font.BOLD | Font.ITALIC, 20));
 		calculateJMnItm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<Object> listofProposals = new ArrayList<>(ordManager.getProposals().getProposals());
-				new TryPresentationForm(ordManager, listofProposals);
+				new Forecast(ordManager);
 			}
 		});
 		ordManagerJMenuBar.add(calculateJMnItm);   
