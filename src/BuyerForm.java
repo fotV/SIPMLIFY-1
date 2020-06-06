@@ -11,17 +11,18 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+/**
+*BuyerForm.java
+* Purpose : Creates the GUI of the Supplier Form and adds a supplier if there is no error in the filled fields.
+* @author Fotiadou Vassiliki
+*/
 	
 public class BuyerForm extends JFrame{
-	/*BuyerForm.java
-	 * Purpose : Creates the GUI of a form for the seller in order to add a buyer to the database.
-	 * @author Fotiadou Vassiliki
-	 */
 		private JFrame frame;
 		private boolean errorFlag;//false if there is no error else true
 		private Seller seller;
-		
-		/* Creates GUI and adds buyer in ArrayList Buyer if there is no error in filled form*/
+
 		public BuyerForm(Seller seller){
 			this.seller = seller;
 		
@@ -142,7 +143,15 @@ public class BuyerForm extends JFrame{
 			frame.setVisible(true);
 		}
 		
-		/* Purpose : Checks if the filled form has all the fields filled and there is no such client already in database*/
+		/**
+		*Purpose : Checks if the filled form has all the fields filled and there is no such client already in database
+		*@param name
+		*@param lastName
+		*@param id
+		*@param afm
+		*@param phone
+		*@return errorFlag
+		*/
 		private boolean checkError(String name,String lastName,String id,String afm,String phone){
 			
 			errorFlag = false;
