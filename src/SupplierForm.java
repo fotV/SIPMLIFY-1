@@ -1,34 +1,18 @@
-
-
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-  import javax.swing.*;
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
-
-
-
+import javax.swing.*;
 
 public class SupplierForm extends JFrame {
-	
 	
 	/*SupplierForm.java
 	 * Purpose : Displays the GUI of a form for the ordermanager.Add a supplier to the database.
 	 * @author Vlasakoudi Christina
 	 */
 	
-	
-	private JPanel panel ;
-	private JTextField name;
-	private JTextField lastname;
-	private JTextField id;
-	private JTextField phonenumber;
-	private JTextField afm;
-	private JButton add;
+	private JFrame frame;
 	private boolean errorFlag;//false if there is no error else true
 	private OrderManager ordermanager;
 	
@@ -37,223 +21,189 @@ public class SupplierForm extends JFrame {
 	
 		/* Creates GUI and adds supplier in ArrayList Supplier if there is no error in filled form*/
 		
-		//creation of gui
+		frame = new JFrame(); 														//creates gui
+		frame.getContentPane().setBackground(new Color(136, 177, 179));
+	
+		JLabel nameLabel = new JLabel("First Name :");
+		nameLabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));				// first name label and textfield
+		nameLabel.setBounds(207, 70, 154, 41);
+		frame.getContentPane().add(nameLabel);
 		
-        panel = new JPanel();
-        
-        //name label
+		JTextField  nameTXT = new JTextField();
+		nameTXT.setBounds(489, 70, 291, 34);
+		frame.getContentPane().add( nameTXT);
+		nameTXT.setColumns(10);
 		
-		JLabel labelname = new JLabel("Name :");
-		labelname.setFont(new Font("HelveticaNeue", Font.BOLD, 18));
-		labelname.setHorizontalAlignment(SwingConstants.CENTER);
-		labelname.setBounds(117, 144, 89, 49);
-		panel.add(labelname);
+		JLabel lastNameLabel = new JLabel("Last Name :");
+		lastNameLabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));			//last name label and textfield
+		lastNameLabel.setBounds(207, 180, 154, 41);
+		frame.getContentPane().add(lastNameLabel);
 		
-	//id label
+		JTextField lastNameTXT = new JTextField();
+		lastNameTXT.setColumns(10);
+		lastNameTXT.setBounds(489, 180, 291, 34);
+		frame.getContentPane().add(lastNameTXT);
 		
-		JLabel labelid = new JLabel("ID :");
-		labelid.setHorizontalAlignment(SwingConstants.CENTER);
-		labelid.setFont(new Font("HelveticaNeue", Font.BOLD, 18));
-		labelid.setBounds(117, 294, 63, 28);
-		panel.add(labelid);
-	//phonenumber label
+		JLabel idLabel = new JLabel("ID :");
+		idLabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));				//id label and textfield
+		idLabel.setBounds(207, 282, 154, 41);
+		frame.getContentPane().add(idLabel);
 		
-		JLabel PhoneNumber = new JLabel("PhoneNumber :");
-		PhoneNumber.setFont(new Font("HelveticaNeue", Font.BOLD, 18));
-		PhoneNumber.setHorizontalAlignment(SwingConstants.CENTER);
-		PhoneNumber.setBounds(94, 369, 194, 28);
-		panel.add(PhoneNumber);
-		//afm label
+		JTextField idTXT = new JTextField();
+		idTXT.setColumns(10);
+		idTXT.setBounds(489, 292, 291, 34);
+		frame.getContentPane().add(idTXT);
 		
-		JLabel AFM = new JLabel("AFM :");
-		AFM.setFont(new Font("HelveticaNeue", Font.BOLD, 18));
-		AFM.setHorizontalAlignment(SwingConstants.CENTER);
-		AFM.setBounds(117, 434, 71, 28);
-		panel.add(AFM);
+		JLabel idCharacters = new JLabel("(6 characters)");
+		idCharacters.setFont(new Font("Helvetica Neue", Font.PLAIN, 12));			//label for id characters
+		idCharacters.setBounds(207, 308, 109, 14);
+		frame.getContentPane().add(idCharacters);
 		
-		//name textfield
+		JLabel afmLabel = new JLabel("AFM :");
+		afmLabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));				//afm label and textfield
+		afmLabel.setBounds(207, 406, 154, 41);
+		frame.getContentPane().add(afmLabel);
 		
-		name = new JTextField();
-		name.setBounds(393, 162, 248, 31);
-		panel.add(name);
-		name.setColumns(10);
-	//id textfield
+		JTextField afmTXT = new JTextField();
+		afmTXT.setColumns(10);
+		afmTXT.setBounds(489, 406, 291, 34);
+		frame.getContentPane().add(afmTXT);
 		
-		id = new JTextField();
-		id.setBounds(393, 298, 248, 31);
-		panel.add(id);
-		id.setColumns(10);
+		JLabel afmCharacters = new JLabel("(10 characters)");
+		afmCharacters.setFont(new Font("Helvetica Neue", Font.PLAIN, 12));			//label for afm characters
+		afmCharacters.setBounds(207, 432, 109, 14);
+		frame.getContentPane().add(afmCharacters);
 		
-		//phonenumber textfield
+		JLabel phonelabel = new JLabel("Phone Number :");
+		phonelabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));				//phone label and textfield
+		phonelabel.setBounds(207, 502, 182, 41);
+		frame.getContentPane().add(phonelabel);
 		
-		phonenumber = new JTextField();
-		phonenumber.setBounds(393, 369, 248, 31);
-		panel.add(phonenumber);
-		phonenumber.setColumns(10);
+		JTextField phoneTXT = new JTextField();
+		phoneTXT.setColumns(10);
+		phoneTXT.setBounds(489, 509, 291, 34);
+		frame.getContentPane().add(phoneTXT);
 		
-		//afm textfield
+		JLabel phoneCharacters = new JLabel("(10 characters)");
+		phoneCharacters.setFont(new Font("Helvetica Neue", Font.PLAIN, 12));		//label for phone characters
+		phoneCharacters.setBounds(207, 528, 109, 14);
+		frame.getContentPane().add(phoneCharacters);
 		
-		afm = new JTextField();
-		afm.setBounds(393, 436, 248, 31);
-		panel.add(afm);
-		afm.setColumns(10);
-		//button add supplier
+		JSeparator separator = new JSeparator();
+		separator.setBounds(10, 142, 1017, 2);
+		frame.getContentPane().add(separator);
 		
-		JButton add = new JButton("Add Supplier");
-		add.setFont(new Font("HelveticaNeue", Font.BOLD, 14));
-		add.setBounds(428,522, 194, 49);
-		panel.add(add);
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(10, 259, 1017, 2);
+		frame.getContentPane().add(separator_1);									//Separators
 		
-		panel.setBackground(new Color(136,177,179));
-		this.getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBounds(10, 364, 1017, 2);
+		frame.getContentPane().add(separator_2);
 		
-		//lastname babel
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBounds(10, 475, 1017, 2);
+		frame.getContentPane().add(separator_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Lastname :");
-		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 18));
-		lblNewLabel_4.setBounds(126, 227, 115, 38);
-		panel.add(lblNewLabel_4);
+		JButton addButton = new JButton("Add");										//add button
+		addButton.setFont(new Font("Helvetica Neue", Font.PLAIN, 18));
+		addButton.setBounds(928, 583, 90, 25);
+		frame.getContentPane().add(addButton);
 		
-		//lastname textfield
-		
-		lastname = new JTextField();
-		lastname.setBounds(393, 236, 248, 31);
-		panel.add(lastname);
-		lastname.setColumns(10);
-		
-		
-		
-		
-		
-		add.addActionListener(new ActionListener() 
-		{
+		addButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				
-			String Suppliername = name.getText();
-			String Supplierlastname = lastname.getText();
-			String Supplierid = id.getText();
-			String SuppliernphoneNumber = phonenumber.getText();
-			String SupplierAFM = afm.getText();
-			String SupplierOrdermanagerid =null;
+			String Suppliername = nameTXT.getText();
+			String Supplierlastname = lastNameTXT.getText();
+			String Supplierid = idTXT.getText();
+			String SuppliernphoneNumber = phoneTXT.getText();
+			String SupplierAFM = afmTXT.getText();
 			
-
-			//calls checkError function before adding client 
-			errorFlag = checkError(Suppliername,Supplierlastname,Supplierid,SuppliernphoneNumber,SupplierAFM,SupplierOrdermanagerid);
+			
+			errorFlag = checkError(Suppliername,Supplierlastname,Supplierid,SuppliernphoneNumber,SupplierAFM);	//calls checkError function before adding supplier
 			
 			//if errorFlag = false there is no error, adds client in ArrayList Buyers
-			if(!errorFlag)
-			{
-				
+			if(!errorFlag){
+				String SupplierOrdermanagerid = ordermanager.getId();
 				Supplier supplier = new Supplier(Suppliername,Supplierlastname,Supplierid,SuppliernphoneNumber,SupplierAFM,SupplierOrdermanagerid);
-				ordermanager.getSuppliers().getSuppliers().add(supplier);
-				
+				ordermanager.getSuppliers().getSuppliers().add(supplier);	
 			}
 		
-			}
-
-			
-			
+		  }		
 		});
 		
-		this.setTitle("SupplierForm");
-		this.setVisible(true);
-		this.setBounds(100, 100, 1041, 653);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(100,100,1041, 653); 
+		frame.setTitle("Supplier Form");
+		frame.setResizable(false);
+		frame.setLayout(null); 
+		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	private boolean checkError(String Suppliername,String Supplierlastname,String Supplierid,String SuppliernphoneNumber,String SupplierAFM,String SupplierOrdermanagerid)
-	{
-		/* Purpose : Checks if the filled form has all the fields filled and there is no such supplier already in database*/
-		 
+	
+	/* Purpose : Checks if the filled form has all the fields filled and there is no such supplier already in database*/
+	private boolean checkError(String Suppliername,String Supplierlastname,String Supplierid,String SuppliernphoneNumber,String SupplierAFM){ 
 		
 		//checks if all fields are filled
-		
 		errorFlag = false;
 		
-		if(Suppliername.isEmpty())
-		{
-			if(Suppliername.length() != 10) {
+		if(Suppliername.isEmpty()){
 			JOptionPane.showMessageDialog(null, "Name Field Must Be Filled", "Invalid Input",JOptionPane.ERROR_MESSAGE);
 			errorFlag = true;
-			}
-			
 		}	
 		
-		if(	Supplierlastname.isEmpty())
-		{
-			if(Supplierlastname.length() != 10){
+		if(	Supplierlastname.isEmpty()){
 			JOptionPane.showMessageDialog(null, "Last Name Field Must Be Filled", "Invalid Input",JOptionPane.ERROR_MESSAGE);
-			errorFlag = true;	
-			}
-			
+			errorFlag = true;		
 		}
 		
-		if(Supplierid.isEmpty())
-		{
-			JOptionPane.showMessageDialog(null, "Buyer ID Field Must Be Filled", "Invalid Input",JOptionPane.ERROR_MESSAGE);
+		if(Supplierid.isEmpty()){
+			JOptionPane.showMessageDialog(null, "ID Field Must Be Filled", "Invalid Input",JOptionPane.ERROR_MESSAGE);
 			errorFlag = true;
 		}
-		if(!Supplierid.isEmpty())
-		{
-			if(Supplierid.length() != 6)
-			{
+		if(SupplierAFM.isEmpty()){
+			JOptionPane.showMessageDialog(null, "AFM Field Must Be Filled","Invalid Input",JOptionPane.ERROR_MESSAGE);
+			errorFlag = true;
+		}
+		
+		if(SuppliernphoneNumber.isEmpty()){
+			JOptionPane.showMessageDialog(null, "Phone Field Must Be Filled","Invalid Input",JOptionPane.ERROR_MESSAGE);
+			errorFlag = true;
+		}
+		//checks if id,afm and phone have the needed number of characters
+		if(!Supplierid.isEmpty()){
+			if(Supplierid.length() != 6){
 				JOptionPane.showMessageDialog(null,"Wrong ID Input", "Invalid Input",JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		
-		if(SupplierAFM.isEmpty())
-		{
-			JOptionPane.showMessageDialog(null, "AFM Field Must Be Filled","Invalid Input",JOptionPane.ERROR_MESSAGE);
-			errorFlag = true;
-		}
-		if(!SupplierAFM.isEmpty())
-		{
-			if(SupplierAFM.length() != 10)
-			{
+		if(!SupplierAFM.isEmpty()){
+			if(SupplierAFM.length() != 10){
 				JOptionPane.showMessageDialog(null, "Wrong AFM Input","Invalid Input",JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		
-		if(SuppliernphoneNumber.isEmpty())
-		{
-			JOptionPane.showMessageDialog(null, "Phone Field Must Be Filled","Invalid Input",JOptionPane.ERROR_MESSAGE);
-			errorFlag = true;
-		}
-		if(!SuppliernphoneNumber.isEmpty())
-		{
-			if(SuppliernphoneNumber.length() != 10)
-			{
+		if(!SuppliernphoneNumber.isEmpty()){
+			if(SuppliernphoneNumber.length() != 10){
 				JOptionPane.showMessageDialog(null, "Wrong Phone Input","Invalid Input",JOptionPane.ERROR_MESSAGE);
 				errorFlag = true;
 			}
 		}
-		if(!SupplierOrdermanagerid.isEmpty()) {
-			if(SupplierOrdermanagerid.length() != 6) {
-				JOptionPane.showMessageDialog(null, "Wrong Ordermanagerid Input","Invalid Input",JOptionPane.ERROR_MESSAGE);
-				errorFlag = true;
-			}
-		}
 		
-		//checks if buyer already exists in database
+		//checks if supplier already exists in database
 		
 		boolean exists = false;
 		int i = 0;
-		if((!Supplierid.isEmpty()) && (Supplierid.length() == 6 ))
-		{
+		if((!Supplierid.isEmpty()) && (Supplierid.length() == 6 )){
 			Suppliers supplier = new Suppliers();
 			ArrayList<Supplier> supplierID = supplier.getSuppliers(); 
-			while(( i < supplierID.size()) && !exists)
-			{
-				if(supplierID.get(i).getId().equals(Supplierid))
-				{
+			while(( i < supplierID.size()) && !exists){
+				if(supplierID.get(i).getId().equals(Supplierid)){
 					exists = true;
 				}
 				
 				i++;
 			}
 		}
-		if(exists == true)
-		{
+		if(exists == true){
 			JOptionPane.showMessageDialog(null, "Supplier with the same ID already exists","Invalid Input",JOptionPane.ERROR_MESSAGE);
 			errorFlag = true;
 		}	
@@ -261,15 +211,3 @@ public class SupplierForm extends JFrame {
 		return errorFlag;
 	}
 }
-		
-	
-	
-
-		 
-			
-		
-			
-		
-	
-
-
