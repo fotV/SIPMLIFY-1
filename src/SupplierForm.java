@@ -5,12 +5,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class SupplierForm extends JFrame {
-	
-	/*SupplierForm.java
-	 * Purpose : Displays the GUI of a form for the ordermanager.Add a supplier to the database.
-	 * @author Vlasakoudi Christina
+	/**
+	 *SupplierForm.java
+	 * Purpose : Creates the GUI of the Supplier Form and adds a supplier if there is no error in the filled fields.
+	 * @author Fotiadou Vassiliki, Vlasakoudi Christina
 	 */
+
+public class SupplierForm extends JFrame {
 	
 	private JFrame frame;
 	private boolean errorFlag;//false if there is no error else true
@@ -19,8 +20,6 @@ public class SupplierForm extends JFrame {
 	public SupplierForm(OrderManager ordermanager) {
 		this.ordermanager=ordermanager;
 	
-		/* Creates GUI and adds supplier in ArrayList Supplier if there is no error in filled form*/
-		
 		frame = new JFrame(); 														//creates gui
 		frame.getContentPane().setBackground(new Color(136, 177, 179));
 	
@@ -122,7 +121,7 @@ public class SupplierForm extends JFrame {
 			
 			errorFlag = checkError(Suppliername,Supplierlastname,Supplierid,SuppliernphoneNumber,SupplierAFM);	//calls checkError function before adding supplier
 			
-			//if errorFlag = false there is no error, adds client in ArrayList Buyers
+			//if errorFlag = false there is no error, adds client in ArrayList Suppliers
 			if(!errorFlag){
 				String SupplierOrdermanagerid = ordermanager.getId();
 				Supplier supplier = new Supplier(Suppliername,Supplierlastname,Supplierid,SuppliernphoneNumber,SupplierAFM,SupplierOrdermanagerid);
@@ -140,7 +139,15 @@ public class SupplierForm extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	/* Purpose : Checks if the filled form has all the fields filled and there is no such supplier already in database*/
+	/**
+	*Purpose : Checks if the filled form has all the fields filled and there is no such supplier already in database
+	*@param Suppliername
+	*@param Supplierlastname
+	*@param Supplierid
+	*@param SupplierphoneNumber
+	*@param Supplierafm
+	*@return errorFlag
+	*/
 	private boolean checkError(String Suppliername,String Supplierlastname,String Supplierid,String SuppliernphoneNumber,String SupplierAFM){ 
 		
 		//checks if all fields are filled
