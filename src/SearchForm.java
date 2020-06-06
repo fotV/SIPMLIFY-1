@@ -1,15 +1,11 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.border.EtchedBorder;
 /**
  * SearchForm.java
  * Purpose: Shows a GUI for searching .

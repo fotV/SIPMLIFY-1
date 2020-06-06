@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Rectangle;
 import javax.swing.JFrame;
@@ -23,8 +22,7 @@ public class ShowBuyerSeller {
 	private JSeparator separator_2 ;
 	private JSeparator separator_3;
 		
-	public ShowBuyerSeller(Buyer byr)
-	{
+	public ShowBuyerSeller(Buyer byr){
 		frame = new JFrame();
 		frame.setTitle("Buyer Information");
 		frame.setBounds(100, 100, 1041, 653);
@@ -77,7 +75,7 @@ public class ShowBuyerSeller {
 		
 		
 		labelAfm = new JLabel(byr.getAFM());
-		labelAfm.setBounds(613, 145, 46, 14);
+		labelAfm.setBounds(613, 385, 46, 14);
 		labelAfm.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelAfm);
 	
@@ -145,7 +143,6 @@ public class ShowBuyerSeller {
 		
 		labelName = new JLabel(cl.getName());
 		lblName.setBounds(613, 32, 190, 32);
-		System.out.println(cl.getName());
 		lblName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelName);
 		
@@ -163,7 +160,6 @@ public class ShowBuyerSeller {
 		
 		
 		labelAfm = new JLabel(cl.getAFM());
-		System.out.println(cl.getAFM());
 		labelAfm.setBounds(613, 385, 190, 32);
 		labelAfm.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelAfm);

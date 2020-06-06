@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Stockkeeper extends User {
 
@@ -8,24 +9,23 @@ public class Stockkeeper extends User {
 		super(firstName, surName, password, telephone, aFM, id, company);
 	}
 
-	/*
-	 * The following method fills the order list with the data extracted from the database using method extractObjectDB.
-	 * Then we filter the list keeping only the orders for this specific stock keeper by removing other unwanted orders.
-	 *  */ 
+	/**
+	 * Fills the order list with the data extracted from the database using method extractObjectDB and then filters the list keeping only the orders for this specific stock keeper by removing other unwanted orders.
+	 */ 
 	@Override
 	public void initializeLists() {
-		this.orders.extractObjectDB();
-		for (Order o : this.orders.getOrders())
-		{
-			if (!o.getStockkeeperId().equals(this.id))
-			{
-				this.orders.getOrders().remove(o);
-			}
+		this.orders.extractObjectDB();						//Extracts the orders from DB 
+		ArrayList<Order> ord = new ArrayList<Order>();			
+		for (Order o: this.orders.getOrders()) {
+			if(o.getOrderManagerId().equals(this.id))
+				ord.add(o);
 		}
+		this.orders.getOrders().clear();
+		this.orders.getOrders().addAll(ord);
 	}
 
-	/*
-	 * The following method updates the database with the current data as well as fills the order list using the method InitializeLists.
+	/**
+	 * Updates the database with the current data as well as fills the order list using the method InitializeLists.
 	 */
 	@Override
 	public void refresh() {

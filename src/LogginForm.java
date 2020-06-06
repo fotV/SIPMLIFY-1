@@ -18,6 +18,7 @@ public class LogginForm extends JFrame{
     private JButton btnNewButton; 
     private boolean errorFlag;//false if there is no error else true
 	private User user;
+	
     public LogginForm() {
     	this.user = new User();
         panel = new JPanel();
@@ -42,15 +43,14 @@ public class LogginForm extends JFrame{
     	panel.add(btnNewButton);
     		
     	JLabel lblNewLabel_2 = new JLabel("");                 //photo
-    	//lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\\u03A7\u03C1\u03B9\u03C3\u03C4\u03B9\u03BD\u03B1\\Desktop\\22.png"));
+    	lblNewLabel_2.setIcon(new ImageIcon("refresh.png"));
     	lblNewLabel_2.setBounds(182, 36, 535, 316);
     	panel.add(lblNewLabel_2);
     		
     	passwordField = new JPasswordField();           //password textfield
     	passwordField.setBounds(367, 470, 219, 19);
     	panel.add(passwordField);
-    		
-    		
+    	
     	panel.setBackground(new Color(136,177,179));
     	this.getContentPane().add(panel, BorderLayout.CENTER);
     	panel.setLayout(null);
@@ -60,25 +60,26 @@ public class LogginForm extends JFrame{
     		public void actionPerformed(ActionEvent e) {
     				
                 String Userid = textField.getText();
-    			System.out.print(Userid);
-    			char[] password = passwordField.getPassword()	;
+    			char[] password = passwordField.getPassword();
     			String Userspassword = new String(password);
-    			System.out.print(Userspassword);
-    			errorFlag = checkError(Userid,Userspassword);
-    				
-    			
-    			if( errorFlag ){
+    			if( checkError(Userid,Userspassword) ){
     				System.out.println(user.getFirstName());
     				if (Userid.startsWith("OR")) {
      				    OrderManager or = (OrderManager) user;
      				    or.initializeLists();
     					new OrderManagerForm(or) ;	  
+    					
     				}else if(Userid.startsWith("SE")) {
-    					Seller se = (Seller) user; 
+    					Seller se = (Seller) user;
+    					se.initializeLists();
     					new SellerForm(se);
+    					
+    					
     				}else if(Userid.contains("ST")) {
     					Stockkeeper st = (Stockkeeper) user;
+    					st.initializeLists();
     					new StockkeeperForm(st);
+    					
     				}
     			}
     	}});
@@ -88,7 +89,12 @@ public class LogginForm extends JFrame{
     	//this.dispose();
     				
     	}
-    			
+    	/**
+    	 * Checks if the user sets the correct username and password		
+    	 * @param Userid			username
+    	 * @param userspassword		the password 
+    	 * @return 					true if the user has given the correct username and password
+    	 */
     	private boolean checkError(String Userid,String userspassword ) {
     		
     		errorFlag = false;
@@ -97,7 +103,6 @@ public class LogginForm extends JFrame{
 			for(User u : users.getUsers()){
 				
 				if (u.getId().equals(Userid)){
-					 	
 					 if (userspassword.length() < 8) 
 						 JOptionPane.showMessageDialog(panel, "Password length should be between 8 characters"); 
 					else{
@@ -138,12 +143,10 @@ public class LogginForm extends JFrame{
 				}
 			}
 			if (errorFlag == false) {
-				JOptionPane.showMessageDialog(this, "Invalid username", "Loggin", JOptionPane.DEFAULT_OPTION);
+				JOptionPane.showMessageDialog(this, "Invalid username or password", "Loggin", JOptionPane.DEFAULT_OPTION);
 			}
     		return errorFlag;
     }
-    	
-   	
 }    
     		
     	

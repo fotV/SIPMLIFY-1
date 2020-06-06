@@ -1,4 +1,3 @@
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -32,9 +31,17 @@ public class StockkeeperForm extends JFrame{
 	private JLabel resultTelephone;
 	private JLabel resultAFM;
 	private JLabel resultID;
+	private JSeparator firstSeparator;
+	private JSeparator secondSeparator;
+	private JSeparator thirdSeparator;
+	private JSeparator fourthSeparator;
+	private JMenu mnSearchFor;
+	private JMenuBar menuBar;
+	private JMenuItem mntmOrder;
+	
 
-	/*
-	 * The following constructor creates the gui for the Stock Keeper Form (home page)
+	/**
+	 * Constructor creates the gui for the Stock Keeper Form (home page)
 	 */
 	public StockkeeperForm(Stockkeeper stk)
 	{
@@ -101,27 +108,26 @@ public class StockkeeperForm extends JFrame{
 		panel.add(resultID);
 		
 		Refreshbutton.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent arg0)
-			{
+			public void actionPerformed(ActionEvent arg0){
 				stk.refresh();
 			}	
 		});
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(24, 167, 984, 2);
-		panel.add(separator);
+		firstSeparator = new JSeparator();
+		firstSeparator.setBounds(24, 167, 984, 2);
+		panel.add(firstSeparator);
 		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(27, 246, 981, 2);
-		panel.add(separator_1);
+		secondSeparator = new JSeparator();
+		secondSeparator.setBounds(27, 246, 981, 2);
+		panel.add(secondSeparator);
 		
-		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(27, 331, 981, 2);
-		panel.add(separator_2);
+		thirdSeparator = new JSeparator();
+		thirdSeparator.setBounds(27, 331, 981, 2);
+		panel.add(thirdSeparator);
 		
-		JSeparator separator_3 = new JSeparator();
-		separator_3.setBounds(30, 414, 981, 2);
-		panel.add(separator_3);
+		fourthSeparator = new JSeparator();
+		fourthSeparator.setBounds(30, 414, 981, 2);
+		panel.add(fourthSeparator);
 		
 		
 		this.setVisible(true);
@@ -131,22 +137,21 @@ public class StockkeeperForm extends JFrame{
 		this.setBounds(100, 100, 1041, 653);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		menuBar.setBackground(new Color(255, 228, 196));
 
 		
-		JMenu mnSearchFor = new JMenu("Search for");
+		mnSearchFor = new JMenu("Search for");
 		mnSearchFor.setFont(new Font("HelveticaNeue", Font.BOLD | Font.ITALIC, 20));
 		menuBar.add(mnSearchFor);
 		
-		JMenuItem mntmOrder = new JMenuItem("Order");
+		mntmOrder = new JMenuItem("Order");
 		mntmOrder.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
 		mnSearchFor.add(mntmOrder);
 
 		mntmOrder.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent arg0)
-			{
+			public void actionPerformed(ActionEvent arg0){
 					new SearchForm(1, stk);
 			}	
 		});

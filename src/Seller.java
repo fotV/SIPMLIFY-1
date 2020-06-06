@@ -15,11 +15,13 @@ public class Seller extends User {
 		this.buyers = new Buyers();
 	}
 
-	/* Method initializeLists() : extracts the infomations from database 
-	** and adds them into lists */
+	/** 
+	 * Calls the extractObjectDB() for the list orders, products, buyers and only keeps data that are related to the specific seller
+	 */
+	@Override
 	public void initializeLists() {
 
-		this.orders.extractObjectDB();
+		this.orders.extractObjectDB();							// Extracts the orders from DB for the specific seller  
 		ArrayList<Order> ord = new ArrayList<Order>();
 		for (Order o: this.orders.getOrders()) {
 			if(o.getOrderManagerId().equals(this.id))
@@ -28,7 +30,7 @@ public class Seller extends User {
 		this.orders.getOrders().clear();
 		this.orders.getOrders().addAll(ord);
 		   
-		this.products.extractObjectDB();                           // Extracts the products from DB for the specific order manager      
+		this.products.extractObjectDB();                           // Extracts the products from DB for the specific seller      
 		ArrayList<CompanyProduct> companyProducts = new ArrayList<CompanyProduct>();
 		for (CompanyProduct comProd : this.products.getCompanyProducts()) {
 			if ( comProd.getSellerId().equals(this.id) ) {
@@ -38,7 +40,7 @@ public class Seller extends User {
 		this.products.getCompanyProducts().clear();
 		this.products.getCompanyProducts().addAll(companyProducts);
 		
-		this.buyers.extractObjectDB();							//Extracts the suppliers for DB of the specific order manager 
+		this.buyers.extractObjectDB();							//Extracts the buyers for DB of the specific seller
 		ArrayList<Buyer> supp = new ArrayList<Buyer>();
 		for (Buyer buyer : this.buyers.getBuyers()) {
 			if ( buyer.getSellerId().equals(this.id) ) {
@@ -50,33 +52,31 @@ public class Seller extends User {
 		 
 	}
 	
-	/* Method searchForProduct(): searches a product and calls a GUI to 
-	** to show the results */
+	/**
+	 *  Method searchForProduct(): searches a product and calls a GUI to 
+	 * to show the results
+	 */
 	public  void searchForProduct(String key, int column) {
 		Boolean found=false;
 		ArrayList<Object> cProductsKEY = new ArrayList<>();
-		if(column==1) {                                     				 //1 for product id
-			for( CompanyProduct compProd : products.getCompanyProducts())
-			{
-				if(compProd.getId().equals(key))
-					{
+		if(column==0) {                                     				 //1 for product id
+			for( CompanyProduct compProd : products.getCompanyProducts()){
+				if(compProd.getId().equals(key)){
 						cProductsKEY.add(compProd);
 						found=true;
 					}
 			}
 		}
-		else if (column==2) {                              					//2 for product name 
-			for( CompanyProduct compProd : products.getCompanyProducts())
-			{
+		else if (column==1) {                              					//2 for product name 
+			for( CompanyProduct compProd : products.getCompanyProducts()){
 				if(compProd.getName().equals(key)) {
 					cProductsKEY.add(compProd);
 					found=true;
 				}
 			}
 		}
-		else if (column==3) {                             					 //3 for supplier id ?? den uparxei
-			for( CompanyProduct compProd : products.getCompanyProducts())
-			{
+		else if (column==2) {                             					 //3 for supplier id ?? den uparxei
+			for( CompanyProduct compProd : products.getCompanyProducts()){
 				if(compProd.getSellerId().equals(key)) {   //prepei na yparxei kapoio getter 
 					cProductsKEY.add(compProd);
 					found=true;
@@ -99,13 +99,16 @@ public class Seller extends User {
 		products.getCompanyProducts().add(index, cp);
 	}
 	
-	/* Method searchForBuyer() : searches a buyer in the list of buyers */
+	/**
+	 * Searches a key into the list of buyers. If the list contains the calls the PresentantionForm to show the results  
+	 * @param key		represents the string for searching
+	 * @param column	represents the int for searching at a specific attribute
+	 */
 	public void searchForBuyer(String key, int column) {
 		Boolean found=false;
 		ArrayList<Object> buyersKEY = new ArrayList<>();
-		if(column==1) {                                      //1 for buyer id
-			for( Buyer b : buyers.getBuyers() )
-			{
+		if(column==1) {                                      //1 -> for buyer id
+			for( Buyer b : buyers.getBuyers()){
 				if(b.getId().equals(key))
 					{
 						buyersKEY.add(b);
@@ -113,27 +116,24 @@ public class Seller extends User {
 					}
 			}
 		}
-		else if (column==2) {                              //2 for name
-			for( Buyer b : buyers.getBuyers() )
-			{
+		else if (column==2) {                                //2 -> for name
+			for( Buyer b : buyers.getBuyers()){
 				if(b.getName().equals(key)) {
 					buyersKEY.add(b);
 					found=true;
 				}
 			}
 		}
-		else if (column==3) {                              //3 for last name 
-			for( Buyer b : buyers.getBuyers() )
-			{
+		else if (column==3) {                               //3 -> for last name 
+			for( Buyer b : buyers.getBuyers()){
 				if(b.getLastName().equals(key)) {
 					buyersKEY.add(b);
 					found=true;
 				}
 			}
 		}
-		else if (column==4) {                              //4 for buyer AFM
-			for( Buyer b : buyers.getBuyers() )
-			{
+		else if (column==4) {                               //4 ->for buyer AFM
+			for( Buyer b : buyers.getBuyers()){
 				if(b.getAFM().equals(key)) {
 					buyersKEY.add(b);
 					found=true;
@@ -146,11 +146,24 @@ public class Seller extends User {
 		else JOptionPane.showMessageDialog(frame, "No result", "Inane error", JOptionPane.ERROR_MESSAGE);
 	}
 	
-	//kainouria 
-	public void searchForSupplier(String text, int selectedIndex) {
-		//giati yparxei?
+	public void refresh() {
+		ArrayList<Order> oldOrders = new ArrayList<Order>(this.orders.getOrders());
+		initializeLists();
+		int count = 0 ;
+		if (orders.getOrders().size() == oldOrders.size()) {
+			JOptionPane.showMessageDialog(null, "You have new Orders","Information Message", JOptionPane.INFORMATION_MESSAGE);
+		}
+		for (Order newOrder: orders.getOrders()) {
+			for (Order oldOrder: oldOrders) {
+				if (newOrder.getOrderId().equals(oldOrder.getOrderId()) && newOrder.getStatus() == oldOrder.getStatus() ){
+					count++;
+				}
+			}
+		}
+		if (count != 0 ) {
+			JOptionPane.showMessageDialog(null, "Some orders have changed in order","Information Message", JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
-	
 	/* Method addBuyer() : adds the parameter to the buyers list */
 	public void addBuyer(Buyer s) {
 		buyers.getBuyers().add(s);

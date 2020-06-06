@@ -1,24 +1,16 @@
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Rectangle;
-import java.awt.Window;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
-
-import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
 import java.awt.event.ActionEvent;
 
-public class ShowProduct extends JFrame {
+public class ShowProduct {
 
 	private JFrame frame;
 	private JButton editButton;
@@ -50,7 +42,7 @@ public class ShowProduct extends JFrame {
 	private JButton saveButton;
 	protected  User user;
 	
-public ShowProduct( User u, SupplierProduct spl){
+	public ShowProduct( User u, SupplierProduct spl){
 	
 		OrderManager user = (OrderManager) u;
 		frame = new JFrame();
@@ -61,15 +53,15 @@ public ShowProduct( User u, SupplierProduct spl){
 		frame.setTitle("Supplier Product");
 		frame.setResizable(false);
 		
-		labelId = new JLabel("ID :");										       		//label for Id
-		labelId.setBounds(42, 90, 113, 36);
-		labelId.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(labelId);
-		
 		labelName = new JLabel("Name :");									     	 	//label for Name
 		labelName.setBounds(42, 31, 137, 36);
 		labelName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelName);
+		
+		labelId = new JLabel("ID :");										       		//label for Id
+		labelId.setBounds(42, 90, 113, 36);
+		labelId.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelId);
 		
 		labelStockAmount = new JLabel("Stock Amount :");					      		//label for StockAmount
 		labelStockAmount.setBounds(42, 150, 173, 36);
@@ -103,14 +95,14 @@ public ShowProduct( User u, SupplierProduct spl){
 		
 		
 		textId = new JTextField(spl.getId());							        		//textField for id attribute
-		textId.setBounds(637, 31, 188, 32);
+		textId.setBounds(637, 90, 188, 36);
 		textId.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		textId.setEditable(false);
 		frame.getContentPane().add(textId);
 		textId.setColumns(10);
 		
 		textName = new JTextField(spl.getName());										//textField for name attribute
-		textName.setBounds(637, 90, 188, 36);
+		textName.setBounds(637, 31, 188, 36);
 		textName.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		textName.setEditable(false);
 		frame.getContentPane().add(textName);
@@ -235,7 +227,7 @@ public ShowProduct( User u, SupplierProduct spl){
 			       
 				}
 			}});
-			saveButton.setBounds(636, 579, 137, 34);
+			saveButton.setBounds(636, 579, 166, 36);
 			frame.getContentPane().add(saveButton);
 			frame.setVisible(true);
    }
@@ -243,10 +235,9 @@ public ShowProduct( User u, SupplierProduct spl){
     
 	public ShowProduct(User iu, CompanyProduct cp){ 
 		Seller user = (Seller) iu;
-		this.setTitle("Company Product");
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1041, 653);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().setBounds(new Rectangle(100, 100, 1041, 653));
 		frame.getContentPane().setBackground(new Color(136, 177, 179));
@@ -254,12 +245,12 @@ public ShowProduct( User u, SupplierProduct spl){
 		frame.setTitle("Company Product");
 		
 		labelId = new JLabel(" ID :");											//label for Id
-		labelId.setBounds(153, 34, 86, 33);
+		labelId.setBounds(153, 112, 153, 33);
 		labelId.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelId);
 		
 		labelName = new JLabel(" Name :");										//label for Name
-		labelName.setBounds(153, 112, 153, 33);
+		labelName.setBounds(153, 34, 86, 33);
 		labelName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelName);
 		
@@ -269,9 +260,9 @@ public ShowProduct( User u, SupplierProduct spl){
 		frame.getContentPane().add(labelSafetyStock);
 		
 		labelStockAmount = new JLabel(" Stock amount :");						//label for StockAmount
-		labelSafetyStock.setBounds(153, 277, 179, 35);
-		labelSafetyStock.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
-		frame.getContentPane().add(labelSafetyStock);
+		labelStockAmount.setBounds(153, 277, 179, 35);
+		labelStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
+		frame.getContentPane().add(labelStockAmount);
 		
 		labelMaxStockAmount = new JLabel(" Max stock amount :");				//label for MaxStockAmount
 		labelMaxStockAmount.setBounds(153, 369, 224, 33);
@@ -285,7 +276,7 @@ public ShowProduct( User u, SupplierProduct spl){
 		
 	
 		textId = new JTextField(cp.getId());									//text for id attribute
-		textId.setBounds(707, 34, 153, 33);
+		textId.setBounds(707, 112, 153, 33);
 		textId.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(textId);
 		textId.setColumns(10);
@@ -293,7 +284,7 @@ public ShowProduct( User u, SupplierProduct spl){
 		
 		
 		textName = new JTextField(cp.getName());								//text for Name attribute
-		textName.setBounds(707, 112, 153, 33);
+		textName.setBounds(707, 34, 153, 33);
 		textName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(textName);
 		textName.setColumns(10);
@@ -363,23 +354,24 @@ public ShowProduct( User u, SupplierProduct spl){
 		
 		
 		saveButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				boolean flag = checkForError();
 				if (! flag) {
-					if (! textStockAmount.getText().equals("" + cp.getStockAmount())) {                //if textStockAmount has changed, set the new value to stockAmount attribute
+					if (! textStockAmount.getText().equals("" + cp.getStockAmount()) && !textStockAmount.getText().equals("")) {                //if textStockAmount has changed, set the new value to stockAmount attribute
 						cp.setStockAmount(Double.parseDouble(textStockAmount.getText()));
 					}
 					textStockAmount.setText("" + cp.getStockAmount());
 						
 						
-					if ( !textPrice.getText().equals("" + cp.getPrice())) {                          //if textPrice has changed, set the new value to price attribute
+					if ( !textPrice.getText().equals("" + cp.getPrice()) && !textPrice.getText().equals("")) {                          //if textPrice has changed, set the new value to price attribute
 						cp.setPrice(Integer.parseInt(textPrice.getText()));
 					}
 					textPrice.setText("" + cp.getPrice());
 					int index = user.getProducts().getCompanyProducts().indexOf(cp);
-					//user.getProducts().getSupplierProducts().set(index, cp);
+					user.getProducts().getCompanyProducts().set(index, cp);
 					textStockAmount.setEditable(false);
-			        textPrice.setEnabled(false);
+			        textPrice.setEditable(false);
 			        saveButton.setEnabled(false); 
 				}
 			}
@@ -389,9 +381,9 @@ public ShowProduct( User u, SupplierProduct spl){
 		frame.setVisible(true);
 	}
 		
-	/*
-	 * Purpose Checks for error in the editable text fields
-	 * @return flag Returns true if there are not errors, else false.
+	/**
+	 * Checks for error in the editable text fields
+	 * @return  true if there are not errors, else false.
 	 */
 	private boolean checkForError(){
 		boolean flag = false;
@@ -400,7 +392,7 @@ public ShowProduct( User u, SupplierProduct spl){
 				JOptionPane.showMessageDialog(frame, "All fields are empty");                            
 				flag = true;
 			}else {
-				if (!(textStockAmount.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+|[0-9]+") || textPrice.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]|[0-9]+"))) {           //fields should match  regex for integer and double number
+				if (!textStockAmount.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+") || !textPrice.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+")) {           //fields should match  regex for integer and double number
 					JOptionPane.showMessageDialog(frame, "Fields must contain digit");
 					flag = true;
 				}
@@ -412,7 +404,7 @@ public ShowProduct( User u, SupplierProduct spl){
 				flag = true;
 			}
 			else {
-				if (!(textStockAmount.getText().matches("[0-9]+|[0-9][.]{1}[0-9]+") || textLeadTime.getText().matches("[0-9]+") || textExpectedAmount.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+"))) {				//fields should match  regex for integer and double number
+				if (!textStockAmount.getText().matches("[0-9]+|[0-9][.]{1}[0-9]+") || !textLeadTime.getText().matches("[0-9]+") || !textExpectedAmount.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+")) {				//fields should match  regex for integer and double number
 					JOptionPane.showMessageDialog(frame, "Fields must contain digit");
 					flag = true;
 				}
