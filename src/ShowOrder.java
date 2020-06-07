@@ -265,7 +265,7 @@ public class ShowOrder {
 								int thesi = ord.getOrders().getOrders().indexOf(order);
 								ord.getOrders().getOrders().get(thesi).setStatus(st);
 							}
-							fieldSTATUS.setEnabled(false); 
+							fieldSTATUS.setEditable(false); 
 							doneB.setEnabled(false);
 						}
 					}
@@ -401,7 +401,7 @@ public class ShowOrder {
 			JOptionPane.showMessageDialog(frame, "All fields are empty");                            
 			flag = false;
 		//fields should match  regex for integer and double number
-		}else if (!(fieldQuantity.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+|[0-9]+") || fieldPrice.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]|[0-9]+"))) {    
+		}else if (!(fieldQuantity.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+") || fieldPrice.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+"))) {    
 			JOptionPane.showMessageDialog(frame, "Fields must contain digit");
 			flag = false;
 		}

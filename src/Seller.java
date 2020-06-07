@@ -24,7 +24,7 @@ public class Seller extends User {
 		this.orders.extractObjectDB();							// Extracts the orders from DB for the specific seller  
 		ArrayList<Order> ord = new ArrayList<Order>();
 		for (Order o: this.orders.getOrders()) {
-			if(o.getOrderManagerId().equals(this.id))
+			if(o.getSupplierId().equals(this.id))
 				ord.add(o);
 		}
 		this.orders.getOrders().clear();
@@ -148,9 +148,12 @@ public class Seller extends User {
 	
 	public void refresh() {
 		ArrayList<Order> oldOrders = new ArrayList<Order>(this.orders.getOrders());
+		this.orders.updateObjectDB();
+		this.products.updateObjectDB();
+		this.products.getCompanyProducts().clear();
 		initializeLists();
 		int count = 0 ;
-		if (orders.getOrders().size() == oldOrders.size()) {
+		if (orders.getOrders().size() != oldOrders.size()) {
 			JOptionPane.showMessageDialog(null, "You have new Orders","Information Message", JOptionPane.INFORMATION_MESSAGE);
 		}
 		for (Order newOrder: orders.getOrders()) {
@@ -163,6 +166,8 @@ public class Seller extends User {
 		if (count != 0 ) {
 			JOptionPane.showMessageDialog(null, "Some orders have changed in order","Information Message", JOptionPane.INFORMATION_MESSAGE);
 		}
+		
+		
 	}
 	/* Method addBuyer() : adds the parameter to the buyers list */
 	public void addBuyer(Buyer s) {

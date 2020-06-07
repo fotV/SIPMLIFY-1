@@ -7,6 +7,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 public class SellerForm extends JFrame{
 	private JPanel panel;
@@ -49,9 +50,12 @@ public class SellerForm extends JFrame{
 		panel.setBackground(new Color(136, 177, 179));
 		panel.setLayout(null);
 		
-		btnNewButton = new JButton("");
+		btnNewButton = new JButton("Refresh");
+		btnNewButton.setFont(new Font("HelveticaNeue", Font.BOLD, 10));
+		//btnNewButton.setIcon(new ImageIcon(this.getClass().getResource("refresg.png")));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				s.refresh();
 			}
 		});
 		btnNewButton.setBounds(936, 510, 89, 74);
@@ -136,7 +140,7 @@ public class SellerForm extends JFrame{
 		menuBar.add(menuSearchfor);
 		
 		menuItemOrder = new JMenuItem("Order");
-		menuItemOrder.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		menuItemOrder.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		menuSearchfor.add(menuItemOrder);
 		menuItemOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ev) {
@@ -147,7 +151,7 @@ public class SellerForm extends JFrame{
 		
 		menuItemProduct = new JMenuItem("Product");
 		menuSearchfor.add(menuItemProduct);
-		menuItemProduct.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		menuItemProduct.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		menuItemProduct.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ev) {
 		    
@@ -159,7 +163,7 @@ public class SellerForm extends JFrame{
 		
 		menuItemClient = new JMenuItem("Client");
 		menuSearchfor.add(menuItemClient);
-		menuItemClient.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		menuItemClient.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		menuItemClient.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ev) {
 		    	
@@ -178,7 +182,7 @@ public class SellerForm extends JFrame{
 		
 		menuItemAddProduct = new JMenuItem("Add a Product");
 		menuMyProduct.add(menuItemAddProduct);
-		menuItemAddProduct.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		menuItemAddProduct.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		menuItemAddProduct.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ev) {
 		    	
@@ -189,7 +193,7 @@ public class SellerForm extends JFrame{
 		
 		menuItemShowProducts = new JMenuItem("Show Products");
 		menuMyProduct.add(menuItemShowProducts);
-		menuItemShowProducts.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		menuItemShowProducts.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		menuItemShowProducts.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ev) {
 		    	
@@ -210,7 +214,7 @@ public class SellerForm extends JFrame{
 		menuBar.add(menuMyOrders);
 		
 		menuItemShowOrders = new JMenuItem("Show Orders");
-		menuItemShowOrders.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		menuItemShowOrders.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		menuMyOrders.add(menuItemShowOrders);
 		menuItemShowOrders.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ev) {
@@ -232,7 +236,7 @@ public class SellerForm extends JFrame{
 		
 		menuItemAddClient = new JMenuItem("Add a Client");
 		menuMyClients.add(menuItemAddClient);
-		menuItemAddClient.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		menuItemAddClient.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		menuItemAddClient.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ev) {
 		    	new BuyerForm(s);
@@ -241,7 +245,7 @@ public class SellerForm extends JFrame{
 		
 		menuItemShowClients = new JMenuItem("Show Clients");
 		menuMyClients.add(menuItemShowClients);
-		menuItemShowClients.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		menuItemShowClients.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		menuItemShowClients.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ev) {
 		    
@@ -260,7 +264,7 @@ public class SellerForm extends JFrame{
 		
 		menuItemSeeStatistics = new JMenuItem("See Statistics");
 		menuStatistics.add(menuItemSeeStatistics);
-		menuItemSeeStatistics.setFont(new Font("HelveticaNeue", Font.ITALIC, 15));
+		menuItemSeeStatistics.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		menuItemSeeStatistics.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ev) {
 		    

@@ -235,6 +235,17 @@ public class OrderManager extends User {
 	@Override
 	public void refresh() {
 		ArrayList<Order> oldOrders = new ArrayList<Order>(this.orders.getOrders());
+		
+		orders.updateObjectDB();
+		this.orders.getOrders().clear();
+		
+		products.updateObjectDB();
+		this.products.getSupplierProducts().clear();
+		
+		this.suppliers.getSuppliers().clear();
+		this.supplies.getSupplies().clear();
+		this.proposals.getProposals().clear();
+		
 		initializeLists();
 		int count = 0 ;
 		for (Order newOrder: orders.getOrders()) {
@@ -306,6 +317,8 @@ public class OrderManager extends User {
 	public boolean getRegular() {
 		return regular;
 	}
+
+	
 }
 	
 	

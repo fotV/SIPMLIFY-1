@@ -17,7 +17,7 @@ public class Stockkeeper extends User {
 		this.orders.extractObjectDB();						//Extracts the orders from DB 
 		ArrayList<Order> ord = new ArrayList<Order>();			
 		for (Order o: this.orders.getOrders()) {
-			if(o.getOrderManagerId().equals(this.id))
+			if(o.getStockkeeperId().equals(this.id))
 				ord.add(o);
 		}
 		this.orders.getOrders().clear();
@@ -31,6 +31,7 @@ public class Stockkeeper extends User {
 	public void refresh() {
 		
 		this.orders.updateObjectDB();
+		this.orders.getOrders().clear();
 		this.initializeLists();
 		
 		

@@ -33,7 +33,7 @@ public class LogginForm extends JFrame{
     	panel.add(lblNewLabel_1);
     	
     	textField = new JTextField();          //name textfield
-    	textField.setBounds(367, 401, 219, 19);
+    	textField.setBounds(367, 401, 219, 25);
     	panel.add(textField);
     	textField.setColumns(10);
     		
@@ -48,7 +48,7 @@ public class LogginForm extends JFrame{
     	panel.add(lblNewLabel_2);
     		
     	passwordField = new JPasswordField();           //password textfield
-    	passwordField.setBounds(367, 470, 219, 19);
+    	passwordField.setBounds(367, 470, 219, 25);
     	panel.add(passwordField);
     	
     	panel.setBackground(new Color(136,177,179));
