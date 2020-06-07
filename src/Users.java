@@ -30,11 +30,11 @@ public class Users extends ListFromDB {
 			{
 				int index = users.indexOf(user);
 				if (user.getId().startsWith("ST")) {
-					Stockkeeper st = new Stockkeeper(user.getFirstName(),user.getSurName(),user.getPassword(),user.getPhonenumber(),user.getAFM(),user.getId(),user.getCompany());
+					Stockkeeper st = new Stockkeeper(user.getFirstName(),user.getSurName(),user.getPassword(),user.getTelephone(),user.getAFM(),user.getId(),user.getCompany());
 					users.set(index,st);
 				}
 				else {
-					Seller se = new Seller (user.getFirstName(),user.getSurName(),user.getPassword(),user.getPhonenumber(),user.getAFM(),user.getId(),user.getCompany());
+					Seller se = new Seller (user.getFirstName(),user.getSurName(),user.getPassword(),user.getTelephone(),user.getAFM(),user.getId(),user.getCompany());
 					users.set(index, se);
 				}
 			}
