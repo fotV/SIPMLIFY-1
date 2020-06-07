@@ -80,7 +80,7 @@ public class ShowBuyerSeller {
 		frame.getContentPane().add(labelAfm);
 	
 		
-		labelPhoneNumber = new JLabel(byr.getPhoneNumber());
+		labelPhoneNumber = new JLabel(byr.getTelephone());
 		labelPhoneNumber.setBounds(613, 494, 190, 32);
 		labelPhoneNumber.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelPhoneNumber);
@@ -165,7 +165,7 @@ public class ShowBuyerSeller {
 		frame.getContentPane().add(labelAfm);
 	
 		
-		labelPhoneNumber = new JLabel(cl.getPhoneNumber());
+		labelPhoneNumber = new JLabel(cl.getTelephone());
 		labelPhoneNumber.setBounds(613, 499, 190, 32);
 		labelPhoneNumber.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelPhoneNumber);
