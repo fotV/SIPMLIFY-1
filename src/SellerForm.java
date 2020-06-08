@@ -268,10 +268,8 @@ public class SellerForm extends JFrame{
 		menuItemSeeStatistics.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ev) {
 		    
-		    	ArrayList<Object> temp = new ArrayList<>(s.getBuyers().getBuyers());
-		    	new PresentationForm(s, temp);
-		    	
-		    	new SelectionGui(s);
+		    	SelectionGui stat = new SelectionGui(ordManager);
+				stat.initialize();
 		    	}
 			});
 		
