@@ -214,6 +214,7 @@ public class ShowOrder {
 		JSeparator separator_11 = new JSeparator();
 		separator_11.setBounds(10, 549, 1015, 2);
 		frame.getContentPane().add(separator_11);
+
 		
 		//Putting Buttons on the frame
 		JButton EditButton = new JButton("Edit Order");
@@ -224,6 +225,11 @@ public class ShowOrder {
 		doneB.setBounds(445, 584, 177, 29);
 		doneB.setEnabled(false);
 		frame.getContentPane().add(doneB);
+		
+		JButton sendB  = new JButton("Send");
+		sendB.setBounds(645, 584, 177, 29);
+		sendB.setEnabled(false);
+		frame.getContentPane().add(sendB);
 	 
 	 if (user instanceof OrderManager) {
 	   
@@ -248,6 +254,7 @@ public class ShowOrder {
 		lblSupplierAFM.setBounds(125, 513, 246, 35);
 		lblSupplierAFM.setFont(new Font("Dialog", Font.PLAIN, 20));
 		frame.getContentPane().add(lblSupplierAFM);
+
 		 
 		 //if the order is forcast proposal
 		 if (order.getStatus() == 0) {
@@ -257,38 +264,45 @@ public class ShowOrder {
 				public void actionPerformed(ActionEvent e) {
 					order.setStatus(1);
 					ord.getOrders().getOrders().add(order);
+					sendB.setEnabled(false);
+					JOptionPane.showMessageDialog(null, "The order has been sent!");
 				}
 			});			
 		}
 		
+
 		//A user of type OrderManager can only change the fieldSTATUS
 		EditButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				fieldSTATUS.setEditable(true);
-				doneB.setEnabled(true);
-				doneB.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						boolean flag = checkForError();
-						if (flag) {
-							String status = fieldSTATUS.getText();
-							if (!status.equals("")) {
-								Integer st = Integer.parseInt(status);
-								int thesi = ord.getOrders().getOrders().indexOf(order);
-								ord.getOrders().getOrders().get(thesi).setStatus(st);
-							}
-							fieldSTATUS.setEditable(false); 
-							doneB.setEnabled(false);
-						}
-					}
-				});
+				doneB.setEnabled(true);	
 			}
 		});
-	 }
+		doneB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean flag = checkForError();
+				if (flag) {
+					String status = fieldSTATUS.getText();
+					if (!status.equals("")) {
+						Integer st = Integer.parseInt(status);
+						int thesi = ord.getOrders().getOrders().indexOf(order);
+						ord.getOrders().getOrders().get(thesi).setStatus(st);
+					}
+
+					fieldSTATUS.setEditable(false); 
+					JOptionPane.showMessageDialog(null, "Changes have been saved!");
+					doneB.setEnabled(false);
+				}
+			}
+		});
+	}
 	 else if (user instanceof Seller ) { 
+
 		 
 		 	Seller sel = (Seller ) user;
 		 
+
 		 	JLabel lblBuyerId = new JLabel("Buyer ID :");
 		 	lblBuyerId.setBounds(125, 378, 246, 35);
 		 	lblBuyerId.setFont(new Font("Dialog", Font.PLAIN, 20));
@@ -309,6 +323,7 @@ public class ShowOrder {
 			lblSellerAFM.setFont(new Font("Dialog", Font.PLAIN, 20));
 			frame.getContentPane().add(lblSellerAFM);
 			
+
 			//A user of type Seller can only change the fieldSTATUS, the fieldPrice and the fieldQuantity
 			EditButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -317,35 +332,36 @@ public class ShowOrder {
 					fieldPrice.setEditable(true);
 					fieldQuantity.setEditable(true);
 					doneB.setEnabled(true);
-					doneB.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							boolean flag = true;
-							flag = checkForError();
-							if (flag) {
-								int thesi = sel.getOrders().getOrders().indexOf(order);
-								String status = fieldSTATUS.getText();
-								if (!status.equals("")) {
-									Integer st = Integer.parseInt(status);
-									sel.getOrders().getOrders().get(thesi).setStatus(st);
-								}
-								if (!fieldQuantity.getText().equals("") && !fieldPrice.getText().equals("")) {
-									Double quantity = Double.parseDouble(fieldQuantity.getText());
-									sel.getOrders().getOrders().get(thesi).setQuantity(quantity);
-									Double price = Double.parseDouble(fieldPrice.getText());
-									sel.getOrders().getOrders().get(thesi).setPrice(price);
-									fieldTotalPrice.setText("" + (price*quantity));
-									sel.getOrders().getOrders().get(thesi).setTotalPrice(price*quantity);	
-								}
-			
-							fieldSTATUS.setEditable(false);
-							fieldPrice.setEditable(false);
-							fieldQuantity.setEditable(false); 
-							doneB.setEnabled(false);
-							}
-						}
-					});
+					
 				}
 			});	
+			doneB.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					boolean flag = true;
+					flag = checkForError();
+					if (flag) {
+						int thesi = sel.getOrders().getOrders().indexOf(order);
+						String status = fieldSTATUS.getText();
+						if (!status.equals("")) {
+							Integer st = Integer.parseInt(status);
+							sel.getOrders().getOrders().get(thesi).setStatus(st);
+						}
+						if (!fieldQuantity.getText().equals("") && !fieldPrice.getText().equals("")) {
+							Double quantity = Double.parseDouble(fieldQuantity.getText());
+							sel.getOrders().getOrders().get(thesi).setQuantity(quantity);
+							Double price = Double.parseDouble(fieldPrice.getText());
+							sel.getOrders().getOrders().get(thesi).setPrice(price);
+							fieldTotalPrice.setText("" + (price*quantity));
+							sel.getOrders().getOrders().get(thesi).setTotalPrice(price*quantity);	
+						}
+					JOptionPane.showMessageDialog(null, "Changes have been saved!");
+					fieldSTATUS.setEditable(false);
+					fieldPrice.setEditable(false);
+					fieldQuantity.setEditable(false); 
+					doneB.setEnabled(false);
+					}
+				}
+			});
 	 }
 	 else { 
 		 	Stockkeeper stk = (Stockkeeper) user;
@@ -376,29 +392,31 @@ public class ShowOrder {
 					
 					fieldSTATUS.setEditable(true);
 					doneB.setEnabled(true);
-					doneB.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							boolean flag = checkForError();
-							if (flag) {
-								String status = fieldSTATUS.getText();
-								if (!status.equals("")) {
-									Integer st = Integer.parseInt(status);
-									int thesi = stk.getOrders().getOrders().indexOf(order);
-									stk.getOrders().getOrders().get(thesi).setStatus(st);
-								}
-								fieldSTATUS.setEnabled(false);
-								JOptionPane.showMessageDialog(frame, "Changes have been saved!"); 
-								doneB.setEnabled(false);
-							}
-						}
-					});
 					
+					
+				}
+			});
+			doneB.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					boolean flag = checkForError();
+					if (flag) {
+						String status = fieldSTATUS.getText();
+						if (!status.equals("")) {
+							Integer st = Integer.parseInt(status);
+							int thesi = stk.getOrders().getOrders().indexOf(order);
+							stk.getOrders().getOrders().get(thesi).setStatus(st);
+						}
+						fieldSTATUS.setEnabled(false);
+						JOptionPane.showMessageDialog(frame, "Changes have been saved!"); 
+						doneB.setEnabled(false);
+					}
 				}
 			});
 				
 	 }
 	 frame.setVisible(true);
 	 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+ 
 }
 
 
@@ -412,7 +430,7 @@ public class ShowOrder {
 		if (fieldQuantity.getText().equals("") && fieldPrice.getText().equals("") && fieldSTATUS.getText().equals("")) {      
 			JOptionPane.showMessageDialog(frame, "All fields are empty");                            
 			flag = false;
-		//fields should match  regex for integer and double number
+		//fields should match  regex for integer an
 		}else if (!(fieldQuantity.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+") || fieldPrice.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+"))) {    
 			JOptionPane.showMessageDialog(frame, "Fields must contain digit");
 			flag = false;
@@ -428,5 +446,7 @@ public class ShowOrder {
 	}
 
 }
+
+
 
 
