@@ -27,6 +27,7 @@ public class ProductForm extends JFrame{
 	public ProductForm(OrderManager om){
 		this.om = om;
 		user = "om";	
+		addAProduct();
 	}
 	
 	public ProductForm(Seller seller){
@@ -416,7 +417,8 @@ public class ProductForm extends JFrame{
 		int i = 0;
 		if(!(id.isEmpty())){
 			SupplierProducts supP = new SupplierProducts();
-			ArrayList<SupplierProduct> supProduct = supP.getSupplierProducts();
+			supP.extractObjectDB();
+			ArrayList<SupplierProduct> supProduct = new ArrayList<SupplierProduct>(supP.getSupplierProducts());
 			while((i < supProduct.size()) && !exists){
 				if(id.equals(supProduct.get(i).getId())){
 					exists = true;
@@ -433,10 +435,12 @@ public class ProductForm extends JFrame{
 		//checking if there is a supplier that sells the product
 		
 		CompanyProducts comp = new CompanyProducts();
-		ArrayList<CompanyProduct> compP = comp.getCompanyProducts();
+		comp.extractObjectDB();
+		ArrayList<CompanyProduct> compP = new ArrayList<CompanyProduct>(comp.getCompanyProducts());
 		exists = false;
 		i = 0;
 		while((i < compP.size()) && !exists){
+			System.out.println(1);
 			if(id.equals(compP.get(i).getId())){
 				exists = true;
 			}

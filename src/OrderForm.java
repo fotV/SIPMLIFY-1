@@ -177,7 +177,7 @@ public class OrderForm extends JFrame{
 					order.setDate(formatter.format(date));
 					
 					//fill status
-					order.setStatus(0);
+					order.setStatus(1);
 					
 					//fill Product Id
 					order.setProductId(textFieldPid.getText());
@@ -202,6 +202,7 @@ public class OrderForm extends JFrame{
 					order.setTotalPrice(order.getPrice() * order.getQuantity());
 				
 					om.addOrder(order);
+					JOptionPane.showMessageDialog(panel, "The order has been saved", "Order", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}	
 		});
