@@ -109,14 +109,14 @@ public class ShowProduct {
 		textName.setColumns(10);
 		
 		
-		textStockAmount = new JTextField(" "+spl.getStockAmount());            			//textField for stockAmount attribute
+		textStockAmount = new JTextField(""+spl.getStockAmount());            			//textField for stockAmount attribute
 		textStockAmount.setBounds(637, 150, 188, 36);
 		textStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		textStockAmount.setEditable(false);									  			//the value can not be changed
 		frame.getContentPane().add(textStockAmount);
 		textStockAmount.setColumns(10);
 		
-		textMaxStockAmount = new JTextField(" "+spl.getMaxStockAmount());     			//textField for maxStockAmount attribute
+		textMaxStockAmount = new JTextField(""+spl.getMaxStockAmount());     			//textField for maxStockAmount attribute
 		textMaxStockAmount.setBounds(637, 217, 188, 36);
 		textMaxStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		textMaxStockAmount.setEditable(false);											//the value can not be changed

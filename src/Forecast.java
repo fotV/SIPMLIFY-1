@@ -1,9 +1,9 @@
-import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
+
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 
 /**
  * Forecast.java
@@ -24,6 +24,7 @@ public class Forecast {
 		  orderManager = om;
 		  ArrayList<SupplierProduct> prod = orderManager.getProducts().getSupplierProducts();
 		  Suppliers suppliers = orderManager.getSuppliers();
+
 		  Supplies supplies = orderManager.getSupplies();
 		  boolean isTypeRegular = orderManager.getRegular();
 		  
@@ -45,66 +46,62 @@ public class Forecast {
 			  safetyStock = p. getSafetyStock();
 			  maxStorageAmount = p.getMaxStockAmount();
 		  
-			  if(isTypeRegular == true) {
+			  if(stockAmount + expectedAmount - averageMonthlyConsumption - leadtime <= safetyStock) {
 				  
 				  per = 1.0;
-				  if (stockAmount + expectedAmount - averageMonthlyConsumption - leadtime <= safetyStock) {  
-				  	amount = calculateOrder(stockAmount,expectedAmount,averageMonthlyConsumption,leadtime ,safetyStock,per);
-				  	flag = true;
+				  if (isTypeRegular) { 
+					  amount = calculateOrder(stockAmount,expectedAmount,averageMonthlyConsumption,leadtime ,safetyStock,per);
 				  }
-			  }
-			  else {
-				 
-				  String season = om.getSeason();
-				  per = Percentage(season);
-				  if (stockAmount + expectedAmount - averageMonthlyConsumption - leadtime <= safetyStock) {
+				  else {
+					  String season = om.getSeason();
+					  per = Percentage(season);
 					  amount = calculateOrder(stockAmount,expectedAmount,averageMonthlyConsumption,leadtime ,safetyStock,per);    
-					  flag = true;
 				  }
+				  
+				  Suppl s = new Suppl(p.getId(), "", 0.0);
+				  for (Suppl sp : supplies.getSupplies()) {
+					  if (p.getId().equals(sp.getProductId())) {
+						  s.setSupplierId(sp.getSupplierId());
+						  s.setPrice(sp.getPrice());
+					  }  
+				  } 
+				  Supplier sup = new Supplier("", "", s.getSupplierId(), "", "", "");
+				  for (Supplier sp : suppliers.getSuppliers()) {
+					  if (s.getSupplierId().equals(sp.getId())) {
+						  sup.setLastName(sp.getLastName());
+						  sup.setAFM(sp.getAFM());
+					  }
+				  }
+				  
+				  //get current date
+				  SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+				  Date date = new Date();
+				  String datee = formatter.format(date);
+				  
+				  Random rand = new Random();
+				  int n = rand.nextInt(9)*100;
+				  //create new order
+				  Order order = new Order(p.getOrderManagerId(), "FOR"+n, amount, s.getSupplierId(), sup.getLastName(), 
+						  sup.getAFM(), datee, 0, s.getPrice(), amount*s.getPrice(),  p.getId(), p.getName(), " ");
+				  //add the order in the proposals-list
+				  om.getProposals().getProposals().add(order);
+				  
+				  if (amount + expectedAmount + stockAmount > maxStorageAmount) {
+					  amount = maxStorageAmount - (expectedAmount + stockAmount);
+				  }
+				  
+				  flag = true;
 			  } 
 			  
-			  
-			  Suppl s = new Suppl(p.getId(), "", 0.0);
-			  for (Suppl sp : supplies.getSupplies()) {
-				  if (p.getId().equals(sp.getProductId())) {
-					  s.setSupplierId(sp.getSupplierId());
-					  s.setPrice(sp.getPrice());
-				  }  
-			  } 
-			  Supplier sup = new Supplier("", "", s.getSupplierId(), "", "", "");
-			  for (Supplier sp : suppliers.getSuppliers()) {
-				  if (s.getSupplierId().equals(sp.getId())) {
-					  sup.setLastName(sp.getLastName());
-					  sup.setAFM(sp.getAFM());
-				  }
-			  }
-			  
-			  //get current date
-			  SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
-			  Date date = new Date();
-			  String datee = formatter.format(date);
-			  
-			  //create new order
-			  Order order = new Order(p.getOrderManagerId(), " ", amount, s.getSupplierId(), sup.getLastName(), 
-					  sup.getAFM(), datee, 0, s.getPrice(), amount*s.getPrice(), p.getName(), p.getId(), " ");
-			  //add the order in the proposals-list
-			  om.getProposals().getProposals().add(order);
-			  
-			  if (amount + expectedAmount + stockAmount > maxStorageAmount) {
-				  amount = maxStorageAmount - (expectedAmount + stockAmount);
-			  }
-	
 		  }
 		  
-		  UIManager.put("OptionPane.background", Color.LIGHT_GRAY);
-	          UIManager.put("OptionPane.messagebackground", Color.LIGHT_GRAY);
-	          UIManager.put("Panel.background", Color.LIGHT_GRAY);
-		  if (flag == true) {
+		  if (flag) {
 			  
 			  JOptionPane.showMessageDialog(null, "Forecast calculation is completed!", "Forecast", JOptionPane.DEFAULT_OPTION);
 		  }
 		  else {
 			  JOptionPane.showMessageDialog(null, "There is no product in deficit!", "Forecast", JOptionPane.DEFAULT_OPTION);
+
 		  }
 		 	  
 	}
@@ -142,7 +139,7 @@ public class Forecast {
 		Integer month = Integer.parseInt(str.substring(5, 7));
 		
 		double per;
-		if (((month>=3) && (month<9) && (season == "summer"))||((month>=9) && (month<3) && (season == "winter")))
+		if (((month>=3) && (month<9) && (season == "Spring - Summer"))||((month>=9) && (month<3) && (season == "Autumn - Winter")))
 		{
 			per = 1.2;
 		}

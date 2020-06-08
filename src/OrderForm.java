@@ -221,7 +221,7 @@ public class OrderForm extends JFrame{
 		
 		if (textFieldOid.getText()!=null && textFieldSid.getText()!=null && textFieldPid.getText()!=null && textFieldStKid.getText()!=null)   //checking if the text fields aren't empty.
 		{
-			
+			if (om.getOrders().getOrders().size()==0) i++;
 			for (Order o : om.getOrders().getOrders())		
 			{
 				if (!textFieldOid.getText().equals(o.getOrderId())) i++;       //checking if the order id that was given doesn't already exist.
