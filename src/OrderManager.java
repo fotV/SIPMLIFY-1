@@ -76,10 +76,11 @@ public class OrderManager extends User {
 		supplies.extractObjectDB();									//Extracts the supplies for DB 
 		ArrayList<Suppl> supll = new ArrayList<Suppl>();
 		for (Suppl s : supplies.getSupplies()) {
-			for (Supplier sp: this.suppliers.getSuppliers()) {
-				if ( s.getSupplierId().equals(sp.getId())) 
-					supll.add(s);	
-			}
+			for (SupplierProduct sp: this.products.getSupplierProducts()) {
+				if ( s.getProductId().equals(sp.getId())) {
+					supll.add(s);
+				System.out.println(s.getProductId()+ s.getSupplierId());
+			}}
 		}
 		this.supplies.getSupplies().clear();
 		this.supplies.getSupplies().addAll(supll);
@@ -247,7 +248,7 @@ public class OrderManager extends User {
 		int count = 0 ;
 		for (Order newOrder: orders.getOrders()) {
 			for (Order oldOrder: oldOrders) {
-				if (newOrder.getOrderId().equals(oldOrder.getOrderId()) && (newOrder.getStatus() == oldOrder.getStatus() || newOrder.getPrice() == oldOrder.getPrice() || newOrder.getQuantity() == oldOrder.getQuantity())){
+				if (newOrder.getOrderId().equals(oldOrder.getOrderId()) && (newOrder.getStatus() != oldOrder.getStatus() || newOrder.getPrice() != oldOrder.getPrice() || newOrder.getQuantity() != oldOrder.getQuantity())){
 					count++;
 				}
 			}

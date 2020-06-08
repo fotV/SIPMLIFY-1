@@ -388,6 +388,10 @@ public class ShowProduct {
 	private boolean checkForError(){
 		boolean flag = false;
 		if ( frame.getContentPane().isAncestorOf(textPrice)) {                                           //frame contains textPrice, this means that we are checking for errors for a CompanyProduct
+			if (Double.parseDouble(textStockAmount.getText()) > Double.parseDouble(textMaxStockAmount.getText())) {
+				JOptionPane.showMessageDialog(frame, "StockAmount value can not be larger than MaxStockAmount value");
+				flag = true;
+			}
 			if (textStockAmount.getText().equals("") && textPrice.getText().equals("")) {				 //if all fields are empty, show error Message
 				JOptionPane.showMessageDialog(frame, "All fields are empty");                            
 				flag = true;
@@ -398,7 +402,11 @@ public class ShowProduct {
 				}
 			}
 			
-		}else {																																	 //frame contains textPrice, this means that we are checking for errors for a SupplierProduct
+		}else {		//frame contains textPrice, this means that we are checking for errors for a SupplierProduct
+			if (Double.parseDouble(textStockAmount.getText()) > Double.parseDouble(textMaxStockAmount.getText())) {
+				JOptionPane.showMessageDialog(frame, "StockAmount value can not be larger than MaxStockAmount value");
+				flag = true;
+			}
 			if (textStockAmount.getText().equals("") && textExpectedAmount.getText().equals("") && textLeadTime.getText().equals("")) {          //if all fields are empty, show error Message
 				JOptionPane.showMessageDialog(frame,"All fields are empty");
 				flag = true;

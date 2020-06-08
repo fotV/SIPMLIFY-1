@@ -444,5 +444,6 @@ public class OrderManagerForm {
 		panel.add(resultRefreshJBtn);
 		panel.setVisible(true);
 		frame.setVisible(true);
+		
 	}
 }

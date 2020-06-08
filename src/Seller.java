@@ -162,7 +162,7 @@ public class Seller extends User {
 		}
 		for (Order newOrder: orders.getOrders()) {
 			for (Order oldOrder: oldOrders) {
-				if (newOrder.getOrderId().equals(oldOrder.getOrderId()) && newOrder.getStatus() == oldOrder.getStatus() ){
+				if (newOrder.getOrderId().equals(oldOrder.getOrderId()) && newOrder.getStatus() != oldOrder.getStatus() ){
 					count++;
 				}
 			}
