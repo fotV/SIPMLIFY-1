@@ -1,6 +1,7 @@
  import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -12,8 +13,8 @@ import javax.swing.*;
 public class LogginForm extends JFrame{
     private JPanel panel ;
     private JTextField textField;
-    private JLabel lblNewLabel;
-    private JLabel lblNewLabel_1;
+    private JLabel lblUserName;
+    private JLabel lblPassword;
     private JPasswordField passwordField;
     private JButton btnNewButton; 
     private boolean errorFlag;//false if there is no error else true
@@ -22,15 +23,15 @@ public class LogginForm extends JFrame{
     public LogginForm() {
     	this.user = new User();
         panel = new JPanel();
-    	lblNewLabel = new JLabel(" Username :");           //Username label
-    	lblNewLabel.setFont(new Font("HelveticaNeue", Font.BOLD, 18));
-    	lblNewLabel.setBounds(166, 387, 145, 40);
-    	panel.add(lblNewLabel);
+    	lblUserName = new JLabel(" Username :");           //Username label
+    	lblUserName.setFont(new Font("HelveticaNeue", Font.BOLD, 18));
+    	lblUserName.setBounds(166, 387, 145, 40);
+    	panel.add(lblUserName);
     	
-    	lblNewLabel_1 = new JLabel("Password :");          //password label
-    	lblNewLabel_1.setFont(new Font("HelveticaNeue", Font.BOLD, 18));
-    	lblNewLabel_1.setBounds(175, 453, 150, 46);
-    	panel.add(lblNewLabel_1);
+    	lblPassword = new JLabel("Password :");          //password label
+    	lblPassword.setFont(new Font("HelveticaNeue", Font.BOLD, 18));
+    	lblPassword.setBounds(175, 453, 150, 46);
+    	panel.add(lblPassword);
     	
     	textField = new JTextField();          //name textfield
     	textField.setBounds(367, 401, 219, 25);
@@ -43,7 +44,7 @@ public class LogginForm extends JFrame{
     	panel.add(btnNewButton);
     		
     	JLabel lblNewLabel_2 = new JLabel("");                 //photo
-    	lblNewLabel_2.setIcon(new ImageIcon("refresh.png"));
+    	lblNewLabel_2.setIcon(new ImageIcon("organisedorders.png"));
     	lblNewLabel_2.setBounds(182, 36, 535, 316);
     	panel.add(lblNewLabel_2);
     		
@@ -83,10 +84,11 @@ public class LogginForm extends JFrame{
     				}
     			}
     	}});
+    	
     	this.setTitle("Login");
     	this.setVisible(true);
     	this.setBounds(100, 100, 811, 677);
-    	//this.dispose();
+    	
     				
     	}
     	/**

@@ -10,7 +10,6 @@ public class ListFromDB {
 	 * ListFromDB.java
 	 * Purpose: Class parent that creates the connection to the database.
 	 * @author Eleni Polyzoidou, Evangelia Papagiannaki.
-	 * @version 1.0
 	 */
 	
 	public ListFromDB(){

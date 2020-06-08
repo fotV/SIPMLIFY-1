@@ -3,7 +3,6 @@ import java.awt.Color;
 
 import java.awt.Component;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -17,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
-import javax.swing.UIManager;
+
 
 public class OrderForm extends JFrame{
 	
@@ -32,6 +31,11 @@ public class OrderForm extends JFrame{
 	private JTextField textFieldPid;
 	private JTextField textFieldQ;
 	private JTextField textFieldStKid;
+	private JSeparator separator;
+	private JSeparator separator_1;
+	private JSeparator separator_2;
+	private JSeparator separator_3;
+	private JLabel lblStockkeeperId;
 	
 	/*
 	 * The following constructor creates the gui for the Order Form
@@ -101,23 +105,23 @@ public class OrderForm extends JFrame{
 		btnAdd.setBounds(909, 572, 116, 41);
 		panel.add(btnAdd);
 		
-		JSeparator separator = new JSeparator();
+		separator = new JSeparator();
 		separator.setBounds(10, 172, 1015, 2);
 		panel.add(separator);
 		
-		JSeparator separator_1 = new JSeparator();
+		separator_1 = new JSeparator();
 		separator_1.setBounds(10, 265, 1015, 2);
 		panel.add(separator_1);
 		
-		JSeparator separator_2 = new JSeparator();
+		separator_2 = new JSeparator();
 		separator_2.setBounds(10, 354, 1015, 2);
 		panel.add(separator_2);
 
-		JSeparator separator_3 = new JSeparator();
+		separator_3 = new JSeparator();
 		separator_3.setBounds(10, 450, 1015, 2);
 		panel.add(separator_3);
 		
-		JLabel lblStockkeeperId = new JLabel("Stockkeeper ID :");
+		lblStockkeeperId = new JLabel("Stockkeeper ID :");
 		lblStockkeeperId.setFont(new Font("HelveticaNeue", Font.PLAIN, 24));
 		lblStockkeeperId.setBounds(207, 383, 201, 41);
 		panel.add(lblStockkeeperId);
@@ -129,8 +133,7 @@ public class OrderForm extends JFrame{
 		textFieldStKid.setBounds(533, 383, 247, 35);
 		panel.add(textFieldStKid);
 		
-		btnAdd.addActionListener( new ActionListener()
-		{
+		btnAdd.addActionListener( new ActionListener(){
 			public void actionPerformed(ActionEvent arg0)
 			{
 				//creating an order

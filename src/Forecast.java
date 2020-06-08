@@ -13,11 +13,11 @@ import javax.swing.JOptionPane;
 public class Forecast {
 
 	private double per;
-	OrderManager orderManager;
-	SupplierProducts productsList;
-	Orders order;
-	Proposals proposals;
-	boolean isTypeRegular;
+	private OrderManager orderManager;
+	private SupplierProducts productsList;
+	private Orders order;
+	private Proposals proposals;
+	private boolean isTypeRegular;
 	
 	public Forecast(OrderManager om)
 	{    
