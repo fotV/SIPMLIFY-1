@@ -291,7 +291,7 @@ public class SelectionGui extends JFrame
 					}
 					else
 					{
-						int i = 0;;
+						int i = 0;
 					    if(!options[2].isEmpty()){		//checks if options[2](key) input exists in database
 					    	 if(options[1].equals("Product")){
 					    		 
@@ -303,7 +303,7 @@ public class SelectionGui extends JFrame
 						    		i++;
 						    	}
 					    	 }
-					    	 else if (options[2].equals("Supplier")){
+					    	 else if (options[1].equals("Supplier")){
 					    		 
 					    		 ArrayList <Supplier> supplier = new ArrayList<Supplier>(om.getSuppliers().getSuppliers());
 					    		 while( (i < supplier.size()) && !keyExists){
