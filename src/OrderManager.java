@@ -29,7 +29,7 @@ public class OrderManager extends User {
 	 */
 	@Override
 	public void initializeLists() {
-		
+		this.orders.getOrders().clear();
 		this.orders.extractObjectDB();								//Extracts the orders from DB 
 		ArrayList<Order> ord = new ArrayList<Order>();			
 		for (Order o: this.orders.getOrders()) {
@@ -39,6 +39,7 @@ public class OrderManager extends User {
 		this.orders.getOrders().clear();
 		this.orders.getOrders().addAll(ord);
 		   
+		this.products.getSupplierProducts().clear();
 		this.products.extractObjectDB();                           // Extracts the products from DB   
 		ArrayList<SupplierProduct> supProducts = new ArrayList<SupplierProduct>();
 		for (SupplierProduct supProd : this.products.getSupplierProducts()) {
@@ -49,6 +50,7 @@ public class OrderManager extends User {
 		this.products.getSupplierProducts().clear();
 		this.products.getSupplierProducts().addAll(supProducts);
 		
+		this.suppliers.getSuppliers().clear();
 		this.suppliers.extractObjectDB();							//Extracts the suppliers from DB 
 		ArrayList<Supplier> supp = new ArrayList<Supplier>();
 		for (Supplier suppl : this.suppliers.getSuppliers()) {
@@ -59,6 +61,7 @@ public class OrderManager extends User {
 		this.suppliers.getSuppliers().clear();
 		this.suppliers.getSuppliers().addAll(supp);
 		 
+		this.proposals.getProposals().clear();
 		this.proposals.extractObjectDB();							//Extracts the proposals from DB 
 		ArrayList<Order> prop = new ArrayList<Order>();
 		for (Order order: proposals.getProposals()) {
@@ -69,6 +72,7 @@ public class OrderManager extends User {
 		this.proposals.getProposals().clear();
 		this.proposals.getProposals().addAll(prop);
 		
+		this.supplies.getSupplies().clear();
 		supplies.extractObjectDB();									//Extracts the supplies for DB 
 		ArrayList<Suppl> supll = new ArrayList<Suppl>();
 		for (Suppl s : supplies.getSupplies()) {

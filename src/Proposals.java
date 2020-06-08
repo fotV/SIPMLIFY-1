@@ -76,7 +76,7 @@ public class Proposals extends ListFromDB {
 					+ "VALUES (?,?,?,?,?,?);";
 			PreparedStatement pstmtForInsert = c.prepareStatement(stringForInsert);
 			for (Order or : proposals) {
-				
+				System.out.println(10);
 				pstmtForInsert.setString(1 ,or.getProductId());
 				pstmtForInsert.setString(2, or.getDate());
 				pstmtForInsert.setDouble(3, or.getQuantity());

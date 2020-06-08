@@ -14,6 +14,7 @@ public class Stockkeeper extends User {
 	 */ 
 	@Override
 	public void initializeLists() {
+		this.orders.getOrders().clear();
 		this.orders.extractObjectDB();						//Extracts the orders from DB 
 		ArrayList<Order> ord = new ArrayList<Order>();			
 		for (Order o: this.orders.getOrders()) {

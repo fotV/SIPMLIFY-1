@@ -213,6 +213,17 @@ public class OrderManagerForm {
 		forecastJMn.setFont(new Font("HelveticaNeue", Font.BOLD | Font.ITALIC, 20));
 		ordManagerJMenuBar.add(forecastJMn);
 		
+		JMenuItem calculate = new JMenuItem("Calcultae");
+		calculate.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
+		calculate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Object> listofProposals = new ArrayList<>(ordManager.getProposals().getProposals());
+				new Forecast(ordManager);
+			}
+		});
+		forecastJMn.add(calculate);
+		
+		
 		showProposalsJMnItm = new JMenuItem("Show Proposals");
 		showProposalsJMnItm.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		showProposalsJMnItm.addActionListener(new ActionListener() {

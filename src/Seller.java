@@ -20,7 +20,7 @@ public class Seller extends User {
 	 */
 	@Override
 	public void initializeLists() {
-
+		this.orders.getOrders().clear();
 		this.orders.extractObjectDB();							// Extracts the orders from DB for the specific seller  
 		ArrayList<Order> ord = new ArrayList<Order>();
 		for (Order o: this.orders.getOrders()) {
@@ -30,6 +30,7 @@ public class Seller extends User {
 		this.orders.getOrders().clear();
 		this.orders.getOrders().addAll(ord);
 		   
+		this.products.getCompanyProducts().clear();
 		this.products.extractObjectDB();                           // Extracts the products from DB for the specific seller      
 		ArrayList<CompanyProduct> companyProducts = new ArrayList<CompanyProduct>();
 		for (CompanyProduct comProd : this.products.getCompanyProducts()) {
@@ -40,6 +41,7 @@ public class Seller extends User {
 		this.products.getCompanyProducts().clear();
 		this.products.getCompanyProducts().addAll(companyProducts);
 		
+		this.buyers.getBuyers().clear();
 		this.buyers.extractObjectDB();							//Extracts the buyers for DB of the specific seller
 		ArrayList<Buyer> supp = new ArrayList<Buyer>();
 		for (Buyer buyer : this.buyers.getBuyers()) {
