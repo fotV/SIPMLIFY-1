@@ -249,17 +249,15 @@ public class ProductForm extends JFrame{
 							seller.getProducts().getCompanyProducts().add(comp);
 						}
 				     }
-				});
-		
+				});	
+					
+		}
 			
-		
 		frame.setSize(1041, 653);
 		frame.setResizable(false);
 		frame.setTitle("Product Form");
 		frame.setLayout(null); 
-		frame.setVisible(true);		
-					
-		}
+		frame.setVisible(true);	
 	}
 	
 	/**
