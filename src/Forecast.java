@@ -120,7 +120,7 @@ public class Forecast {
 	private double calculateOrder(double stockAmount,double expectedAmount,double averageMonthlyConsumption,double leadtime,double safetyStock,double per)
 	{   
 		double amount = (safetyStock + 2*averageMonthlyConsumption + leadtime - stockAmount - expectedAmount)*per;
-		return amount;
+		return Math.round(amount);
 		
 	}	
 	
