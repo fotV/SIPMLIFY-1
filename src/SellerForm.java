@@ -268,7 +268,7 @@ public class SellerForm extends JFrame{
 		menuItemSeeStatistics.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ev) {
 		    
-		    	SelectionGui stat = new SelectionGui(ordManager);
+		    	SelectionGui stat = new SelectionGui(s);
 				stat.initialize();
 		    	}
 			});
