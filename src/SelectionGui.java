@@ -6,22 +6,23 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+/**
+ * SelectionGui.java
+ * Purpose : Creates the GUI for user to select the statictics he wishes to see.
+ * @author Fotiadou Vassiliki
+ */
+
 public class SelectionGui extends JFrame
 {
-	/*SelectionGui.java
-	 * Purpose : Creates the GUI for user to select the statictics he wishes to see.
-	 * @author Fotiadou Vassiliki
-	 */
-
 	private String[] options; /*options[0] variable,options[1] filter,options[2] key,options[3] chart,options[4] from month,options[5] from year,options[6] to month,options[7] to year*/	 
 	private Boolean errorFlag; //false if there is no error else true
 	private OrderManager om;
 	private Seller seller;
 	private String user;
 	private String[] months;
-	private int userCheck; //0 if ordermanager, 1 if seller created to help method checkerror for options[3] input
 	
 	public SelectionGui(OrderManager om){	
+		this.om = om;
 		user = "om";
 		errorFlag = false;
 		options = new String[8];
@@ -41,6 +42,7 @@ public class SelectionGui extends JFrame
 	}
 
 	public SelectionGui(Seller seller){	
+		this.seller = seller;
 		user = "seller";
 		errorFlag = false;
 		options = new String[8];
@@ -59,7 +61,8 @@ public class SelectionGui extends JFrame
 		months[11] = "December";		
 	}
 
-	/*Creates GUI for options and calls the respective function from statistics class 
+	/**
+	 * Creates GUI for options and calls the respective function from statistics class 
 	 * if there is no error in the filled form
 	 * */
 	public void initialize() 
@@ -161,7 +164,6 @@ public class SelectionGui extends JFrame
 		f.getContentPane().add(b);
 		
 		if(user.equals("om")){					//if user is OrderManager
-			userCheck = 0;
 			
 			String OMvariables[] = {"","Cost","Orders"};
 			String OMfilter[] = {"","Date","Supplier","Product"};						//JComboBox data for OrderManager
@@ -194,7 +196,7 @@ public class SelectionGui extends JFrame
 					options[6] = (String) toMonth.getSelectedItem();
 					options[7] = yearTo.getText();
 					
-					errorFlag = checkError(options,userCheck); //calls checkError before calling respective function
+					errorFlag = checkError(options); //calls checkError before calling respective function
 
 					if(!errorFlag) {    					 //if errorFlag = false there is no error, calls respective function
 						f.setVisible(false);
@@ -206,8 +208,7 @@ public class SelectionGui extends JFrame
 			});
 		}
 		else if(user.equals("seller")){									//if user is a Seller
-			userCheck = 1;
-		
+			
 			String Svariables[] = {"","Profit","Purchases"};			//JComboBox Data for Seller
 			String Sfilter[] = {"","Date","Client","Product"};
 			
@@ -238,7 +239,7 @@ public class SelectionGui extends JFrame
 					options[6] = (String) toMonth.getSelectedItem();
 					options[7] = yearTo.getText();
 					
-					errorFlag = checkError(options, userCheck);     //calls checkError before calling respective function
+					errorFlag = checkError(options);     //calls checkError before calling respective function
 					
 					if(!errorFlag){									//if errorFlag = false there is no error, calls respective function
 						f.setVisible(false);
@@ -254,8 +255,11 @@ public class SelectionGui extends JFrame
 		f.setVisible(true);
 	}
 	
-		/*checks if there is an error in filled selection form */
-		private boolean checkError(String[] options, int userCheck){
+		/**
+		 * checks if there is an error in filled selection form 
+		 *@param options
+		 */
+		private boolean checkError(String[] options){
 			
 			int fromMonth = 0;
 			int toMonth = 0;
@@ -266,87 +270,87 @@ public class SelectionGui extends JFrame
 				JOptionPane.showMessageDialog(null, "Variable Field Must Be Filled", "Invalid Input",JOptionPane.ERROR_MESSAGE);
 			}
 					
-			if(options[1].isEmpty()){		//checks filter input
+			if(options[1].isEmpty())
+			{		//checks filter input
 				errorFlag = true;
 				JOptionPane.showMessageDialog(null, "Filter Field Must Be Filled", "Invalid Input",JOptionPane.ERROR_MESSAGE);
 			}
-			
-			if((options[1] == "Supplier") || (options[1] == "Product") || (options[1] == "Client")){ 	//checks key input
-				if(options[2].isEmpty()){
-					errorFlag = true;
-					JOptionPane.showMessageDialog(null, "Key Field Must Be Filled", "Invalid Input",JOptionPane.ERROR_MESSAGE);
+			else
+			{
+				if(!options[1].equals("Date")){ 	//checks key input
+					if(options[2].isEmpty()){
+						errorFlag = true;
+						JOptionPane.showMessageDialog(null, "Key Field Must Be Filled", "Invalid Input",JOptionPane.ERROR_MESSAGE);
+					}
 				}
-			}	
-			
-			if(options[2].length() != 6){			//checks if id is 6 characters
-				errorFlag = true;
-				JOptionPane.showMessageDialog(null, "Key Field Must Be 6 Characters", "Invalid Input",JOptionPane.ERROR_MESSAGE);
+				else
+				{
+					if(options[2].length() != 6){			//checks if id is 6 characters
+						errorFlag = true;
+						JOptionPane.showMessageDialog(null, "Key Field Must Be 6 Characters", "Invalid Input",JOptionPane.ERROR_MESSAGE);
+					}
+					else
+					{
+						int i = 0;;
+					    if(!options[2].isEmpty()){		//checks if options[2](key) input exists in database
+					    	 if(options[1].equals("Product")){
+					    		 
+						    	ArrayList<SupplierProduct> sProd = new ArrayList<SupplierProduct>(om.getProducts().getSupplierProducts());
+								while((i  < sProd.size()) && !keyExists){
+						    		if(options[2].equals(sProd.get(i).getId())){
+						    			keyExists = true;
+						    		}
+						    		i++;
+						    	}
+					    	 }
+					    	 else if (options[2].equals("Supplier")){
+					    		 
+					    		 ArrayList <Supplier> supplier = new ArrayList<Supplier>(om.getSuppliers().getSuppliers());
+					    		 while( (i < supplier.size()) && !keyExists){
+					    			 if(options[2].equals(supplier.get(i).getId()))
+					    			 {
+					    				 keyExists = true;
+					    			 }
+					    			 i++;
+					    		 }
+					    	 }
+					     }
+					    
+					    if(!options[2].isEmpty() ){   //checks if product id exists in database using userCheck to distinguish seller and ordermanager products
+					    	 if(options[1].equals("Product")) {
+					    		 
+						    	ArrayList<CompanyProduct> cProd = new ArrayList<CompanyProduct>(seller.getProducts().getCompanyProducts());
+						    	while((i < cProd.size()) && !keyExists){
+						    		
+						    		if(options[2].equals(cProd.get(i).getId())){
+						    			keyExists = true;
+						    		}
+						    	}																		
+					    	 }
+					    	 else if (options[1].equals("Client")) {
+					    		 
+					    		 ArrayList <Buyer> buyer = new ArrayList<Buyer>(seller.getBuyers().getBuyers());
+					    		 while((i < buyer.size()) && !keyExists){
+					    			 
+					    			 if(options[2].equals(buyer.get(i).getId())){
+					    				 
+					    				 keyExists = true;
+					    			 }
+					    			 i++;
+					    		 }
+					    	 }
+					     }
+					     
+					    
+					}
+				}
 			}
-			
-
-	    	int i = 0;;
-		    if((!options[2].isEmpty()) && (userCheck == 0) ){		//checks if options[2](key) input exists in database
-		    	 if(options[2].equals("Product")){
-		    		 
-			    	SupplierProducts productS = new SupplierProducts();
-			    	ArrayList<SupplierProduct> sProd = productS.getSupplierProducts();
-					while((i  < sProd.size()) && !keyExists){
-			    		if(options[2].equals(sProd.get(i).getId())){
-			    			keyExists = true;
-			    		}
-			    		i++;
-			    	}
-		    	 }
-		    	 else if (options[2].equals("Supplier")){
-		    		 Suppliers sup = new Suppliers();
-		    		 ArrayList <Supplier> supplier = sup.getSuppliers();
-		    		 while( (i < supplier.size()) && !keyExists){
-		    			 if(options[2].equals(supplier.get(i).getId()))
-		    			 {
-		    				 keyExists = true;
-		    			 }
-		    			 i++;
-		    		 }
-		    	 }
-		     }
-		     
-		     if((keyExists == false) && (userCheck == 0)){		//if keyExists = false id doesn't exist in database
+				
+			 if((keyExists == false)){		//if keyExists = false id doesn't exist in database
 		    	 errorFlag = true;
 		    	 JOptionPane.showMessageDialog(null, "Key ID doesn't exist.", "Invalid Input",JOptionPane.ERROR_MESSAGE);		
 		     }
-		     
-		     if((!options[2].isEmpty()) && (userCheck == 1) ){   //checks if product id exists in database using userCheck to distinguish seller and ordermanager products
-		    	 if(options[2].equals("Product")) {
-		    		 
-			    	CompanyProducts prod = new CompanyProducts();
-			    	ArrayList<CompanyProduct> cProd = prod.getCompanyProducts();
-			    	while((i < cProd.size()) && !keyExists){
-			    		
-			    		if(options[2].equals(cProd.get(i).getId())){
-			    			keyExists = true;
-			    		}
-			    	}																		
-		    	 }
-		    	 else if (options[2].equals("Client")) {
-		    		 
-		    		 Buyers b = new Buyers();
-		    		 ArrayList <Buyer> buyer = b.getBuyers();
-		    		 while((i < buyer.size()) && !keyExists){
-		    			 
-		    			 if(options[2].equals(buyer.get(i).getId())){
-		    				 
-		    				 keyExists = true;
-		    			 }
-		    			 i++;
-		    		 }
-		    	 }
-		     }
-		     
-		     if((keyExists == false) && (userCheck == 1)){  		//if keyExists = false product id doenst exist in database
-		    	 errorFlag = true;
-		    	 JOptionPane.showMessageDialog(null, "Key doesn't exist.", "Invalid Input",JOptionPane.ERROR_MESSAGE);		
-		     }
-		     	
+				
 		     if(options[3].isEmpty()){			//checks chart input
 				errorFlag = true;
 				JOptionPane.showMessageDialog(null, "Chart Field Must Be Filled", "Invalid Input",JOptionPane.ERROR_MESSAGE);		
@@ -364,7 +368,7 @@ public class SelectionGui extends JFrame
 		     }
 		     
 		     if(options[5].compareTo(options[7])== 0){
-				for(i = 0; i< 12; i++){
+				for(int i = 0; i< 12; i++){
 					if(options[4].equals(months[i])){
 						fromMonth = i;									//if (from year) == (to year) keeps the intex from 'fromMonth' and 'toMonth'to check if the date input is valid 
 					}
