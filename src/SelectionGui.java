@@ -108,9 +108,9 @@ public class SelectionGui extends JFrame
 		chartCb.setBounds(504, 367, 264, 30);
 		f.getContentPane().add(chartCb);
 		
-	    	JLabel from = new JLabel("From :");
-	    	from.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));      				//from month JLabel
-	    	from.setBounds(197, 470, 107, 26);
+	    JLabel from = new JLabel("From :");
+	    from.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));      				//from month JLabel
+	    from.setBounds(197, 470, 107, 26);
 		f.getContentPane().add(from);
 		
 		JComboBox fromMonth = new JComboBox(months);
@@ -264,7 +264,7 @@ public class SelectionGui extends JFrame
 			int fromMonth = 0;
 			int toMonth = 0;
 			boolean keyExists = false; //true if key(id) of options[3] input exists in database
-			
+			System.out.println(options[1]);
 			if(options[0].isEmpty()){		//checks variable input
 				errorFlag = true;
 				JOptionPane.showMessageDialog(null, "Variable Field Must Be Filled", "Invalid Input",JOptionPane.ERROR_MESSAGE);
@@ -277,79 +277,80 @@ public class SelectionGui extends JFrame
 			}
 			else
 			{
-				if(!options[1].equals("Date")){ 	//checks key input
+				if(!options[1].equals("Date"))
+				{ 	//checks key input
 					if(options[2].isEmpty()){
 						errorFlag = true;
 						JOptionPane.showMessageDialog(null, "Key Field Must Be Filled", "Invalid Input",JOptionPane.ERROR_MESSAGE);
 					}
-				}
-				else
-				{
-					if(options[2].length() != 6){			//checks if id is 6 characters
-						errorFlag = true;
-						JOptionPane.showMessageDialog(null, "Key Field Must Be 6 Characters", "Invalid Input",JOptionPane.ERROR_MESSAGE);
-					}
 					else
 					{
-						int i = 0;
-					    if(!options[2].isEmpty()){		//checks if options[2](key) input exists in database
-					    	 if(options[1].equals("Product")){
-					    		 
-						    	ArrayList<SupplierProduct> sProd = new ArrayList<SupplierProduct>(om.getProducts().getSupplierProducts());
-								while((i  < sProd.size()) && !keyExists){
-						    		if(options[2].equals(sProd.get(i).getId())){
-						    			keyExists = true;
-						    		}
-						    		i++;
-						    	}
-					    	 }
-					    	 else if (options[1].equals("Supplier")){
-					    		 
-					    		 ArrayList <Supplier> supplier = new ArrayList<Supplier>(om.getSuppliers().getSuppliers());
-					    		 while( (i < supplier.size()) && !keyExists){
-					    			 if(options[2].equals(supplier.get(i).getId()))
-					    			 {
-					    				 keyExists = true;
-					    			 }
-					    			 i++;
-					    		 }
-					    	 }
-					     }
-					    
-					    if(!options[2].isEmpty() ){   //checks if product id exists in database using userCheck to distinguish seller and ordermanager products
-					    	 if(options[1].equals("Product")) {
-					    		 
-						    	ArrayList<CompanyProduct> cProd = new ArrayList<CompanyProduct>(seller.getProducts().getCompanyProducts());
-						    	while((i < cProd.size()) && !keyExists){
-						    		
-						    		if(options[2].equals(cProd.get(i).getId())){
-						    			keyExists = true;
-						    		}
-						    	}																		
-					    	 }
-					    	 else if (options[1].equals("Client")) {
-					    		 
-					    		 ArrayList <Buyer> buyer = new ArrayList<Buyer>(seller.getBuyers().getBuyers());
-					    		 while((i < buyer.size()) && !keyExists){
-					    			 
-					    			 if(options[2].equals(buyer.get(i).getId())){
-					    				 
-					    				 keyExists = true;
-					    			 }
-					    			 i++;
-					    		 }
-					    	 }
-					     }
-					     
-					    
-					}
+						if(options[2].length() != 6){			//checks if id is 6 characters
+							errorFlag = true;
+							JOptionPane.showMessageDialog(null, "Key Field Must Be 6 Characters", "Invalid Input",JOptionPane.ERROR_MESSAGE);
+						}
+						else
+						{
+						    if((options[1].equals("Product") && (user.equals("om")))){
+						    		 
+							    	ArrayList<SupplierProduct> sProd = new ArrayList<>(om.getProducts().getSupplierProducts());
+							    	int i = 0;
+									while((i  < sProd.size()) && !keyExists){
+										System.out.println("IN");
+										System.out.println(sProd.get(i));
+							    		if(options[2].equals(sProd.get(i).getId())){
+							    			keyExists = true;
+							    		}
+							    		i++;
+							    	}
+						    	 }
+						    	 else if (options[2].equals("Supplier")){
+						    		 
+						    		 ArrayList <Supplier> supplier = new ArrayList<>(om.getSuppliers().getSuppliers());
+						    		 int i = 0;
+						    		 while( (i < supplier.size()) && !keyExists){
+						    			 if(options[2].equals(supplier.get(i).getId()))
+						    			 {
+						    				 keyExists = true;
+						    			 }
+						    			 i++;
+						    		 }
+						    	 }
+						    	 if((options[1].equals("Product") && (user.equals("seller")))) {
+						    		 
+							    	ArrayList<CompanyProduct> cProd = new ArrayList<>(seller.getProducts().getCompanyProducts());
+							    	int i = 0;
+							    	while((i < cProd.size()) && !keyExists){
+							    		
+							    		if(options[2].equals(cProd.get(i).getId())){
+							    			keyExists = true;
+							    		}
+							    	}																		
+						    	 }
+						    	 else if (options[1].equals("Client")) {
+						    		 
+						    		 ArrayList <Buyer> buyer = new ArrayList<>(seller.getBuyers().getBuyers());
+						    		 int i = 0;
+						    		 while((i < buyer.size()) && !keyExists){
+						    			 
+						    			 if(options[2].equals(buyer.get(i).getId())){
+						    				 
+						    				 keyExists = true;
+						    			 }
+						    			 i++;
+						    		 }
+						    	 }
+						     }
+						     
+						    
+						}
+					}	
+				 if((keyExists == false)){		//if keyExists = false id doesn't exist in database
+			    	 errorFlag = true;
+			    	 JOptionPane.showMessageDialog(null, "Key ID doesn't exist.", "Invalid Input",JOptionPane.ERROR_MESSAGE);		
+			     }
+					
 				}
-			}
-				
-			 if((keyExists == false)){		//if keyExists = false id doesn't exist in database
-		    	 errorFlag = true;
-		    	 JOptionPane.showMessageDialog(null, "Key ID doesn't exist.", "Invalid Input",JOptionPane.ERROR_MESSAGE);		
-		     }
 				
 		     if(options[3].isEmpty()){			//checks chart input
 				errorFlag = true;
