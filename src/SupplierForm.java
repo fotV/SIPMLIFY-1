@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -126,6 +127,8 @@ public class SupplierForm extends JFrame {
 				String SupplierOrdermanagerid = ordermanager.getId();
 				Supplier supplier = new Supplier(Suppliername,Supplierlastname,Supplierid,SuppliernphoneNumber,SupplierAFM,SupplierOrdermanagerid);
 				ordermanager.getSuppliers().getSuppliers().add(supplier);	
+				JOptionPane.showMessageDialog(null, "The supplier has been added!");
+				addButton.setEnabled(false);
 			}
 		
 		  }		
@@ -136,7 +139,7 @@ public class SupplierForm extends JFrame {
 		frame.setResizable(false);
 		frame.setLayout(null); 
 		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
 	/**
