@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 
+/**
+ * Statistics.java
+ * Purpose : Calculates the statistics to be displayed.
+ * @author Fotiadou Vassiliki
+ */
 public class Statistics {
-	/*Statistics.java
-	 * Purpose : Calculates the statistics to be displayed.
-	 * @author Fotiadou Vassiliki
-	 */
+	
 	private int numOfMonths;
-	private OrderManager om;
 	private Seller seller;
 	private String[] options;
 	private String firstMonth;
@@ -19,7 +20,10 @@ public class Statistics {
 		value = new ArrayList<Double>();
 	}
 	
-	/*Calculates the date for the chart,calls the function to calculate statistics and calls the function of the chosen chart from class CreateChart*/
+	/**
+	 * Calculates the date for the chart,calls the function to calculate statistics and calls the function of the chosen chart from class CreateChart for the ordermanager
+	 * @param om
+	 */
 	public void OrdererStat(OrderManager om) {
 		firstMonth = options[4];
 		int years;
@@ -51,8 +55,8 @@ public class Statistics {
 		calcOMValue(orders, fromMonth, numOfMonths);
 		
 		CreateChart ch = new CreateChart(months,options);
-		//calls the function of the chosen chart from CreateChart class
-		if(options[3].equals("Pie Chart")){
+		
+		if(options[3].equals("Pie Chart")){							//calls the function of the chosen chart from CreateChart class
 			ch.pieChart(value,numOfMonths,firstMonth);
 		}
 		else if(options[3].equals("Line Chart")){
@@ -65,7 +69,11 @@ public class Statistics {
 			ch.matrixChart(value,numOfMonths,firstMonth);
 		}
 	}
-	/*Calculates the date for the chart,calls the function to calculate statistics and calls the function of the chosen chart from class CreateChart*/
+	
+	/**
+	 * Calculates the date for the chart,calls the function to calculate statistics and calls the function of the chosen chart from class CreateChart for the seller
+	 * @param seller
+	 */
 	public void SupplierStat(Seller seller){ 
 		firstMonth = options[4];
 		int years;
@@ -98,8 +106,8 @@ public class Statistics {
 		calcSellerValue(orders, fromMonth, numOfMonths);
 		
 		CreateChart ch = new CreateChart(months,options);
-		//calls the function of the chosen chart from CreateChart class
-		if(options[3].equals("Pie Chart")){
+		
+		if(options[3].equals("Pie Chart")){								//calls the function of the chosen chart from CreateChart class
 			ch.pieChart(value,numOfMonths,firstMonth);
 		}
 		else if(options[3].equals("Line Chart")){
@@ -113,7 +121,12 @@ public class Statistics {
 		}
 	}
 	
-	/*calculates the value for the charts*/
+	/**
+	 * calculates the value for the charts for the seller
+	 *@param orders
+	 *@param parserMonth
+	 *@param numOfMonths
+	 */
 	private void calcSellerValue(ArrayList<Order> orders, int parserMonth, int numOfMonths){
 		double sum = 0;
 		String date = new String();
@@ -122,7 +135,8 @@ public class Statistics {
 		year = Integer.parseInt(options[5]);
 		
 		//for every month
-		for(int j = 0; j < numOfMonths+1; j++){
+		for(int j = 0; j < numOfMonths+1; j++)
+		{
 			sum = 0;
 			//after sum = 0; there is a date update 
 			if(parserMonth+1 != 12){					
@@ -142,13 +156,14 @@ public class Statistics {
 				date += "-0";
 				date +=  String.valueOf(parserMonth+1);	
 			}
-			for(int i = 0; i < orders.size(); i++){
+			for(int i = 0; i < orders.size(); i++)
+			{
 				//checks if the first 7 letters of string are the same as date given by the supplier
 				if(date.equals(orders.get(i).getDate().substring(0,6))){
 					if(options[1].equals("Date")){			 //if filter = date
 						
-						//if profit quantity*price if purchases quantity only
-						if(options[0].equals("Profit")){
+						
+						if(options[0].equals("Profit")){					//if profit quantity*price if purchases quantity only
 							sum += (orders.get(i).getQuantity())*(orders.get(i).getPrice()); 
 						}
 						else if(options[0].equals("Purchases")){
@@ -159,8 +174,8 @@ public class Statistics {
 						
 						if(options[2].equals(orders.get(i).getProductId())){
 							
-							//if profit quantity*price if purchases quantity only
-							if(options[0].equals("Profit")){
+							
+							if(options[0].equals("Profit")){				//if profit quantity*price if purchases quantity only
 								sum += (orders.get(i).getQuantity())*(orders.get(i).getPrice()); 
 							}
 							else if(options[0].equals("Purchases")){
@@ -172,8 +187,8 @@ public class Statistics {
 						
 						if(options[2].equals(orders.get(i).getOrderManagerId())){
 							
-							//if profit quantity*price if purchases quantity only
-							if(options[0].equals("Profit")){
+							
+							if(options[0].equals("Profit")){			//if profit quantity*price if purchases quantity only
 								sum += (orders.get(i).getQuantity())*(orders.get(i).getPrice()); 
 							}
 							else if(options[0].equals("Purchases")){
@@ -183,11 +198,20 @@ public class Statistics {
 					}
 				}
 			}
+			
+			value.add(sum);
+			parserMonth += 1;
+			date = new String();
 		}	
 			
 	}
 	
-	/*calculates the value for the charts*/
+	/**
+	 * calculates the value for the charts for the ordermanager
+	 *@param orders
+	 *@param parserMonth
+	 *@param numOfMonths
+	 */
 	private void calcOMValue(ArrayList<Order> orders, int parserMonth, int numOfMonths)
 	{
 		double sum = 0;
@@ -197,7 +221,8 @@ public class Statistics {
 		year = Integer.parseInt(options[5]);
 		
 		//for every month
-		for(int j = 0; j < numOfMonths+1; j++){
+		for(int j = 0; j < numOfMonths+1; j++)
+		{
 			sum = 0;
 			//after sum = 0; there is a date update 
 			if(parserMonth+1 != 12){					
@@ -259,5 +284,9 @@ public class Statistics {
 				}
 			}
 		}
+		
+		value.add(sum);
+		parserMonth += 1;
+		date = new String();
 	}	
 }
