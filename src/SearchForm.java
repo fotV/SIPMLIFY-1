@@ -33,13 +33,13 @@ public class SearchForm extends JFrame{
 			slist.add("Product Name ");
 			slist.add("Date  ");
 			slist.add("Status");
-		}
-		else if (type == 2) {			     //sets the strings that are needed for searching a SupplierProduct/CompanyProduct
+		}else if (type == 2) {			//sets the strings that are needed for searching a SupplierProduct/CompanyProduct
 			slist.add("Product Id");
 			slist.add("Product Name");
-			slist.add("Supplier Id");
-		}
-		else {
+			if (user instanceof OrderManager) {
+				slist.add("Supplier Id");
+			}
+		}else {
 			slist.add("Id ");			//sets the strings that are needed for searching a Buyer/Supplier
 			slist.add("Name");
 			slist.add("Last Name ");
@@ -115,9 +115,6 @@ public class SearchForm extends JFrame{
 						} 
 						else if (type==2) {                                              //searching for a CompanyProduct
 							u.searchForProduct(key.getText(), list.getSelectedIndex());
-						}
-						else{                                                            //searching for a Supplier
-							u.searchForBuyer(key.getText(),list.getSelectedIndex());
 						}
 					}
 				}

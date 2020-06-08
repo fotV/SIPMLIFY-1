@@ -145,7 +145,9 @@ public class Seller extends User {
 		if (found) new PresentationForm(this, buyersKEY);
 		else JOptionPane.showMessageDialog(frame, "No result", "Inane error", JOptionPane.ERROR_MESSAGE);
 	}
-	
+	/**
+	 * 
+	 */
 	public void refresh() {
 		ArrayList<Order> oldOrders = new ArrayList<Order>(this.orders.getOrders());
 		this.orders.updateObjectDB();

@@ -92,13 +92,11 @@ public class OrderManager extends User {
 		Boolean found=false;
 		ArrayList<Object> productsKEY = new ArrayList<>();
 		if(column == 0) {                                      				//1 for product id 
-			for( SupplierProduct supProd : products.getSupplierProducts() )
-			{
-				if( supProd.getId().equals(key) )
-					{
-						productsKEY.add(supProd);
-						found = true;
-					}
+			for( SupplierProduct supProd : products.getSupplierProducts() ){
+				if( supProd.getId().equals(key) ){
+					productsKEY.add(supProd);
+					found = true;
+				}
 			}
 		}
 		else if (column==1) {                              					//2 for product name 
@@ -109,15 +107,16 @@ public class OrderManager extends User {
 				}
 			}
 		}
-		else if (column==2) {                              					//3 for order manager id
+		else if (column==2) {                              					//3 for supplier id
 			for( SupplierProduct supProd : products.getSupplierProducts() ){
-				if(supProd.getOrderManagerId().equals(key)) {
+				for (Suppl sup : supplies.getSupplies()) {
+					if (key.equals(sup.getSupplierId())  && supProd.getId().contentEquals(sup.getProductId())) {
 					productsKEY.add(supProd);
-					found=true;
+					found = true;
 				}
 			}
 		}
-		
+		}
 		Component frame = null;
 		if (found) new PresentationForm(this, productsKEY);
 		else JOptionPane.showMessageDialog(frame, "No result", "Inane error", JOptionPane.ERROR_MESSAGE);
@@ -237,14 +236,8 @@ public class OrderManager extends User {
 		ArrayList<Order> oldOrders = new ArrayList<Order>(this.orders.getOrders());
 		
 		orders.updateObjectDB();
-		this.orders.getOrders().clear();
-		
 		products.updateObjectDB();
-		this.products.getSupplierProducts().clear();
-		
-		this.suppliers.getSuppliers().clear();
-		this.supplies.getSupplies().clear();
-		this.proposals.getProposals().clear();
+		proposals.updateObjectDB();
 		
 		initializeLists();
 		int count = 0 ;
@@ -258,6 +251,7 @@ public class OrderManager extends User {
 		if (count != 0 ) {
 			JOptionPane.showMessageDialog(null, "Some orders have changed in order","Pop up", JOptionPane.INFORMATION_MESSAGE);
 		}	
+		JOptionPane.showMessageDialog(null,  "The refresh has been completed", "Pop up", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	//getters and setters
