@@ -228,7 +228,7 @@ public class ShowOrder {
 	 if (user instanceof OrderManager) {
 	   
 		OrderManager ord = (OrderManager) user ;
-		
+		 
 		JLabel lblOrderManagerId = new JLabel("Order Manager ID :");
 		lblOrderManagerId.setBounds(125, 378, 246, 35);
 		lblOrderManagerId.setFont(new Font("Dialog", Font.PLAIN, 20));
@@ -248,6 +248,18 @@ public class ShowOrder {
 		lblSupplierAFM.setBounds(125, 513, 246, 35);
 		lblSupplierAFM.setFont(new Font("Dialog", Font.PLAIN, 20));
 		frame.getContentPane().add(lblSupplierAFM);
+		 
+		 //if the order is forcast proposal
+		 if (order.getStatus() == 0) {
+			EditButton.setEnabled(false);
+			sendB.setEnabled(true);
+			sendB.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					order.setStatus(1);
+					ord.getOrders().getOrders().add(order);
+				}
+			});			
+		}
 		
 		//A user of type OrderManager can only change the fieldSTATUS
 		EditButton.addActionListener(new ActionListener() {
