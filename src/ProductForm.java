@@ -19,64 +19,64 @@ import javax.swing.JTextField;
 public class ProductForm extends JFrame{
 	
 	private JFrame frame;
-	private Seller seller;
-	private OrderManager om;
-	String user; 
+	private User user; 
 	private boolean errorFlag; //false if there are no errors else true
 
-	public ProductForm(OrderManager om){
-		this.om = om;
-		user = "om";	
-		addAProduct();
-	}
 	
-	public ProductForm(Seller seller){
-		this.seller = seller;
-		user = "seller";	
-	}
-	
-	
-	public void addAProduct(){
+		public ProductForm(User user){
+		this.user = user;
 		
-		//if user = ordermanager
+		JFrame frame = new JFrame();  
+		frame.getContentPane().setBackground(new Color(136, 177, 179));
 		
-		if(user.equals("om")){
-			frame = new JFrame();  
-			frame.getContentPane().setBackground(new Color(136, 177, 179));
+		JLabel nameLabel = new JLabel("Product Name :");
+		nameLabel.setFont(new Font("Helvetica Neue", Font.PLAIN,20));			//name field and textfield
+		nameLabel.setBounds(37, 56, 147, 21);
+		frame.getContentPane().add(nameLabel);
+					
+		JTextField nameTXT = new JTextField();
+		nameTXT.setBounds(205, 57, 191, 27);
+		frame.getContentPane().add(nameTXT);
+		nameTXT.setColumns(10);
+		
+		JLabel idLabel = new JLabel("Product  ID :");
+		idLabel.setFont(new Font("Helvetica Neue", Font.PLAIN,20));				//id field ,textfield and 6 characters label
+		idLabel.setBounds(562, 56, 139, 21);
+		frame.getContentPane().add(idLabel);
+		
+		JTextField idTXT = new JTextField();
+		idTXT.setColumns(10);
+		idTXT.setBounds(763, 57, 191, 27);
+		frame.getContentPane().add(idTXT);
+		
+		JLabel idMaxCharacters = new JLabel("(6 characters)");
+		idMaxCharacters.setFont(new Font("Helvetica Neue", Font.PLAIN, 10));
+		idMaxCharacters.setBounds(562, 65, 70, 30);
+		frame.getContentPane().add(idMaxCharacters);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(10, 132, 1017, 2);
+		frame.getContentPane().add(separator);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(10, 297, 1017, 2);								//Separators
+		frame.getContentPane().add(separator_1);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBounds(10, 460, 1017, 2);
+		frame.getContentPane().add(separator_2);
+		
+		JButton addButton = new JButton("Add");			
+		addButton.setFont(new Font("Helvetic Neue", Font.PLAIN, 15));			//add button
+		addButton.setBounds(936, 583, 78, 21);
+		frame.getContentPane().add(addButton);
+
+		if(user instanceof OrderManager ){
 			
-			//name field and textfield
-			
-			JLabel nameLabel = new JLabel("Product Name :");
-			nameLabel.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
-			nameLabel.setBounds(37, 56, 147, 21);
-			frame.getContentPane().add(nameLabel);
-			
-			JTextField nameTXT = new JTextField();
-			nameTXT.setBounds(205, 57, 191, 27);
-			frame.getContentPane().add(nameTXT);
-			nameTXT.setColumns(10);
-			
-			//id field and textfield
-			
-			JLabel idLabel = new JLabel("Product  ID :");
-			idLabel.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
-			idLabel.setBounds(562, 56, 139, 21);
-			frame.getContentPane().add(idLabel);
-			
-			JTextField idTXT = new JTextField();
-			idTXT.setColumns(10);
-			idTXT.setBounds(763, 57, 191, 27);
-			frame.getContentPane().add(idTXT);
-			
-			JLabel idMaxCharacters = new JLabel("(6 characters)");
-			idMaxCharacters.setFont(new Font("Helvetica Neue", Font.PLAIN, 10));
-			idMaxCharacters.setBounds(562, 65, 70, 30);
-			frame.getContentPane().add(idMaxCharacters);
-			
-			//stock amount field and textfield
+			OrderManager om = (OrderManager) user ;
 			
 			JLabel stockAmLabel = new JLabel("Stock Amount :");
-			stockAmLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));
+			stockAmLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));		//stock amount field and textfield
 			stockAmLabel.setBounds(37, 197, 147, 21);
 			frame.getContentPane().add(stockAmLabel);
 			
@@ -85,10 +85,9 @@ public class ProductForm extends JFrame{
 			stockTXT.setBounds(205, 198, 191, 27);
 			frame.getContentPane().add(stockTXT);
 			
-			//max stock amount field and textfield
 			
 			JLabel maxStockLabel = new JLabel("MaxStock Amount :");
-			maxStockLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));
+			maxStockLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));	//max stock amount field and textfield
 			maxStockLabel.setBounds(562, 197, 178, 21);
 			frame.getContentPane().add(maxStockLabel);
 			
@@ -97,23 +96,18 @@ public class ProductForm extends JFrame{
 			maxStockTXT.setBounds(763, 198, 191, 27);
 			frame.getContentPane().add(maxStockTXT);
 			
-			//safety stock field and textfield
-			
 			JLabel safetyLabel = new JLabel("Safety Stock : ");
-			safetyLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));
+			safetyLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));		//safety stock field and textfield
 			safetyLabel.setBounds(37, 363, 147, 21);
 			frame.getContentPane().add(safetyLabel);
 			
 			JTextField safetyTXT = new JTextField();
 			safetyTXT.setColumns(10);
-			safetyTXT.setBounds(205, 364, 191, 27
-					);
+			safetyTXT.setBounds(205, 364, 191, 27);
 			frame.getContentPane().add(safetyTXT);
 			
-			//average monthly consumption field and textfield
-			
 			JLabel avMonConLabel = new JLabel("Average Monthly");
-			avMonConLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));
+			avMonConLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));	//average monthly consumption field and textfield
 			avMonConLabel.setBounds(562, 360, 178, 27);
 			frame.getContentPane().add(avMonConLabel);
 			
@@ -127,10 +121,8 @@ public class ProductForm extends JFrame{
 			avMonTXT.setBounds(763, 364, 191, 27);
 			frame.getContentPane().add(avMonTXT);
 			
-			//leadtime field and textfield
-			
 			JLabel leadtimeLabel = new JLabel("Leadtime :");
-			leadtimeLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));
+			leadtimeLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));	//leadtime field and textfield
 			leadtimeLabel.setBounds(37, 523, 147, 21);
 			frame.getContentPane().add(leadtimeLabel);
 			
@@ -139,39 +131,15 @@ public class ProductForm extends JFrame{
 			leadtimeTXT.setBounds(205, 524, 191, 27);
 			frame.getContentPane().add(leadtimeTXT);
 			
-			//expected amount field and textfield
-			
 			JLabel expAmLabel = new JLabel("Expected Amount :");
-			expAmLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));
+			expAmLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));		//expected amount field and textfield
 			expAmLabel.setBounds(562, 520, 178, 27);
 			frame.getContentPane().add(expAmLabel);
 			
 			JTextField expAmTXT = new JTextField();
 			expAmTXT.setColumns(10);
 			expAmTXT.setBounds(763, 524, 191, 27);
-			frame.getContentPane().add(expAmTXT);
-			
-			//Separators
-			
-			JSeparator separator = new JSeparator();
-			separator.setBounds(10, 132, 1017, 2);
-			frame.getContentPane().add(separator);
-			
-			JSeparator separator_1 = new JSeparator();
-			separator_1.setBounds(10, 297, 1017, 2);
-			frame.getContentPane().add(separator_1);
-			
-			JSeparator separator_2 = new JSeparator();
-			separator_2.setBounds(10, 460, 1017, 2);
-			frame.getContentPane().add(separator_2);
-			
-			//add button
-			
-			JButton addButton = new JButton("Add");
-			addButton.setFont(new Font("Helvetic Neue", Font.PLAIN, 15));
-			addButton.setBounds(936, 583, 78, 21);
-			frame.getContentPane().add(addButton);
-			
+			frame.getContentPane().add(expAmTXT);	
 			
 			addButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e){
@@ -199,136 +167,68 @@ public class ProductForm extends JFrame{
 			     }
 			});
 			
-			frame.setSize(1041, 653);
-			frame.setResizable(false);
-			frame.setTitle("Product Form");
-			frame.setLayout(null); 
-			frame.setVisible(true);	
 			
 		}
-		//user = seller
-		else if(user.equals("seller")){
-			frame = new JFrame();  
-			frame.getContentPane().setBackground(new Color(136, 177, 179));
+		else if(user instanceof Seller){
 			
-				//product name field and textfield
+			Seller seller = (Seller ) user;
+					
+			JLabel lblPrice = new JLabel("Product Price :");
+			lblPrice.setFont(new Font("Helvetica Neue", Font.PLAIN,20));		//product price field and textfield
+			lblPrice.setBounds(37, 197, 147, 21);
+			frame.getContentPane().add(lblPrice);
+			
+			JTextField priceTXT = new JTextField();
+			priceTXT.setColumns(10);
+			priceTXT.setBounds(205, 198, 191, 27);
+			frame.getContentPane().add(priceTXT);
+			
+			JLabel SupplierID = new JLabel("Supplier ID :");
+			SupplierID.setFont(new Font("Helvetica Neue", Font.PLAIN,20));		//supplier ID field and textfield
+			SupplierID.setBounds(562, 197, 178, 21);
+			frame.getContentPane().add(SupplierID);
+			
+			JTextField supplierIDTXT = new JTextField();
+			supplierIDTXT.setColumns(10);
+			supplierIDTXT.setBounds(763, 198, 191, 27);
+			frame.getContentPane().add(supplierIDTXT);
+			
+			JLabel label = new JLabel("(6 characters)");
+			label.setFont(new Font("Helvetica Neue", Font.PLAIN,10));
+			label.setBounds(562, 216, 70, 21);
+			frame.getContentPane().add(label);
+			
+			JLabel lblStockAmount = new JLabel("Stock Amount :");
+			lblStockAmount.setFont(new Font("Helvetica Neue", Font.PLAIN,20));		//stock amount field and textfield
+			lblStockAmount.setBounds(37, 363, 147, 21);
+			frame.getContentPane().add(lblStockAmount);
+			
+			JTextField stockTXT = new JTextField();
+			stockTXT.setColumns(10);
+			stockTXT.setBounds(205, 364, 191, 27);
+			frame.getContentPane().add(stockTXT);
+			
+			JLabel lblMaxstockAmount = new JLabel("Max Stock Amount :");
+			lblMaxstockAmount.setFont(new Font("Helvetica Neue", Font.PLAIN,19));	//max stock amount field and textfield
+			lblMaxstockAmount.setBounds(562, 360, 181, 27);
+			frame.getContentPane().add(lblMaxstockAmount);
+			
+			JTextField maxStockTXT = new JTextField();
+			maxStockTXT.setColumns(10);
+			maxStockTXT.setBounds(763, 364, 191, 27);
+			frame.getContentPane().add(maxStockTXT);
+			
+			JLabel lblSafetyStock = new JLabel("Safety Stock :");
+			lblSafetyStock.setFont(new Font("Helvetica Neue", Font.PLAIN,20));		//safety stock field and textfield
+			lblSafetyStock.setBounds(37, 523, 150, 24);
+			frame.getContentPane().add(lblSafetyStock);
+			
+			JTextField safetyTXT = new JTextField();
+			safetyTXT.setColumns(10);
+			safetyTXT.setBounds(205, 524, 191, 27);
+			frame.getContentPane().add(safetyTXT);
 				
-				JLabel lblName = new JLabel("Product Name :");
-				lblName.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
-				lblName.setBounds(37, 56, 147, 21);
-				frame.getContentPane().add(lblName);
-				
-				JTextField nameTXT = new JTextField();
-				nameTXT.setBounds(205, 57, 191, 27);
-				frame.getContentPane().add(nameTXT);
-				nameTXT.setColumns(10);
-				
-				//product id field and textfield
-
-				JLabel lblID = new JLabel("Product ID :");
-				lblID.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
-				lblID.setBounds(562, 56, 139, 21);
-				frame.getContentPane().add(lblID);
-				
-				JTextField idTXT = new JTextField();
-				idTXT.setColumns(10);
-				idTXT.setBounds(763, 57, 191, 27);
-				frame.getContentPane().add(idTXT);
-				
-				JLabel maxid = new JLabel("(6 characters)");
-				maxid.setFont(new Font("Helvetica Neue", Font.PLAIN, 10));
-				maxid.setBounds(562, 74, 70, 21);
-				frame.getContentPane().add(maxid);
-				
-				//product price field and textfield
-				
-				JLabel lblPrice = new JLabel("Product Price :");
-				lblPrice.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
-				lblPrice.setBounds(37, 197, 147, 21);
-				frame.getContentPane().add(lblPrice);
-				
-				JTextField priceTXT = new JTextField();
-				priceTXT.setColumns(10);
-				priceTXT.setBounds(205, 198, 191, 27);
-				frame.getContentPane().add(priceTXT);
-				
-				//supplier ID field and textfield
-				
-				JLabel SupplierID = new JLabel("Supplier ID :");
-				SupplierID.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
-				SupplierID.setBounds(562, 197, 178, 21);
-				frame.getContentPane().add(SupplierID);
-				
-				JTextField supplierIDTXT = new JTextField();
-				supplierIDTXT.setColumns(10);
-				supplierIDTXT.setBounds(763, 198, 191, 27);
-				frame.getContentPane().add(supplierIDTXT);
-				
-				JLabel label = new JLabel("(6 characters)");
-				label.setFont(new Font("Helvetica Neue", Font.PLAIN,10));
-				label.setBounds(562, 216, 70, 21);
-				frame.getContentPane().add(label);
-				
-				//stock amount field and textfield
-				
-				JLabel lblStockAmount = new JLabel("Stock Amount :");
-				lblStockAmount.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
-				lblStockAmount.setBounds(37, 363, 147, 21);
-				frame.getContentPane().add(lblStockAmount);
-				
-				JTextField stockTXT = new JTextField();
-				stockTXT.setColumns(10);
-				stockTXT.setBounds(205, 364, 191, 27);
-				frame.getContentPane().add(stockTXT);
-				
-				//max stock amount field and textfield
-				
-				JLabel lblMaxstockAmount = new JLabel("Max Stock Amount :");
-				lblMaxstockAmount.setFont(new Font("Helvetica Neue", Font.PLAIN,19));
-				lblMaxstockAmount.setBounds(562, 360, 181, 27);
-				frame.getContentPane().add(lblMaxstockAmount);
-				
-				JTextField maxStockTXT = new JTextField();
-				maxStockTXT.setColumns(10);
-				maxStockTXT.setBounds(763, 364, 191, 27);
-				frame.getContentPane().add(maxStockTXT);
-				
-
-				//safety stock field and textfield
-				
-				JLabel lblSafetyStock = new JLabel("Safety Stock :");
-				lblSafetyStock.setFont(new Font("Helvetica Neue", Font.PLAIN,20));
-				lblSafetyStock.setBounds(37, 523, 150, 24);
-				frame.getContentPane().add(lblSafetyStock);
-				
-				JTextField safetyTXT = new JTextField();
-				safetyTXT.setColumns(10);
-				safetyTXT.setBounds(205, 524, 191, 27);
-				frame.getContentPane().add(safetyTXT);
-				
-				//Separators
-				
-				JSeparator separator = new JSeparator();
-				separator.setBounds(10, 132, 1017, 2);
-				frame.getContentPane().add(separator);
-				
-				JSeparator separator_1 = new JSeparator();
-				separator_1.setBounds(10, 297, 1017, 2);
-				frame.getContentPane().add(separator_1);
-				
-				JSeparator separator_2 = new JSeparator();
-				separator_2.setBounds(10, 460, 1017, 2);
-				frame.getContentPane().add(separator_2);
-				
-				
-				//add button
-				
-				JButton btnAddButton = new JButton("Add");
-				btnAddButton.setFont(new Font("Helvetica Neue", Font.PLAIN,14));
-				btnAddButton.setBounds(911, 563, 94, 29);
-				frame.getContentPane().add(btnAddButton);
-				
-				btnAddButton.addActionListener(new ActionListener() {
+				addButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						String name = nameTXT.getText();
 						String id = idTXT.getText();
@@ -350,12 +250,15 @@ public class ProductForm extends JFrame{
 						}
 				     }
 				});
-				
-				frame.setSize(1041, 653);
-				frame.setResizable(false);
-				frame.setTitle("Product Form");
-				frame.setLayout(null); 
-				frame.setVisible(true);		
+		
+			
+		
+		frame.setSize(1041, 653);
+		frame.setResizable(false);
+		frame.setTitle("Product Form");
+		frame.setLayout(null); 
+		frame.setVisible(true);		
+					
 		}
 	}
 	
