@@ -83,9 +83,7 @@ public class CreateChart extends JFrame{
 		JFreeChart lineChart = ChartFactory.createLineChart( title,"Date", "Value",dataset);		
 		ChartFrame frame = new ChartFrame("Line Chart", lineChart);
 		frame.setVisible(true);
-		frame.setSize(1041, 653);		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		frame.setSize(1041, 653);			
 	}
 	
 	/*creates and displays matrix chart*/
@@ -165,7 +163,6 @@ public class CreateChart extends JFrame{
 		this.setTitle("Matrix Chart");
 		this.setBounds(100, 100, 1041, 653);
 		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	/*creates and displays bar chart*/
@@ -221,8 +218,7 @@ public class CreateChart extends JFrame{
 		JFreeChart chart = ChartFactory.createBarChart(title, "Year" , "Value", dataset, PlotOrientation.VERTICAL, true, true, false); 
 		ChartFrame frame = new ChartFrame("Bar Chart ",chart);
 		frame.setVisible(true);
-		frame.setSize(1041, 653);		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		frame.setSize(1041, 653);			
 	}	
 	
 	/*creates and displays pie chart*/
@@ -282,7 +278,6 @@ public class CreateChart extends JFrame{
 		JFreeChart chart = ChartFactory.createPieChart(title, dataset, true, true, true);
 		ChartFrame frame = new ChartFrame("Pie Chart ",chart);
 		frame.setVisible(true);
-		frame.setSize(1041, 653);		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		frame.setSize(1041, 653);			
 	}	
 }
