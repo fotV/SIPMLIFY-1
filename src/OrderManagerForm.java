@@ -334,7 +334,7 @@ public class OrderManagerForm {
 		
 		resultSeasonJLbl = new JLabel(ordManager.getSeason());
 		resultSeasonJLbl.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
-		resultSeasonJLbl.setBounds(670, 505, 226, 26);
+		resultSeasonJLbl.setBounds(676, 505, 226, 26);
 		panel.add(resultSeasonJLbl);
 		
 		spaceLabel5 = new JLabel("        ");

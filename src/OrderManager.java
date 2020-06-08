@@ -79,7 +79,6 @@ public class OrderManager extends User {
 			for (SupplierProduct sp: this.products.getSupplierProducts()) {
 				if ( s.getProductId().equals(sp.getId())) {
 					supll.add(s);
-				System.out.println(s.getProductId()+ s.getSupplierId());
 			}}
 		}
 		this.supplies.getSupplies().clear();

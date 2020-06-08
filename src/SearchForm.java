@@ -88,8 +88,9 @@ public class SearchForm extends JFrame{
 		
 		searchButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				boolean flag = checkForError(type,user);
-				if (flag == true ) {													  // if there are not errors in the form
+				boolean flag = checkForError();
+				if (flag == false ) {	// if there are not errors in the form
+					System.out.println(222);
 					if (user instanceof OrderManager)  {                                   // if user is OrderManager
 						OrderManager u = (OrderManager) user;
 						if (type==1) {                                                    //searching for an Order
@@ -130,37 +131,34 @@ public class SearchForm extends JFrame{
 	
 	}
 	
-	/**
-	 * Checks for errors in the form.
-	 * @param type   the type of searching
-	 * @param user   the type of user who wants to do the searching
-	 * @return flag  true only if there are not errors in the form
-	 */
-	private boolean checkForError(int type, User user)
+	private boolean checkForError()
 	{
 		boolean flag = false;
 		if(list.getSelectedIndex()==-1){                                                                                
 			JOptionPane.showMessageDialog(this,"No field choosen");
+			flag = true;
 		}                                                                     
 		if (key.getText().equals("Type the text") || key.getText().equals("")){                                     // if the key field does not have the correct input
-				JOptionPane.showMessageDialog(this,"Invalid input in key field");
+			JOptionPane.showMessageDialog(this,"Invalid input in key field");
+			flag = true;
 		}                                                                                                         
 		else if (list.getSelectedIndex() == 0 && (key.getText().length() != 6)) {                                      //if the user selected the first field from the list and key field does not have 6 characters
-			JOptionPane.showMessageDialog(this,"Invalid input in key field.");		
+			JOptionPane.showMessageDialog(this,"Invalid input in key field.");	
+			flag = true;
 		}
 		else if (list.getSelectedIndex() == 4 ) {                                                                     //if the user selected the fifth field from the field 
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			sdf.setLenient(false);
 			if (sdf.parse(key.getText(), new ParsePosition(0)) == null) {                                             //if key field does not have the correct format for date
-			    JOptionPane.showMessageDialog(this,"Invalid input in key field.");   
+			    JOptionPane.showMessageDialog(this,"Invalid input in key field."); 
+			    flag = true;
 			}
 		}
 		else if (list.getSelectedIndex() == 5 &&( key.getText().length() != 1 || key.getText().matches("[0-4]{1}") == false)) {     //if sixth field was choosen from the list and key field length does not have 1 character or contain digits other than [0-4].	
 			JOptionPane.showMessageDialog(this,"Invalid input in key field.");
-		}
-		else {                                                                                                                     //if none of the above are true                                                                               
 			flag = true;
 		}
+		                                                                                                                                                                                               
 		return flag;
 	}
 }
