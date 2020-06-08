@@ -222,9 +222,10 @@ public class ShowProduct {
 					user.getProducts().getSupplierProducts().set(index, spl);
 					textStockAmount.setEditable(false);
 					textLeadTime.setEditable(false);
-			        textExpectedAmount.setEditable(false);
-			        saveButton.setEnabled(false);
-			       
+			        	textExpectedAmount.setEditable(false);
+			        	saveButton.setEnabled(false);
+					
+					JOptionPane.showMessageDialog(null, "Changes have been saved!");
 				}
 			}});
 			saveButton.setBounds(636, 579, 166, 36);
@@ -371,8 +372,10 @@ public class ShowProduct {
 					int index = user.getProducts().getCompanyProducts().indexOf(cp);
 					user.getProducts().getCompanyProducts().set(index, cp);
 					textStockAmount.setEditable(false);
-			        textPrice.setEditable(false);
-			        saveButton.setEnabled(false); 
+			        	textPrice.setEditable(false);
+			        	saveButton.setEnabled(false); 
+					
+					JOptionPane.showMessageDialog(null, "Changes have been saved!");
 				}
 			}
 		});
