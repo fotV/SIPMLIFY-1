@@ -201,7 +201,7 @@ public class OrderManagerForm {
 		ordManagerJMenuBar.add(statisticsJMn);
 		statisticsJMn = new JMenu("Statistics");   											// Shows the statistics for order manager 
 		statisticsJMn.setFont(new Font("HelveticaNeue", Font.BOLD | Font.ITALIC, 20));
-		ordManagerJMenuBar.add(statisticsJMn);
+		
 		
 		
 		spaceLabel5 = new JLabel("        ");
