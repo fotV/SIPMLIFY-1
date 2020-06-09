@@ -222,7 +222,6 @@ public class SelectionGui extends JFrame
 					errorFlag = checkError(options); //calls checkError before calling respective function
 
 					if(!errorFlag) {    					 //if errorFlag = false there is no error, calls respective function
-						f.setVisible(false);
 						Statistics ord = new Statistics(options,months);
 						ord.OrdererStat(om);
 					}
@@ -265,7 +264,6 @@ public class SelectionGui extends JFrame
 					errorFlag = checkError(options);     //calls checkError before calling respective function
 					
 					if(!errorFlag){									//if errorFlag = false there is no error, calls respective function
-						f.setVisible(false);
 						Statistics sup = new Statistics(options, months);
 						sup.SupplierStat(seller);	
 					}		
