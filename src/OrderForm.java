@@ -1,10 +1,11 @@
-
 import java.awt.Color;
 
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -46,7 +47,10 @@ public class OrderForm extends JFrame{
 		panel = new JPanel();
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel.setBackground(new Color(136, 177, 179));
-	
+
+		URL resource3 = getClass().getClassLoader().getResource( "windowLogo.png" );
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage(resource3));
+		
 		lblorderid = new JLabel("Order ID :");
 		lblorderid.setBounds(207, 93, 157, 41);
 		lblorderid.setFont(new Font("HelveticaNeue", Font.PLAIN, 24));
