@@ -32,6 +32,10 @@ public class ShowBuyerSeller {
 		frame.getContentPane().setBackground(new Color(136, 177, 179));
 		frame.setResizable(false);
 		
+		URL resource2 = getClass().getClassLoader().getResource( "windowLogo.png" );
+    		Image icon = Toolkit.getDefaultToolkit().getImage(resource2);  
+    		frame.setIconImage(icon);
+		
 		lblName = new JLabel("First name :");
 		lblName.setBounds(144, 70, 150, 32);
 		lblName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
