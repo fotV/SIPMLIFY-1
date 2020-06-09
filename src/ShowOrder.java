@@ -267,11 +267,15 @@ public class ShowOrder {
 			sendB.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					order.setStatus(1);
-					order.setDate(order.getDate().substring(0, 10));
-					ord.getOrders().getOrders().add(order);
-					int index = ord.getProposals().getProposals().indexOf(order);
-					ord.getProposals().getProposals().get(index).setTotalPrice(0.0);
 					sendB.setEnabled(false);
+					Users users = new Users();
+					users.extractObjectDB();
+					for (User u : users.getUsers()) {
+						if (ord.getCompany().equals(u.getCompany()) && u instanceof Stockkeeper) {
+							order.setStockkeeperId(u.getId());
+						}
+					}
+					ord.getOrders().getOrders().add(order);
 					JOptionPane.showMessageDialog(null, "The order has been sent!");
 				}
 			});			
