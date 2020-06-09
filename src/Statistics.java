@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Statistics {
 	
-	private int numOfMonths;
+	private int monthIntervals;
 	private Seller seller;
 	private String[] options;
 	private String firstMonth;
@@ -40,33 +40,28 @@ public class Statistics {
 			}
 		}
 		if(years == 0){
-			numOfMonths = toMonth - fromMonth;
+			monthIntervals = toMonth - fromMonth;
 		}
-		else if(years > 0){
-			if(toMonth > fromMonth){									//calculates the numberofmonths
-				numOfMonths = toMonth - fromMonth + years*12;
-			}
-			else{
-				numOfMonths = fromMonth - toMonth + years*12;
-			}
+		else if(years > 0){									
+				monthIntervals = toMonth - fromMonth + years*12;			//calculates the month intervals
 		}
 		
 		ArrayList <Order> orders = om.getOrders().getOrders();
-		calcOMValue(orders, fromMonth, numOfMonths);
+		calcOMValue(orders, fromMonth, monthIntervals);
 		
 		CreateChart ch = new CreateChart(months,options);
 		
 		if(options[3].equals("Pie Chart")){							//calls the function of the chosen chart from CreateChart class
-			ch.pieChart(value,numOfMonths,firstMonth);
+			ch.pieChart(value,monthIntervals,firstMonth);
 		}
 		else if(options[3].equals("Line Chart")){
-			ch.lineChart(value,numOfMonths,firstMonth);
+			ch.lineChart(value,monthIntervals,firstMonth);
 		}
 		else if(options[3].equals("Bar Chart")){
-			ch.barChart(value,numOfMonths,firstMonth);
+			ch.barChart(value,monthIntervals,firstMonth);
 		}
 		else if(options[3].equals("Matrix")){
-			ch.matrixChart(value,numOfMonths,firstMonth);
+			ch.matrixChart(value,monthIntervals,firstMonth);
 		}
 	}
 	
@@ -91,33 +86,28 @@ public class Statistics {
 		}
 
 		if(years == 0){
-			numOfMonths = toMonth - fromMonth;
+			monthIntervals = toMonth - fromMonth;
 		}
-		else if(years > 0){
-			if(toMonth > fromMonth){									//calculates the numberofmonths
-				numOfMonths = toMonth - fromMonth + years*12;
-			}
-			else{
-				numOfMonths = fromMonth - toMonth + years*12;
-			}
+		else if(years > 0) {
+				monthIntervals = toMonth - fromMonth + years*12; 		//calculates the month intervals
 		}
 		
 		ArrayList <Order> orders = seller.getOrders().getOrders();
-		calcSellerValue(orders, fromMonth, numOfMonths);
+		calcSellerValue(orders, fromMonth, monthIntervals);
 		
 		CreateChart ch = new CreateChart(months,options);
 		
 		if(options[3].equals("Pie Chart")){								//calls the function of the chosen chart from CreateChart class
-			ch.pieChart(value,numOfMonths,firstMonth);
+			ch.pieChart(value,monthIntervals,firstMonth);
 		}
 		else if(options[3].equals("Line Chart")){
-			ch.lineChart(value,numOfMonths,firstMonth);
+			ch.lineChart(value,monthIntervals,firstMonth);
 		}
 		else if(options[3].equals("Bar Chart")){
-			ch.barChart(value,numOfMonths,firstMonth);
+			ch.barChart(value,monthIntervals,firstMonth);
 		}
 		else if(options[3].equals("Matrix")){
-			ch.matrixChart(value,numOfMonths,firstMonth);
+			ch.matrixChart(value,monthIntervals,firstMonth);
 		}
 	}
 	
@@ -133,7 +123,6 @@ public class Statistics {
 		int year;
 		
 		year = Integer.parseInt(options[5]);
-		
 		//for every month
 		for(int j = 0; j < numOfMonths+1; j++)
 		{
@@ -164,7 +153,7 @@ public class Statistics {
 						
 						
 						if(options[0].equals("Profit")){					//if profit quantity*price if purchases quantity only
-							sum += (orders.get(i).getQuantity())*(orders.get(i).getPrice()); 
+							sum += (orders.get(i).getTotalPrice()); 
 						}
 						else if(options[0].equals("Purchases")){
 							sum += orders.get(i).getQuantity();
@@ -176,7 +165,7 @@ public class Statistics {
 							
 							
 							if(options[0].equals("Profit")){				//if profit quantity*price if purchases quantity only
-								sum += (orders.get(i).getQuantity())*(orders.get(i).getPrice()); 
+								sum += (orders.get(i).getTotalPrice()); 
 							}
 							else if(options[0].equals("Purchases")){
 								sum += orders.get(i).getQuantity();
@@ -189,7 +178,7 @@ public class Statistics {
 							
 							
 							if(options[0].equals("Profit")){			//if profit quantity*price if purchases quantity only
-								sum += (orders.get(i).getQuantity())*(orders.get(i).getPrice()); 
+								sum += (orders.get(i).getTotalPrice()); 
 							}
 							else if(options[0].equals("Purchases")){
 								sum += orders.get(i).getQuantity();
@@ -242,39 +231,41 @@ public class Statistics {
 				date += "-0";
 				date +=  String.valueOf(parserMonth+1);	
 			}
-			for(int i = 0; i < orders.size(); i++){
+			for(int i = 0; i < orders.size(); i++)
+			{
 				//checks if the first 7 letters of string are the same as date given by the supplier
-				if(date.equals(orders.get(i).getDate().substring(0,6))){
+				if(date.equals(orders.get(i).getDate().substring(0,7))){
 					if(options[1].equals("Date")){			 //if filter = date
-						
+
 						//if profit quantity*price if purchases quantity only
 						if(options[0].equals("Cost")){
-							sum += (orders.get(i).getQuantity())*(orders.get(i).getPrice()); 
+							sum += (orders.get(i).getTotalPrice()); 
+						
 						}
 						else if(options[0].equals("Orders")){
 							sum += orders.get(i).getQuantity();
 						}
 					}
 					else if(options[1].equals("Product")){		//if filter = product
-						
 						if(options[2].equals(orders.get(i).getProductId())){
 							
 							//if profit quantity*price if purchases quantity only
 							if(options[0].equals("Cost")){
-								sum += (orders.get(i).getQuantity())*(orders.get(i).getPrice()); 
+								sum += (orders.get(i).getTotalPrice()); 
+								
 							}
 							else if(options[0].equals("Orders")){
 								sum += orders.get(i).getQuantity();
+								
 							}
 						}
 					}
 					else if(options[1].equals("Supplier")){ 		//if filter = supplier
-						
 						if(options[2].equals(orders.get(i).getSupplierId())){
 							
 							//if profit quantity*price if purchases quantity only
 							if(options[0].equals("Cost")){
-								sum += (orders.get(i).getQuantity())*(orders.get(i).getPrice()); 
+								sum += (orders.get(i).getTotalPrice());
 							}
 							else if(options[0].equals("Orders")){
 								sum += orders.get(i).getQuantity();
@@ -283,10 +274,10 @@ public class Statistics {
 					}
 				}
 			}
+			value.add(sum);
+			parserMonth += 1;
+			date = new String();
 		}
 		
-		value.add(sum);
-		parserMonth += 1;
-		date = new String();
 	}	
 }
