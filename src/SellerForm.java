@@ -50,6 +50,9 @@ public class SellerForm extends JFrame{
 		panel.setBackground(new Color(136, 177, 179));
 		panel.setLayout(null);
 		
+		URL resource3 = getClass().getClassLoader().getResource( "windowLogo.png" );
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage(resource3));
+		
 		btnNewButton = new JButton("Refresh");
 		btnNewButton.setFont(new Font("HelveticaNeue", Font.BOLD, 10));
 		//btnNewButton.setIcon(new ImageIcon(this.getClass().getResource("refresg.png")));
