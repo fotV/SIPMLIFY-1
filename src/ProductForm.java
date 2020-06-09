@@ -1,7 +1,10 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,7 +31,12 @@ public class ProductForm extends JFrame{
 		
 		JFrame frame = new JFrame();  
 		frame.getContentPane().setBackground(new Color(136, 177, 179));
+		frame.setBounds(100,100,1041, 653);
 		
+		URL resource2 = getClass().getClassLoader().getResource( "windowLogo.png" );	//window logo
+    	Image icon = Toolkit.getDefaultToolkit().getImage(resource2);  
+    	frame.setIconImage(icon);
+    	
 		JLabel nameLabel = new JLabel("Product Name :");
 		nameLabel.setFont(new Font("Helvetica Neue", Font.PLAIN,20));			//name field and textfield
 		nameLabel.setBounds(37, 56, 147, 21);
@@ -84,7 +92,6 @@ public class ProductForm extends JFrame{
 			stockTXT.setColumns(10);
 			stockTXT.setBounds(205, 198, 191, 27);
 			frame.getContentPane().add(stockTXT);
-			
 			
 			JLabel maxStockLabel = new JLabel("MaxStock Amount :");
 			maxStockLabel.setFont(new Font("Helvetic Neue", Font.PLAIN,20));	//max stock amount field and textfield
@@ -163,10 +170,7 @@ public class ProductForm extends JFrame{
 						SupplierProduct sup = new SupplierProduct(name,id,omId,Double.parseDouble(stockAm),Double.parseDouble(maxStock),
 												  Double.parseDouble(safety),Double.parseDouble(avMonCon),Integer.parseInt(leadtime),Double.parseDouble(expAm));
 						om.getProducts().getSupplierProducts().add(sup);
-						}
-						JPanel panel = new JPanel();
-						JOptionPane.showMessageDialog(panel, "The Product has been added!", "Product Form", JOptionPane.INFORMATION_MESSAGE);
-
+						}	
 			     }
 			});
 			
@@ -250,20 +254,15 @@ public class ProductForm extends JFrame{
 							CompanyProduct comp = new CompanyProduct(name,id,supplierID,Double.parseDouble(stockAm),Double.parseDouble(maxStock),
 														Double.parseDouble(safety),Double.parseDouble(price));
 							seller.getProducts().getCompanyProducts().add(comp);
-							JPanel panel = new JPanel();
-							JOptionPane.showMessageDialog(panel, "The Product has been added!", "Product Form", JOptionPane.INFORMATION_MESSAGE);
 						}
-						
 				     }
-				});	
-					
+				});			
 		}
-			
-		frame.setSize(1041, 653);
+		
 		frame.setResizable(false);
 		frame.setTitle("Product Form");
 		frame.setLayout(null); 
-		frame.setVisible(true);	
+		frame.setVisible(true);
 	}
 	
 	/**
