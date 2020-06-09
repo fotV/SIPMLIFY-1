@@ -42,6 +42,10 @@ public class SupplierForm extends JFrame {
 		frame = new JFrame(); 														//creates gui
 		frame.getContentPane().setBackground(new Color(136, 177, 179));
 	
+		URL resource2 = getClass().getClassLoader().getResource( "windowLogo.png" );	//window logo
+    		Image icon = Toolkit.getDefaultToolkit().getImage(resource2);  
+    		frame.setIconImage(icon);
+		
 		nameLabel = new JLabel("First Name :");
 		nameLabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));				// first name label and textfield
 		nameLabel.setBounds(207, 70, 154, 41);
