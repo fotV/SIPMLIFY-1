@@ -384,6 +384,9 @@ public class ShowProduct {
 		frame.setVisible(true);
 	}
 		
+	
+
+
 	/**
 	 * Checks for error in the editable text fields
 	 * @return  true if there are not errors, else false.

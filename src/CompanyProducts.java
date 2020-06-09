@@ -50,12 +50,12 @@ public void updateObjectDB() {
 		Connection c = connect();
 		try {
 			
-			String insertIntoPFS = "INSERT OR IGNORE INTO Product_for_sale (Id, Name, StockAmount, MaxStockAmount, SafetyStock, Price)  "
-				+ "VALUES (?,?,?,?,?,?);";
+			String insertIntoPFS = "INSERT OR IGNORE INTO Product_for_sale (Id, Name, StockAmount, MaxStockAmount, SafetyStock, Price) VALUES (?,?,?,?,?,?);";
 			PreparedStatement statementPFS = c.prepareStatement(insertIntoPFS);
-			String insertIntoWatches = "INSERT OR IGNORE INTO Seller_Watches_Product (SellerId, PFS_Id) "
-					+ "VALUES (?,?);";
+			
+			String insertIntoWatches = "INSERT OR IGNORE INTO Seller_Watches_Product (SellerId, PFS_Id) VALUES (?,?);";
 			PreparedStatement statementWatches = c.prepareStatement(insertIntoWatches);
+			
 			String updatePFS = "UPDATE Product_for_sale SET  StockAmount = ?  , Price = ? WHERE id = ? ";
 			PreparedStatement statementUpdate = c.prepareStatement(updatePFS);	
 			

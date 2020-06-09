@@ -11,12 +11,11 @@ public class Proposals extends ListFromDB {
 		try {
 			
 			Statement stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery(" SELECT  Buys_from.OrderManagerId as OrderManagerId, Forecast_Proposal.Quantity as Quantity, "
-					+ "Forecast_Proposal.Supplier_Id as sId, Supplier.Name as sName, Supplier.AFM as sAFM, Forecast_Proposal.datee as Date, "
-					+ "Supplies.Price as Price, Forecast_Proposal.TotalPrice as TotalPrice, Forecast_Proposal.PFP_Id as PFP_Id"
-					+ "  FROM Supplies inner join Buys_from on Supplies.Supplier_Id=Buys_from.Supplier_Id "
-					+ "inner join Forecast_proposal on Supplies.PFP_Id=Forecast_proposal.PFP_Id "
-					+ "inner join Supplier on Supplier.id=Supplies.Supplier_Id");
+			ResultSet rs = stmt.executeQuery("SELECT  Show.OrderManagerId as OrderManagerId,Forecast_Proposal.Quantity as Quantity,Forecast_Proposal.Supplier_Id as sId,\r\n" + 
+					"Supplier.Name as sName, Supplier.AFM as sAFM,Forecast_Proposal.datee as Date, Supplies.Price as Price,Forecast_Proposal.TotalPrice as TotalPrice,Forecast_Proposal.PFP_Id as PFP_Id \r\n" + 
+					"FROM Forecast_Proposal inner join Show on Forecast_Proposal.PFP_Id = Show.PFP_Id and Show.Date = Forecast_Proposal.datee\r\n" + 
+					"inner join Supplier on Forecast_Proposal.Supplier_Id = Supplier.id\r\n" + 
+					"inner join Supplies on Forecast_Proposal.PFP_Id = Supplies.PFP_Id  ");
 			Statement stmt2 = c.createStatement();
 			Statement stmt3 = c.createStatement();
 			Statement stmt4 = c.createStatement();
@@ -71,22 +70,40 @@ public class Proposals extends ListFromDB {
 	public void updateObjectDB(){
 		Connection c = connect();
 		try {
-			String stringForInsert = "INSERT OR IGNORE INTO Forecast_Proposal (PFP_Id, datee, Quantity, Supplier_Id, PFPId, TotalPrice)  "
-					+ "VALUES (?,?,?,?,?,?);";
-			PreparedStatement pstmtForInsert = c.prepareStatement(stringForInsert);
+			String insertIntoForecastProp = "INSERT OR IGNORE INTO Forecast_Proposal (PFP_Id, datee, Quantity, Supplier_Id, PFPId, TotalPrice) VALUES (?,?,?,?,?,?);";
+			PreparedStatement statementForecast = c.prepareStatement(insertIntoForecastProp);
+			
+			String updateForecastProp  = "UPDATE Forecast_proposal SET TotalPrice = ? WHERE PFP_Id = ? ";
+			PreparedStatement statementUpdate = c.prepareStatement(updateForecastProp);
+			
+			String insertIntoShow = "INSERT OR IGNORE INTO Show (PFP_Id, Date, OrderManagerId) VALUES (?, ?, ?);";
+			PreparedStatement statementShow = c.prepareStatement(insertIntoShow);
+			
 			for (Order or : proposals) {
 				System.out.println(10);
-				pstmtForInsert.setString(1 ,or.getProductId());
-				pstmtForInsert.setString(2, or.getDate());
-				pstmtForInsert.setDouble(3, or.getQuantity());
-				pstmtForInsert.setString(4, or.getSupplierId());
-				pstmtForInsert.setString(5, or.getProductId());
-				pstmtForInsert.setDouble(6, or.getTotalPrice());
+				statementForecast.setString(1 ,or.getProductId());
+				statementForecast.setString(2, or.getDate());
+				statementForecast.setDouble(3, or.getQuantity());
+				statementForecast.setString(4, or.getSupplierId());
+				statementForecast.setString(5, or.getProductId());
+				statementForecast.setDouble(6, or.getTotalPrice());
 				
-				pstmtForInsert.executeUpdate();
+				if (or.getTotalPrice() == 0.0) {
+					statementUpdate.setDouble(1, or.getTotalPrice());
+					statementUpdate.setString(2, or.getProductId());
+					statementUpdate.executeUpdate();
+				}
+				statementShow.setString(1, or.getProductId());
+				statementShow.setString(2, or.getDate());
+				statementShow.setString(3, or.getOrderManagerId());
+				
+				statementForecast.executeUpdate();
+				statementShow.executeUpdate();
 				
 			}
-			pstmtForInsert.close();
+			statementForecast.close();
+			statementUpdate.close();
+			statementShow.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {

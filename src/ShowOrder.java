@@ -127,7 +127,7 @@ public class ShowOrder {
 		frame.getContentPane().add(fieldPrice);
 		fieldPrice.setColumns(10);
 		fieldPrice.setEditable(false);
-		
+		System.out.println(order.getTotalPrice());
 		fieldTotalPrice = new JTextField(String.valueOf(order.getTotalPrice()));
 		fieldTotalPrice.setBounds(682, 292, 200, 28);
 		fieldTotalPrice.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
@@ -268,9 +268,6 @@ public class ShowOrder {
 				public void actionPerformed(ActionEvent e) {
 					order.setStatus(1);
 					order.setDate(order.getDate().substring(0, 10));
-					ord.getOrders().getOrders().add(order);
-					int index = ord.getProposals().getProposals().indexOf(order);
-					ord.getProposals().getProposals().get(index).setTotalPrice(0.0);
 					sendB.setEnabled(false);
 					Users users = new Users();
 					users.extractObjectDB();
@@ -280,6 +277,11 @@ public class ShowOrder {
 						}
 					}
 					ord.getOrders().getOrders().add(order);
+					int index = ord.getProposals().getProposals().indexOf(order);
+					Order or = new Order(order.getOrderManagerId(), order.getOrderId(), order.getQuantity(), order.getSupplierId(), order.getSupplierName(), order.getSupplierAFM(), order.getDate(), order.getStatus(), order.getPrice(), 0.0, order.getProductId(), order.getProductName(), order.getStockkeeperId());
+					System.out.println(order.getTotalPrice());
+					ord.getProposals().getProposals().set(index, or);
+					
 					JOptionPane.showMessageDialog(null, "The order has been sent!");
 				}
 			});			
