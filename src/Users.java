@@ -55,7 +55,7 @@ public class Users extends ListFromDB {
 				om.setAFM(results.getString("AFM"));
 				om.setId(results.getString("id"));
 				om.setCompany(results.getString("Company"));
-				if (results.getInt("Regular")== 0) 
+				if (results.getString("Regular").equals("0")) 
 					om.setRegular(true);
 				else 
 					om.setRegular(false);
@@ -74,7 +74,38 @@ public class Users extends ListFromDB {
 			}
 		}
 	}
-	
+	public void updateObjectDB() {
+		Connection c = connect();
+		try {
+			String updateOrderManager = "UPDATE OrderManager SET Regular = ?, Season = ? WHERE id = ?";
+			PreparedStatement updateStatement = c.prepareStatement(updateOrderManager);
+			for (User u : users) {
+				if (u instanceof OrderManager) {
+					OrderManager ord = (OrderManager) u;
+					System.out.println(ord.getSeason());
+					if (ord.getRegular()) { 
+						updateStatement.setString(1, "0");
+						updateStatement.setString(2, "");
+					}else {
+						updateStatement.setString(1, "1");
+						updateStatement.setString(2, ord.getSeason());
+					}
+					
+					updateStatement.setString(3, ord.getId());
+					updateStatement.executeUpdate();
+				}
+			}
+			updateStatement.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	public ArrayList<User> getUsers()
 	{
 		return users;

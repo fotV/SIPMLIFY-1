@@ -89,7 +89,11 @@ public class ShowOrder {
 		fieldOrderId.setColumns(10);
 		fieldOrderId.setEditable(false);
 		
-		fieldDate = new JTextField(order.getDate());
+		if (order.getStatus() == 0) { 
+			fieldDate = new JTextField(order.getDate().substring(0, 10));
+		}else {
+			fieldDate = new JTextField(order.getDate());
+		}
 		fieldDate.setBounds(682, 67, 200, 28);
 		fieldDate.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		frame.getContentPane().add(fieldDate);
@@ -263,7 +267,10 @@ public class ShowOrder {
 			sendB.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					order.setStatus(1);
+					order.setDate(order.getDate().substring(0, 10));
 					ord.getOrders().getOrders().add(order);
+					int index = ord.getProposals().getProposals().indexOf(order);
+					ord.getProposals().getProposals().get(index).setTotalPrice(0.0);
 					sendB.setEnabled(false);
 					JOptionPane.showMessageDialog(null, "The order has been sent!");
 				}

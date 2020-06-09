@@ -26,33 +26,32 @@ public class Proposals extends ListFromDB {
 				Order o = new Order("", "", 0.0, "", "", "", "", 0, 0.0, 0.0, "", "","");
 				
 				Random rand = new Random();
-				int n = rand.nextInt(99)*100;
-				
-				String OMId = "";
-				OMId = rs.getString("OrderManagerId");
-				o.setOrderManagerId(OMId);
-				o.setOrderId(n+"");
-				o.setQuantity(rs.getDouble("Quantity"));
-				o.setSupplierId(rs.getString("sId"));
-				o.setSupplierName(rs.getString("sName"));
-				o.setSupplierAFM(rs.getString("sAFM"));
-				o.setDate(rs.getString("Date"));
-				//o.setStatus(rs.getInt("Status"));
-				o.setPrice(rs.getDouble("Price"));
-				o.setTotalPrice(rs.getDouble("TotalPrice"));
-				String productId = "";
-				productId = rs.getString("PFP_Id");
-				o.setProductId(productId);
-				ResultSet rs2 = stmt2.executeQuery("SELECT Name FROM Product_for_purchase WHERE Id = " + productId);
-				o.setProductName(rs2.getString("Name"));
-				ResultSet rs3 = stmt3.executeQuery("SELECT Company FROM  User WHERE id = \"" + OMId + "\";");
-				String company = "";
-				company = rs3.getString("Company");
-				ResultSet rs4 = stmt4.executeQuery("SELECT id FROM  User WHERE Company = \"" + company + "\" and id LIKE \"ST%\"");
-				o.setStockkeeperId(rs4.getString("Id"));
+				int n = rand.nextInt(9)*100;
+				if (rs.getDouble("TotalPrice") != 0.0) {
+					String OMId = "";
+					OMId = rs.getString("OrderManagerId");
+					o.setOrderManagerId(OMId);
+					o.setOrderId("FOR"+ n);
+					o.setQuantity(rs.getDouble("Quantity"));
+					o.setSupplierId(rs.getString("sId"));
+					o.setSupplierName(rs.getString("sName"));
+					o.setSupplierAFM(rs.getString("sAFM"));
+					o.setDate(rs.getString("Date"));
+					o.setPrice(rs.getDouble("Price"));
+					o.setTotalPrice(rs.getDouble("TotalPrice"));
+					String productId = "";
+					productId = rs.getString("PFP_Id");
+					o.setProductId(productId);
+					ResultSet rs2 = stmt2.executeQuery("SELECT Name FROM Product_for_purchase WHERE Id = " + productId);
+					o.setProductName(rs2.getString("Name"));
+					ResultSet rs3 = stmt3.executeQuery("SELECT Company FROM  User WHERE id = \"" + OMId + "\";");
+					String company = "";
+					company = rs3.getString("Company");
+					ResultSet rs4 = stmt4.executeQuery("SELECT id FROM  User WHERE Company = \"" + company + "\" and id LIKE \"ST%\"");
+					o.setStockkeeperId(rs4.getString("Id"));
 
-				proposals.add(o);
-				
+					proposals.add(o);
+				}
 			}
 			stmt.close();
 			stmt2.close();

@@ -334,7 +334,7 @@ public class OrderManagerForm {
 		
 		resultSeasonJLbl = new JLabel(ordManager.getSeason());
 		resultSeasonJLbl.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
-		resultSeasonJLbl.setBounds(676, 505, 226, 26);
+		resultSeasonJLbl.setBounds(695, 505, 226, 26);
 		panel.add(resultSeasonJLbl);
 		
 		spaceLabel5 = new JLabel("        ");
@@ -393,13 +393,13 @@ public class OrderManagerForm {
 						lblChooseSeasons.setBounds(171, 33, 201, 31);
 						frame2.getContentPane().add(lblChooseSeasons);
 						
-						JButton btnAutumnWinter = new JButton(" Autumn - Winter");
+						JButton btnAutumnWinter = new JButton("Autumn - Winter");
 						btnAutumnWinter.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
 						btnAutumnWinter.setBounds(60, 247, 201, 33);
 						frame2.getContentPane().add(btnAutumnWinter);
 						btnAutumnWinter.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								ordManager.setSeason(" Autumn - Winter");
+								ordManager.setSeason("Autumn - Winter");
 								resultSeasonJLbl.setText(ordManager.getSeason());
 								if (resultSeasonJLbl.getText() == " Autumn - Winter") {
 									JOptionPane.showMessageDialog(frame, " The season changed to: Autumn - Winter", " Update ", JOptionPane.INFORMATION_MESSAGE);
@@ -407,15 +407,15 @@ public class OrderManagerForm {
 							}
 						});
 						
-						JButton btnSpringSummer = new JButton(" Spring - Summer");
+						JButton btnSpringSummer = new JButton("Spring - Summer");
 						btnSpringSummer.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
 						btnSpringSummer.setBounds(305, 247, 201, 33);
 						frame2.getContentPane().add(btnSpringSummer);
 						btnSpringSummer.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								ordManager.setSeason(" Spring - Summer");
+								ordManager.setSeason("Spring - Summer");
 								resultSeasonJLbl.setText(ordManager.getSeason());
-								if (resultSeasonJLbl.getText() == " Spring - Summer") {
+								if (resultSeasonJLbl.getText() == "Spring - Summer") {
 									JOptionPane.showMessageDialog(frame, " The season changed to: Spring - Summer", " Update ", JOptionPane.INFORMATION_MESSAGE);
 								}
 							}

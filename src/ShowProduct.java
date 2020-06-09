@@ -222,8 +222,8 @@ public class ShowProduct {
 					user.getProducts().getSupplierProducts().set(index, spl);
 					textStockAmount.setEditable(false);
 					textLeadTime.setEditable(false);
-			        	textExpectedAmount.setEditable(false);
-			        	saveButton.setEnabled(false);
+			        textExpectedAmount.setEditable(false);
+			        saveButton.setEnabled(false);
 					
 					JOptionPane.showMessageDialog(null, "Changes have been saved!");
 				}

@@ -29,6 +29,8 @@ public class OrderManager extends User {
 	 */
 	@Override
 	public void initializeLists() {
+		
+		
 		this.orders.getOrders().clear();
 		this.orders.extractObjectDB();								//Extracts the orders from DB 
 		ArrayList<Order> ord = new ArrayList<Order>();			
@@ -235,7 +237,6 @@ public class OrderManager extends User {
 	/**
 	 * 
 	 */
-	@Override
 	public void refresh() {
 		ArrayList<Order> oldOrders = new ArrayList<Order>(this.orders.getOrders());
 		
@@ -256,6 +257,17 @@ public class OrderManager extends User {
 			JOptionPane.showMessageDialog(null, "Some orders have changed in order","Pop up", JOptionPane.INFORMATION_MESSAGE);
 		}	
 		JOptionPane.showMessageDialog(null,  "The refresh has been completed", "Pop up", JOptionPane.INFORMATION_MESSAGE);
+		
+		Users users = new Users();
+		users.extractObjectDB();
+		for (User u : users.getUsers()) {
+			System.out.println(u.getId() + this.getId());
+			if (u.getId().equals(this.getId())) {
+				int index = users.getUsers().indexOf(u);
+				users.getUsers().set(index, this);
+			}
+		}
+		users.updateObjectDB();
 	}
 
 	//getters and setters
