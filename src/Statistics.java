@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  * Statistics.java
  * Purpose : Calculates the statistics to be displayed.
@@ -13,11 +16,14 @@ public class Statistics {
 	private String firstMonth;
 	private String[] months;
 	private ArrayList<Double> value;
+	private boolean orderExists;	//true if at least one order exists in order to display the selected chart  
+	private JPanel panel;
 	
 	public Statistics(String[] options,String[] months){
 		this.options = options;
 		this.months = months;
 		value = new ArrayList<Double>();
+		orderExists = false;
 	}
 	
 	/**
@@ -49,20 +55,36 @@ public class Statistics {
 		ArrayList <Order> orders = om.getOrders().getOrders();
 		calcOMValue(orders, fromMonth, monthIntervals);
 		
-		CreateChart ch = new CreateChart(months,options);
+		for(int i = 0 ; i < value.size(); i++)
+		{
+			if(value.get(i) != 0.00)
+			{
+				orderExists = true;
+			}
+		}
 		
-		if(options[3].equals("Pie Chart")){							//calls the function of the chosen chart from CreateChart class
-			ch.pieChart(value,monthIntervals,firstMonth);
+		if(orderExists == true)
+		{
+			CreateChart ch = new CreateChart(months,options);
+			
+			if(options[3].equals("Pie Chart")){							//calls the function of the chosen chart from CreateChart class
+				ch.pieChart(value,monthIntervals,firstMonth);
+			}
+			else if(options[3].equals("Line Chart")){
+				ch.lineChart(value,monthIntervals,firstMonth);
+			}
+			else if(options[3].equals("Bar Chart")){
+				ch.barChart(value,monthIntervals,firstMonth);
+			}
+			else if(options[3].equals("Matrix")){
+				ch.matrixChart(value,monthIntervals,firstMonth);
+			}
 		}
-		else if(options[3].equals("Line Chart")){
-			ch.lineChart(value,monthIntervals,firstMonth);
+		else
+		{
+			JOptionPane.showMessageDialog(panel, "There are no orders in those dates!", "Statistics", JOptionPane.INFORMATION_MESSAGE);
 		}
-		else if(options[3].equals("Bar Chart")){
-			ch.barChart(value,monthIntervals,firstMonth);
-		}
-		else if(options[3].equals("Matrix")){
-			ch.matrixChart(value,monthIntervals,firstMonth);
-		}
+		
 	}
 	
 	/**
@@ -95,19 +117,34 @@ public class Statistics {
 		ArrayList <Order> orders = seller.getOrders().getOrders();
 		calcSellerValue(orders, fromMonth, monthIntervals);
 		
-		CreateChart ch = new CreateChart(months,options);
+		for(int i = 0 ; i < value.size(); i++)
+		{
+			if(value.get(i) != 0.00)
+			{
+				orderExists = true;
+			}
+		}
 		
-		if(options[3].equals("Pie Chart")){								//calls the function of the chosen chart from CreateChart class
-			ch.pieChart(value,monthIntervals,firstMonth);
+		if(orderExists == true)
+		{
+			CreateChart ch = new CreateChart(months,options);
+			
+			if(options[3].equals("Pie Chart")){							//calls the function of the chosen chart from CreateChart class
+				ch.pieChart(value,monthIntervals,firstMonth);
+			}
+			else if(options[3].equals("Line Chart")){
+				ch.lineChart(value,monthIntervals,firstMonth);
+			}
+			else if(options[3].equals("Bar Chart")){
+				ch.barChart(value,monthIntervals,firstMonth);
+			}
+			else if(options[3].equals("Matrix")){
+				ch.matrixChart(value,monthIntervals,firstMonth);
+			}
 		}
-		else if(options[3].equals("Line Chart")){
-			ch.lineChart(value,monthIntervals,firstMonth);
-		}
-		else if(options[3].equals("Bar Chart")){
-			ch.barChart(value,monthIntervals,firstMonth);
-		}
-		else if(options[3].equals("Matrix")){
-			ch.matrixChart(value,monthIntervals,firstMonth);
+		else
+		{
+			JOptionPane.showMessageDialog(panel, "There are no orders in those dates!", "Statistics", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	
