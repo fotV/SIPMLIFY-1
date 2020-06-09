@@ -1,7 +1,10 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -47,6 +50,10 @@ public class BuyerForm extends JFrame{
 			frame = new JFrame(); 														//creates gui
 			frame.getContentPane().setBackground(new Color(136, 177, 179));
 		
+			URL resource2 = getClass().getClassLoader().getResource( "windowLogo.png" );	//window icon
+	    	Image icon = Toolkit.getDefaultToolkit().getImage(resource2);  
+	    	frame.setIconImage(icon);
+	    	
 			nameLabel = new JLabel("First Name :");
 			nameLabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));				// first name label and textfield
 			nameLabel.setBounds(207, 70, 154, 41);
@@ -147,12 +154,12 @@ public class BuyerForm extends JFrame{
 					if(!errorFlag){		//if errorFlag = false there is no error, adds client in ArrayList Buyers
 						
 						frame.setVisible(false);
+						frame.dispose();
 						String sellerID = seller.getId();
 						Buyer buyer = new Buyer(name,lastName,id,afm,phone,sellerID);
 						seller.getBuyers().getBuyers().add(buyer);
 						JPanel panel = new JPanel();
-						JOptionPane.showMessageDialog(panel, "The Buyer has been added!", "Buyer Form", JOptionPane.INFORMATION_MESSAGE);
-
+						JOptionPane.showMessageDialog(panel, "The Buyer has been saved", "Buyer Form", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
 			});
