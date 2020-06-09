@@ -1,9 +1,12 @@
- import java.awt.BorderLayout;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
+
 import javax.swing.*;
 
 /**LogginForm.java
@@ -11,10 +14,12 @@ import javax.swing.*;
  * @author Vlasakoudi Christina
  */
 public class LogginForm extends JFrame{
-    private JPanel panel ;
+    private JFrame frame;
+    private JPanel panel;
     private JTextField textField;
     private JLabel lblUserName;
     private JLabel lblPassword;
+    private JLabel imagelbl;
     private JPasswordField passwordField;
     private JButton btnNewButton; 
     private boolean errorFlag;//false if there is no error else true
@@ -22,39 +27,43 @@ public class LogginForm extends JFrame{
 	
     public LogginForm() {
     	this.user = new User();
-        panel = new JPanel();
+        frame = new JFrame();
+        frame.getContentPane().setBackground(new Color(136, 177, 179));
+        
     	lblUserName = new JLabel(" Username :");           //Username label
     	lblUserName.setFont(new Font("HelveticaNeue", Font.BOLD, 18));
-    	lblUserName.setBounds(166, 387, 145, 40);
-    	panel.add(lblUserName);
+    	lblUserName.setBounds(175, 387, 145, 40);
+    	frame.getContentPane().add(lblUserName);
     	
     	lblPassword = new JLabel("Password :");          //password label
     	lblPassword.setFont(new Font("HelveticaNeue", Font.BOLD, 18));
     	lblPassword.setBounds(175, 453, 150, 46);
-    	panel.add(lblPassword);
+    	frame.getContentPane().add(lblPassword);
     	
     	textField = new JTextField();          //name textfield
     	textField.setBounds(367, 401, 219, 25);
-    	panel.add(textField);
+    	frame.getContentPane().add(textField);
     	textField.setColumns(10);
     		
     	btnNewButton = new JButton("Log In");          //button loggin
     	btnNewButton.setFont(new Font("HelveticaNeue", Font.PLAIN, 14));
     	btnNewButton.setBounds(420, 547, 109, 40);
-    	panel.add(btnNewButton);
-    		
-    	JLabel lblNewLabel_2 = new JLabel("");                 //photo
-    	lblNewLabel_2.setIcon(new ImageIcon("organisedorders.png"));
-    	lblNewLabel_2.setBounds(182, 36, 535, 316);
-    	panel.add(lblNewLabel_2);
+    	frame.getContentPane().add(btnNewButton);
+    	
+    	URL resource = getClass().getClassLoader().getResource( "organisedorders.png" );
+    	ImageIcon image = new ImageIcon( resource );
+    	imagelbl = new JLabel(image);
+    	imagelbl.setBounds(120, 36, 535, 316);
+    	frame.getContentPane().add(imagelbl);
+    	
+    	URL resource2 = getClass().getClassLoader().getResource( "windowLogo.png" );
+    	Image icon = Toolkit.getDefaultToolkit().getImage(resource2);  
+    	frame.setIconImage(icon);  
+    	
     		
     	passwordField = new JPasswordField();           //password textfield
     	passwordField.setBounds(367, 470, 219, 25);
-    	panel.add(passwordField);
-    	
-    	panel.setBackground(new Color(136,177,179));
-    	this.getContentPane().add(panel, BorderLayout.CENTER);
-    	panel.setLayout(null);
+    	frame.getContentPane().add(passwordField);
     		
     	btnNewButton.addActionListener(new ActionListener() 
     	{
@@ -68,27 +77,34 @@ public class LogginForm extends JFrame{
     				if (Userid.startsWith("OR")) {
      				    OrderManager or = (OrderManager) user;
      				    or.initializeLists();
-    					new OrderManagerForm(or) ;	  
+    					new OrderManagerForm(or) ;	
+    					frame.setVisible(false);
+    					frame.dispose();
     					
     				}else if(Userid.startsWith("SE")) {
     					Seller se = (Seller) user;
     					se.initializeLists();
     					new SellerForm(se);
+    					frame.setVisible(false);
+    					frame.dispose();
     					
     					
     				}else if(Userid.contains("ST")) {
     					Stockkeeper st = (Stockkeeper) user;
     					st.initializeLists();
     					new StockkeeperForm(st);
+    					frame.setVisible(false);
+    					frame.dispose();
     					
     				}
     			}
     	}});
     	
-    	this.setTitle("Login");
-    	this.setVisible(true);
-    	this.setBounds(100, 100, 811, 677);
-    	
+    	frame.setBounds(100, 100, 811, 677); 
+		frame.setTitle("Login");
+		frame.setResizable(false);
+		frame.setLayout(null); 
+		frame.setVisible(true);
     				
     	}
     	/**
@@ -150,53 +166,3 @@ public class LogginForm extends JFrame{
     		return errorFlag;
     }
 }    
-    		
-    	
-    
-    				
-    				
-    				
-    				
-    					
-    				
-    				
-                   
-                   
-                   
-                   
-        
-    		
-
-		
-    
-              
-   
-    
-		
-               
-					
-					
-					
-						
-		
-			
-
-						
-					
-						
-				
-				
-				
-			
-			
-			
-			
-			
-			
-		
-    
-		
-		
-
-
-
