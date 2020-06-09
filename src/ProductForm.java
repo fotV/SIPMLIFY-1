@@ -163,7 +163,10 @@ public class ProductForm extends JFrame{
 						SupplierProduct sup = new SupplierProduct(name,id,omId,Double.parseDouble(stockAm),Double.parseDouble(maxStock),
 												  Double.parseDouble(safety),Double.parseDouble(avMonCon),Integer.parseInt(leadtime),Double.parseDouble(expAm));
 						om.getProducts().getSupplierProducts().add(sup);
-						}	
+						}
+						JPanel panel = new JPanel();
+						JOptionPane.showMessageDialog(panel, "The Product has been added!", "Product Form", JOptionPane.INFORMATION_MESSAGE);
+
 			     }
 			});
 			
@@ -247,7 +250,10 @@ public class ProductForm extends JFrame{
 							CompanyProduct comp = new CompanyProduct(name,id,supplierID,Double.parseDouble(stockAm),Double.parseDouble(maxStock),
 														Double.parseDouble(safety),Double.parseDouble(price));
 							seller.getProducts().getCompanyProducts().add(comp);
+							JPanel panel = new JPanel();
+							JOptionPane.showMessageDialog(panel, "The Product has been added!", "Product Form", JOptionPane.INFORMATION_MESSAGE);
 						}
+						
 				     }
 				});	
 					

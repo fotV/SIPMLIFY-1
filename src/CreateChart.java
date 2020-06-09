@@ -13,11 +13,13 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
+/**
+ * CreateChart.java
+ * Purpose : Displays the selected chart with the calculated values
+ * @author Fotiadou Vassiliki
+ */
 public class CreateChart extends JFrame{
-	/*CreateChart.java
-	 * Purpose : Displays the selected chart with the calculated values
-	 * @author Fotiadou Vassiliki
-	 */
+	
 	private String[] months;
 	private String[] options;
 
@@ -26,7 +28,12 @@ public class CreateChart extends JFrame{
 		this.options = options;
 	}
 	
-	/*creates and displays the line chart*/
+	/**
+	 * Creates and displays the line chart.
+	 * @param value
+	 * @param numOfMonths
+	 * @param firstMonth
+	 */
 	public void lineChart(ArrayList<Double> value, int numOfMonths, String firstMonth){
 		
 		int monthC = 0;
@@ -83,10 +90,16 @@ public class CreateChart extends JFrame{
 		JFreeChart lineChart = ChartFactory.createLineChart( title,"Date", "Value",dataset);		
 		ChartFrame frame = new ChartFrame("Line Chart", lineChart);
 		frame.setVisible(true);
-		frame.setSize(1041, 653);			
+		frame.setSize(1041, 653);		
+		
 	}
 	
-	/*creates and displays matrix chart*/
+	/**
+	 * Creates and displays the matrix chart.
+	 * @param value
+	 * @param numOfMonths
+	 * @param firstMonth
+	 */
 	public void matrixChart(ArrayList<Double> value, int numOfMonths, String firstMonth){
 		
 		JPanel panel = new JPanel();
@@ -163,9 +176,15 @@ public class CreateChart extends JFrame{
 		this.setTitle("Matrix Chart");
 		this.setBounds(100, 100, 1041, 653);
 		this.setResizable(false);
+		
 	}
 	
-	/*creates and displays bar chart*/
+	/**
+	 * Creates and displays the bar chart.
+	 * @param value
+	 * @param numOfMonths
+	 * @param firstMonth
+	 */
 	public void barChart(ArrayList<Double> value, int numOfMonths, String firstMonth){
 		int monthC = 0;
 		int year;
@@ -221,7 +240,12 @@ public class CreateChart extends JFrame{
 		frame.setSize(1041, 653);			
 	}	
 	
-	/*creates and displays pie chart*/
+	/**
+	 * Creates and displays the pie chart.
+	 * @param value
+	 * @param numOfMonths
+	 * @param firstMonth
+	 */
 	public void pieChart(ArrayList<Double> value, int numOfMonths, String firstMonth){
 		int monthC = 0;
 		String date;
@@ -278,6 +302,6 @@ public class CreateChart extends JFrame{
 		JFreeChart chart = ChartFactory.createPieChart(title, dataset, true, true, true);
 		ChartFrame frame = new ChartFrame("Pie Chart ",chart);
 		frame.setVisible(true);
-		frame.setSize(1041, 653);			
+		frame.setSize(1041, 653);		
 	}	
 }
