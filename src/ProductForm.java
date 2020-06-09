@@ -34,8 +34,8 @@ public class ProductForm extends JFrame{
 		frame.setBounds(100,100,1041, 653);
 		
 		URL resource2 = getClass().getClassLoader().getResource( "windowLogo.png" );	//window logo
-    	Image icon = Toolkit.getDefaultToolkit().getImage(resource2);  
-    	frame.setIconImage(icon);
+    		Image icon = Toolkit.getDefaultToolkit().getImage(resource2);  
+    		frame.setIconImage(icon);
     	
 		JLabel nameLabel = new JLabel("Product Name :");
 		nameLabel.setFont(new Font("Helvetica Neue", Font.PLAIN,20));			//name field and textfield
