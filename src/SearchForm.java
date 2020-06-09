@@ -1,7 +1,9 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,34 +54,36 @@ public class SearchForm extends JFrame{
 		}
 		
 		
-				
+		URL resource3 = getClass().getClassLoader().getResource( "windowLogo.png" );
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage(resource3));
+		
 		chooseLabel = new JLabel("Choose Field");                                          
-		chooseLabel.setFont(new Font("ÇelveticaNeue", Font.BOLD, 17));
+		chooseLabel.setFont(new Font("Ã‡elveticaNeue", Font.BOLD, 17));
 		chooseLabel.setBounds(246, 141, 175, 41);
 		this.getContentPane().add(chooseLabel);
 		
 		
-		list.setFont(new Font("ÇelveticaNeue", Font.PLAIN, 15));
+		list.setFont(new Font("Ã‡elveticaNeue", Font.PLAIN, 15));
 		list.setBounds(493, 61, 213, 167);
 		list.setSelectionBackground(new Color(255, 152, 61));
 		this.getContentPane().add(list);
 		
 		
 		keyLabel = new JLabel("Enter an input value ");
-		keyLabel.setFont(new Font("ÇelveticaNeue", Font.BOLD, 17));
+		keyLabel.setFont(new Font("Ã‡elveticaNeue", Font.BOLD, 17));
 		keyLabel.setBounds(246, 390, 181, 41);
 		this.getContentPane().add(keyLabel);
 		
 		
 		key = new JTextField("Type the text",20);
-		key.setFont(new Font("ÇelveticaNeue",Font.PLAIN,15));
+		key.setFont(new Font("Ã‡elveticaNeue",Font.PLAIN,15));
 		key.setBounds(493, 396, 265, 25);
 		key.setColumns(10);
 		this.getContentPane().add(key);
 		
 		
 		searchButton =  new JButton("Search");
-		searchButton.setFont(new Font("ÇelveticaNeue", Font.PLAIN, 17));
+		searchButton.setFont(new Font("Ã‡elveticaNeue", Font.PLAIN, 17));
 		searchButton.setBounds(852, 573, 164, 30);
 		this.getContentPane().add(searchButton);
 		
