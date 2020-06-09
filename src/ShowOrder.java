@@ -40,6 +40,10 @@ public class ShowOrder {
 		frame.getContentPane().setBackground(new Color(136, 177, 179));
 		frame.setResizable(false);
 		
+		URL resource2 = getClass().getClassLoader().getResource( "windowLogo.png" );
+    		Image icon = Toolkit.getDefaultToolkit().getImage(resource2);  
+    		frame.setIconImage(icon);
+		
 		//Putting Labels on the frame
 		JLabel lblOrderId = new JLabel("Order ID :");
 		lblOrderId.setBounds(125, 19, 246, 35);
