@@ -260,13 +260,17 @@ public class ShowOrder {
 		frame.getContentPane().add(lblSupplierAFM);
 
 		 
-		 //if the order is forcast proposal
-		 if (order.getStatus() == 0) {
+		 
+		 if (order.getStatus() == 0) {														//if the order is forcast proposal
 			EditButton.setEnabled(false);
 			sendB.setEnabled(true);
 			sendB.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					order.setStatus(1);
+					order.setDate(order.getDate().substring(0, 10));
+					ord.getOrders().getOrders().add(order);
+					int index = ord.getProposals().getProposals().indexOf(order);
+					ord.getProposals().getProposals().get(index).setTotalPrice(0.0);
 					sendB.setEnabled(false);
 					Users users = new Users();
 					users.extractObjectDB();
@@ -282,8 +286,8 @@ public class ShowOrder {
 		}
 		
 
-		//A user of type OrderManager can only change the fieldSTATUS
-		EditButton.addActionListener(new ActionListener() {
+		
+		EditButton.addActionListener(new ActionListener() {										//A user of type OrderManager can only change the fieldSTATUS
 			public void actionPerformed(ActionEvent e) {
 				
 				fieldSTATUS.setEditable(true);

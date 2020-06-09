@@ -49,7 +49,7 @@ public class PresentationForm extends JFrame{
 					Order temp = (Order) objectList.get(i);
 					data[i][0] =  temp.getProductName();
 					data[i][1] = temp.getOrderId();
-					data[i][2] = temp.getDate();
+					data[i][2] = temp.getDate().substring(0, 10);
 				}
 				table.setModel(new DefaultTableModel(data, new String[] {"Product Name", "Order ID", "Date"}));
 			}

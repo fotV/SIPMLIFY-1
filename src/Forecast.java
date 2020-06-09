@@ -18,10 +18,9 @@ public class Forecast {
 	private double per;
 	private OrderManager orderManager;
 	
-	public Forecast(OrderManager om)
-	{    
+	public Forecast(OrderManager om){    
 		 //get current date
-		  SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+		  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		  Date date = new Date();
 		  String datee = formatter.format(date);
 		  
@@ -132,8 +131,7 @@ public class Forecast {
 	 * @param per
 	 * @return amount
 	 */
-	private double calculateOrder(double stockAmount,double expectedAmount,double averageMonthlyConsumption,double leadtime,double safetyStock,double per)
-	{   
+	private double calculateOrder(double stockAmount,double expectedAmount,double averageMonthlyConsumption,double leadtime,double safetyStock,double per){   
 		double amount = (safetyStock + 2*averageMonthlyConsumption + leadtime - stockAmount - expectedAmount)*per;
 		return Math.round(amount);
 		
@@ -145,17 +143,15 @@ public class Forecast {
 	 * @param season
 	 * @return per
 	 */
-	private double Percentage( String season)
-	{   
+	private double Percentage( String season){   
 		//get current month
-		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String str = formatter.format(date);
 		Integer month = Integer.parseInt(str.substring(5, 7));
 		
 		double per;
-		if (((month>=3) && (month<9) && (season == "Spring - Summer"))||((month>=9) && (month<3) && (season == "Autumn - Winter")))
-		{
+		if (((month>=3) && (month<9) && (season == "Spring - Summer"))||((month>=9) && (month<3) && (season == "Autumn - Winter"))){
 			per = 1.2;
 		}
 		else {
