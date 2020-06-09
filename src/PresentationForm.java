@@ -1,8 +1,8 @@
-
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -37,6 +37,8 @@ public class PresentationForm extends JFrame{
 		scroll.setBounds(53, 37, 924, 552);
 		panel.add(scroll);
 		
+		URL resource3 = getClass().getClassLoader().getResource( "windowLogo.png" );
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage(resource3));
 	
 		if (objectList.size() == 0) {
 			JOptionPane.showMessageDialog(null, "There no records to show ","PresentantionForm", JOptionPane.INFORMATION_MESSAGE);
@@ -47,11 +49,11 @@ public class PresentationForm extends JFrame{
 				n = 1;
 				for (int i=0; i<objectList.size(); i++){
 					Order temp = (Order) objectList.get(i);
-					data[i][0] =  temp.getProductName();
-					data[i][1] = temp.getOrderId();
-					data[i][2] = temp.getDate().substring(0, 10);
+					data[i][0]=temp.getProductName();
+					data[i][1]=temp.getOrderId();
+					data[i][2]=temp.getStatus()+"";
 				}
-				table.setModel(new DefaultTableModel(data, new String[] {"Product Name", "Order ID", "Date"}));
+				table.setModel(new DefaultTableModel(data, new String[] {"Product Name", "Order ID", "Status"}));
 			}
 			else if (objectList.get(0) instanceof CompanyProduct) { //here we check if the objects in the list we have are of type CompanyProduct
 		
