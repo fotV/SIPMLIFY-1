@@ -1,7 +1,10 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -95,6 +98,10 @@ public class SelectionGui extends JFrame
 		
 		f = new JFrame();
 		f.getContentPane().setBackground(new Color(136, 177, 179));
+		
+		URL resource2 = getClass().getClassLoader().getResource( "windowLogo.png" );	//window logo
+    	Image icon = Toolkit.getDefaultToolkit().getImage(resource2);  
+    	f.setIconImage(icon);
 		
 		var = new JLabel("Choose Variable :"); 
 		var.setBounds(197, 45, 196, 30);											//variable JLabel
@@ -222,6 +229,7 @@ public class SelectionGui extends JFrame
 					errorFlag = checkError(options); //calls checkError before calling respective function
 
 					if(!errorFlag) {    					 //if errorFlag = false there is no error, calls respective function
+						
 						Statistics ord = new Statistics(options,months);
 						ord.OrdererStat(om);
 					}
@@ -264,6 +272,7 @@ public class SelectionGui extends JFrame
 					errorFlag = checkError(options);     //calls checkError before calling respective function
 					
 					if(!errorFlag){									//if errorFlag = false there is no error, calls respective function
+						
 						Statistics sup = new Statistics(options, months);
 						sup.SupplierStat(seller);	
 					}		
@@ -427,4 +436,5 @@ public class SelectionGui extends JFrame
 			return errorFlag;
 		}				
 }
-	
+
+		
