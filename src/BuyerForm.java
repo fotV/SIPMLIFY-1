@@ -150,6 +150,9 @@ public class BuyerForm extends JFrame{
 						String sellerID = seller.getId();
 						Buyer buyer = new Buyer(name,lastName,id,afm,phone,sellerID);
 						seller.getBuyers().getBuyers().add(buyer);
+						JPanel panel = new JPanel();
+						JOptionPane.showMessageDialog(panel, "The Buyer has been saved", "Buyer Form", JOptionPane.INFORMATION_MESSAGE);
+
 					}
 				}
 			});
