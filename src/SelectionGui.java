@@ -20,6 +20,29 @@ public class SelectionGui extends JFrame
 	private Seller seller;
 	private String user;
 	private String[] months;
+	private JFrame f;
+	private JLabel var;
+	private JLabel filter;
+	private JLabel key;
+	private JLabel IdChar;
+	private JLabel chart;
+	private JLabel from;
+	private JLabel to;
+	private JLabel message;
+	private JLabel enterYear; 
+	private JTextField yearTo;
+	private JTextField Ekey;
+	private JTextField yearFrom;
+	private JComboBox<String> chartCb;
+	private JComboBox<String> fromMonth;
+	private JComboBox<String> toMonth;
+	private JComboBox<String> varCb;
+	private JComboBox<String> filterCb;
+	private JSeparator separator;
+	private JSeparator separator_1;
+	private JSeparator separator_2;
+	private JSeparator separator_3;
+	private JButton b;
 	
 	public SelectionGui(OrderManager om){	
 		this.om = om;
@@ -70,96 +93,96 @@ public class SelectionGui extends JFrame
 		/*common gui*/
 		String charts[] = {"","Pie Chart","Line Chart","Bar Chart","Matrix"};      //chart JComboBox data
 		
-		JFrame f = new JFrame();
+		f = new JFrame();
 		f.getContentPane().setBackground(new Color(136, 177, 179));
 		
-		JLabel var = new JLabel("Choose Variable :"); 
+		var = new JLabel("Choose Variable :"); 
 		var.setBounds(197, 45, 196, 30);											//variable JLabel
 		var.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
 		f.getContentPane().add(var);
 		 
-	   	JLabel filter = new JLabel("Choose Filter :");
+	   	filter = new JLabel("Choose Filter :");
 	   	filter.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));					//filter JLabel
 	   	filter.setBounds(197, 144, 196, 30);
 		f.getContentPane().add(filter);
 		
 
-		JLabel key = new JLabel("Enter ID :");
+		key = new JLabel("Enter ID :");
 		key.setBounds(197, 243, 196, 30);
 		key.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));					//key(id) JLabel
 		f.getContentPane().add(key);
 		
-		JTextField Ekey = new JTextField();
+		Ekey = new JTextField();
 		Ekey.setBounds(504, 250, 264, 30);											//key(id) JTextField
 		f.getContentPane().add(Ekey);
 		
-		JLabel IdChar= new JLabel("(6 characters)");
+		IdChar = new JLabel("(6 characters)");
 		IdChar.setFont(new Font("Helvetica Neue", Font.PLAIN, 10));					//id has to be 6 characters
 		IdChar.setBounds(504, 282, 85, 13);
 		f.getContentPane().add(IdChar);
 		
-		JLabel chart = new JLabel("Choose Chart : ");
+		chart = new JLabel("Choose Chart : ");
 		chart.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));					//chart JLabel
 		chart.setBounds(197, 361, 196, 30);
 		f.getContentPane().add(chart);
 		
-		JComboBox chartCb = new JComboBox(charts);
+		chartCb = new JComboBox<String>(charts);
 		chartCb.setFont(new Font("Helvetica Neue", Font.PLAIN, 22));				//chart JComboBox input
 		chartCb.setBounds(504, 367, 264, 30);
 		f.getContentPane().add(chartCb);
 		
-	    JLabel from = new JLabel("From :");
+	    from = new JLabel("From :");
 	    from.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));      				//from month JLabel
 	    from.setBounds(197, 470, 107, 26);
 		f.getContentPane().add(from);
 		
-		JComboBox fromMonth = new JComboBox(months);
+		fromMonth = new JComboBox<String>(months);
 		fromMonth.setFont(new Font("Helvetica Neue", Font.PLAIN, 18));   			//from month JComboBox
 		fromMonth.setBounds(399, 476, 150, 26);
 		f.getContentPane().add(fromMonth);
 		
-		JLabel to = new JLabel("To :");
+		to = new JLabel("To :");
 		to.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));						//to month JLabel
 		to.setBounds(197, 526, 46, 30);
 		f.getContentPane().add(to);
 		
-		JComboBox toMonth = new JComboBox(months);
+		toMonth = new JComboBox<String>(months);
 		toMonth.setFont(new Font("Helvetica Neue", Font.PLAIN, 18));				//to month JComboBox
 		toMonth.setBounds(399, 534, 150, 26);
 		f.getContentPane().add(toMonth);
 		
-		JLabel enterYear = new JLabel("Enter Year :");
+		enterYear = new JLabel("Enter Year :");
 		setFont(new Font("Helvetica Neue", Font.PLAIN, 15));						//enter yearJLabel
 		enterYear.setBounds(640, 449, 128, 20);
 		f.getContentPane().add(enterYear);
 	
-		JTextField yearFrom = new JTextField();
+		yearFrom = new JTextField();
 		yearFrom.setBounds(604, 480, 164, 20);										//enter year "From" JTextfield
 		f.getContentPane().add(yearFrom);
 		yearFrom.setColumns(10);
 		
-		JTextField yearTo = new JTextField();
+		yearTo = new JTextField();
 		yearTo.setColumns(10);
 		yearTo.setBounds(604, 538, 164, 20);										//enter year "To" JTextfield
 		f.getContentPane().add(yearTo);
 		
-		JSeparator separator = new JSeparator();
+		separator = new JSeparator();
 		separator.setBounds(8, 106, 1007, 2);
 		f.getContentPane().add(separator);
 		
-		JSeparator separator_1 = new JSeparator();
+		separator_1 = new JSeparator();
 		separator_1.setBounds(8, 214, 1007, 2);
 		f.getContentPane().add(separator_1);										//seperators
 		
-		JSeparator separator_2 = new JSeparator();
+		separator_2 = new JSeparator();
 		separator_2.setBounds(10, 318, 1007, 2);
 		f.getContentPane().add(separator_2);
 		
-		JSeparator separator_3 = new JSeparator();
+		separator_3 = new JSeparator();
 		separator_3.setBounds(8, 437, 1007, 2);
 		f.getContentPane().add(separator_3);
 		
-		JButton b = new JButton("Ok");
+		b = new JButton("Ok");
 		b.setBounds(915, 573, 85, 21); 												//button
 		f.getContentPane().add(b);
 		
@@ -168,17 +191,17 @@ public class SelectionGui extends JFrame
 			String OMvariables[] = {"","Cost","Orders"};
 			String OMfilter[] = {"","Date","Supplier","Product"};						//JComboBox data for OrderManager
 			
-			JComboBox varCb = new JComboBox(OMvariables);
+			varCb = new JComboBox<String>(OMvariables);
 			varCb.setFont(new Font("Helvetica Neue", Font.PLAIN, 22));					//variable JComboBox Input
 			varCb.setBounds(504, 45, 264, 30);    
-		        f.getContentPane().add(varCb);  
+		    f.getContentPane().add(varCb);  
 		    
-			JComboBox filterCb = new JComboBox(OMfilter);
+			filterCb = new JComboBox<String>(OMfilter);
 			filterCb.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));				//filter JComboBox Input
 			filterCb.setBounds(504, 144, 264, 30);
 			f.getContentPane().add(filterCb);
 			
-			JLabel message = new JLabel("Enter ID only if chosen filter is product or supplier");
+			message = new JLabel("Enter ID only if chosen filter is product or supplier");
 			message.setBounds(504, 236,300, 14);									//key GUI(filled only if chosen filter = product or supplier
 			message.setFont(new Font("Helvetica Neue", Font.PLAIN, 10));
 			f.getContentPane().add(message);
@@ -212,17 +235,17 @@ public class SelectionGui extends JFrame
 			String Svariables[] = {"","Profit","Purchases"};			//JComboBox Data for Seller
 			String Sfilter[] = {"","Date","Client","Product"};
 			
-			JComboBox varCb = new JComboBox(Svariables);
+			varCb = new JComboBox<String>(Svariables);
 			varCb.setFont(new Font("Helvetica Neue", Font.PLAIN, 22));			//variable JComboBox Input
 			varCb.setBounds(504, 45, 264, 30);    
 		   	f.getContentPane().add(varCb);  
 		    
-			JComboBox filterCb = new JComboBox(Sfilter);
+			filterCb = new JComboBox<String>(Sfilter);
 			filterCb.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));		//filter JComboBox Input
 			filterCb.setBounds(504, 144, 264, 30);
 			f.getContentPane().add(filterCb);
 			
-			JLabel message = new JLabel("Enter ID only if chosen filter is product or supplier");
+			message = new JLabel("Enter ID only if chosen filter is product or supplier");
 			message.setBounds(504, 236,300, 14);
 			message.setFont(new Font("Helvetica Neue", Font.PLAIN, 10));
 			f.getContentPane().add(message);
@@ -264,7 +287,7 @@ public class SelectionGui extends JFrame
 			int fromMonth = 0;
 			int toMonth = 0;
 			boolean keyExists = false; //true if key(id) of options[3] input exists in database
-			System.out.println(options[1]);
+			
 			if(options[0].isEmpty()){		//checks variable input
 				errorFlag = true;
 				JOptionPane.showMessageDialog(null, "Variable Field Must Be Filled", "Invalid Input",JOptionPane.ERROR_MESSAGE);
@@ -291,20 +314,20 @@ public class SelectionGui extends JFrame
 						}
 						else
 						{
-						    if((options[1].equals("Product") && (user.equals("om")))){
+						    if((options[1].equals("Product") && (user.equals("om"))))
+						    {
 						    		 
 							    	ArrayList<SupplierProduct> sProd = new ArrayList<>(om.getProducts().getSupplierProducts());
 							    	int i = 0;
 									while((i  < sProd.size()) && !keyExists){
-										System.out.println("IN");
-										System.out.println(sProd.get(i));
 							    		if(options[2].equals(sProd.get(i).getId())){
 							    			keyExists = true;
 							    		}
 							    		i++;
 							    	}
 						    	 }
-						    	 else if (options[2].equals("Supplier")){
+						    	 else if (options[1].equals("Supplier"))
+						    	 {
 						    		 
 						    		 ArrayList <Supplier> supplier = new ArrayList<>(om.getSuppliers().getSuppliers());
 						    		 int i = 0;
@@ -316,7 +339,8 @@ public class SelectionGui extends JFrame
 						    			 i++;
 						    		 }
 						    	 }
-						    	 if((options[1].equals("Product") && (user.equals("seller")))) {
+						    	 if((options[1].equals("Product") && (user.equals("seller")))) 
+						    	 {
 						    		 
 							    	ArrayList<CompanyProduct> cProd = new ArrayList<>(seller.getProducts().getCompanyProducts());
 							    	int i = 0;
@@ -327,7 +351,8 @@ public class SelectionGui extends JFrame
 							    		}
 							    	}																		
 						    	 }
-						    	 else if (options[1].equals("Client")) {
+						    	 else if (options[1].equals("Client")) 
+						    	 {
 						    		 
 						    		 ArrayList <Buyer> buyer = new ArrayList<>(seller.getBuyers().getBuyers());
 						    		 int i = 0;
@@ -344,11 +369,11 @@ public class SelectionGui extends JFrame
 						     
 						    
 						}
+					if((keyExists == false)){		//if keyExists = false id doesn't exist in database
+				    	 errorFlag = true;
+				    	 JOptionPane.showMessageDialog(null, "Key ID doesn't exist.", "Invalid Input",JOptionPane.ERROR_MESSAGE);		
+				     }
 					}	
-				 if((keyExists == false)){		//if keyExists = false id doesn't exist in database
-			    	 errorFlag = true;
-			    	 JOptionPane.showMessageDialog(null, "Key ID doesn't exist.", "Invalid Input",JOptionPane.ERROR_MESSAGE);		
-			     }
 					
 				}
 				
@@ -404,5 +429,4 @@ public class SelectionGui extends JFrame
 			return errorFlag;
 		}				
 }
-
-		
+	
