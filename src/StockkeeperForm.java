@@ -50,6 +50,9 @@ public class StockkeeperForm extends JFrame{
 		panel.setBackground(new Color(136, 177, 179));
 		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 	
+		URL resource3 = getClass().getClassLoader().getResource( "windowLogo.png" );
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage(resource3));
+		
 		Icon icon = new ImageIcon("refresh.png");
 		Refreshbutton = new JButton(icon);
 		Refreshbutton.setToolTipText("Refresh your data");
