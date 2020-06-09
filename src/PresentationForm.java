@@ -47,9 +47,9 @@ public class PresentationForm extends JFrame{
 				n = 1;
 				for (int i=0; i<objectList.size(); i++){
 					Order temp = (Order) objectList.get(i);
-					data[i][0]=temp.getProductName();
-					data[i][1]=temp.getOrderId();
-					data[i][2]=temp.getDate;
+					data[i][0] =  temp.getProductName();
+					data[i][1] = temp.getOrderId();
+					data[i][2] = temp.getDate();
 				}
 				table.setModel(new DefaultTableModel(data, new String[] {"Product Name", "Order ID", "Date"}));
 			}
