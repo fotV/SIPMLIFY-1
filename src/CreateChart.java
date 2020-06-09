@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -103,7 +105,9 @@ public class CreateChart extends JFrame{
 	public void matrixChart(ArrayList<Double> value, int numOfMonths, String firstMonth){
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(100, 100, 1041, 653);
+		panel.setBackground(new Color(136, 177, 179));
+		panel.setBounds(100, 100, 584, 534);
+		panel.setLayout(null);
 		
 		int monthC = 0;
 		String date;
@@ -165,12 +169,17 @@ public class CreateChart extends JFrame{
 		//creates jtable	
 		JTable table = new JTable();										
 		table.setModel(new DefaultTableModel(data, columns));
-		table.setBounds(30,40,200,300); 	
+		table.setBounds(30,40,200,300); 
+		table.setFont(new Font("HelveticaNeue", Font.PLAIN, 15));
+		table.setBackground(new Color(136, 177, 179));
+		table.setFillsViewportHeight(true);
 		JScrollPane scroll = new JScrollPane();    							
 		scroll = new JScrollPane();
-		scroll.setBounds(100, 100, 1041, 653);
-		scroll.setViewportView(table);									
+		scroll = new JScrollPane();
+		scroll.setBounds(53, 37, 924, 552);
 		panel.add(scroll);
+		scroll.setViewportView(table);
+		this.setBackground(new Color(136, 177, 179));
 		this.setContentPane(panel);
 		this.setVisible(true);
 		this.setTitle("Matrix Chart");
