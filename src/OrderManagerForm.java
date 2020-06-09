@@ -2,9 +2,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -58,6 +61,10 @@ public class OrderManagerForm {
 		frame.setBounds(100, 100, 1041, 653);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		URL resource2 = getClass().getClassLoader().getResource( "windowLogo.png" );		//window logo
+    	Image icon = Toolkit.getDefaultToolkit().getImage(resource2);  
+    	frame.setIconImage(icon);
+    	
 		frame.setResizable(true);
 		ordManagerJMenuBar= new JMenuBar();
 		ordManagerJMenuBar.setBackground(new Color(255, 228, 196));
@@ -213,7 +220,7 @@ public class OrderManagerForm {
 		forecastJMn.setFont(new Font("HelveticaNeue", Font.BOLD | Font.ITALIC, 20));
 		ordManagerJMenuBar.add(forecastJMn);
 		
-		JMenuItem calculate = new JMenuItem("Calcultae");
+		JMenuItem calculate = new JMenuItem("Calculate");
 		calculate.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 		calculate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -334,7 +341,7 @@ public class OrderManagerForm {
 		
 		resultSeasonJLbl = new JLabel(ordManager.getSeason());
 		resultSeasonJLbl.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
-		resultSeasonJLbl.setBounds(695, 505, 226, 26);
+		resultSeasonJLbl.setBounds(676, 505, 226, 26);
 		panel.add(resultSeasonJLbl);
 		
 		spaceLabel5 = new JLabel("        ");
@@ -353,11 +360,14 @@ public class OrderManagerForm {
 				frame1.getContentPane().setBackground(new Color(136, 177, 179));
 				//frame1.getContentPane().setLayout(new GridLayout());
 				
+				URL resource2 = getClass().getClassLoader().getResource( "windowLogo.png" );
+		    	Image icon = Toolkit.getDefaultToolkit().getImage(resource2);  
+		    	frame1.setIconImage(icon);
+		    	
 				JLabel lblchange = new JLabel("Do you want to change your business type?");
 				lblchange.setFont(new Font("HelveticaNeue", Font.ITALIC, 20));
 				lblchange.setBounds(51, 22, 488, 31);
 				frame1.getContentPane().add(lblchange);
-				
 				
 				JButton btnRegular = new JButton("Regular");
 				btnRegular.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
@@ -383,23 +393,27 @@ public class OrderManagerForm {
 						businessTypeJLbl.setText("Season");
 						
 						JFrame frame2 = new JFrame();
-						frame2.setTitle("Seaon");
+						frame2.setTitle("Season");
 						frame2.setBounds(100, 100, 556, 327);
 						frame2.getContentPane().setBackground(new Color(136, 177, 179));
 						frame2.getContentPane().setLayout(null);
 						
+						URL resource3 = getClass().getClassLoader().getResource( "windowLogo.png" );
+				    	Image icon1 = Toolkit.getDefaultToolkit().getImage(resource3);  
+				    	frame2.setIconImage(icon1);
+				    	
 						JLabel lblChooseSeasons = new JLabel("Choose Seasons :");
 						lblChooseSeasons.setFont(new Font("HelveticaNeue", Font.PLAIN, 25));
 						lblChooseSeasons.setBounds(171, 33, 201, 31);
 						frame2.getContentPane().add(lblChooseSeasons);
 						
-						JButton btnAutumnWinter = new JButton("Autumn - Winter");
+						JButton btnAutumnWinter = new JButton(" Autumn - Winter");
 						btnAutumnWinter.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
 						btnAutumnWinter.setBounds(60, 247, 201, 33);
 						frame2.getContentPane().add(btnAutumnWinter);
 						btnAutumnWinter.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								ordManager.setSeason("Autumn - Winter");
+								ordManager.setSeason(" Autumn - Winter");
 								resultSeasonJLbl.setText(ordManager.getSeason());
 								if (resultSeasonJLbl.getText() == " Autumn - Winter") {
 									JOptionPane.showMessageDialog(frame, " The season changed to: Autumn - Winter", " Update ", JOptionPane.INFORMATION_MESSAGE);
@@ -407,15 +421,15 @@ public class OrderManagerForm {
 							}
 						});
 						
-						JButton btnSpringSummer = new JButton("Spring - Summer");
+						JButton btnSpringSummer = new JButton(" Spring - Summer");
 						btnSpringSummer.setFont(new Font("HelveticaNeue", Font.PLAIN, 20));
 						btnSpringSummer.setBounds(305, 247, 201, 33);
 						frame2.getContentPane().add(btnSpringSummer);
 						btnSpringSummer.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
-								ordManager.setSeason("Spring - Summer");
+								ordManager.setSeason(" Spring - Summer");
 								resultSeasonJLbl.setText(ordManager.getSeason());
-								if (resultSeasonJLbl.getText() == "Spring - Summer") {
+								if (resultSeasonJLbl.getText() == " Spring - Summer") {
 									JOptionPane.showMessageDialog(frame, " The season changed to: Spring - Summer", " Update ", JOptionPane.INFORMATION_MESSAGE);
 								}
 							}
