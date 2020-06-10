@@ -151,15 +151,27 @@ public class BuyerForm extends JFrame{
 					
 					errorFlag = checkError(name,lastName,id,afm,phone);					//calls checkError function before adding buyer
 					
-					if(!errorFlag){		//if errorFlag = false there is no error, adds client in ArrayList Buyers
-						
+					if(!errorFlag)
+					{
 						frame.setVisible(false);
-						frame.dispose();
-						String sellerID = seller.getId();
-						Buyer buyer = new Buyer(name,lastName,id,afm,phone,sellerID);
-						seller.getBuyers().getBuyers().add(buyer);
-						JPanel panel = new JPanel();
-						JOptionPane.showMessageDialog(panel, "The Buyer has been saved", "Buyer Form", JOptionPane.INFORMATION_MESSAGE);
+						Buyer buyer = new Buyer(name, lastName, phone, id, afm, phone);
+						Users users = new Users();
+						users.extractObjectDB();
+						boolean flag = false;
+						for (User u : users.getUsers()) {
+							if (u instanceof OrderManager && buyer.getId().equals(u.getId())) {
+								seller.getBuyers().getBuyers().add(buyer);
+								flag = true;
+								break;
+							}
+						}
+						
+						if (!flag)	{
+							JOptionPane.showMessageDialog(null, "There is no client in the system with id: " + idTXT.getText());
+						}else {
+							JOptionPane.showMessageDialog(null, "The client has been added!");
+						}
+						addButton.setEnabled(false);
 					}
 				}
 			});
