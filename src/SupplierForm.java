@@ -146,10 +146,23 @@ public class SupplierForm extends JFrame {
 			
 			//if errorFlag = false there is no error, adds client in ArrayList Suppliers
 			if(!errorFlag){
+				Users users = new Users();
+				users.extractObjectDB();
+				boolean flag = false;
 				String SupplierOrdermanagerid = ordermanager.getId();
 				Supplier supplier = new Supplier(Suppliername,Supplierlastname,Supplierid,SuppliernphoneNumber,SupplierAFM,SupplierOrdermanagerid);
-				ordermanager.getSuppliers().getSuppliers().add(supplier);	
-				JOptionPane.showMessageDialog(null, "The supplier has been added!");
+				for (User u : users.getUsers()) {
+					if (u instanceof Seller && supplier.getId().equals(u.getId())) {
+						ordermanager.getSuppliers().getSuppliers().add(supplier);
+						flag = true;
+						break;
+					}
+				}
+				if (!flag)	{
+					JOptionPane.showMessageDialog(null, "There is no supplier in the system with id: " + idTXT.getText());
+				}else {
+					JOptionPane.showMessageDialog(null, "The supplier has been added!");
+				}
 				addButton.setEnabled(false);
 			}
 		
