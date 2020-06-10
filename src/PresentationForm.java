@@ -51,9 +51,9 @@ public class PresentationForm extends JFrame{
 					Order temp = (Order) objectList.get(i);
 					data[i][0]=temp.getProductName();
 					data[i][1]=temp.getOrderId();
-					data[i][2]=temp.getStatus()+"";
+					data[i][2]=temp.getDate().substring(0,10);
 				}
-				table.setModel(new DefaultTableModel(data, new String[] {"Product Name", "Order ID", "Status"}));
+				table.setModel(new DefaultTableModel(data, new String[] {"Product Name", "Order ID", "Date"}));
 			}
 			else if (objectList.get(0) instanceof CompanyProduct) { //here we check if the objects in the list we have are of type CompanyProduct
 		
