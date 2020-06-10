@@ -118,7 +118,7 @@ public class LogginForm extends JFrame{
 			for(User u : users.getUsers()){
 				
 				if (u.getId().equals(Userid)){
-					 if (userspassword.length() < 8) 
+					if (userspassword.length() < 8) 
 						 JOptionPane.showMessageDialog(panel, "Password length should be between 8 characters"); 
 					else{
 						if (userspassword.equals(u.getPassword())) {
@@ -127,10 +127,10 @@ public class LogginForm extends JFrame{
 						}else if( !(userspassword.contains("!") || userspassword.contains(".") || userspassword.contains(",") || userspassword.contains("*"))){
 						  JOptionPane.showMessageDialog(panel, "Password should contain at least one special character ");
 					     
-					    }else if (! userspassword.matches(".*[0-9].*")){
+					   	 }else if (! userspassword.matches(".*[0-9].*")){
 						   JOptionPane.showMessageDialog(panel, "Password should at least contain one digit");
 						   
-			            }else{ 
+			            	    	}else{ 
 					            int count1 = 0; 
 					            for (int i = 65; i <= 90; i++) {               // checking capital letters 
 					  
@@ -139,7 +139,6 @@ public class LogginForm extends JFrame{
 					                if ( u.getPassword().contains(str1))
 					                    count1 = 1;
 					            } 
-					            
 					            int count2 = 0; 
 					            for (int i = 90; i <= 122; i++) {              // checking small letters 
 					  
@@ -149,11 +148,9 @@ public class LogginForm extends JFrame{
 					                    count2 = 1; 
 					                } 
 					            } 
-					            if (count2 == 0 || count1 ==0) { 
-					            	 JOptionPane.showMessageDialog(this, "Password should contain at least one lowercase letter(a-z) and uppercase letter(A-Z)", "Loggin", JOptionPane.DEFAULT_OPTION);  
-					            	
-					            } 
-			           	}
+					            if (count2 == 0 || count1 ==0) 
+					            	 JOptionPane.showMessageDialog(this, "Password should contain at least one lowercase letter(a-z) and uppercase letter(A-Z)", "Loggin", JOptionPane.DEFAULT_OPTION); 
+					        }
 					}
 				}
 			}
