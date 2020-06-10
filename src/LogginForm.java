@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -65,15 +64,13 @@ public class LogginForm extends JFrame{
     	passwordField.setBounds(367, 470, 219, 25);
     	frame.getContentPane().add(passwordField);
     		
-    	btnNewButton.addActionListener(new ActionListener() 
-    	{
+    	btnNewButton.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent e) {
     				
                 String Userid = textField.getText();
     			char[] password = passwordField.getPassword();
     			String Userspassword = new String(password);
     			if( checkError(Userid,Userspassword) ){
-    				System.out.println(user.getFirstName());
     				if (Userid.startsWith("OR")) {
      				    OrderManager or = (OrderManager) user;
      				    or.initializeLists();
@@ -153,7 +150,7 @@ public class LogginForm extends JFrame{
 					                } 
 					            } 
 					            if (count2 == 0 || count1 ==0) { 
-					            	 System.out.println("Password should contain at least one lowercase letter(a-z) and uppercase letter(A-Z)");  
+					            	 JOptionPane.showMessageDialog(this, "Password should contain at least one lowercase letter(a-z) and uppercase letter(A-Z)", "Loggin", JOptionPane.DEFAULT_OPTION);  
 					            	
 					            } 
 			           	}
