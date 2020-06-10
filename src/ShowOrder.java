@@ -290,35 +290,36 @@ public class ShowOrder {
 				}
 			});			
 		}
-		
-
-		
-		EditButton.addActionListener(new ActionListener() {										//A user of type OrderManager can only change the fieldSTATUS
-			public void actionPerformed(ActionEvent e) {
+		if (order.getStatus() == 0 && order.getTotalPrice() == 0.0) { 
+			EditButton.setEnabled(false);
+		}
+		else {
+			EditButton.addActionListener(new ActionListener() {										//A user of type OrderManager can only change the fieldSTATUS
+				public void actionPerformed(ActionEvent e) {
 				
-				fieldSTATUS.setEditable(true);
-				doneB.setEnabled(true);	
-			}
-		});
-		doneB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				boolean flag = checkForError();
-				if (flag) {
-					String status = fieldSTATUS.getText();
-					if (!status.equals("")) {
-						Integer st = Integer.parseInt(status);
-						int thesi = ord.getOrders().getOrders().indexOf(order);
-						ord.getOrders().getOrders().get(thesi).setStatus(st);
-					}
-
-					fieldSTATUS.setEditable(false); 
-					JOptionPane.showMessageDialog(null, "Changes have been saved!");
-					doneB.setEnabled(false);
+					fieldSTATUS.setEditable(true);
+					doneB.setEnabled(true);	
 				}
-			}
-		});
-	}
-	 else if (user instanceof Seller ) { 
+			});
+			doneB.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					boolean flag = checkForError();
+					if (flag) {
+						String status = fieldSTATUS.getText();
+						if (!status.equals("")) {
+							Integer st = Integer.parseInt(status);
+							int thesi = ord.getOrders().getOrders().indexOf(order);
+							ord.getOrders().getOrders().get(thesi).setStatus(st);
+						}
+
+						fieldSTATUS.setEditable(false); 
+						JOptionPane.showMessageDialog(null, "Changes have been saved!");
+						doneB.setEnabled(false);
+					}
+				}
+			});
+		}
+	 	}else if (user instanceof Seller ) { 
 
 		 
 		 	Seller sel = (Seller ) user;
