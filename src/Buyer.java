@@ -2,7 +2,7 @@
 
 public class Buyer {
 	/*Buyer.java
-	 * Purpose: Class that repre
+	 * Purpose: Class that represents a client of a seller
 	 * @author Vlasakoudi Christina
 	 */
 	private String name;
@@ -12,7 +12,6 @@ public class Buyer {
 	private String phoneNumber;
 	private String sellerId;
 	
-
 	public Buyer(String name,String lastName,String id,String AFM,String phoneNumber,String sellerId) {
 	
 		this.name = name;
