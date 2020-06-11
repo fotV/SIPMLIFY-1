@@ -18,7 +18,7 @@ There is no need of installation. All you have to do is to run the runnable jar 
 ***Contributing and Credits***
 Simplify is the name of our virtual company.
 Contributors: Evangelia Papagiannaki, Eleni Polyzoidou, Vasilki Fotiadou, Xristina Manoli, 
-		Antouela Bitsa, Xristina Vlasakoudi, Nikoleta Gouli
+		Antouela Bitsa, Xristina Vlasakoudi, Nikoleta Gouli.
 Our tutors and guiders: Apostolos Ampatzoglou and Aleksandros Chatzigeorgiou
 
 ***Copyright***
