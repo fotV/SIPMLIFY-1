@@ -134,7 +134,9 @@ public class SearchForm extends JFrame{
 		this.setBounds(100, 100, 1041, 653);
 	
 	}
-	
+	/*
+	 * checks if there are any errors
+	*/
 	private boolean checkForError()
 	{
 		boolean flag = false;
