@@ -151,7 +151,7 @@ public class Forecast {
 		Integer month = Integer.parseInt(str.substring(5, 7));
 		
 		double per;
-		if (((month>=3) && (month<9) && (season == "Spring - Summer"))||((month>=9) && (month<3) && (season == "Autumn - Winter"))){
+		if (((month>=3) && (month<9) && (season == "Spring - Summer"))||((month>=9) || (month<3) && (season == "Autumn - Winter"))){
 			per = 1.2;
 		}
 		else {
