@@ -1,17 +1,23 @@
 import java.util.ArrayList;
 
+/**
+ * Stockkeeper.java
+ * Purpose: The class represents the user: Stockkeeper and contains its various methods
+ * @author Manoli Christina
+ * @see User
+ */
+
 public class Stockkeeper extends User {
 
-	/*
-	 * Stock keeper's Constructor.
-	 * */
+	//Constructor
 	public Stockkeeper(String firstName, String surName, String password, String telephone, String aFM, String id, String company) {
 		super(firstName, surName, password, telephone, aFM, id, company);
 	}
-
-	/**
-	 * Fills the order list with the data extracted from the database using method extractObjectDB and then filters the list keeping only the orders for this specific stock keeper by removing other unwanted orders.
-	 */ 
+	
+	
+	/** 
+	 * Calls the extractObjectDB() for the list orders and only keeps data that are related to the specific Stockkeeper
+	 */
 	@Override
 	public void initializeLists() {
 		this.orders.getOrders().clear();
@@ -26,7 +32,7 @@ public class Stockkeeper extends User {
 	}
 
 	/**
-	 * Updates the database with the current data as well as fills the order list using the method InitializeLists.
+	 * Method refresh(): updates the lists of a Stockkeeper
 	 */
 	@Override
 	public void refresh() {
