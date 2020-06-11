@@ -2,10 +2,18 @@
 import java.sql.*;
 import java.util.Random;
 import java.util.ArrayList;
-
+/**
+* Proposals.java
+* Inherits from ListFromDB.java
+* Purpose: Extracts data and updates database for Proposals.
+* @author Evangelia Papagiannaki, Eleni Polyzoidou.
+*/
 public class Proposals extends ListFromDB {
 	private ArrayList<Order> proposals = new ArrayList<>();
-	
+	/**
+	 * Extracts data, creates new Proposals and adds them to list proposals.
+	 */
+	@Override
 	public void extractObjectDB() {
 		Connection c = connect();
 		try {
@@ -66,7 +74,10 @@ public class Proposals extends ListFromDB {
 			}
 		}
 	}
-	
+	/**
+ 	 * Updates old records and inserts new ones into arrays Forecast_Proposal and  Show
+	 */
+	@Override
 	public void updateObjectDB(){
 		Connection c = connect();
 		try {
