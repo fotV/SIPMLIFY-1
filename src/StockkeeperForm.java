@@ -3,19 +3,23 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import javax.swing.border.EtchedBorder;
 import javax.swing.JSeparator;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+
+/**
+ * StockkeeperForm.java
+ * Purpose: The class is the GUI for showing the home page of a Stockkeeper.
+ * @author Manoli Christina
+ */
 
 public class StockkeeperForm extends JFrame{
    
@@ -40,9 +44,6 @@ public class StockkeeperForm extends JFrame{
 	private JMenuItem mntmOrder;
 	
 
-	/**
-	 * Constructor creates the gui for the Stock Keeper Form (home page)
-	 */
 	public StockkeeperForm(Stockkeeper stk)
 	{
 		panel = new JPanel();
