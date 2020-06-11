@@ -163,7 +163,7 @@ public class Seller extends User {
 		else JOptionPane.showMessageDialog(frame, "No result", "Inane error", JOptionPane.ERROR_MESSAGE);
 	}
 	/**
-	*Method refresh(): updates the lists of a Seller 
+	* Updates the lists of a Seller 
 	*/
 	public void refresh() {
 		ArrayList<Order> oldOrders = new ArrayList<Order>(this.orders.getOrders());
@@ -196,14 +196,6 @@ public class Seller extends User {
 		buyers.getBuyers().add(s);
 	}
 	
-	/** 
-	 * Adds the buyer, that already exists and have been edited, in the specific index position of buyers
-	 *  @param b 		buyer that already exists and have been edited
-	 *  @param index 	contains the index of the occurrence of the buyer
-	 */
-	public void editBuyer(Buyer b, int index) {
-		buyers.getBuyers().add(index, b);
-	}
 	
 	//Getters & Setters 
 	public CompanyProducts getProducts() {
