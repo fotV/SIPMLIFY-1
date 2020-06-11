@@ -23,5 +23,5 @@ Our tutors and guiders: Apostolos Ampatzoglou and Aleksandros Chatzigeorgiou
 
 ***Copyright***
 You can freely use this software for educational reasons.
-Department of Information Technology
+Department of Information Technology,
 University of Macedonia, Thessaloniki, Greece
