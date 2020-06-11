@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 /**
  * ProductForm.java
- * Purpose :  Creates the GUI for the Product Form and adds a product(supplier or company) if there is no error in the filled fields. 
+ * Purpose :  Creates the GUI for the Product Form and adds a product (supplierproduct or companyproduct) if there is no error in the filled fields. 
  * @author Fotiadou Vassiliki
  */
 public class ProductForm extends JFrame{
