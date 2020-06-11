@@ -1,10 +1,18 @@
 import java.sql.*;
 import java.util.ArrayList;
-
+/**
+* Orders.java
+* Inherits from ListFromDB.java
+* Purpose: Extracts data and updates database for Orders.
+* @author Evangelia Papagiannaki, Eleni Polyzoidou.
+*/
 public class Orders extends ListFromDB {
 	private ArrayList<Order> orders = new ArrayList<Order>();
 	
-	
+	/**
+	 * Extracts data, creates new Orders and adds them to list orders
+	 */
+	@Override
 	public void extractObjectDB() {
 		Connection c = connect();
 		try {
@@ -45,7 +53,10 @@ public class Orders extends ListFromDB {
 			}
 		}
 	}
-	
+	/**
+ 	 * Updates old records and inserts new ones into arrays Order_for_purchase and  Order_for_purchase
+	 */
+	@Override
 	public void updateObjectDB(){
 		Connection c = connect();
 		try {
