@@ -9,7 +9,10 @@ import java.net.URL;
 import javax.swing.*;
 
 /**LogginForm.java
- * Purpose : Displays the GUI of a loggin form for users.
+ * Purpose : Displays the GUI of a loggin form when a user wants to enter the system.
+ * The user enters their username and password, and the system, either: authenticates them successfully redirecting the user
+ * to OrderManagerForm() or SellerForm() or StockkeeperForm()
+ * or shows message
  * @author Vlasakoudi Christina
  */
 public class LogginForm extends JFrame{
