@@ -9,6 +9,12 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
+/**
+ * StockkeeperForm.java
+ * Purpose: The class is the GUI for showing the home page of a Seller.
+ * @author Manoli Christina
+ */
+
 public class SellerForm extends JFrame{
 	private JPanel panel;
 	private JButton btnNewButton;
@@ -41,9 +47,8 @@ public class SellerForm extends JFrame{
 	private JMenuItem menuItemAddClient;
 	private JMenu menuStatistics;
 	private JMenuItem menuItemSeeStatistics;
-	/**
-	 * The following constructor creates the gui for the Stock Keeper Form (home page)
-	 */
+	
+	
 	public SellerForm(Seller s)
 	{
 		panel = new JPanel();
