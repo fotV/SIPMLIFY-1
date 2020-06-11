@@ -1,7 +1,8 @@
 
 
 public class Buyer {
-	/*Buyer.java
+	/**
+	 *Buyer.java
 	 * Purpose: Class that represents a client of a seller
 	 * @author Vlasakoudi Christina
 	 */
@@ -12,6 +13,7 @@ public class Buyer {
 	private String phoneNumber;
 	private String sellerId;
 	
+	//constructor
 	public Buyer(String name,String lastName,String id,String AFM,String phoneNumber,String sellerId) {
 	
 		this.name = name;
@@ -22,6 +24,8 @@ public class Buyer {
 		this.sellerId = sellerId;
 	}
 
+	
+	//getters and setters
 	public String getName() {
 		return name;
 	}
