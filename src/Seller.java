@@ -3,6 +3,12 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Seller.java
+ * Purpose: The class represents the user: seller and contains its various methods
+ * @author Bitsa Antouela
+ * @see User
+ */
 public class Seller extends User {
 	
 	private CompanyProducts products;
@@ -55,8 +61,9 @@ public class Seller extends User {
 	}
 	
 	/**
-	 *  Method searchForProduct(): searches a product and calls a GUI to 
-	 * to show the results
+	 * Searches a key into the list of company products. If it is found then calls the PresentantionForm to show the results, else show error message  
+	 * @param key		represents the string for searching
+	 * @param column	represents the int for searching at a specific attribute
 	 */
 	public  void searchForProduct(String key, int column) {
 		Boolean found=false;
@@ -91,18 +98,26 @@ public class Seller extends User {
 		else JOptionPane.showMessageDialog(frame, "No result", "Inane error", JOptionPane.ERROR_MESSAGE);	
 	}
 	
-	/* Method addProduct() : adds the parameter to the product list */
+	/**
+	 * Adds a product to the product list
+	 * @param product     product for adding in the list
+	 */
 	public void addProduct(CompanyProduct product) {
 		products.getCompanyProducts().add(product);
 	}
 	
-	/*Method editProduct() : adds the cp in the specific index position of list products */
+	/**
+	 *  Adds the product that already exists and have been edited in the specific index position of list products
+	 *  @param cp  		CompanyProduct that already exists and have been edited
+	 *  @param index 	contains the index of the occurrence of the product
+	 */
 	public void editProduct(CompanyProduct cp, int index) {
 		products.getCompanyProducts().add(index, cp);
 	}
 	
+	
 	/**
-	 * Searches a key into the list of buyers. If the list contains the calls the PresentantionForm to show the results  
+	 * Searches a key into the list of buyers. If it is found then calls the PresentantionForm to show the results, else show error message
 	 * @param key		represents the string for searching
 	 * @param column	represents the int for searching at a specific attribute
 	 */
@@ -148,8 +163,8 @@ public class Seller extends User {
 		else JOptionPane.showMessageDialog(frame, "No result", "Inane error", JOptionPane.ERROR_MESSAGE);
 	}
 	/**
-	 * 
-	 */
+	*Method refresh(): updates the lists of a Seller 
+	*/
 	public void refresh() {
 		ArrayList<Order> oldOrders = new ArrayList<Order>(this.orders.getOrders());
 		this.orders.updateObjectDB();
@@ -173,12 +188,19 @@ public class Seller extends User {
 		
 		
 	}
-	/* Method addBuyer() : adds the parameter to the buyers list */
+	/** 
+	 * Adds a buyer to the buyers list
+	 * @param s  buyer that user wants to add to the list of buyers
+	 */
 	public void addBuyer(Buyer s) {
 		buyers.getBuyers().add(s);
 	}
 	
-	/* Method editBuyer() : adds the b in the specific index position of list products */
+	/** 
+	 * Adds the buyer, that already exists and have been edited, in the specific index position of buyers
+	 *  @param b 		buyer that already exists and have been edited
+	 *  @param index 	contains the index of the occurrence of the buyer
+	 */
 	public void editBuyer(Buyer b, int index) {
 		buyers.getBuyers().add(index, b);
 	}
