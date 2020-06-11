@@ -2,6 +2,7 @@
 
 public class CompanyProduct {
 	/*CompanyProduct.java
+	* Purpose : Class that represents a product that a seller is selling
 	 * @author Vlasakoudi Christina
 	 */
 	private String name;
