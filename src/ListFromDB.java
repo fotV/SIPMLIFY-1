@@ -15,21 +15,20 @@ public class ListFromDB {
 	public ListFromDB(){
 		
 	}
-	
+	/**
+	*Establishes the connection to the database simplify
+	* @return  the object Connection
+	*/
 	public Connection connect() {
 		Connection c = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-			
-		    c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
-			
+		   	c = DriverManager.getConnection("jdbc:sqlite:simplify.db");
 		}catch(Exception e){
 			System.out.println(this.getClass());
 			System.out.println(e);
 		}
-		
 		return c;	
-		
 	}
 	
 	
