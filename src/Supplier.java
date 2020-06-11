@@ -1,6 +1,8 @@
 
 public class Supplier {
-	/*Supplier.java
+	/**
+	 *Supplier.java
+	 * Purpose: Class that represents a supplier of an OrderManager
 	 * @author Vlasakoudi Christina
 	 */
 	private String name;
@@ -10,6 +12,8 @@ public class Supplier {
 	private String AFM;
 	private String orderManagerId;
 	
+	
+	//Constructor
 	public Supplier(String name,String lastName,String id,String phoneNumber,String AFM,String orderManagerId){
 		
 		 this.name=name;
@@ -20,6 +24,10 @@ public class Supplier {
 		 this.orderManagerId = orderManagerId;
 	}
 
+	
+	
+	
+	//getters and setters
 	public String getName() {
 		return name;
 	}
