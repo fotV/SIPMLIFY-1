@@ -10,6 +10,12 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * ShowProduct.java
+ * Purpose: The class is the GUI for showing a single Product, either SupplierProduct or CompanyProduct. Provides the function of editting the product
+ * @author Polyzoidou Eleni, Gkouli Nikoleta
+ */
+
 public class ShowProduct {
 
 	private JFrame frame;
