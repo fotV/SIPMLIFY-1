@@ -48,50 +48,50 @@ public class CompanyProducts extends ListFromDB {
 /**
  * Updates old records and inserts new ones into arrays Product_for_sale and  Seller_Watches_Product
  */
-public void updateObjectDB() {
-	Connection c = connect();
-	try {	
-		String insertIntoPFS = "INSERT OR IGNORE INTO Product_for_sale (Id, Name, StockAmount, MaxStockAmount, SafetyStock, Price) VALUES (?,?,?,?,?,?);";
-		PreparedStatement statementPFS = c.prepareStatement(insertIntoPFS);
+	public void updateObjectDB() {
+		Connection c = connect();
+		try {	
+			String insertIntoPFS = "INSERT OR IGNORE INTO Product_for_sale (Id, Name, StockAmount, MaxStockAmount, SafetyStock, Price) VALUES (?,?,?,?,?,?);";
+			PreparedStatement statementPFS = c.prepareStatement(insertIntoPFS);
 			
-		String insertIntoWatches = "INSERT OR IGNORE INTO Seller_Watches_Product (SellerId, PFS_Id) VALUES (?,?);";
-		PreparedStatement statementWatches = c.prepareStatement(insertIntoWatches);
+			String insertIntoWatches = "INSERT OR IGNORE INTO Seller_Watches_Product (SellerId, PFS_Id) VALUES (?,?);";
+			PreparedStatement statementWatches = c.prepareStatement(insertIntoWatches);
 			
-		String updatePFS = "UPDATE Product_for_sale SET  StockAmount = ?  , Price = ? WHERE id = ? ";
-		PreparedStatement statementUpdate = c.prepareStatement(updatePFS);	
+			String updatePFS = "UPDATE Product_for_sale SET  StockAmount = ?  , Price = ? WHERE id = ? ";
+			PreparedStatement statementUpdate = c.prepareStatement(updatePFS);	
 			
-		for (CompanyProduct cp:  companyp) {	
-			statementPFS.setString(1, cp.getId());
-			statementPFS.setString(2, cp.getName());
-			statementPFS.setDouble(3, cp.getStockAmount());
-			statementPFS.setDouble(4, cp.getMaxStockAmount());
-			statementPFS.setDouble(5, cp.getSafetyStock());
-			statementPFS.setDouble(6, cp.getPrice());
+			for (CompanyProduct cp:  companyp) {	
+				statementPFS.setString(1, cp.getId());
+				statementPFS.setString(2, cp.getName());
+				statementPFS.setDouble(3, cp.getStockAmount());
+				statementPFS.setDouble(4, cp.getMaxStockAmount());
+				statementPFS.setDouble(5, cp.getSafetyStock());
+				statementPFS.setDouble(6, cp.getPrice());
 				
-			statementWatches.setString(1, cp.getSellerId());
-			statementWatches.setString(2, cp.getId());
+				statementWatches.setString(1, cp.getSellerId());
+				statementWatches.setString(2, cp.getId());
 				
-			statementUpdate.setDouble(1, cp.getStockAmount());
-			statementUpdate.setDouble(2, cp.getPrice());
-			statementUpdate.setString(3, cp.getId());
+				statementUpdate.setDouble(1, cp.getStockAmount());
+				statementUpdate.setDouble(2, cp.getPrice());
+				statementUpdate.setString(3, cp.getId());
 	
-			statementUpdate.executeUpdate();
-			statementPFS.executeUpdate();
-			statementWatches.executeUpdate();	
-		}
-		statementUpdate.close();
-		statementPFS.close();
-		statementWatches.close();
-	}catch(SQLException e) {
-		e.printStackTrace();
-	}finally {
-		try {
-			c.close();
-		} catch (SQLException e) {
+				statementUpdate.executeUpdate();
+				statementPFS.executeUpdate();
+				statementWatches.executeUpdate();	
+			}
+			statementUpdate.close();
+			statementPFS.close();
+			statementWatches.close();
+		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
-}
 	
 	
 	public ArrayList<CompanyProduct> getCompanyProducts() {
