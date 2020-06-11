@@ -45,9 +45,9 @@ public class CompanyProducts extends ListFromDB {
 			}
 		}
 	}
-/**
- * Updates old records and inserts new ones into arrays Product_for_sale and  Seller_Watches_Product
- */
+	/**
+ 	* Updates old records and inserts new ones into arrays Product_for_sale and  Seller_Watches_Product
+	 */
 	public void updateObjectDB() {
 		Connection c = connect();
 		try {	
