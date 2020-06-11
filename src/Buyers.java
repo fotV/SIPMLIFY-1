@@ -29,7 +29,7 @@ public class Buyers extends ListFromDB {
 				b.setLastName(rs.getString("LastName"));
 				b.setId(rs.getString("Id"));
 				b.setAFM(rs.getString("AFM"));
-				b.setPhoneNumber("PhoneNumber");
+				b.setPhoneNumber(rs.getString("PhoneNumber");
 				b.setSellerId(rs.getString("SellerId"));
 				buyers.add(b);			
 
