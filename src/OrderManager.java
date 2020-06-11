@@ -3,6 +3,13 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+/**
+ * OrderManager.java
+ * Purpose: The class represents the user: OrderManager and contains its various methods
+ * @author Bitsa Antouela
+ * @see User
+ */
+
 public class OrderManager extends User {
 	
 	private boolean regular = false ;
@@ -90,7 +97,7 @@ public class OrderManager extends User {
 	}
 	
 	/**
-	 * Searches a key into the list of products. If the list contains the calls the PresentantionForm to show the results  
+	 * Searches a key into the list of supplier products. If it is found then calls the PresentantionForm to show the results, , else show error message 
 	 * @param key     represents the key for searching
 	 * @param column  represents the int for searching at a specific attribute
 	**/
@@ -130,15 +137,15 @@ public class OrderManager extends User {
 	
 	/**
 	 * Adds a product to the product list
-	 * @param product  product for adding in the list
+	 * @param product     product for adding in the list
 	 */
 	public void addProduct(SupplierProduct product) {
 		this.products.getSupplierProducts().add(product);
 	}
 	
 	/**
-	 *  Adds the product that already exists and have been edited in the specific index position of list products
-	 *  @param sp  		supplierProduct that already exists and have been edited
+	 *  Adds the product ,that already exists and have been edited, in the specific index position of list products
+	 *  @param sp  		SupplierProduct that already exists and have been edited
 	 *  @param index 	contains the index of the occurrence of the product
 	 */
 	public void editProduct(SupplierProduct sp, int index) {
@@ -146,7 +153,7 @@ public class OrderManager extends User {
 	}
 	
 	/**
-	 * Searches if the key is in the list of suppliers. If true calls the PresentantionForm to show the results, else show a message.
+	 * Searches if the key is in the list of suppliers. If it is found then calls the PresentantionForm to show the results, else show error message
 	 * @param key     the string that the user wants to search.
 	 * @param column  an int that shows what the user wants to search
 	 */
@@ -209,7 +216,7 @@ public class OrderManager extends User {
 	
 	/** 
 	 * Adds the new Order to the orders list
-	 *  @param order The new Order that the user have made
+	 *  @param order     The new Order that the user have made
 	 */
 	public void addOrder(Order order) {
 		this.orders.getOrders().add(order);
@@ -217,7 +224,7 @@ public class OrderManager extends User {
 	
 	/** 
 	 * Sets true if the business is regular
-	 *  @param flag  if true the business is regular , else false it is seasonal
+	 *  @param flag      if true the business is regular , else false it is seasonal
 	 *  */
 	public void chooseBusinessType(boolean flag) {
 		if ( flag == true ) {
@@ -227,7 +234,7 @@ public class OrderManager extends User {
 	
 	/** 
 	 * Sets the season of the business
-	 * @param seas  string that contains the season
+	 * @param seas     string that contains the season
 	 */
 	public void chooseBusinessSeason(String seas) {
 		if (regular == false) {
@@ -235,7 +242,7 @@ public class OrderManager extends User {
 		}
 	}
 	/**
-	 * 
+	 * Method refresh(): updates the lists of an OrderManager
 	 */
 	public void refresh() {
 		ArrayList<Order> oldOrders = new ArrayList<Order>(this.orders.getOrders());
