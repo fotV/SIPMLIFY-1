@@ -1,16 +1,18 @@
 import java.sql.*;
 import java.util.ArrayList;
-
+/**
+* SupplierProducts.java
+* Inherits from ListFromDB.java
+* Purpose: Extracts data and updates database for SupplierProducts.
+* @author Evangelia Papagiannaki, Eleni Polyzoidou.
+*/
 public class SupplierProducts extends ListFromDB {
-	/*
-	 * Class 
-	 */
 	private ArrayList<SupplierProduct> supplierp = new ArrayList<>();
-	
+	/**
+	 * Extracts data, creates new Orders and adds them to supplierp
+	 */
+	@Override
 	public void extractObjectDB() {
-		/*
-		 * 
-		 */
 		Connection c = connect();
 		try {
 			
@@ -43,11 +45,11 @@ public class SupplierProducts extends ListFromDB {
 			}
 		}
 	}
-	
+	/**
+ 	 * Updates old records and inserts new ones into arrays Product_for_purchase and  OrderManager_Watches_Product
+	 */
+	@Override
 	public void updateObjectDB() {
-		/*
-		 * 
-		 */
 		Connection c = connect ();
 		try {
 			
@@ -84,7 +86,6 @@ public class SupplierProducts extends ListFromDB {
 				statementUpdate.executeUpdate();
 				statementPFP.executeUpdate();
 				statementWatches.executeUpdate();
-			
 			}
 			statementUpdate.close();
 			statementPFP.close();
@@ -101,10 +102,9 @@ public class SupplierProducts extends ListFromDB {
 			
 	}
 	
-	/*
+	/**
 	 * Gets the list of SupplierProduct
-	 * @return An ArrayList with SupplierProducts
-	 *     name.
+	 * @return An ArrayList with SupplierProducts.
 	 */
 	public ArrayList<SupplierProduct> getSupplierProducts() {
 		
