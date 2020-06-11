@@ -2,7 +2,9 @@
 
 
 	public class Order {
-		/*Order.java
+		/**
+		 * Order.java
+		 * Purpose: Class that represents an order 
 		 * @author Vlasakoudi Christina
 		 */
 	
@@ -23,6 +25,7 @@
 		
 		
 		
+		//Constructor
 		public Order(String orderManagerId,String orderId,double quantity,String supplierId,String supplierName,String supplierAFM,String date,int status,double price,double totalPrice,String productId,String productName,String stockkeeperId) 
 		{
 			this.orderManagerId = orderManagerId;
@@ -39,10 +42,15 @@
 			this.productName = productName;
 			this.stockkeeperId = stockkeeperId;
 		}
+		
+		//Empty Constructor
 		public Order() {
 			
 		}
 
+		
+		
+		//getters and setters
 		public String getOrderManagerId() {
 			return orderManagerId;
 		}
