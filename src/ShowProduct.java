@@ -104,14 +104,14 @@ public class ShowProduct {
 		frame.getContentPane().add(labelExpectedAmount);
 		
 		
-		textId = new JTextField(spl.getId());							        		//textField for id attribute
+		textId = new JTextField(spl.getId());							 //textField for id attribute
 		textId.setBounds(637, 90, 188, 36);
 		textId.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		textId.setEditable(false);
 		frame.getContentPane().add(textId);
 		textId.setColumns(10);
 		
-		textName = new JTextField(spl.getName());										//textField for name attribute
+		textName = new JTextField(spl.getName());						//textField for name attribute
 		textName.setBounds(637, 31, 188, 36);
 		textName.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		textName.setEditable(false);
@@ -129,11 +129,11 @@ public class ShowProduct {
 		textMaxStockAmount = new JTextField(""+spl.getMaxStockAmount());     			//textField for maxStockAmount attribute
 		textMaxStockAmount.setBounds(637, 217, 188, 36);
 		textMaxStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
-		textMaxStockAmount.setEditable(false);											//the value can not be changed
+		textMaxStockAmount.setEditable(false);							//the value can not be changed
 		frame.getContentPane().add(textMaxStockAmount);
 		textMaxStockAmount.setColumns(10);
 		
-		textSafetyStock = new JTextField(""+spl.getSafetyStock());						//textField for SafetyStock
+		textSafetyStock = new JTextField(""+spl.getSafetyStock());					//textField for SafetyStock
 		textSafetyStock.setBounds(637, 280, 188, 36);
 		textSafetyStock.setFont(new Font("HelveticaNeue", Font.PLAIN,20));
 		textSafetyStock.setEditable(false);												//the value can not be changed
@@ -197,9 +197,9 @@ public class ShowProduct {
 			public void actionPerformed(ActionEvent e) {
 			    textStockAmount.setEditable(true);
 			    textLeadTime.setEditable(true);       //enables stockAmount, LeadTime, ExpectedAmount textField to change
-	            textExpectedAmount.setEditable(true);
-	            saveButton.setEnabled(true);
-			  }
+	            	    textExpectedAmount.setEditable(true);
+	           	    saveButton.setEnabled(true);
+			}
 		});
 		editButton.setBounds(147, 579, 166, 36);
 		frame.getContentPane().add(editButton);
@@ -229,11 +229,11 @@ public class ShowProduct {
 					textExpectedAmount.setText("" + spl.getExpectedAmount());
 					
 					int index = user.getProducts().getSupplierProducts().indexOf(spl);
-					user.getProducts().getSupplierProducts().set(index, spl);
+					user.editProduct(spl, index);
 					textStockAmount.setEditable(false);
 					textLeadTime.setEditable(false);
-			        textExpectedAmount.setEditable(false);
-			        saveButton.setEnabled(false);
+			       		textExpectedAmount.setEditable(false);
+			                saveButton.setEnabled(false);
 					
 					JOptionPane.showMessageDialog(null, "Changes have been saved!");
 				}
@@ -255,22 +255,22 @@ public class ShowProduct {
 		frame.setResizable(false);
 		frame.setTitle("Company Product");
 		
-		labelId = new JLabel(" ID :");											//label for Id
+		labelId = new JLabel(" ID :");								//label for Id
 		labelId.setBounds(153, 112, 153, 33);
 		labelId.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelId);
 		
-		labelName = new JLabel(" Name :");										//label for Name
+		labelName = new JLabel(" Name :");							//label for Name
 		labelName.setBounds(153, 34, 86, 33);
 		labelName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelName);
 		
-		labelSafetyStock = new JLabel(" Safety stock :");						//label for SafetyStock
+		labelSafetyStock = new JLabel(" Safety stock :");					//label for SafetyStock
 		labelSafetyStock.setBounds(153, 193, 179, 33);
 		labelSafetyStock.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelSafetyStock);
 		
-		labelStockAmount = new JLabel(" Stock amount :");						//label for StockAmount
+		labelStockAmount = new JLabel(" Stock amount :");					//label for StockAmount
 		labelStockAmount.setBounds(153, 277, 179, 35);
 		labelStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelStockAmount);
@@ -280,54 +280,54 @@ public class ShowProduct {
 		labelMaxStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelMaxStockAmount);
 		
-		labelPrice = new JLabel(" Price :");									//label for Price
+		labelPrice = new JLabel(" Price :");							//label for Price
 		labelPrice.setBounds(153, 462, 164, 33);
 		labelPrice.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(labelPrice);
 		
 	
-		textId = new JTextField(cp.getId());									//text for id attribute
+		textId = new JTextField(cp.getId());							//text for id attribute
 		textId.setBounds(707, 112, 153, 33);
 		textId.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(textId);
 		textId.setColumns(10);
-		textId.setEditable(false);												//the value can not be changed
+		textId.setEditable(false);								//the value can not be changed
 		
 		
-		textName = new JTextField(cp.getName());								//text for Name attribute
+		textName = new JTextField(cp.getName());						//text for Name attribute
 		textName.setBounds(707, 34, 153, 33);
 		textName.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(textName);
 		textName.setColumns(10);
-		textName.setEditable(false);											//the value can not be changed
+		textName.setEditable(false);								//the value can not be changed
 
 		textSafetyStock = new JTextField("" + cp.getSafetyStock());				//text for safetyStock attribute
 		textSafetyStock.setBounds(707, 193, 153, 33);
 		textSafetyStock.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(textSafetyStock);
 		textSafetyStock.setColumns(10);
-		textSafetyStock.setEditable(false);										//the value can not be changed
+		textSafetyStock.setEditable(false);							//the value can not be changed
 		
 		textStockAmount = new JTextField("" + cp.getStockAmount());				//text for stockAmount attribute
 		textStockAmount.setBounds(707, 277, 153, 33);
 		textStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(textStockAmount);
 		textStockAmount.setColumns(10);
-		textStockAmount.setEditable(false);										//value can not be changed
+		textStockAmount.setEditable(false);							//value can not be changed
 		
-		textMaxStockAmount = new JTextField("" + cp.getMaxStockAmount());		//text for maxStockAmount attribute
+		textMaxStockAmount = new JTextField("" + cp.getMaxStockAmount());			//text for maxStockAmount attribute
 		textMaxStockAmount.setBounds(707, 369, 153, 33);
 		textMaxStockAmount.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(textMaxStockAmount);
 		textMaxStockAmount.setColumns(10);
 		textMaxStockAmount.setEditable(false);              					//value can not be changed
 		
-		textPrice = new JTextField("" + cp.getPrice());							//text for price attribute
+		textPrice = new JTextField("" + cp.getPrice());						//text for price attribute
 		textPrice.setBounds(707, 462, 153, 32);
 		textPrice.setFont(new Font("HelveticaNeue", Font.PLAIN,24));
 		frame.getContentPane().add(textPrice);
 		textPrice.setColumns(10);
-		textPrice.setEditable(false);											//value can not be changed 
+		textPrice.setEditable(false);								//value can not be changed 
 		
 		firstSeparator = new JSeparator();
 		firstSeparator.setBounds(10, 88, 1015,  2);
@@ -428,7 +428,7 @@ public class ShowProduct {
 				flag = true;
 			}
 			else {
-				if (!textStockAmount.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+") || !textLeadTime.getText().matches("[0-9]+") || !textExpectedAmount.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+") ) {				//fields should match  regex for integer and double number
+				if (!textStockAmount.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+") || !textLeadTime.getText().matches("[0-9]+") || !textExpectedAmount.getText().matches("[0-9]+|[0-9]+[.]{1}[0-9]+") ) {	//fields should match  regex for integer and double number
 					JOptionPane.showMessageDialog(frame, "Fields must contain digit");
 					flag = true;
 				}
