@@ -443,7 +443,7 @@ public class ShowOrder {
 
 
 	/**
-	 * The method checks if the inserted values in the TextFields are correct.
+	 * The method checks if the input values in the TextFields are correct.
 	 * @return flag declares if an insertion mistake has been occured (boolean)
 	 */
 	private boolean checkForError(){
