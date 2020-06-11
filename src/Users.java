@@ -1,14 +1,18 @@
 import java.sql.*;
 import java.util.ArrayList;
-
+/**
+* Users.java
+* Inherits from ListFromDB.java
+* Purpose: Extracts data and updates database for Users.
+* @author Evangelia Papagiannaki, Eleni Polyzoidou.
+*/
 public class Users extends ListFromDB {
 	private ArrayList<User> users = new ArrayList<User>();
-
-	private Statement statement = null;		//statement for users that have type OrderManager
+	
 	/**
-	 *
+	 * Extracts data, creates new Users and adds them to list users
 	 */
-
+	@Override
 	public void extractObjectDB() {
 		Connection c = connect();
 		try {
@@ -74,6 +78,10 @@ public class Users extends ListFromDB {
 			}
 		}
 	}
+	/**
+ 	 * Updates old records and inserts new ones into arrays OrderManager
+	 */
+	@Override
 	public void updateObjectDB() {
 		Connection c = connect();
 		try {
@@ -106,8 +114,11 @@ public class Users extends ListFromDB {
 			}
 		}
 	}
-	public ArrayList<User> getUsers()
-	{
+	/**
+	 * Gets the list of Users
+	 * @return An ArrayList with Users
+	 */
+	public ArrayList<User> getUsers(){
 		return users;
 	}
 }
