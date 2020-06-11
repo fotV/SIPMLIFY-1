@@ -13,8 +13,9 @@ import java.awt.Font;
 
 /**
  * PresentationForm.java
- * Purpose :  Creates the GUI for the Presentation Form and is used to to present very briefly
+ * Purpose : Creates the GUI for the Presentation Form and is used to present very briefly
  * a table consisting of data then the user chooses one and it opens in another GUI so they can see it in more detail.
+ * It also allows the user to sort the table in ascending order or descending order
  * @author Manoli Christina
  */
 
