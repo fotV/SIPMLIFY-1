@@ -51,8 +51,8 @@ public class BuyerForm extends JFrame{
 			frame.getContentPane().setBackground(new Color(136, 177, 179));
 		
 			URL resource2 = getClass().getClassLoader().getResource( "windowLogo.png" );	//window icon
-	    	Image icon = Toolkit.getDefaultToolkit().getImage(resource2);  
-	    	frame.setIconImage(icon);
+	    		Image icon = Toolkit.getDefaultToolkit().getImage(resource2);  
+	    		frame.setIconImage(icon);
 	    	
 			nameLabel = new JLabel("First Name :");
 			nameLabel.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));				// first name label and textfield
@@ -160,7 +160,7 @@ public class BuyerForm extends JFrame{
 						boolean flag = false;
 						for (User u : users.getUsers()) {
 							if (u instanceof OrderManager && buyer.getId().equals(u.getId())) {
-								seller.getBuyers().getBuyers().add(buyer);
+								seller.addBuyer(buyer);
 								flag = true;
 								break;
 							}
@@ -242,11 +242,10 @@ public class BuyerForm extends JFrame{
 			}
 			
 			//checks if buyer already exists in database
-			boolean exists = false;  //exists = true if buyer already exists in database
+			boolean exists = false;  //exists = true if buyer already exists in the list
 			int i = 0;
 			if((!id.isEmpty()) && (id.length() == 6 )){
-				Buyers buyer = new Buyers();
-				ArrayList<Buyer> buyerID = buyer.getBuyers(); 
+				ArrayList<Buyer> buyerID = seller.getBuyers().getBuyers(); 
 				while(( i < buyerID.size()) && !exists){
 					if(buyerID.get(i).getId().equals(id)){
 						exists = true;
