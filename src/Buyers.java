@@ -11,7 +11,7 @@ public class Buyers extends ListFromDB {
 	 */
 	private ArrayList<Buyer> buyers = new ArrayList<Buyer>();
 	
-	/*
+	/**
 	 * Extracts data from database for Buyers and adds them into list buyers.
 	 */
 	@Override
