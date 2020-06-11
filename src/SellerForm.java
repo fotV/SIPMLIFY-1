@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 /**
- * StockkeeperForm.java
+ * SellerForm.java
  * Purpose: The class is the GUI for showing the home page of a Seller.
  * @author Manoli Christina
  */
