@@ -48,8 +48,10 @@ public class User {
 		
 	}
 	
-	/*
-	 * The following method is used to search based on a key and a field that the user chooses
+	/**
+	 * Searches a key into the list of orders. If it is found then calls the PresentantionForm to show the results  
+	 * @param key		represents the string for searching
+	 * @param column	represents the int for searching at a specific attribute
 	 */
 	public void searchForOrder(String key, int column)
 	{
@@ -113,7 +115,7 @@ public class User {
 	}
 	
 	/*
-	 * The following method is used to edit an order.
+	 * Method editOrder() : adds the order in the specific index position of list orders
 	 */
 	public void editOrder(Order o, int index)
 	{
