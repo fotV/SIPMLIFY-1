@@ -5,7 +5,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 
-
+/**
+ * ShowBuyerSeller.java
+ * Purpose: The class is the GUI for showing a single Buyer or Supplier.
+ * @author Gkouli Nikoleta
+ */
 
 public class ShowBuyerSeller {
 	private JFrame frame;
