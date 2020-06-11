@@ -114,8 +114,10 @@ public class User {
 		else JOptionPane.showMessageDialog(frame, "No result", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
-	/*
-	 * Method editOrder() : adds the order in the specific index position of list orders
+	/**
+	 *  Adds the order, that already exists and have been edited, in the specific index position of list orders
+	 *  @param o  		Order that already exists and have been edited
+	 *  @param index 	contains the index of the occurrence of the order
 	 */
 	public void editOrder(Order o, int index)
 	{
