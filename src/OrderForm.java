@@ -1,5 +1,4 @@
 import java.awt.Color;
-
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -8,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,6 +15,13 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
+
+
+/**
+ * OrderForm.java
+ * Purpose :  Creates the GUI for the Order Form and adds an order if there is no error in the filled fields. 
+ * @author Fotiadou Vassiliki
+ */
 
 
 public class OrderForm extends JFrame{
@@ -38,9 +43,7 @@ public class OrderForm extends JFrame{
 	private JSeparator separator_3;
 	private JLabel lblStockkeeperId;
 	
-	/*
-	 * The following constructor creates the gui for the Order Form
-	 */
+	
 	public OrderForm(OrderManager om)
 	{
 		this.setTitle("Order Form");
@@ -219,8 +222,10 @@ public class OrderForm extends JFrame{
 		this.setBounds(100, 100, 1041, 653);
 	}
 	
-	/*
-	 * The following method is used to check for errors that could be made when the user inputs the values at the various text fields.
+	
+	/**
+	 * Purpose : checks if there are any errors 
+	 * @param om   a specific order manager
 	 */
 	private boolean checkForError(OrderManager om) {
 		Component f = null;
@@ -283,9 +288,9 @@ public class OrderForm extends JFrame{
 			return false;
 		}
 	}
-	
-	/*
-	 * The following method is used to check if the string that was given isn't empty and is a double positive number.
+	/**
+	 * Purpose : Checks if the strnum isn't empty and is a double positive number.
+	 * @param strnum     a string that is given
 	 */
 	private static boolean isNumeric(String strNum) {
 	    if (strNum == null) {
