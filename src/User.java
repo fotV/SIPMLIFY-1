@@ -191,7 +191,6 @@ public class User {
 	}
 
 	public String getPhonenumber() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
