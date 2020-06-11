@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+/**
+ * User.java
+ * Purpose: The class represents a general user and contains its various methods
+ * @author Manoli Christina
+ */
 public class User {
 	protected String firstName;
 	protected String surName;
@@ -14,15 +19,11 @@ public class User {
 	protected String company;
 	protected Orders orders;
 	
-	/*
-	 * Empty Constructor
-	 */
+	//Empty Constructor
 	public User() {
 	}
 
-	/*
-	 * Constructor
-	 */
+	//Constructor
 	public User(String firstName, String surName, String password, String telephone, String aFM, String id, String company)
 	{
 		this.firstName = firstName;
@@ -35,26 +36,27 @@ public class User {
 		this.orders=new Orders();
 	}
 
-
+	//Empty method initializeLists()
 	public void initializeLists()
 	{
 		
 	}
 	
+	//Empty method refresh()
 	public void refresh()
 	{
 		
 	}
 	
 	/*
-	 * The following method is used to search based on a key and a field that the user chooses in Search Form
+	 * The following method is used to search based on a key and a field that the user chooses
 	 */
 	public void searchForOrder(String key, int column)
 	{
 		
 		Boolean found=false;
 		ArrayList<Object> ordersKEY = new ArrayList<>();
-		if(column==0) {                                      //0 to orderId
+		if(column==0) {                                     //0 for orderId
 			for(Order o : this.orders.getOrders()){
 				if(o.getOrderId().equals(key)){
 						ordersKEY.add(o);
@@ -62,7 +64,7 @@ public class User {
 					}
 			}
 		}
-		else if (column==1) {                              //1 to supplierId
+		else if (column==1) {                              //1 for supplierId
 			for(Order o : this.orders.getOrders()){
 				if(o.getSupplierId().equals(key)) {
 					ordersKEY.add(o);
@@ -70,7 +72,7 @@ public class User {
 				}
 			}
 		}
-		else if (column==2) {                              //2 to productId
+		else if (column==2) {                              //2 for productId
 			for(Order o : this.orders.getOrders()){
 				if(o.getProductId().equals(key)) {
 					ordersKEY.add(o);
@@ -78,7 +80,7 @@ public class User {
 				}
 			}
 		}
-		else if (column==3) {                              //3 to productName
+		else if (column==3) {                              //3 for productName
 			for(Order o : this.orders.getOrders())
 			{
 				if(o.getProductName().equals(key)) {
@@ -87,7 +89,7 @@ public class User {
 				}
 			}
 		}
-		else if (column==4) {                              //4 to date
+		else if (column==4) {                              //4 for date
 			for(Order o : this.orders.getOrders()){
 				if(o.getDate().equals(key)) {
 					ordersKEY.add(o);
@@ -95,7 +97,7 @@ public class User {
 				}
 			}
 		}
-		else if (column==5) {                             //5 to status
+		else if (column==5) {                             //5 for status
 			int intkey = Integer.parseInt(key);
 			for(Order o : this.orders.getOrders()){
 				if(o.getStatus()==intkey) {
