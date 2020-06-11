@@ -1,13 +1,16 @@
 
 
 public class Suppl {
-	/*Suppl.java
+	/**
+	*Suppl.java
+	* Purpose: Class that represents a supply which is a specific product that a specific supplier is selling
 	 * @author Vlasakoudi Christina
 	 */
 	private String productId;
 	private String supplierId;
 	private double price;
 
+	//constructor
 	public Suppl(String productid,String supplierid,double price) {
 	
 		this.productId=productid;
@@ -15,6 +18,8 @@ public class Suppl {
 		this.price = price;
 }
 
+	
+	//getters and setters
 	public String getProductId() {
 		return productId;
 	}
