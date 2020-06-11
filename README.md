@@ -6,7 +6,7 @@ Organized Orders (O2) is a software that has been created for the course of Soft
 This is the first version of O2. 
 
 ***Description and Goal***
-O2 is a software that can manage orders (for purchase and sale) for mainly small companies.
+O2 is a software that can manage orders (for purchase and sale) mainly for small companies.
 The users that can use O2 are the order manager, the stockkeeper and the seller of a company.
 The offering functions are: completing an order safely and quickly, forecasting order needs for 
 the future, and showing statistics and diagramms about number of orders/sales, incomes and outcomes.
