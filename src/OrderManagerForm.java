@@ -12,6 +12,12 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 
+/**
+ * OrderManagerForm.java
+ * Purpose: The class is the GUI for showing the home page of an OrderManager.
+ * @author Bitsa Antouela
+ */
+
 public class OrderManagerForm {
 	private JFrame frame ;   //frame
 	private	JMenuBar ordManagerJMenuBar;
