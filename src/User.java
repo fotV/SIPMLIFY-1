@@ -49,7 +49,7 @@ public class User {
 	}
 	
 	/**
-	 * Searches a key into the list of orders. If it is found then calls the PresentantionForm to show the results  
+	 * Searches a key into the list of orders. If it is found then calls the PresentantionForm to show the results, else show error message  
 	 * @param key		represents the string for searching
 	 * @param column	represents the int for searching at a specific attribute
 	 */
