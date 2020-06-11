@@ -11,6 +11,13 @@ import java.awt.Color;
 import java.awt.Font;
 
 
+/**
+ * PresentationForm.java
+ * Purpose :  Creates the GUI for the Presentation Form and is used to to present very briefly
+ * a table consisting of data then the user chooses one and it opens in another GUI so they can see it in more detail.
+ * @author Manoli Christina
+ */
+
 public class PresentationForm extends JFrame{
 	
 	/**
@@ -21,10 +28,7 @@ public class PresentationForm extends JFrame{
 	private JScrollPane scroll;
 	private int n;
 	
-	/*
-	 * The following constructor creates the gui for the Presentation Form which is used to present very briefly to the user
-	 * a list of data in order for them to choose one to open and see it in more detail.
-	 */
+	
 	public PresentationForm(User u, ArrayList <Object> objectList)
 	{
 		String[][] data = new String[objectList.size()][3];
