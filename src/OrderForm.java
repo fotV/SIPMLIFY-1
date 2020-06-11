@@ -20,7 +20,7 @@ import javax.swing.border.EtchedBorder;
 /**
  * OrderForm.java
  * Purpose :  Creates the GUI for the Order Form and adds an order if there is no error in the filled fields. 
- * @author Fotiadou Vassiliki
+ * @author Manoli Christina
  */
 
 
