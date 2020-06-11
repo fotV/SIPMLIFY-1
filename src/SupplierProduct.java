@@ -1,6 +1,8 @@
 
 public class SupplierProduct {
-	/*SupplierProduct.java
+	/**
+	 *SupplierProduct.java
+	 *Purpose: Class that represents a product that an OrderManager is buying.
 	 * @author Vlasakoudi Christina
 	 */
 	 private String name;
@@ -15,7 +17,8 @@ public class SupplierProduct {
 	 
 	 
 
-	 
+	
+	//Constructor 
 	 public SupplierProduct(String name,String id,String orderManagerId,double stockAmount,double maxStockAmount,double safetyStock,double averageMonthlyConsumption,int leadtime,double expectedAmount) 
 	 {
 		 this.name = name;
@@ -30,6 +33,8 @@ public class SupplierProduct {
 
      }
 
+	
+	//getters and setters
 	public String getName() {
 		return name;
 	}
