@@ -80,7 +80,10 @@ public class Suppliers extends ListFromDB {
 			}
 		}
 	}
-	
+	/**
+	 * Gets the list of Suppliers
+	 * @return An ArrayList with Suppliers
+	 */
 	public ArrayList<Supplier> getSuppliers(){
 		return suppliers;
 	}
