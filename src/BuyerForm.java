@@ -17,7 +17,7 @@ import javax.swing.SwingConstants;
 
 /**
 *BuyerForm.java
-* Purpose : Creates the GUI of the Supplier Form and adds a supplier if there is no error in the filled fields.
+* Purpose : Creates the GUI for the BuyerForm which is a form consisted of textfields in which a seller can input data and create a new Buyer.
 * @author Fotiadou Vassiliki
 */
 	
