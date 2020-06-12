@@ -242,7 +242,7 @@ public class ProductForm extends JFrame{
 					//if errorFlag = false there is no error, adds product in ArrayList Company Product
 					if(!errorFlag){
 						frame.setVisible(false);
-						CompanyProduct comp = new CompanyProduct(name,id,supplierID,Double.parseDouble(stockAm),Double.parseDouble(maxStock),
+						CompanyProduct comp = new CompanyProduct(name,id,seller.getId(),Double.parseDouble(stockAm),Double.parseDouble(maxStock),
 														Double.parseDouble(safety),Double.parseDouble(price));
 						seller.getProducts().getCompanyProducts().add(comp);
 					}
