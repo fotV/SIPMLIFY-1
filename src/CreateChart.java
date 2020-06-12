@@ -91,6 +91,9 @@ public class CreateChart extends JFrame{
 		//create line chart
 		JFreeChart lineChart = ChartFactory.createLineChart( title,"Date", "Value",dataset);		
 		ChartFrame frame = new ChartFrame("Line Chart", lineChart);
+		URL resource = getClass().getClassLoader().getResource( "windowLogo.png" );	//window icon
+	    	Image icon = Toolkit.getDefaultToolkit().getImage(resource);  
+	    	frame.setIconImage(icon);
 		frame.setVisible(true);
 		frame.setSize(1041, 653);		
 		
@@ -183,6 +186,8 @@ public class CreateChart extends JFrame{
 		this.setContentPane(panel);
 		this.setVisible(true);
 		this.setTitle("Matrix Chart");
+		URL resource3 = getClass().getClassLoader().getResource( "windowLogo.png" );
+		this.setIconImage(Toolkit.getDefaultToolkit().getImage(resource3));
 		this.setBounds(100, 100, 1041, 653);
 		this.setResizable(false);
 		
@@ -245,6 +250,9 @@ public class CreateChart extends JFrame{
 		//creates bar chart
 		JFreeChart chart = ChartFactory.createBarChart(title, "Year" , "Value", dataset, PlotOrientation.VERTICAL, true, true, false); 
 		ChartFrame frame = new ChartFrame("Bar Chart ",chart);
+		URL resource2 = getClass().getClassLoader().getResource( "windowLogo.png" );	//window icon
+	    	Image icon = Toolkit.getDefaultToolkit().getImage(resource2);  
+	    	frame.setIconImage(icon);
 		frame.setVisible(true);
 		frame.setSize(1041, 653);			
 	}	
@@ -310,6 +318,9 @@ public class CreateChart extends JFrame{
 		//creates pie chart
 		JFreeChart chart = ChartFactory.createPieChart(title, dataset, true, true, true);
 		ChartFrame frame = new ChartFrame("Pie Chart ",chart);
+		URL resource2 = getClass().getClassLoader().getResource( "windowLogo.png" );	//window icon
+	    	Image icon = Toolkit.getDefaultToolkit().getImage(resource2);  
+	    	frame.setIconImage(icon);
 		frame.setVisible(true);
 		frame.setSize(1041, 653);		
 	}	
